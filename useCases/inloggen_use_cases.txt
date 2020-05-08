@@ -1,23 +1,20 @@
 Use cases inloggen klant/medewerker
 
-
 Use case: inloggen (klant)
-Primary Actor: gebruiker
-Supporting Actor: Parque Banque (de bank)
-Preconditions: de gebruiker moet klant zijn van de bank.
-Success guarantee: de gebruiker wordt doorverwezen naar zijn of haar rekeningoverzicht.
+Primary Actor: Gebruiker
+Preconditions: de Gebruiker is van de bank.
+Success guarantee: de Gebruiker krijgt toegang tot zijn of haar rekeningoverzicht.
 Main success scenario:
-1. Gebruiker selecteert inloggen.
+1. Gebruiker selecteert "inloggen klant".
 2. Gebruiker vult zijn of haar gebruikersnaam en wachtwoord in.
-3. Gebruiker klikt op oké.
+3. Gebruiker bevestigt.
 4. Gebruiker wordt doorverwezen naar zijn of haar rekeningoverzicht.
-
 
 Extensions (or alternative flows):
     3a. Gebruiker klikt met één of meerdere lege velden op OK.
-         - Melding met de waarschuwing ‘Vul zowel gebruikersnaam als wachtwoord in.’
+        - Melding met de waarschuwing ‘Vul zowel gebruikersnaam als wachtwoord in.’
     3b. Gebruiker voert verkeerde gebruikersnaam en/of wachtwoord in.
-	 - Melding met de waarschuwing ‘De combinatie tussen gebruikersnaam en  
+	    - Melding met de waarschuwing ‘De combinatie tussen gebruikersnaam en  
           wachtwoord is onjuist. Probeer het opnieuw.’
 
 
@@ -25,19 +22,17 @@ Extensions (or alternative flows):
 
 Use case: inloggen (medewerker)
 Primary Actor: gebruiker
-Supporting Actor: Parque Banque (de bank)
 Preconditions: de gebruiker moet medewerker zijn van de bank.
-Success guarantee: de gebruiker wordt doorverwezen naar zijn of haar medewerkerspagina.
+Success guarantee: de gebruiker krijgt toegang tot zijn of haar medewerkerspagina.
 Main success scenario:
-1. Gebruiker selecteert inloggen medewerker.
+1. Gebruiker selecteert "inloggen medewerker".
 2. Gebruiker vult zijn of haar personeelsnummer en wachtwoord in.
-3. Gebruiker klikt op oké.
+3. Gebruiker bevestigt.
 4. Gebruiker wordt doorverwezen naar zijn of haar medewerkerspagina.
-
 
 Extensions (or alternative flows):
     3a. Gebruiker klikt met één of meerdere lege velden op OK.
-           - Melding met de waarschuwing ‘Vul zowel personeelsnummer als wachtwoord in.’
+        - Melding met de waarschuwing ‘Vul zowel personeelsnummer als wachtwoord in.’
     3b. Gebruiker voert verkeerde gebruikersnaam en/of wachtwoord in.
-           - Melding met de waarschuwing ‘De combinatie tussen personeelsnummer en 
+        - Melding met de waarschuwing ‘De combinatie tussen personeelsnummer en 
 	    wachtwoord is onjuist. Probeer het opnieuw.’
