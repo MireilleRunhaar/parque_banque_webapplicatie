@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>162</y>
+      <w>90</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Customer
+--
+BSN
+userName
+password</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>441</x>
+      <y>162</y>
+      <w>90</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>/Employee/
+--
+id
+password</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>315</y>
+      <w>117</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>/PaymentAccount/
+--
+accountHolder
+IBAN
+balance
+transactionHistory</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>234</x>
+      <y>666</y>
+      <w>90</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>PayTerminal
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>351</x>
+      <y>36</y>
+      <w>99</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>/User/
+--
+name
+address
+phoneNumber
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>522</y>
+      <w>99</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Company
+--
+BTWNr
+KvkNr
+name
+sector
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>639</x>
+      <y>171</y>
+      <w>135</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>HeadBusinessMarket
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>81</y>
+      <w>153</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>HeadPrivateMarket
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>99</y>
+      <w>99</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>414</x>
+      <y>99</y>
+      <w>90</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>522</y>
+      <w>153</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>BusinessAccount
+--
+companyName</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>414</x>
+      <y>450</y>
+      <w>117</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>PrivateAccount
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>297</x>
+      <y>225</y>
+      <w>54</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>m1= 1..*
+m2= *</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>513</x>
+      <y>117</y>
+      <w>117</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>351</y>
+      <w>126</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0;120.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>261</x>
+      <y>405</y>
+      <w>27</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>522</x>
+      <y>171</y>
+      <w>135</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>351</y>
+      <w>117</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>Transaction
+--
+creditAccount
+debitAccount
+amount
+description
+date</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>108</x>
+      <y>369</y>
+      <w>162</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>m1=2
+m2=*
+</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>261</x>
+      <y>576</y>
+      <w>27</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>333</y>
+      <w>288</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>m1=0..*
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;250.0;290.0;250.0;290.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>558</x>
+      <y>288</y>
+      <w>135</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>AccountManager
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>522</x>
+      <y>189</y>
+      <w>90</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>549</y>
+      <w>144</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>m1=1..*
+m2=*</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>63</x>
+      <y>216</y>
+      <w>135</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Authorization
+--
+authorizedCustomer
+account
+activationCode</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>279</y>
+      <w>126</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>120.0;70.0;10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>180</y>
+      <w>144</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>m1=*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>342</x>
+      <y>639</y>
+      <w>126</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>payterminal
+nog verder uit te 
+werken</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>54</x>
+      <y>36</y>
+      <w>216</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>DomeinModel Parque Banque</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
