@@ -11,7 +11,7 @@
     </coordinates>
     <panel_attributes>Customer
 --
-BSN
+SSN
 userName
 password</panel_attributes>
     <additional_attributes/>
@@ -88,8 +88,8 @@ phoneNumber
     </coordinates>
     <panel_attributes>Company
 --
-BTWNr
-KvkNr
+VATNr
+COCNr
 name
 sector
 </panel_attributes>
