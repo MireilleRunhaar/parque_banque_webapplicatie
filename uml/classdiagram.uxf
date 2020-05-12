@@ -5,9 +5,9 @@
     <id>UMLClass</id>
     <coordinates>
       <x>462</x>
-      <y>119</y>
-      <w>147</w>
-      <h>140</h>
+      <y>7</y>
+      <w>182</w>
+      <h>154</h>
     </coordinates>
     <panel_attributes>/User/
 
@@ -17,20 +17,21 @@
 -zipcode: String
 -phoneNumber: String
 --
-#Operation(i: int): int
-/+AbstractOperation()/
---
-Responsibilities
--- Resp1
--- Resp2</panel_attributes>
++getters()
++setters()
++constructor()
++toString()
++equals()
++hashCode()
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>623</x>
-      <y>336</y>
-      <w>161</w>
+      <y>238</y>
+      <w>210</w>
       <h>133</h>
     </coordinates>
     <panel_attributes>Customer
@@ -51,7 +52,7 @@ Responsibilities
     <id>UMLClass</id>
     <coordinates>
       <x>357</x>
-      <y>336</y>
+      <y>238</y>
       <w>147</w>
       <h>133</h>
     </coordinates>
@@ -72,7 +73,7 @@ Responsibilities
     <id>UMLClass</id>
     <coordinates>
       <x>14</x>
-      <y>112</y>
+      <y>14</y>
       <w>147</w>
       <h>84</h>
     </coordinates>
@@ -89,7 +90,7 @@ Responsibilities</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>259</y>
+      <y>161</y>
       <w>147</w>
       <h>133</h>
     </coordinates>
@@ -108,7 +109,7 @@ Responsibilities
     <id>UMLClass</id>
     <coordinates>
       <x>7</x>
-      <y>441</y>
+      <y>343</y>
       <w>147</w>
       <h>133</h>
     </coordinates>
@@ -126,7 +127,7 @@ Responsibilities
     <id>Relation</id>
     <coordinates>
       <x>560</x>
-      <y>252</y>
+      <y>154</y>
       <w>133</w>
       <h>98</h>
     </coordinates>
@@ -137,7 +138,7 @@ Responsibilities
     <id>Relation</id>
     <coordinates>
       <x>441</x>
-      <y>252</y>
+      <y>154</y>
       <w>70</w>
       <h>98</h>
     </coordinates>
@@ -148,7 +149,7 @@ Responsibilities
     <id>Relation</id>
     <coordinates>
       <x>154</x>
-      <y>147</y>
+      <y>49</y>
       <w>217</w>
       <h>238</h>
     </coordinates>
@@ -159,7 +160,7 @@ Responsibilities
     <id>Relation</id>
     <coordinates>
       <x>140</x>
-      <y>315</y>
+      <y>217</y>
       <w>231</w>
       <h>112</h>
     </coordinates>
@@ -170,7 +171,7 @@ Responsibilities
     <id>Relation</id>
     <coordinates>
       <x>147</x>
-      <y>434</y>
+      <y>336</y>
       <w>224</w>
       <h>70</h>
     </coordinates>
@@ -181,7 +182,7 @@ Responsibilities
     <id>UMLClass</id>
     <coordinates>
       <x>609</x>
-      <y>553</y>
+      <y>455</y>
       <w>196</w>
       <h>119</h>
     </coordinates>
@@ -202,7 +203,7 @@ Responsibilities
     <id>UMLClass</id>
     <coordinates>
       <x>882</x>
-      <y>434</y>
+      <y>336</y>
       <w>168</w>
       <h>147</h>
     </coordinates>
@@ -225,7 +226,7 @@ Responsibilities
     <id>UMLClass</id>
     <coordinates>
       <x>798</x>
-      <y>777</y>
+      <y>679</y>
       <w>91</w>
       <h>70</h>
     </coordinates>
@@ -240,7 +241,7 @@ Responsibilities
     <id>UMLClass</id>
     <coordinates>
       <x>497</x>
-      <y>784</y>
+      <y>686</y>
       <w>182</w>
       <h>56</h>
     </coordinates>
@@ -254,7 +255,7 @@ Responsibilities
     <id>UMLClass</id>
     <coordinates>
       <x>308</x>
-      <y>861</y>
+      <y>763</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
@@ -268,26 +269,10 @@ Responsibilities
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>819</x>
-      <y>630</y>
-      <w>147</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>Een rekening kan meerdere 
-rekeninghouders hebben
-Hebben die allemaal dezelfde 
-rechten? Of is er een hoofd 
-rekeninghouder?
-bg=yellow</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>756</x>
-      <y>665</y>
+      <y>567</y>
       <w>98</w>
       <h>126</h>
     </coordinates>
@@ -298,7 +283,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>581</x>
-      <y>665</y>
+      <y>567</y>
       <w>70</w>
       <h>133</h>
     </coordinates>
@@ -309,7 +294,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>679</x>
-      <y>462</y>
+      <y>364</y>
       <w>35</w>
       <h>105</h>
     </coordinates>
@@ -322,7 +307,7 @@ m2=*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>371</x>
-      <y>812</y>
+      <y>714</y>
       <w>140</w>
       <h>63</h>
     </coordinates>
@@ -334,7 +319,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>798</x>
-      <y>511</y>
+      <y>413</y>
       <w>98</w>
       <h>112</h>
     </coordinates>
@@ -346,7 +331,7 @@ m2=*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>77</x>
-      <y>567</y>
+      <y>469</y>
       <w>469</w>
       <h>231</h>
     </coordinates>
@@ -356,111 +341,16 @@ m2=*</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;260.0;640.0;260.0;640.0;310.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>896</x>
-      <y>70</y>
-      <w>112</w>
-      <h>98</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>140.0;10.0;140.0;60.0;10.0;60.0;10.0;120.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>959</x>
-      <y>0</y>
-      <w>147</w>
-      <h>77</h>
-    </coordinates>
-    <panel_attributes>/&lt;&lt;interface&gt;&gt;/
-CRUD
---
-/+create()/
-/+update()/
-/+delete()/
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>777</x>
-      <y>280</y>
-      <w>126</w>
-      <h>98</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;has a</panel_attributes>
-    <additional_attributes>10.0;120.0;160.0;120.0;160.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>819</x>
-      <y>154</y>
-      <w>196</w>
-      <h>133</h>
-    </coordinates>
-    <panel_attributes>CustomerController
---
--customer: Customer
--DatabaseAcces: DatabaseAccesObject
---
-+create()
-+update()
-+delete()
---
-Responsibilities
--- handle events</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>665</x>
-      <y>0</y>
-      <w>147</w>
-      <h>133</h>
-    </coordinates>
-    <panel_attributes>DatabaseAccesObject
---
--id: Long {composite}
-_-ClassAttribute: Long_
---
-#Operation(i: int): int
-/+AbstractOperation()/
---
-Responsibilities
--- manipulate database</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>707</x>
-      <y>126</y>
-      <w>126</w>
-      <h>105</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;has a</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0;160.0;130.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>462</x>
-      <y>504</y>
-      <w>119</w>
-      <h>56</h>
+      <x>644</x>
+      <y>91</y>
+      <w>98</w>
+      <h>42</h>
     </coordinates>
-    <panel_attributes>Hoe zorgen we voor 
-de juiste autorisaties
-om een rekening te
-debiteren?
-bg=yellow</panel_attributes>
+    <panel_attributes>bg=yellow
+alle models hebben 
+iig deze methods</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
