@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Nieuwe klant</title>
 </head>
 <body>
+    <h1>Welkom!</h1>
+    <h3>Vul hier uw gegevens in</h3>
+    <form action="#" th:action="@{/signup}" th:object="${signUpFormBean}" method="post">
+        <table>
+            <tr>
+                <td> <label for="firstName">Voornaam</label> </td>
+                <td> <input id="firstName" required type="text" th:field="*{firstName}" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="infix">Tussenvoegsel</label> </td>
+                <td> <input id="infix" type="text" th:field="*{infix}" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="lastName">Achternaam</label> </td>
+                <td> <input id="lastName" type="text" th:field="*{lastName}" /> </td>
+            </tr>
+<!--            <tr>-->
+<!--                <td> <label for="street">Straat</label> </td>-->
+<!--                <td> <input id="street" type="text" /> </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td> <label for="number">Huisnummer</label> </td>-->
+<!--                <td> <input id="number" type="text" /> </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td> <label for="addition">Toevoeging</label> </td>-->
+<!--                <td> <input id="addition" type="text" /> </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td> <label for="postcode">Postcode</label> </td>-->
+<!--                <td> <input id="postcode" type="text" /> </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td> <label for="city">Woonplaats</label> </td>-->
+<!--                <td> <input id="city" type="text" /> </td>-->
+<!--            </tr>-->
+            <tr>
+                <td> <a href="homepage">Terug</a> </td>
+                <td> <input type="submit" value="Ga verder"> </td>
+            </tr>
+        </table>
+    </form>
 
 </body>
 </html>

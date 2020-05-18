@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bevestig gegevens</title>
 </head>
 <body>
-
+    <h1>Bevestig uw gegevens</h1>
+    <form th:object="${signUpFormBean}">
+        <table>
+            <tr>
+                <td> <label for="firstName">Voornaam</label> </td>
+                <td> <input id="firstName" readonly type="text" th:field="${signUpFormBean.firstName}" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="infix">Tussenvoegsel</label> </td>
+                <td> <input id="infix" readonly type="text" th:field="${signUpFormBean.infix}" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="lastName">Achternaam</label> </td>
+                <td> <input id="lastName" readonly type="text" th:field="${signUpFormBean.lastName}" /> </td>
+            </tr>
+            <tr>
+                <td> <a href="signup">Terug</a> </td>
+                <td> <input type="submit" value="Verzenden"> </td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>
