@@ -1,4 +1,4 @@
 package nl.team2.parque_banque_server.utilities;
 
-public class BusinessFormBean {
+public class CompanyFormBean {
 }
