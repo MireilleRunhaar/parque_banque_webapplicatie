@@ -1,4 +1,5 @@
 package nl.team2.parque_banque_server.controller;
 
-public class ConfirmBusinessAccountController {
+public class ConfirmCompanyController {
+     
 }
