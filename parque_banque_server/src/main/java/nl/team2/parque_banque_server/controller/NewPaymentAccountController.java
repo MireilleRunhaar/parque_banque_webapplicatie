@@ -15,15 +15,15 @@ public class NewPaymentAccountController {
         return "newpaymentaccount";
     }
 
-    @GetMapping("particuliereaccount")
+    @GetMapping("particuliererekening")
     public String newPrivateAccount(){
         return "newprivateaccount";
     }
 
-    @GetMapping("zakelijkeaccount")
+  /*  @GetMapping("zakelijkerekening")
     public String newCompanyAccount(){
         return "newcompanyaccount";
-    }
+    }*/
 }
 
 
