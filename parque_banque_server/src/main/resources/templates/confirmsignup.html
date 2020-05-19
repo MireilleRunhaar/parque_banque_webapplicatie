@@ -6,23 +6,49 @@
 </head>
 <body>
     <h1>Bevestig uw gegevens</h1>
-    <form th:object="${signUpFormBean}">
+    <form th:action="@{/bevestig}" th:object="${form}" method="post">
         <table>
             <tr>
                 <td> <label for="firstName">Voornaam</label> </td>
-                <td> <input id="firstName" readonly type="text" th:field="${signUpFormBean.firstName}" /> </td>
+                <td> <input id="firstName" type="text" readonly th:field="${form.firstName}" /> </td>
             </tr>
             <tr>
                 <td> <label for="infix">Tussenvoegsel</label> </td>
-                <td> <input id="infix" readonly type="text" th:field="${signUpFormBean.infix}" /> </td>
+                <td> <input id="infix" type="text" readonly th:field="${form.infix}" /> </td>
             </tr>
             <tr>
                 <td> <label for="lastName">Achternaam</label> </td>
-                <td> <input id="lastName" readonly type="text" th:field="${signUpFormBean.lastName}" /> </td>
+                <td> <input id="lastName" type="text" readonly th:field="${form.lastName}" /> </td>
             </tr>
             <tr>
-                <td> <a href="signup">Terug</a> </td>
-                <td> <input type="submit" value="Verzenden"> </td>
+                <td> <label for="bsn">Burger Service Nummer</label> </td>
+                <td> <input id="bsn" type="text" readonly th:field="${form.bsn}"/></td>
+            </tr>
+            <tr>
+                <td> <label for="street">Straatnaam</label> </td>
+                <td> <input id="street" type="text" readonly th:field="${form.street}"/> </td>
+            </tr>
+            <tr>
+                <td> <label for="number">Huisnummer</label> </td>
+                <td> <input id="number" type="text" readonly th:field="${form.number}" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="addition">Toevoeging</label> </td>
+                <td> <input id="addition" type="text" readonly th:field="${form.addition}" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="postcode">Postcode</label> </td>
+                <td> <input id="postcode" type="text" readonly th:field="${form.postcode}" /> </td>
+            </tr>
+<!--            <tr>-->
+<!--                <td> <label for="city">Woonplaats</label> </td>-->
+<!--                <td> <input id="city" type="text" /> </td>-->
+<!--            </tr>-->
+            <tr>
+<!--                <td> <a href="/signup">Terug</a> </td>-->
+<!--                <td> <a href="correct" type="button" >Wijzig</a> </td>-->
+                <td> <button type="submit" name="action" value="edit">Wijzig</button> </td>
+                <td> <button type="submit" name="action" value="send">Verzenden</button> </td>
             </tr>
         </table>
     </form>
