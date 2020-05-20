@@ -15,14 +15,17 @@ public class IndexController {
     public String goToLoginCustomerPage(){
         return "logincustomer";
     }
+
     @GetMapping("/klant-worden")
     public String goToSignUp(){
         return "signup";
     }
+
     @GetMapping("/personeel")
     public String goToLoginEmployee(){
         return "loginemployee";
     }
+
     @GetMapping("/rekening-openen")
     public String goToNewPaymentAccount(){
         return "newpaymentaccount";
