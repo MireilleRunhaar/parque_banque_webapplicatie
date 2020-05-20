@@ -11,7 +11,7 @@
         <table>
             <tr>
                 <td> <label for="firstName">Voornaam</label> </td>
-                <td> <input id="firstName" type="text" required th:field="*{firstName}"
+                <td> <input id="firstName" type="text" required pattern="^[-'A-Za-zÀ-ÖØ-öø-ÿ]+$" th:field="*{firstName}"
                             oninvalid="setCustomValidity('Voornaam is verplicht')"
                             oninput="setCustomValidity('')"/> </td>
 <!--                <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>-->
@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td> <label for="lastName">Achternaam</label> </td>
-                <td> <input id="lastName" type="text" required th:field="*{lastName}"
+                <td> <input id="lastName" type="text" required pattern="^[-'A-Za-zÀ-ÖØ-öø-ÿ]+$" th:field="*{lastName}"
                             oninvalid="setCustomValidity('Achternaam is verplicht')"
                             oninput="setCustomValidity('')" /> </td>
             </tr>
@@ -54,13 +54,42 @@
             </tr>
             <tr>
                 <td> <label for="postcode">Postcode</label> </td>
-                <td> <input id="postcode" type="text" required pattern="[1-9][0-9]{3}[A-Za-z]{2}" th:field="*{postcode}"
+                <td> <input id="postcode" type="text" required pattern="[1-9][0-9]{3}[A-Za-z]{2}" th:field="*{zipcode}"
                             oninvalid="setCustomValidity('Postcode moet zonder spaties ingevuld worden (bijv 1111AB)')"
                             oninput="setCustomValidity('')"/> </td>
             </tr>
+            <tr>
+                <td> <label for="city">Woonplaats</label> </td>
+                <td> <input id="city" type="text" required th:field="*{city}"
+                            oninvalid="setCustomValidity('Woonplaats is verplicht')"
+                            oninput="setCustomValidity('')" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="phone">Telefoon nummer</label></td>
+                <td> <input id="phone" type="tel" pattern="[0][0-9]{9}" th:field="*{phone}"
+                            title="Geef een Nederlands telefoonnummer op (zonder streepje)"
+                            oninvalid="setCustomValidity('Geef een Nederlands telefoonnummer op (zonder streepje)')"
+                            oninput="setCustomValidity('')" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="email">Email</label></td>
+                <td> <input id="email" type="email" th:field="*{emailAddress}"
+                            oninvalid="setCustomValidity('Geef een geldig email adres op')"
+                            oninput="setCustomValidity('')" /> </td>
+            </tr>
 <!--            <tr>-->
-<!--                <td> <label for="city">Woonplaats</label> </td>-->
-<!--                <td> <input id="city" type="text" /> </td>-->
+<!--                <td> <label for="username">Gebruikersnaam</label></td>-->
+<!--                <td> <input id="username" type="text" required th:field="*{username}" /></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td> <label for="password">Wachtwoord</label></td>-->
+<!--                <td> <input id="password" type="password" required th:field="*{password}" onchange='check_pass()' /></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td> <label for="confirmpassword">Bevestig wachtwoord</label></td>-->
+<!--                <td> <input id="confirmpassword" type="password" required onchange='check_pass()' />-->
+<!--                    <span id='message'></span>-->
+<!--                </td>-->
 <!--            </tr>-->
             <tr>
                 <td> <a href="homepage">Terug</a> </td>

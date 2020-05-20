@@ -38,12 +38,20 @@
             </tr>
             <tr>
                 <td> <label for="postcode">Postcode</label> </td>
-                <td> <input id="postcode" type="text" readonly th:field="${form.postcode}" /> </td>
+                <td> <input id="postcode" type="text" readonly th:field="${form.zipcode}" /> </td>
             </tr>
-<!--            <tr>-->
-<!--                <td> <label for="city">Woonplaats</label> </td>-->
-<!--                <td> <input id="city" type="text" /> </td>-->
-<!--            </tr>-->
+            <tr>
+                <td> <label for="city">Woonplaats</label> </td>
+                <td> <input id="city" type="text" readonly th:field="${form.city}" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="phone">Telefoon nummer</label></td>
+                <td> <input id="phone" type="tel" readonly th:field="${form.phone}" /></td>
+            </tr>
+            <tr>
+                <td> <label for="email">Email</label></td>
+                <td> <input id="email" type="email" readonly th:field="${form.emailAddress}" /> </td>
+            </tr>
             <tr>
 <!--                <td> <a href="/signup">Terug</a> </td>-->
 <!--                <td> <a href="correct" type="button" >Wijzig</a> </td>-->

@@ -1,8 +1,8 @@
 package nl.team2.parque_banque_server.utilities;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class SignUpFormBean {
@@ -35,7 +35,18 @@ public class SignUpFormBean {
 
     @NotBlank
     @Size(min = 6, max = 6)
-    private String postcode;
+    private String zipcode;
+
+    @NotBlank
+    @Size(min = 2)
+    private String city;
+
+    private String phone;
+
+    @Email
+    private String emailAddress;
+
+
 
     public SignUpFormBean() {
         super();
@@ -97,13 +108,38 @@ public class SignUpFormBean {
         this.addition = addition;
     }
 
-    public String getPostcode() {
-        return postcode;
+    public String getZipcode() {
+        return zipcode;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
 
     @Override
     public String toString() {
@@ -111,6 +147,14 @@ public class SignUpFormBean {
                 "firstName='" + firstName + '\'' +
                 ", infix='" + infix + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", bsn='" + bsn + '\'' +
+                ", street='" + street + '\'' +
+                ", number='" + number + '\'' +
+                ", addition='" + addition + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", city='" + city + '\'' +
+                ", phone='" + phone + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
                 '}';
     }
 }

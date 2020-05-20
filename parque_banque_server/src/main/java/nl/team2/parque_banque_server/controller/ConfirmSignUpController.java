@@ -1,5 +1,8 @@
 package nl.team2.parque_banque_server.controller;
 
+import nl.team2.parque_banque_server.model.Address;
+import nl.team2.parque_banque_server.model.Customer;
+import nl.team2.parque_banque_server.utilities.CreateLoginFormBean;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +26,21 @@ public class ConfirmSignUpController {
     public ModelAndView confirmSignupHandler(@ModelAttribute SignUpFormBean signUpFormBean) {
         ModelAndView mav = new ModelAndView();
 
-        mav.setViewName("accountview");
+        mav.setViewName("createlogin");
+//        mav.addObject(signUpFormBean);
+        CreateLoginFormBean createLoginFormBean = new CreateLoginFormBean();
+        createLoginFormBean.setBsn(signUpFormBean.getBsn());
+        mav.addObject(createLoginFormBean);
 
         // TODO: create new customer object and save in database
+        Address address = new Address(signUpFormBean.getStreet(), signUpFormBean.getNumber(),
+                signUpFormBean.getAddition(), signUpFormBean.getZipcode(), signUpFormBean.getCity());
+        Customer customer = new Customer(signUpFormBean.getLastName(), signUpFormBean.getFirstName(),
+                signUpFormBean.getInfix(), signUpFormBean.getPhone(), signUpFormBean.getEmailAddress(), address);
+        customer.setBsn(signUpFormBean.getBsn());
+        mav.addObject(customer);
+
+        System.out.println("Confirmsignupcontroller: " + customer);
 
         return mav;
     }

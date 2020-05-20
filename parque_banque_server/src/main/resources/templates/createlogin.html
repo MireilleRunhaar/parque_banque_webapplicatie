@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Maak account</title>
+</head>
+<body>
+    <h1>Vul gebruikersnaam een wachtwoord in</h1>
+    <form action="#" th:action="@{/accountview}" th:object="${createLoginFormBean}" method="post">
+        <table>
+            <tr>
+<!--                <td> <label for="bsn">BSN</label> </td>-->
+                <td> <input id="bsn" type="text" hidden readonly th:field="${createLoginFormBean.bsn}" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="username">Gebruikersnaam</label></td>
+                <td> <input id="username" type="text" required th:field="*{username}" /></td>
+            </tr>
+            <tr>
+                <td> <label for="password">Wachtwoord</label></td>
+                <td> <input id="password" type="password" required th:field="*{password}" onchange='check_pass()' /></td>
+            </tr>
+            <tr>
+                <td> <label for="confirmpassword">Bevestig wachtwoord</label></td>
+                <td> <input id="confirmpassword" type="password" required onchange='check_pass()' />
+                    <span id='message'></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> <input type="submit" value="Verder" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
