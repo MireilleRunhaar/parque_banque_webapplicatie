@@ -1,8 +1,6 @@
 package nl.team2.parque_banque_server.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -16,8 +14,10 @@ public class Transaction {
     private String description;
     private LocalDate date;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
     private PaymentAccount creditAccount;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private PaymentAccount debitAccount;
 
     public Transaction(){

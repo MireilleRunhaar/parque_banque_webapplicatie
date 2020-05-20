@@ -1,9 +1,6 @@
 package nl.team2.parque_banque_server.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity

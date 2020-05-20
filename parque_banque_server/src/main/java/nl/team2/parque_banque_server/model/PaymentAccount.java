@@ -1,9 +1,6 @@
 package nl.team2.parque_banque_server.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,10 +11,10 @@ public abstract class PaymentAccount {
     private String iban;
     private long balanceCent;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Transaction> transactionHistory;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Customer> accountHolders;
 
     public PaymentAccount(){

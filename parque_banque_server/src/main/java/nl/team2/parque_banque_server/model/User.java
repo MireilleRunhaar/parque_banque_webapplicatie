@@ -7,7 +7,7 @@ import java.util.Objects;
 public abstract class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
 
     protected String surName;
