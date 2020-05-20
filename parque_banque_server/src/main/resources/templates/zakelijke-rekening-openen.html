@@ -7,12 +7,17 @@
 <body>
 <h1>Open een zakelijke rekening</h1>
 <h2>De volgende bedrijven zijn bij ons bekend:</h2>
+<!--Dropdown met bedrijfsnamen, uit DB halen o.b.v. koppeling klant&rekening -->
+<tr th:each="zakelijke-rekening : ${rekeningoverzicht}">
+    <td th:text="${rekening.getbedrijfsnaam}"></td>
+</tr>
+
 <p><select id="companyId" name="companyName">
     <option value="BB" selected="selected">Bakkerij de Beul</option>
     <option value="KK">Kapper ten Korten</option>
     <option value="CV">Cafetaria de Vette Hap</option>
 </select></p>
-<!--Dropdown met bedrijfsnamen, uit DB halen o.b.v. koppeling klant&rekening -->
+
 <p>Selecteer het bedrijf waarvoor u een nieuwe rekening wilt openen</p> <br>
 
 <p>Wilt u een rekening openen voor een ander bedrijf? Meld dan eerst het bedrijf bij ons aan.</p>
