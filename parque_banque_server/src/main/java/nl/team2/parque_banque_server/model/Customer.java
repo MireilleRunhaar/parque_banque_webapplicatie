@@ -3,7 +3,6 @@ package nl.team2.parque_banque_server.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +10,7 @@ import java.util.Objects;
 public class Customer extends User {
 
     @Id
-    private String BSN;
+    private String bsn;
     private String userName;
     private String password;
 
@@ -22,27 +21,35 @@ public class Customer extends User {
         super();
     }
 
-    public Customer(String BSN, String userName, String password) {
-        this.BSN = BSN;
+    public Customer(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address) {
+        super(surName, firstName, affix, phoneNumber, eMailAddress, address);
+    }
+
+    public Customer(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address, String bsn, String userName, String password, List<PaymentAccount> paymentAccounts) {
+        super(surName, firstName, affix, phoneNumber, eMailAddress, address);
+        this.bsn = bsn;
         this.userName = userName;
         this.password = password;
-        this.paymentAccounts = new ArrayList<>();
+        this.paymentAccounts = paymentAccounts;
     }
 
-    public Customer(String name, String address, String zipcode, String phoneNumber, String eMailAdress, String BSN, String userName, String password) {
-        super(name, address, zipcode, phoneNumber, eMailAdress);
-        this.BSN = BSN;
+    public Customer(String bsn, String userName, String password, List<PaymentAccount> paymentAccounts) {
+        this.bsn = bsn;
         this.userName = userName;
         this.password = password;
-        this.paymentAccounts = new ArrayList<>();
+        this.paymentAccounts = paymentAccounts;
     }
 
-    public String getBSN() {
-        return BSN;
+    public void addPaymentAccount(PaymentAccount paymentAccount){
+        paymentAccounts.add(paymentAccount);
     }
 
-    public void setBSN(String BSN) {
-        this.BSN = BSN;
+    public String getBsn() {
+        return bsn;
+    }
+
+    public void setBsn(String bsn) {
+        this.bsn = bsn;
     }
 
     public String getUserName() {
@@ -69,16 +76,10 @@ public class Customer extends User {
         this.paymentAccounts = paymentAccounts;
     }
 
-    public void addPaymentAccount (PaymentAccount paymentAccount) {
-        if(paymentAccount != null) {
-            this.paymentAccounts.add(paymentAccount);
-        }
-    }
-
     @Override
     public String toString() {
         return "Customer{" +
-                "BSN='" + BSN + '\'' +
+                "BSN='" + bsn + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", paymentAccounts=" + paymentAccounts +
@@ -91,7 +92,7 @@ public class Customer extends User {
         if (!(o instanceof Customer)) return false;
         if (!super.equals(o)) return false;
         Customer customer = (Customer) o;
-        return getBSN().equals(customer.getBSN()) &&
+        return getBsn().equals(customer.getBsn()) &&
                 getUserName().equals(customer.getUserName()) &&
                 getPassword().equals(customer.getPassword()) &&
                 Objects.equals(getPaymentAccounts(), customer.getPaymentAccounts());
@@ -99,6 +100,6 @@ public class Customer extends User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getBSN(), getUserName(), getPassword(), getPaymentAccounts());
+        return Objects.hash(super.hashCode(), getBsn(), getUserName(), getPassword(), getPaymentAccounts());
     }
 }

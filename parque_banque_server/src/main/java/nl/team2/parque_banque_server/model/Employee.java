@@ -8,7 +8,7 @@ public class Employee extends User {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     private String password;
 
     @ManyToOne
@@ -18,15 +18,17 @@ public class Employee extends User {
         super();
     }
 
-    public Employee(Long id, String password, Role role) {
-        this.id = id;
+    public Employee(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address) {
+        super(surName, firstName, affix, phoneNumber, eMailAddress, address);
+    }
+
+    public Employee(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address, String password, Role role) {
+        super(surName, firstName, affix, phoneNumber, eMailAddress, address);
         this.password = password;
         this.role = role;
     }
 
-    public Employee(String name, String address, String zipcode, String phoneNumber, String eMailAdress, Long id, String password, Role role) {
-        super(name, address, zipcode, phoneNumber, eMailAdress);
-        this.id = id;
+    public Employee( String password, Role role) {
         this.password = password;
         this.role = role;
     }

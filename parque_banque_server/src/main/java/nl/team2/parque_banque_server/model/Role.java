@@ -11,7 +11,6 @@ public class Role {
     @Id
     @GeneratedValue
     private int id;
-
     private String name;
 
     public Role() {

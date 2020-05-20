@@ -1,52 +1,59 @@
 package nl.team2.parque_banque_server.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public abstract class User {
 
+    @Id
+    @GeneratedValue
+    protected long id;
 
-    protected String name;
-    protected String address;
-    protected String zipcode;
+    protected String surName;
+    protected String firstName;
+    protected String affix;
     protected String phoneNumber;
-    protected String eMailAdress;
+    protected String eMailAddress;
+
+    @ManyToOne
+    protected Address address;
 
     public User() {
         super();
     }
 
-    public User(String name, String address, String zipcode, String phoneNumber, String eMailAdress) {
-        this.name = name;
-        this.address = address;
-        this.zipcode = zipcode;
+    public User(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address) {
+        this.surName = surName;
+        this.firstName = firstName;
+        this.affix = affix;
         this.phoneNumber = phoneNumber;
-        this.eMailAdress = eMailAdress;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
+        this.eMailAddress = eMailAddress;
         this.address = address;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getSurName() {
+        return surName;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getAffix() {
+        return affix;
+    }
+
+    public void setAffix(String affix) {
+        this.affix = affix;
     }
 
     public String getPhoneNumber() {
@@ -57,22 +64,31 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String geteMailAdress() {
-        return eMailAdress;
+    public String geteMailAddress() {
+        return eMailAddress;
     }
 
-    public void seteMailAdress(String eMailAdress) {
-        this.eMailAdress = eMailAdress;
+    public void seteMailAddress(String eMailAddress) {
+        this.eMailAddress = eMailAddress;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", zipcode='" + zipcode + '\'' +
+                "surName='" + surName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", affix='" + affix + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", eMailAdress='" + eMailAdress + '\'' +
+                ", eMailAddress='" + eMailAddress + '\'' +
+                ", address=" + address +
                 '}';
     }
 
@@ -81,15 +97,17 @@ public abstract class User {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return getName().equals(user.getName()) &&
-                getAddress().equals(user.getAddress()) &&
-                getZipcode().equals(user.getZipcode()) &&
+        return getSurName().equals(user.getSurName()) &&
+                getFirstName().equals(user.getFirstName()) &&
+                Objects.equals(getAffix(), user.getAffix()) &&
                 getPhoneNumber().equals(user.getPhoneNumber()) &&
-                geteMailAdress().equals(user.geteMailAdress());
+                geteMailAddress().equals(user.geteMailAddress()) &&
+                getAddress().equals(user.getAddress());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAddress(), getZipcode(), getPhoneNumber(), geteMailAdress());
+        return Objects.hash(getSurName(), getFirstName(), getAffix(), getPhoneNumber(), geteMailAddress(), getAddress());
     }
 }
+
