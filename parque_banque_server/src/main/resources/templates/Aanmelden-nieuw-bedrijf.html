@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Aanmelden nieuw bedrijf</title>
@@ -23,7 +23,21 @@
         </tr>
         <tr>
             <td>Sector</td>
-            <td><input th:field=""></td>
+            <td>
+                <p><select id="sector" name="Sector">
+                    <option value="Ag" selected="selected">Agrarische sector</option>
+                    <option value="Bo">Bouw</option>
+                    <option value="De">Detailhandel</option>
+                    <option value="Gr">Groothandel</option>
+                    <option value="Ho">Horeca</option>
+                    <option value="In">Industrie</option>
+                    <option value="On">Onderwijs</option>
+                    <option value="Ov">Overheid</option>
+                    <option value="Tr">Transport</option>
+                    <option value="Za">Zakelijke dienstverlening</option>
+                    <option value="Zo">Zorg</option>
+                </select></p>
+            </td>
         </tr>
         <tr></tr>
         <tr></tr>
