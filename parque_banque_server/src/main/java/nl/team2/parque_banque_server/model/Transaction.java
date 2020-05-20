@@ -1,33 +1,26 @@
 package nl.team2.parque_banque_server.model;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 public class Transaction {
 
-    private double amount;
+    private int amountCent;//
     private String description;
-    private Date date;
+    private LocalDate date;
     private PaymentAccount creditAccount;
     private PaymentAccount debitAccount;
 
     public Transaction(){
+            }
 
-    }
-
-    public Transaction(double amount, String description, Date date, PaymentAccount creditAccount, PaymentAccount debitAccount) {
-        this.amount = amount;
-        this.description = description;
+    public Transaction(int amountCent, String description, LocalDate date, PaymentAccount creditAccount, PaymentAccount debitAccount) {
+        this.amountCent=amountCent;
+        this.description=description;
         this.date = date;
-        this.creditAccount = creditAccount;
+        this.creditAccount=creditAccount;
         this.debitAccount = debitAccount;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     public String getDescription() {
@@ -38,11 +31,19 @@ public class Transaction {
         this.description = description;
     }
 
-    public Date getDate() {
+    public int getAmountCent() {
+        return amountCent;
+    }
+
+    public void setAmountCent(int amountCent) {
+        this.amountCent = amountCent;
+    }
+
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -65,11 +66,28 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "amount=" + amount +
+                "amountCent=" + amountCent +
                 ", description='" + description + '\'' +
                 ", date=" + date +
                 ", creditAccount=" + creditAccount +
                 ", debitAccount=" + debitAccount +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return amountCent == that.amountCent &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(creditAccount, that.creditAccount) &&
+                Objects.equals(debitAccount, that.debitAccount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amountCent, description, date, creditAccount, debitAccount);
     }
 }

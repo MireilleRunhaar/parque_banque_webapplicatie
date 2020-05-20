@@ -1,12 +1,13 @@
 package nl.team2.parque_banque_server.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public abstract class PaymentAccount {
 
     private String iban;
     private long balance;
-    private List <Transaction> transactionHistory;
+    private List<Transaction> transactionHistory;
     private List<Customer> accountHolders;
 
     public PaymentAccount(String iban, long balance){
@@ -56,4 +57,19 @@ public abstract class PaymentAccount {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PaymentAccount that = (PaymentAccount) o;
+        return balance == that.balance &&
+                Objects.equals(iban, that.iban) &&
+                Objects.equals(transactionHistory, that.transactionHistory) &&
+                Objects.equals(accountHolders, that.accountHolders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(iban, balance, transactionHistory, accountHolders);
+    }
 }
