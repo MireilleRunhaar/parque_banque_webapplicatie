@@ -1,8 +1,11 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
 public abstract class User {
+
 
     protected String name;
     protected String address;

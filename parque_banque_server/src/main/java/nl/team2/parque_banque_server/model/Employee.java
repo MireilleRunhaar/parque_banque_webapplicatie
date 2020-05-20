@@ -1,11 +1,17 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Employee extends User {
 
+    @Id
+    @GeneratedValue
     private Long id;
     private String password;
+
+    @ManyToOne
     private Role role;
 
     public Employee() {

@@ -1,18 +1,24 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Role {
 
+    @Id
+    @GeneratedValue
     private int id;
+
     private String name;
 
     public Role() {
         super();
     }
 
-    public Role(int id, String name) {
-        this.id = id;
+    public Role(String name) {
         this.name = name;
     }
 

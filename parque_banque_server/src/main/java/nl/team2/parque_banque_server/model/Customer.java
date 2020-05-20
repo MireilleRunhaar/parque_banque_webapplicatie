@@ -1,14 +1,21 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Customer extends User {
 
+    @Id
     private String BSN;
     private String userName;
     private String password;
+
+    @OneToMany
     private List<PaymentAccount> paymentAccounts;
 
     public Customer() {
