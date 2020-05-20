@@ -6,13 +6,16 @@ import java.util.Objects;
 public abstract class PaymentAccount {
 
     private String iban;
-    private long balance;
+    private long balanceCent;
     private List<Transaction> transactionHistory;
     private List<Customer> accountHolders;
 
-    public PaymentAccount(String iban, long balance){
+    public PaymentAccount(){
+    }
+
+    public PaymentAccount(String iban, long balanceCent){
         this.iban = iban;
-        this.balance = balance;
+        this.balanceCent = balanceCent;
     }
 
     public String getIban() {
@@ -24,11 +27,11 @@ public abstract class PaymentAccount {
     }
 
     public long getBalance() {
-        return balance;
+        return balanceCent;
     }
 
     public void setBalance(long balance) {
-        this.balance = balance;
+        this.balanceCent = balanceCent;
     }
 
     public List<Transaction> getTransactionHistory() {
@@ -51,7 +54,7 @@ public abstract class PaymentAccount {
     public String toString() {
         return "PaymentAccount{" +
                 "iban='" + iban + '\'' +
-                ", balance=" + balance +
+                ", balance=" + balanceCent +
                 ", transactionHistory=" + transactionHistory +
                 ", accountHolders=" + accountHolders +
                 '}';
@@ -62,7 +65,7 @@ public abstract class PaymentAccount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PaymentAccount that = (PaymentAccount) o;
-        return balance == that.balance &&
+        return balanceCent == that.balanceCent &&
                 Objects.equals(iban, that.iban) &&
                 Objects.equals(transactionHistory, that.transactionHistory) &&
                 Objects.equals(accountHolders, that.accountHolders);
@@ -70,6 +73,6 @@ public abstract class PaymentAccount {
 
     @Override
     public int hashCode() {
-        return Objects.hash(iban, balance, transactionHistory, accountHolders);
+        return Objects.hash(iban, balanceCent, transactionHistory, accountHolders);
     }
 }

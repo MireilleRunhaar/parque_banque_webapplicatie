@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Transaction {
 
-    private int amountCent;//
+    private long amountCent;
     private String description;
     private LocalDate date;
     private PaymentAccount creditAccount;
@@ -15,12 +15,12 @@ public class Transaction {
     public Transaction(){
             }
 
-    public Transaction(int amountCent, String description, LocalDate date, PaymentAccount creditAccount, PaymentAccount debitAccount) {
+    public Transaction(long amountCent, String description, LocalDate date, PaymentAccount creditAccount, PaymentAccount debitAccount) {
         this.amountCent=amountCent;
         this.description=description;
-        this.date = date;
+        this.date=date;
         this.creditAccount=creditAccount;
-        this.debitAccount = debitAccount;
+        this.debitAccount=debitAccount;
     }
 
     public String getDescription() {
@@ -31,11 +31,11 @@ public class Transaction {
         this.description = description;
     }
 
-    public int getAmountCent() {
+    public long getAmountCent() {
         return amountCent;
     }
 
-    public void setAmountCent(int amountCent) {
+    public void setAmountCent(long amountCent) {
         this.amountCent = amountCent;
     }
 
