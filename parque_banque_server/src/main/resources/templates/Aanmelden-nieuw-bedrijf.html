@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Aanmelden nieuw bedrijf</title>
+</head>
+<body>
+<h1>Aanmelden nieuw bedrijf</h1>
+<h3>Vul hieronder de gegevens in van het bedrijf dat u wilt aanmelden:</h3><br>
+<form th:action="@{?}" method="post" th:object="${?}">
+    <table>
+        <tr>
+            <td>BTW-nummer</td>
+            <td><input th:field=""></td>
+        </tr>
+        <tr>
+            <td>KvK-nummer</td>
+            <td><input th:field=""></td>
+        </tr>
+        <tr>
+            <td>Bedrijfsnaam</td>
+            <td><input th:field=""></td>
+        </tr>
+        <tr>
+            <td>Sector</td>
+            <td><input th:field=""></td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+            <td></td><td></td><td><input type="submit" name="submit", value="Bedrijf aanmelden"></td>
+        </tr>
+    </table>
+</form>
+
+
+
+
+</body>
+</html>
