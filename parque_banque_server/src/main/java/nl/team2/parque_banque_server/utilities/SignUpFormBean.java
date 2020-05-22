@@ -23,7 +23,7 @@ public class SignUpFormBean {
     private String bsn;
 
     @NotBlank
-    @Size(min = 5, max = 30)
+    @Size(min = 2, max = 50)
     private String street;
 
     @NotBlank

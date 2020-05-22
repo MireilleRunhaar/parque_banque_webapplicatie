@@ -72,10 +72,16 @@ public class Customer extends User {
     @Override
     public String toString() {
         return "Customer{" +
-                "BSN='" + bsn + '\'' +
+                "bsn='" + bsn + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", paymentAccounts=" + paymentAccounts +
+                ", surName='" + surName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", affix='" + affix + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", eMailAddress='" + eMailAddress + '\'' +
+                ", address=" + address +
                 '}';
     }
 

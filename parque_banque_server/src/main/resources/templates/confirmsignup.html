@@ -2,11 +2,12 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Bevestig gegevens</title>
+    <title>Bevestig gegevens - Parque Banque</title>
 </head>
 <body>
     <h1>Bevestig uw gegevens</h1>
-    <form th:action="@{/bevestig}" th:object="${form}" method="post">
+    <h3>Controleer uw gegevens zorgvuldig. Als u er zeker van bent dat u alles correct hebt ingevuld, klik dan op Volgende</h3>
+    <form th:action="@{/klant-worden}" th:object="${form}" method="post">
         <table>
             <tr>
                 <td> <label for="firstName">Voornaam</label> </td>
@@ -53,10 +54,8 @@
                 <td> <input id="email" type="email" readonly th:field="${form.emailAddress}" /> </td>
             </tr>
             <tr>
-<!--                <td> <a href="/signup">Terug</a> </td>-->
-<!--                <td> <a href="correct" type="button" >Wijzig</a> </td>-->
                 <td> <button type="submit" name="action" value="edit">Wijzig</button> </td>
-                <td> <button type="submit" name="action" value="send">Verzenden</button> </td>
+                <td> <button type="submit" name="action" value="send">Volgende</button> </td>
             </tr>
         </table>
     </form>

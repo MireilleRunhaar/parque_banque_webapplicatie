@@ -1,8 +1,8 @@
 package nl.team2.parque_banque_server.controller;
 
+import nl.team2.parque_banque_server.services.SignUpServices;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,43 +14,31 @@ import javax.validation.Valid;
 @Controller
 public class SignUpController {
 
-    @GetMapping("/signup")
+    @GetMapping("/klant-worden")
     public ModelAndView signupHandler(@ModelAttribute SignUpFormBean signUpFormBean) {
-        // add user object
         ModelAndView mav = new ModelAndView("signup");
         mav.addObject("form", signUpFormBean);
-//        SignUpFormBean signUpFormBean = new SignUpFormBean();
-//        signUpFormBean.setFirstName("Machiel");
-//        model.addAttribute(signUpFormBean);
-//        return "signup";
+
         return mav;
     }
 
-//    @PostMapping("/confirmsignup")
-//    public ModelAndView sendSignupHandler(@ModelAttribute SignUpFormBean signUpFormBean) {
-//        ModelAndView mav = new ModelAndView("confirmsignup");
-//
-//        mav.addObject("form", signUpFormBean);
-//        return mav;
-////        model.addAttribute(signUpFormBean);
-////        return "confirmsignup";
-//    }
 
-    @PostMapping("/signup")
+    // If input form has no violations, send user to next page asking for confirmation of input data
+    @PostMapping("/klant-worden")
     public ModelAndView sendSignupHandler(@Valid SignUpFormBean signUpFormBean, BindingResult bindingResult) {
         ModelAndView mav = new ModelAndView();
 
-        System.out.println("error? : " + bindingResult.toString());
         if (bindingResult.hasErrors()) {
             mav.setViewName("signup");
             return mav;
         } else {
             mav.setViewName("confirmsignup");
 
-            mav.addObject("form", signUpFormBean);
+            // Capitalize the appropriate fields in the signUpFormBean
+            SignUpFormBean formattedSignUpFormBean = SignUpServices.formatFormInput(signUpFormBean);
+
+            mav.addObject("form", formattedSignUpFormBean);
             return mav;
         }
-//        model.addAttribute(signUpFormBean);
-//        return "confirmsignup";
     }
 }
