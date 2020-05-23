@@ -1,0 +1,8 @@
+package nl.team2.parque_banque_server.model.repository;
+
+//import nl.team2.parque_banque_server.model.PaymentAccount;
+//import org.springframework.stereotype.Repository;
+//
+//@Repository
+//public interface PaymentAccountRepository extends CrudRepository <PaymentAccount, Integer> {
+//}

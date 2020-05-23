@@ -1,34 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 80%;
+    }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>Rekeningoverzicht</title>
 </head>
 <br>
 <body>
-<!--als een klant een nieuwe klant is dan verschijnt een extra tekst. Hij komt dan vanuit scherm confirmsignup-->
-<img src="images/logoPB.jpg">
-Wij zijn blij u als klant bij Parque Banque te verwelkomen.
-<br>
-<br>Hieronder vind u de gegevens van uw rekening.
-<!-- als een klant al een rekening heeft dan komt hij vanuit scherm 'signup' = inloggen.
--->
-<br>
-<br><button>Wijzigen rekening</button>
-<button>Rekening openen</button>
-<button>Rekeninghouder toevoegen</button>
-<button>Sign out</button>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<UL><p style="font-family: 'Arial Black'">IBAN naam saldo</p>
+<tr>
+    <td>
+        <button onclick="document.location = 'wijzigen_rekening'">Wijzigen rekening</button>
+    </td>
+    <td>
+        <button onclick="document.location = '/accountview/newpaymentaccount'">Rekening openen</button>
+    </td>
+    <td>
+        <button onclick="document.location = 'Rekening_koppelen'">Rekening koppelen</button>
+    </td>
+    <td>
+        <button onclick="document.location = 'Sign_out'">Sign out</button>
+    </td>
+</tr>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
-</UL>
+<!--als een klant een nieuwe klant is dan verschijnt een extra tekst. Hij komt dan vanuit scherm confirmsignup-->
+
+Welkom <span th: text="${firstname}"/> <span th: text="${affix}"/> <span th: text="${surname}"/>!
+Hier vindt u het overzicht van uw rekening(en).
+<br/>
+<br/>
+
+<table>
+    <tr>
+        <th>IBAN</th>
+        <th>Rekeninghouder</th>
+        <th>Saldo</th>
+    </tr>
+    <tr>
+        <td><span th: text="${iban}"/></td>
+        <td><span th: text="${affix}"/> <span th: text="${surname}"/></td>
+        <td><span th: text="${balanceCent}"/></td>
+    </tr>
+</table>
+
 
 </body>
 </html>

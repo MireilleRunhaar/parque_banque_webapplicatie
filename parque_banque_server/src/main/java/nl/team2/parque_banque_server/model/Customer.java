@@ -3,7 +3,8 @@ package nl.team2.parque_banque_server.model;
 import java.util.List;
 import java.util.Objects;
 
-public class Customer extends User {
+public class
+Customer extends User {
 
     private String bsn;
     private String userName;
