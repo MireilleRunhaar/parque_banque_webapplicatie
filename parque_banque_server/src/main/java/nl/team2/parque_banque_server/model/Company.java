@@ -1,8 +1,14 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Company {
+
+    @Id
+    private int id;
 
     private String btwNr;
     private String kvkNr;
@@ -15,6 +21,7 @@ public class Company {
     }
 
     public Company(String btwNr, String kvkNr, String name, Sector sector) {
+        this.id=0;
         this.btwNr = btwNr;
         this.kvkNr = kvkNr;
         this.name = name;

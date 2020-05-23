@@ -1,10 +1,15 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Sector {
 
+    @Id
     private int id;
+
     private String name;
 
     public Sector() {
@@ -12,6 +17,7 @@ public class Sector {
     }
 
     public Sector(String name) {
+        this.id=0;
         this.name = name;
     }
     public int getId() {
