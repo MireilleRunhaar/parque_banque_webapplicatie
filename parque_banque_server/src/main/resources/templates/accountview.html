@@ -18,36 +18,30 @@
 </style>
 <head>
     <meta charset="UTF-8">
-    <title>Rekeningoverzicht</title>
+    <title>rekeningoverzicht</title>
 </head>
 <br>
 <body>
 <tr>
     <td>
-        <button onclick="document.location = 'wijzigen_rekening'">Wijzigen rekening</button>
+        <button onclick="document.location = 'rekening-overzicht/wijzigen-rekening'">Wijzigen gegevens</button>
     </td>
     <td>
-        <button onclick="document.location = '/accountview/newpaymentaccount'">Rekening openen</button>
+        <button onclick="document.location = '/rekening-overzicht/rekening-openen'">Rekening openen</button>
     </td>
     <td>
-        <button onclick="document.location = 'Rekening_koppelen'">Rekening koppelen</button>
+        <button onclick="document.location = '/rekening-overzicht/rekening_koppelen'">Rekening koppelen</button>
     </td>
     <td>
-        <button onclick="document.location = 'Sign_out'">Sign out</button>
+        <button onclick="document.location = '/'">Uitloggen</button>
     </td>
 </tr>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
-<!--als een klant een nieuwe klant is dan verschijnt een extra tekst. Hij komt dan vanuit scherm confirmsignup-->
-
-Welkom <span th: text="${firstname}"/> <span th: text="${affix}"/> <span th: text="${surname}"/>!
+<br/><br/><br/><br/><br/>
 Hier vindt u het overzicht van uw rekening(en).
 <br/>
-<br/>
+<br/><br/><br/><br/><br/>
+
 
 <table>
     <tr>
@@ -55,13 +49,10 @@ Hier vindt u het overzicht van uw rekening(en).
         <th>Rekeninghouder</th>
         <th>Saldo</th>
     </tr>
-    <tr>
-        <td><span th: text="${iban}"/></td>
-        <td><span th: text="${affix}"/> <span th: text="${surname}"/></td>
-        <td><span th: text="${balanceCent}"/></td>
-    </tr>
+<!--    <tr>-->
+<!--        <td><span th: text="${iban}"/></td>-->
+<!--        <td><span th: text="${affix}"/> <span th: text="${surname}"/></td>-->
+<!--        <td><span th: text="${balanceCent}"/></td>-->
+<!--    </tr>-->
 </table>
-
-
 </body>
-</html>
