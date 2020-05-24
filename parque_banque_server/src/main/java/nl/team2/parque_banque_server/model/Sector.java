@@ -1,6 +1,7 @@
 package nl.team2.parque_banque_server.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 
@@ -8,6 +9,7 @@ import java.util.Objects;
 public class Sector {
 
     @Id
+    @GeneratedValue
     private int id;
 
     private String name;
@@ -20,6 +22,8 @@ public class Sector {
         this.id=0;
         this.name = name;
     }
+
+
     public int getId() {
         return id;
     }

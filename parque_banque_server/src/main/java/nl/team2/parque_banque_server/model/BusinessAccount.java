@@ -1,8 +1,6 @@
 package nl.team2.parque_banque_server.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class BusinessAccount extends PaymentAccount {
@@ -11,7 +9,10 @@ public class BusinessAccount extends PaymentAccount {
     @GeneratedValue
     private int id;
 
+    @ManyToOne
     private Company company;
+
+    @OneToOne
     private AccountManager accountManager;
 
     public BusinessAccount() {
@@ -28,6 +29,14 @@ public class BusinessAccount extends PaymentAccount {
         this.id=0;
         this.company = company;
         this.accountManager = accountManager;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Company getCompany() {

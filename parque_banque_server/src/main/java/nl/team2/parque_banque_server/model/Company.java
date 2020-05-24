@@ -1,18 +1,23 @@
 package nl.team2.parque_banque_server.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 @Entity
 public class Company {
 
     @Id
+    @GeneratedValue
     private int id;
 
     private String btwNr;
     private String kvkNr;
     private String name;
+
+    @OneToOne
     private Sector sector;
 
 
@@ -26,6 +31,14 @@ public class Company {
         this.kvkNr = kvkNr;
         this.name = name;
         this.sector = sector;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBtwNr() {
