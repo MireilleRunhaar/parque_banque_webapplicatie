@@ -6,10 +6,6 @@ import java.util.Objects;
 @Entity
 public class Employee extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
     private String password;
 
     @ManyToOne
