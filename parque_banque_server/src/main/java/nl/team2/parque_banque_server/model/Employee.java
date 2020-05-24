@@ -9,13 +9,13 @@ public class Employee extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String password;
 
     @ManyToOne
     private Role role;
 
     public Employee() {
-        super();
     }
 
     public Employee(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address) {

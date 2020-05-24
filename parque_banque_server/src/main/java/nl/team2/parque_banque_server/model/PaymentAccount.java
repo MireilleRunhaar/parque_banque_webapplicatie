@@ -9,6 +9,7 @@ public abstract class PaymentAccount {
 
     @Id
     private String iban;
+
     private long balanceCent;
 
     @OneToMany(cascade = CascadeType.PERSIST)

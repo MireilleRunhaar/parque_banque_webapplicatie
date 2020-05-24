@@ -10,6 +10,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private long amountCent;
     private String description;
     private LocalDate date;

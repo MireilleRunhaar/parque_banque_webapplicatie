@@ -8,6 +8,7 @@ public class Company {
 
     @Id
     private String kvkNr;
+
     private String btwNr;
     private String name;
 
