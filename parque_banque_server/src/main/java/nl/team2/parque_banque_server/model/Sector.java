@@ -1,18 +1,25 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Sector {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
 
     public Sector() {
         super();
     }
 
-    public Sector(int id, String name) {
-        this.id = id;
+    public Sector(String name) {
         this.name = name;
     }
 

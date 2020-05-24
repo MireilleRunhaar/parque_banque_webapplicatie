@@ -1,12 +1,18 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Company {
 
-    private String BTWnr;
-    private String KVKnr;
+    @Id
+    private String kvkNr;
+
+    private String btwNr;
     private String name;
+
+    @ManyToOne
     private Sector sector;
 
 
@@ -14,27 +20,27 @@ public class Company {
         super();
     }
 
-    public Company(String BTWnr, String KVKnr, String name, Sector sector) {
-        this.BTWnr = BTWnr;
-        this.KVKnr = KVKnr;
+    public Company(String btwNr, String kvkNr, String name, Sector sector) {
+        this.btwNr = btwNr;
+        this.kvkNr = kvkNr;
         this.name = name;
         this.sector = sector;
     }
 
-    public String getBTWnr() {
-        return BTWnr;
+    public String getBtwNr() {
+        return btwNr;
     }
 
-    public void setBTWnr(String BTWnr) {
-        this.BTWnr = BTWnr;
+    public void setBtwNr(String btwNr) {
+        this.btwNr = btwNr;
     }
 
-    public String getKVKnr() {
-        return KVKnr;
+    public String getKvkNr() {
+        return kvkNr;
     }
 
-    public void setKVKnr(String KVKnr) {
-        this.KVKnr = KVKnr;
+    public void setKvkNr(String kvkNr) {
+        this.kvkNr = kvkNr;
     }
 
     public String getName() {
@@ -56,8 +62,8 @@ public class Company {
     @Override
     public String toString() {
         return "Company{" +
-                "BTWnr='" + BTWnr + '\'' +
-                ", KVKnr='" + KVKnr + '\'' +
+                "BTWnr='" + btwNr + '\'' +
+                ", KVKnr='" + kvkNr + '\'' +
                 ", name='" + name + '\'' +
                 ", sector=" + sector +
                 '}';
@@ -68,14 +74,14 @@ public class Company {
         if (this == o) return true;
         if (!(o instanceof Company)) return false;
         Company company = (Company) o;
-        return getBTWnr().equals(company.getBTWnr()) &&
-                getKVKnr().equals(company.getKVKnr()) &&
+        return getBtwNr().equals(company.getBtwNr()) &&
+                getKvkNr().equals(company.getKvkNr()) &&
                 getName().equals(company.getName()) &&
                 getSector().equals(company.getSector());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getBTWnr(), getKVKnr(), getName(), getSector());
+        return Objects.hash(getBtwNr(), getKvkNr(), getName(), getSector());
     }
 }

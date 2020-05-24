@@ -1,26 +1,34 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Employee extends User {
 
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String password;
+
+    @ManyToOne
     private Role role;
 
     public Employee() {
-        super();
     }
 
-    public Employee(Long id, String password, Role role) {
-        this.id = id;
+    public Employee(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address) {
+        super(surName, firstName, affix, phoneNumber, eMailAddress, address);
+    }
+
+    public Employee(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address, String password, Role role) {
+        super(surName, firstName, affix, phoneNumber, eMailAddress, address);
         this.password = password;
         this.role = role;
     }
 
-    public Employee(String name, String address, String zipcode, String phoneNumber, String eMailAdress, Long id, String password, Role role) {
-        super(name, address, zipcode, phoneNumber, eMailAdress);
-        this.id = id;
+    public Employee( String password, Role role) {
         this.password = password;
         this.role = role;
     }
