@@ -8,16 +8,16 @@ import java.util.Objects;
 public class Transaction {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long amountCent;
     private String description;
     private LocalDate date;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private PaymentAccount creditAccount;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private PaymentAccount debitAccount;
 
     public Transaction(){

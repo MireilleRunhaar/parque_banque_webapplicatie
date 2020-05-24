@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 public class Customer extends User {
 
-
+    @Id
     private String bsn;
     private String userName;
     private String password;
