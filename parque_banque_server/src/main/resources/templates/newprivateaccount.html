@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>particuliere rekening</title>
+    <title>nieuwe particuliere rekening openen</title>
 </head>
 <body>
-<h1>Particuliere Rekening</h1>
+<h1>Nieuwe Particuliere Rekening Openen</h1>
+        <form action="/createprivateaccount" method="post">
+<!--    <form th:action="@{}" method="post" th:object="${PaymentAccount}">-->
+        <input type="submit" name="submitbutton" value="bevestigen">
+
+    </form>
 </body>
 </html>
