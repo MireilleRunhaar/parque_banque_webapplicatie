@@ -10,20 +10,16 @@ public class NewPaymentAccountController {
     public NewPaymentAccountController() {
     }
 
-    @GetMapping("rekening_openen")
-    public String newPaymentAccount(){
-        return "newpaymentaccount";
-    }
 
-    @GetMapping("particuliere_rekening_openen")
+    @GetMapping("/particuliere-rekening-openen")
     public String newPrivateAccount(){
         return "newprivateaccount";
     }
 
-  /*  @GetMapping("zakelijke_rekening_openen")
+    @GetMapping("/zakelijke-rekening-openen")
     public String newCompanyAccount(){
         return "newcompanyaccount";
-    }*/
+    }
 }
 
 
