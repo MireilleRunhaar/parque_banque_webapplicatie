@@ -16,11 +16,15 @@ public class NewCompanyAccountController {
         return "zakelijke-rekening-openen";
     }
 
+    //Uit de DB de bedrijven te halen van de ingelogde klant
+
     //Klant is via een rekening gekoppeld aan een(of meer) bedrijf(ven)
     //Klant wil een nieuw bedrijf aanmaken bij Parque Banque en een rekening openen
 
     //Klant heeft nog geen zakelijke rekening(en)
     //Klant wil een nieuw bedrijf aanmaken bij Parque Banque en een rekening openen
+
+    //Tonen van de pagina met invulformulier
 
 
 

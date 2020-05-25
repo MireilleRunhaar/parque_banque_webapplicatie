@@ -10,6 +10,7 @@ public class Customer extends User {
     private String password;
     private List<PaymentAccount> paymentAccounts;
 
+
     public Customer() {
         super();
     }
