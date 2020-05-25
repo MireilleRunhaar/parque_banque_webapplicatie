@@ -11,7 +11,7 @@
         <table>
             <tr>
                 <td> <label for="firstName">Voornaam</label> </td>
-                <td> <input id="firstName" type="text" required pattern="^[-'A-Za-zÀ-ÖØ-öø-ÿ]+$" th:field="*{firstName}"
+                <td> <input id="firstName" type="text" required pattern="^[ -'A-Za-zÀ-ÖØ-öø-ÿ]+$" th:field="*{firstName}"
                             oninvalid="setCustomValidity('Voornaam is verplicht')"
                             oninput="setCustomValidity('')"/> </td>
             </tr>
@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <td> <label for="city">Woonplaats</label> </td>
-                <td> <input id="city" type="text" required th:field="*{city}"
+                <td> <input id="city" type="text" required pattern="[A-Za-z-' ]{2,}" th:field="*{city}"
                             oninvalid="setCustomValidity('Woonplaats is verplicht')"
                             oninput="setCustomValidity('')" /> </td>
             </tr>
@@ -78,8 +78,11 @@
                             oninput="setCustomValidity('')" /> </td>
             </tr>
             <tr>
-                <td> <a href="homepage"> <button type="button">Terug</button> </a> </td>
+                <td>  </td>
                 <td> <input type="submit" value="Volgende"> </td>
+            </tr>
+            <tr>
+                <td> <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button> </td>
             </tr>
         </table>
     </form>

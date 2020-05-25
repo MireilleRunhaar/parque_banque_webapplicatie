@@ -1,17 +1,19 @@
 package nl.team2.parque_banque_server.controller;
 
-import nl.team2.parque_banque_server.services.SignUpServices;
+import nl.team2.parque_banque_server.service.SignUpServices;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
 @Controller
+@SessionAttributes("form")
 public class SignUpController {
 
     @GetMapping("/klant-worden")
@@ -40,5 +42,11 @@ public class SignUpController {
             mav.addObject("form", formattedSignUpFormBean);
             return mav;
         }
+    }
+
+    // If user changes their mind and presses cancel button, return to homepage
+    @PostMapping(value = "/klant-worden", params = "action=cancel")
+    public String cancelLoginCredentialsHandler() {
+        return "redirect:/";
     }
 }

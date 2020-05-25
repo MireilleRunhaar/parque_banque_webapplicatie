@@ -54,8 +54,11 @@
                 <td> <input id="email" type="email" readonly th:field="${form.emailAddress}" /> </td>
             </tr>
             <tr>
-                <td> <button type="submit" name="action" value="edit">Wijzig</button> </td>
+                <td> <button type="submit" name="action" value="edit">Wijzig gegevens</button> </td>
                 <td> <button type="submit" name="action" value="send">Volgende</button> </td>
+            </tr>
+            <tr>
+                <td> <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button> </td>
             </tr>
         </table>
     </form>

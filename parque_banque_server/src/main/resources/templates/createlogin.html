@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Maak account - Parque Banque</title>
+    <script>
+        function Validate() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmpassword").value;
+            if (password !== confirmPassword) {
+                document.getElementById("passMismatch").style.display = "inline";
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <h1>Vul gebruikersnaam een wachtwoord in</h1>
     <form action="#" th:action="@{/klant-worden}" th:object="${createLoginFormBean}" method="post">
         <table>
-            <tr>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.bsn}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.firstName}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.infix}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.lastName}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.street}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.number}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.addition}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.zipcode}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.city}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.phone}" /> </td>
-                <td> <input type="text" hidden readonly th:field="${createLoginFormBean.emailAddress}" /> </td>
-            </tr>
             <tr>
                 <td> <label for="username">Gebruikersnaam</label></td>
                 <td> <input id="username" type="text" required pattern="[A-Za-z0-9]{5,}" th:field="*{username}"
@@ -41,10 +39,14 @@
             <tr>
                 <td> <label for="confirmpassword">Bevestig wachtwoord</label> </td>
                 <td> <input id="confirmpassword" type="password" required /> </td>
+                <td> <span id="passMismatch" style="display: none;">Wachtwoorden zijn niet gelijk!</span></td>
             </tr>
             <tr>
-                <td></td>
-                <td> <button type="submit" name="action" value="finish">Klaar</button></td>
+                <td> </td>
+                <td> <button type="submit" name="action" value="finish" onclick="return Validate()">Klaar</button></td>
+            </tr>
+            <tr>
+                <td> <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button> </td>
             </tr>
         </table>
     </form>

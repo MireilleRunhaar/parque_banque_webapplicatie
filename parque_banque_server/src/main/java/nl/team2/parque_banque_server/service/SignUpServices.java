@@ -1,15 +1,17 @@
-package nl.team2.parque_banque_server.services;
+package nl.team2.parque_banque_server.service;
 
 import nl.team2.parque_banque_server.model.Address;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.utilities.CreateLoginFormBean;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class SignUpServices {
 
     private final static String NONCAP_DE = "de";
@@ -19,6 +21,7 @@ public class SignUpServices {
     private final static String NONCAP_APOSTROPHE_S = "'s";
 
     public static SignUpFormBean formatFormInput(SignUpFormBean signUpFormBean) {
+        // TODO: split names based on '-' and capitalize both names?
         signUpFormBean.setFirstName(StringUtils.capitalize(signUpFormBean.getFirstName()));
         signUpFormBean.setLastName(StringUtils.capitalize(signUpFormBean.getLastName()));
 
@@ -55,14 +58,14 @@ public class SignUpServices {
     }
 
     // TODO: save customer in database
-    public static void saveNewCustomer(CreateLoginFormBean createLoginFormBean) {
-        Address address = new Address(createLoginFormBean.getStreet(), createLoginFormBean.getNumber(),
-                createLoginFormBean.getAddition(), createLoginFormBean.getZipcode(),
-                createLoginFormBean.getCity());
-        Customer customer = new Customer(createLoginFormBean.getLastName(), createLoginFormBean.getFirstName(),
-                createLoginFormBean.getInfix(), createLoginFormBean.getPhone(), createLoginFormBean.getEmailAddress(),
+    public static void saveNewCustomer(SignUpFormBean signUpFormBean, CreateLoginFormBean createLoginFormBean) {
+        Address address = new Address(signUpFormBean.getStreet(), signUpFormBean.getNumber(),
+                signUpFormBean.getAddition(), signUpFormBean.getZipcode(),
+                signUpFormBean.getCity());
+        Customer customer = new Customer(signUpFormBean.getLastName(), signUpFormBean.getFirstName(),
+                signUpFormBean.getInfix(), signUpFormBean.getPhone(), signUpFormBean.getEmailAddress(),
                 address);
-        customer.setBsn(createLoginFormBean.getBsn());
+        customer.setBsn(signUpFormBean.getBsn());
         customer.setUserName(createLoginFormBean.getUsername());
         customer.setPassword(createLoginFormBean.getPassword());
 
@@ -71,22 +74,4 @@ public class SignUpServices {
 
     }
 
-    // Copy the contents of a SignUpFormBean to a CreateLoginFormBean
-    public static CreateLoginFormBean copyToLoginFormBean(SignUpFormBean signUpFormBean) {
-        CreateLoginFormBean createLoginFormBean = new CreateLoginFormBean();
-
-        createLoginFormBean.setBsn(signUpFormBean.getBsn());
-        createLoginFormBean.setFirstName(signUpFormBean.getFirstName());
-        createLoginFormBean.setInfix(signUpFormBean.getInfix());
-        createLoginFormBean.setLastName(signUpFormBean.getLastName());
-        createLoginFormBean.setStreet(signUpFormBean.getStreet());
-        createLoginFormBean.setNumber(signUpFormBean.getNumber());
-        createLoginFormBean.setAddition(signUpFormBean.getAddition());
-        createLoginFormBean.setZipcode(signUpFormBean.getZipcode());
-        createLoginFormBean.setCity(signUpFormBean.getCity());
-        createLoginFormBean.setPhone(signUpFormBean.getPhone());
-        createLoginFormBean.setEmailAddress(signUpFormBean.getEmailAddress());
-
-        return createLoginFormBean;
-    }
 }
