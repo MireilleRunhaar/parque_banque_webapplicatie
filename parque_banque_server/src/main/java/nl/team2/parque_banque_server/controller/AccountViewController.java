@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AccountViewController {
 
-    @GetMapping
+    @GetMapping("/rekeningoverzicht")
     public String accountView(){
         return "accountview";
 

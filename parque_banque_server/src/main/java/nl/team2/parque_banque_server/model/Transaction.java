@@ -1,15 +1,24 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class Transaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     private long amountCent;
     private String description;
     private LocalDate date;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
     private PaymentAccount creditAccount;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
     private PaymentAccount debitAccount;
 
     public Transaction(){

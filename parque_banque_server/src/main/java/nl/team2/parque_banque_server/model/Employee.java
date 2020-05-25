@@ -1,60 +1,41 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Employee extends User {
 
-    private Long id;
+    private int employeeNumber;
     private String password;
+
+    @ManyToOne
     private Role role;
 
     public Employee() {
-        super();
     }
 
     public Employee(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address) {
         super(surName, firstName, affix, phoneNumber, eMailAddress, address);
     }
 
-    public Employee(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address, String password, Role role) {
+    public Employee(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address, int employeeNumber, String password, Role role) {
         super(surName, firstName, affix, phoneNumber, eMailAddress, address);
+        this.employeeNumber = employeeNumber;
         this.password = password;
         this.role = role;
     }
 
-    public Employee( String password, Role role) {
+    public Employee(int employeeNumber, String password, Role role) {
+        this.employeeNumber = employeeNumber;
         this.password = password;
-        this.role = role;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
         this.role = role;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "employeeNumber=" + employeeNumber +
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
@@ -66,13 +47,13 @@ public class Employee extends User {
         if (!(o instanceof Employee)) return false;
         if (!super.equals(o)) return false;
         Employee employee = (Employee) o;
-        return getId().equals(employee.getId()) &&
-                getPassword().equals(employee.getPassword()) &&
-                getRole().equals(employee.getRole());
+        return employeeNumber == employee.employeeNumber &&
+                password.equals(employee.password) &&
+                role.equals(employee.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getId(), getPassword(), getRole());
+        return Objects.hash(super.hashCode(), employeeNumber, password, role);
     }
 }

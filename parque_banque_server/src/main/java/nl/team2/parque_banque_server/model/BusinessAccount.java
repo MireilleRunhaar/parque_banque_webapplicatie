@@ -1,42 +1,36 @@
 package nl.team2.parque_banque_server.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class BusinessAccount extends PaymentAccount {
+public class BusinessAccount extends PaymentAccount{
 
-    @Id
-    @GeneratedValue
-    private int id;
+    @ManyToOne
+    private Employee accountmanager;
 
     @ManyToOne
     private Company company;
 
-    @OneToOne
-    private AccountManager accountManager;
-
     public BusinessAccount() {
-        this(null, null);
     }
 
-    public BusinessAccount(Company company, AccountManager accountManager) {
-        this.company = company;
-        this.accountManager = accountManager;
-    }
-
-    public BusinessAccount(String iban, long balanceCent, Company company, AccountManager accountManager) {
+    public BusinessAccount(String iban, long balanceCent) {
         super(iban, balanceCent);
-        this.id=0;
+    }
+
+    public BusinessAccount(String iban, long balanceCent, Employee accountmanager, Company company) {
+        super(iban, balanceCent);
+        this.accountmanager = accountmanager;
         this.company = company;
-        this.accountManager = accountManager;
     }
 
-    public int getId() {
-        return id;
+    public Employee getAccountmanager() {
+        return accountmanager;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAccountmanager(Employee accountmanager) {
+        this.accountmanager = accountmanager;
     }
 
     public Company getCompany() {
@@ -45,13 +39,5 @@ public class BusinessAccount extends PaymentAccount {
 
     public void setCompany(Company company) {
         this.company = company;
-    }
-
-    public AccountManager getAccountManager() {
-        return accountManager;
-    }
-
-    public void setAccountManager(AccountManager accountManager) {
-        this.accountManager = accountManager;
     }
 }
