@@ -57,8 +57,7 @@ public class SignUpServices {
         return stringParts;
     }
 
-    // TODO: save customer in database
-    public static void saveNewCustomer(SignUpFormBean signUpFormBean, CreateLoginFormBean createLoginFormBean) {
+    public static Customer createNewCustomer(SignUpFormBean signUpFormBean, CreateLoginFormBean createLoginFormBean) {
         Address address = new Address(signUpFormBean.getStreet(), signUpFormBean.getNumber(),
                 signUpFormBean.getAddition(), signUpFormBean.getZipcode(),
                 signUpFormBean.getCity());
@@ -69,9 +68,7 @@ public class SignUpServices {
         customer.setUserName(createLoginFormBean.getUsername());
         customer.setPassword(createLoginFormBean.getPassword());
 
-        // TODO: remove sout
-        System.out.println("CreateLoginController PostMapping: " + customer);
-
+        return customer;
     }
 
 }

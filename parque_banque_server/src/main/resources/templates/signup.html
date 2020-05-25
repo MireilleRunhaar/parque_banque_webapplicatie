@@ -11,7 +11,7 @@
         <table>
             <tr>
                 <td> <label for="firstName">Voornaam</label> </td>
-                <td> <input id="firstName" type="text" required pattern="^[ -'A-Za-zÀ-ÖØ-öø-ÿ]+$" th:field="*{firstName}"
+                <td> <input id="firstName" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]+$" th:field="*{firstName}"
                             oninvalid="setCustomValidity('Voornaam is verplicht')"
                             oninput="setCustomValidity('')"/> </td>
             </tr>
