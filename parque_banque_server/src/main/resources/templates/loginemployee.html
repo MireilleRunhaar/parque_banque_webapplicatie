@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login Klant</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 225px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select {
+            display: inline-block;
+            width: 225px;
+        }
+    </style>
 </head>
 <body>
+<h1>Login Werknemer</h1>
+<p th:if="${invalidCredentials}" class="error">De combinatie tussen personeelsnummer en wachtwoord is onjuist.
+    Probeer het opnieuw.</p>
+<p th:if="${emptyField}" class="error">Vul zowel personeelsnummer als wachtwoord in.</p>
 
+<form th:action="@{/loginemployee}" th:object="${loginemployee}" method="post">
+    <label>Personeelsnummer</label> <br/>
+    <input type="text" id="personeelsnummer" name="personeelsnummer" autofocus="autofocus"/>
+    <br/>
+
+    <label>Wachtwoord</label> <br/>
+    <input type="password" id="password" name="password"/>
+    <br/> <br/>
+
+    <input type="submit" value="Log In"/>
+</form>
 </body>
 </html>
