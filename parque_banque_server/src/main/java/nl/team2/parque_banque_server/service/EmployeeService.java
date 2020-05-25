@@ -15,7 +15,7 @@ public class EmployeeService {
     private EmployeeRepository employeeRepo;
 
     public Employee findByEmployeeNumber(int employeeNumber) {
-        return employeeRepo.findByEmployeeNumber(employeeNumber);
+        return employeeRepo.findEmployeeByEmployeeNumber(employeeNumber);
     }
 
 }

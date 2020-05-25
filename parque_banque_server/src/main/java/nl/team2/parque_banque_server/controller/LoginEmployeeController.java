@@ -15,33 +15,31 @@ public class LoginEmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/loginemployee")
+    @GetMapping("/personeel")
     public String handleLogin() {
         return "loginemployee";
     }
 
-    @PostMapping("/loginemployee")
+    @PostMapping("/personeel")
     public String handleLoginForm(@ModelAttribute("loginemployee") Employee loginemployee, Model model) {
-        // Store the entered email and password, for easier use in the if else statement
-        int loginEmployeeNumber = loginemployee.getEmployeeNumber;
+        // Store the entered employee number and password, for easier use in the if else statement
+        int loginEmployeeNumber = loginemployee.getEmployeeNumber();
         String loginEmployeePassword = loginemployee.getPassword();
 
-        // Retrieve the User that has the same email as the entered email
+        // Retrieve the employee that has the same employee number as the entered employee number
         Employee employee = employeeService.findByEmployeeNumber(loginEmployeeNumber);
 
-        // If one or more fields are empty, emptyField error
+        // Checks for empty fields and no employee with the same employee number as the entered one.
+        // TODO validatie loginEmployeeNumber werkt nog niet bij leeg veld
         if (loginEmployeeNumber == 0 || loginEmployeePassword.isEmpty()) {
             model.addAttribute("emptyField", true);
             return "loginemployee";
-            // If there's no user with the same email as the entered email, invalidCredentials error
         } else if (employee == null) {
             model.addAttribute("invalidCredentials", true);
             return "loginemployee";
-            // If the retrieved email and password are the same as the email and password in the database,
-            // you're logged in and get redirected to the homepage
-        } else if (loginEmployeeNumber == employee.getId() && loginEmployeePassword.equals(employee.getPassword())) {
+        } else if (loginEmployeeNumber == employee.getEmployeeNumber() &&
+                loginEmployeePassword.equals(employee.getPassword())) {
             return "employeehome";
-            // Else the entered email and/or password aren't valid, invalidCredentials error
         } else {
             model.addAttribute("invalidCredentials", true);
             return "loginemployee";

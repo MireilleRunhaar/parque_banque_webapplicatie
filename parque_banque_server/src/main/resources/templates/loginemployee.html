@@ -21,9 +21,9 @@
     Probeer het opnieuw.</p>
 <p th:if="${emptyField}" class="error">Vul zowel personeelsnummer als wachtwoord in.</p>
 
-<form th:action="@{/loginemployee}" th:object="${loginemployee}" method="post">
+<form th:action="@{/personeel}" th:object="${loginemployee}" method="post">
     <label>Personeelsnummer</label> <br/>
-    <input type="text" id="personeelsnummer" name="personeelsnummer" autofocus="autofocus"/>
+    <input type="text" id="employeeNumber" name="employeeNumber"/>
     <br/>
 
     <label>Wachtwoord</label> <br/>

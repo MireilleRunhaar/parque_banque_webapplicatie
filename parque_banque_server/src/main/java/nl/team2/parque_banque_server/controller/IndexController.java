@@ -21,11 +21,6 @@ public class IndexController {
         return "signup";
     }
 
-    @GetMapping("/personeel")
-    public String goToLoginEmployee(){
-        return "loginemployee";
-    }
-
     @GetMapping("/rekening-openen")
     public String goToNewPaymentAccount(){
         return "newpaymentaccount";
