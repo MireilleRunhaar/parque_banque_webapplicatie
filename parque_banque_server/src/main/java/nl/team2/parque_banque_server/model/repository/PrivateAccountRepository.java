@@ -4,7 +4,11 @@ import nl.team2.parque_banque_server.model.PaymentAccount;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-//payment account is abstract, kan dit ?
+
 public interface PrivateAccountRepository extends CrudRepository<PaymentAccount,Integer> {
+
+    //List<PaymentAccount>
 }

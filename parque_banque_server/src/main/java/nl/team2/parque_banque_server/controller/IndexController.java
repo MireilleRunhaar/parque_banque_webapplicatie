@@ -26,8 +26,5 @@ public class IndexController {
         return "loginemployee";
     }
 
-    @GetMapping("/rekening-openen")
-    public String goToNewPaymentAccount(){
-        return "newpaymentaccount";
-    }
+
 }
