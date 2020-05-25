@@ -1,12 +1,18 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Company {
 
-    private String btwNr;
+    @Id
     private String kvkNr;
+
+    private String btwNr;
     private String name;
+
+    @ManyToOne
     private Sector sector;
 
 

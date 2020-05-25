@@ -1,14 +1,22 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public abstract class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected long id;
 
     protected String surName;
     protected String firstName;
     protected String affix;
     protected String phoneNumber;
     protected String eMailAddress;
+
+    @ManyToOne
     protected Address address;
 
     public User() {
