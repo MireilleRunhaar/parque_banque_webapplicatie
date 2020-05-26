@@ -1,5 +1,7 @@
 package nl.team2.parque_banque_server.utilities;
 
+import nl.team2.parque_banque_server.model.PrivateAccount;
+
 public class CreatePrivateAccountBackingBean {
 
     private String iban;
@@ -12,6 +14,9 @@ public class CreatePrivateAccountBackingBean {
         this.iban = iban;
         this.balanceCent = balanceCent;
     }
+
+
+
 
 
 

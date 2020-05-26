@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.model.PrivateAccount;
+import nl.team2.parque_banque_server.service.IbanService;
 import nl.team2.parque_banque_server.utilities.CreatePrivateAccountBackingBean;
 import nl.team2.parque_banque_server.service.PrivateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class NewPrivateAccountController {
 
-    @Autowired
+    private IbanService ibanService;
     private PrivateAccountService privateAccountService;
+
+    @Autowired
+    public NewPrivateAccountController(IbanService ibanService, PrivateAccountService privateAccountService) {
+        this.ibanService = ibanService;
+        this.privateAccountService = privateAccountService;
+    }
+
 
     @GetMapping("/rekening-openen")
     public String goToNewPaymentAccount(){
