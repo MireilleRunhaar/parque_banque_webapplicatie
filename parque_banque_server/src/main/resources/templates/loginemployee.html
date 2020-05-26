@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Login Klant</title>
+    <title>Login Werknemer</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -16,21 +16,21 @@
     </style>
 </head>
 <body>
-<h1>Login Werknemer</h1>
-<p th:if="${invalidCredentials}" class="error">De combinatie tussen personeelsnummer en wachtwoord is onjuist.
-    Probeer het opnieuw.</p>
-<p th:if="${emptyField}" class="error">Vul zowel personeelsnummer als wachtwoord in.</p>
+    <h1>Login Werknemer</h1>
+    <p th:if="${invalidCredentials}" class="error">De combinatie tussen personeelsnummer en wachtwoord is onjuist. Probeer het opnieuw. </p>
 
-<form th:action="@{/personeel}" th:object="${loginemployee}" method="post">
-    <label>Personeelsnummer</label> <br/>
-    <input type="text" id="employeeNumber" name="employeeNumber"/>
-    <br/>
+    <form th:action="@{/personeel}" th:object="${loginemployee}" method="post">
+        <label>Personeelsnummer</label> <br/>
+        <input type="text" id="employeeNumber" name="employeeNumber" required
+               pattern="[0-9]{1,}" title="Het personeelsnummer bestaat uit cijfers."/>
+        <br/>
 
-    <label>Wachtwoord</label> <br/>
-    <input type="password" id="password" name="password"/>
-    <br/> <br/>
+        <label>Wachtwoord</label> <br/>
+        <input type="password" id="password" name="password" required/>
+        <br/> <br/>
 
-    <input type="submit" value="Log In"/>
-</form>
+        <input type="submit" value="Log In"/>
+    </form>
 </body>
+
 </html>
