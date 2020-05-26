@@ -1,16 +1,19 @@
 package nl.team2.parque_banque_server.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@SessionAttributes("userName")
 public class AccountViewController {
 
 
 //in de getmapping
     @GetMapping("/rekening-overzicht")
-    public ModelAndView accountViewHandler(){
+    public ModelAndView accountViewHandler(Model model){
         ModelAndView mav = new ModelAndView("accountview");
         return mav;
     }

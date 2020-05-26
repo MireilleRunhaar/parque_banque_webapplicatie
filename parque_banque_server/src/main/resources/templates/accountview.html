@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<!--<style>-->
-<!--    table {-->
-<!--        font-family: arial, sans-serif;-->
-<!--        border-collapse: collapse;-->
-<!--        width: 80%;-->
-<!--    }-->
-<!--    td, th {-->
-<!--        border: 1px solid #dddddd;-->
-<!--        text-align: left;-->
-<!--        padding: 8px;-->
-<!--    }-->
+<style>
+    table {
+       alignment: left;
+    }
+    td{
+        width: 100px;
+    }
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        width: 300px;
+    }
 
-<!--    tr:nth-child(even) {-->
-<!--        background-color: #dddddd;-->
-<!--    }-->
-<!--</style>-->
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>rekeningoverzicht</title>
-
     <img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80" height="45">
 </head>
-<br>
+<br/>
+<br/>
+<br/>
 <body>
 <tr>
     <td>
@@ -39,22 +43,37 @@
     </td>
 </tr>
 
-<br/><br/><br/><br/><br/>
+<br/><br/>
 Hier vindt u het overzicht van uw rekening(en).
 <br/>
 <br/><br/><br/><br/><br/>
 
 
 <table>
+    <th>Zakelijke rekeningen</th>
     <tr>
-        <th>IBAN</th>
-        <th>Rekeninghouder</th>
-        <th>Saldo</th>
+        <td>IBAN</td>
+        <td>Rekeninghouder</td>
+        <td>Saldo</td>
     </tr>
 <!--    <tr>-->
 <!--        <td><span th: text="${iban}"/></td>-->
 <!--        <td><span th: text="${affix}"/> <span th: text="${surname}"/></td>-->
 <!--        <td><span th: text="${balanceCent}"/></td>-->
 <!--    </tr>-->
+</table>
+
+<table>
+    <th>Prive rekeningen</th>
+    <tr>
+        <td>IBAN</td>
+        <td>Bedrijf</td>
+        <td>Saldo</td>
+    </tr>
+    <!--    <tr>-->
+    <!--        <td><span th: text="${iban}"/></td>-->
+    <!--        <td><span th: text="${companyaffix}"/> <span th: text="${surname}"/></td>-->
+    <!--        <td><span th: text="${balanceCent}"/></td>-->
+    <!--    </tr>-->
 </table>
 </body>
