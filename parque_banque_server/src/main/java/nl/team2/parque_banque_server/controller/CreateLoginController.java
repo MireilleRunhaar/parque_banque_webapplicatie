@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,18 +29,18 @@ public class CreateLoginController {
     }
 
 
-    // TODO: validate that username does not exist
     // If user finishes signup, create user object, save to database and send user to account view
     @PostMapping(value = "/klant-worden", params = "action=finish")
     public ModelAndView sendLoginCredentialsHandler(@Valid CreateLoginFormBean createLoginFormBean,
                                                     BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
 
-        // Check whether input contains errors, or whether username is taken
-        if (bindingResult.hasErrors() || customerService.findByUserName(createLoginFormBean.getUsername()) != null) {
-            System.out.println("**** createLogin has errors");
-            System.out.println("**** user: " + createLoginFormBean.getUsername());
+        // Check whether input contains errors, or whether username is taken; else save new customer
+        if (bindingResult.hasErrors()) {
             mav.setViewName("createlogin");
+        } else if (customerService.findByUserName(createLoginFormBean.getUsername()) != null) {
+            mav.setViewName("createloginerror");
+            mav.addObject("createLoginFormBean", createLoginFormBean);
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("form");
             // TODO: throw catch block with error page?
