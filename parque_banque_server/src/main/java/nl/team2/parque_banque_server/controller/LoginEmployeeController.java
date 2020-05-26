@@ -2,50 +2,49 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Employee;
 import nl.team2.parque_banque_server.service.EmployeeService;
+import nl.team2.parque_banque_server.service.LoginService;
+import nl.team2.parque_banque_server.utilities.LoginEmployeeFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
+@SessionAttributes("employee")
 public class LoginEmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/loginemployee")
-    public String handleLogin() {
-        return "loginemployee";
+    @Autowired
+    private LoginService loginService;
+
+    @GetMapping("/personeel")
+    public ModelAndView loginHandler(@ModelAttribute LoginEmployeeFormBean loginEmployeeFormBean) {
+        ModelAndView mav = new ModelAndView("loginemployee");
+        mav.addObject("employee", loginEmployeeFormBean);
+        return mav;
     }
 
-    @PostMapping("/loginemployee")
-    public String handleLoginForm(@ModelAttribute("loginemployee") Employee loginemployee, Model model) {
-        // Store the entered email and password, for easier use in the if else statement
-        int loginEmployeeNumber = loginemployee.getEmployeeNumber;
-        String loginEmployeePassword = loginemployee.getPassword();
+    @PostMapping("/personeel")
+    public ModelAndView employeeLoginFormHandler(@Valid LoginEmployeeFormBean loginEmployeeFormBean, BindingResult bindingResult) {
+        ModelAndView mav = new ModelAndView();
 
-        // Retrieve the User that has the same email as the entered email
-        Employee employee = employeeService.findByEmployeeNumber(loginEmployeeNumber);
-
-        // If one or more fields are empty, emptyField error
-        if (loginEmployeeNumber == 0 || loginEmployeePassword.isEmpty()) {
-            model.addAttribute("emptyField", true);
-            return "loginemployee";
-            // If there's no user with the same email as the entered email, invalidCredentials error
-        } else if (employee == null) {
-            model.addAttribute("invalidCredentials", true);
-            return "loginemployee";
-            // If the retrieved email and password are the same as the email and password in the database,
-            // you're logged in and get redirected to the homepage
-        } else if (loginEmployeeNumber == employee.getId() && loginEmployeePassword.equals(employee.getPassword())) {
-            return "employeehome";
-            // Else the entered email and/or password aren't valid, invalidCredentials error
+        if (bindingResult.hasErrors() || !loginService.employeeLoginValidation(loginEmployeeFormBean)) {
+            mav.addObject("invalidCredentials", true);
+            mav.setViewName("loginemployee");
         } else {
-            model.addAttribute("invalidCredentials", true);
-            return "loginemployee";
+            Employee employee = employeeService.findByEmployeeNumber(loginEmployeeFormBean.getEmployeeNumber());
+            mav.addObject("employee", employee);
+            mav.setViewName("employeehome");
         }
+        return mav;
     }
 
 }
