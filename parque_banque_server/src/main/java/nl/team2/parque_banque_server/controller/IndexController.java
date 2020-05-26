@@ -16,15 +16,6 @@ public class IndexController {
         return "logincustomer";
     }
 
-    @GetMapping("/klant-worden")
-    public String goToSignUp(){
-        return "signup";
-    }
-
-    @GetMapping("/personeel")
-    public String goToLoginEmployee(){
-        return "loginemployee";
-    }
 
 
 }

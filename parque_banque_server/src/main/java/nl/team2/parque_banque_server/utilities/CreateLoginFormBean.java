@@ -1,26 +1,31 @@
 package nl.team2.parque_banque_server.utilities;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-public class LoginEmployeeFormBean {
-
-    @Min(1)
-    private int employeeNumber;
+public class CreateLoginFormBean {
 
     @NotBlank
+    @Size(min = 5, max = 50)
+    private String username;
+
+    @NotBlank
+    @Size(min = 8)
     private String password;
 
-    public LoginEmployeeFormBean() {
+
+    public CreateLoginFormBean() {
         super();
     }
 
-    public int getEmployeeNumber() {
-        return employeeNumber;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
-        this.employeeNumber = employeeNumber;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -34,9 +39,8 @@ public class LoginEmployeeFormBean {
     @Override
     public String toString() {
         return "CreateLoginFormBean{" +
-                "username='" + employeeNumber + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
-
 }
