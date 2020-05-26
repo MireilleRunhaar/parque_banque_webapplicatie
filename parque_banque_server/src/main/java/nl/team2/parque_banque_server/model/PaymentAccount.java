@@ -82,4 +82,12 @@ public abstract class PaymentAccount {
     public int hashCode() {
         return Objects.hash(iban, balanceCent, transactionHistory, accountHolders);
     }
+
+    public long getBalanceCent() {
+        return balanceCent;
+    }
+
+    public void setBalanceCent(long balanceCent) {
+        this.balanceCent = balanceCent;
+    }
 }

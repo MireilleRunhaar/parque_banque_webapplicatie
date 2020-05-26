@@ -34,10 +34,11 @@ public class NewPrivateAccountController {
     @PostMapping("/particuliere-rekening-openen")
     public ModelAndView createNewPrivateAccount(@ModelAttribute CreatePrivateAccountBackingBean bb){
         ModelAndView mav=new ModelAndView("confirmprivateaccount");
-        PaymentAccount privateAccount=new PrivateAccount();
+        PrivateAccount privateAccount=new PrivateAccount(ibanService.createNewIban(),0);
+        //PrivateAccount privateAccount=bb.privateAccount();
         privateAccountService.savePrivateAccount(privateAccount);
-        mav.addObject("iban",privateAccount.getIban()); //nieuwe defeaultwaarde
-        mav.addObject("balanceCent",privateAccount.getBalance()); //balanceCent ?
+        mav.addObject("iban",privateAccount.getIban());
+        mav.addObject("balanceCent",privateAccount.getBalanceCent());
         return mav;
     }
 

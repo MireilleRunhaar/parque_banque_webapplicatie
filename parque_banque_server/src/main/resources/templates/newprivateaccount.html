@@ -7,7 +7,7 @@
 <body>
 <h1>Nieuwe Particuliere Rekening Openen</h1>
 <h2>Weet u het zeker?</h2>
-        <form action="/particuliere-rekening-openen" method="post">
+        <form action="/particuliere-rekening-openen" method="post" th:object="${privateAccount}">
 <!--    <form th:action="@{}" method="post" th:object="${}">-->
         <input type="submit" name="submitbutton" value="bevestigen">
 
