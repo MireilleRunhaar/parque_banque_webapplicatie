@@ -1,5 +1,6 @@
 package nl.team2.parque_banque_server.controller;
 
+import nl.team2.parque_banque_server.model.Customer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,12 @@ public class AccountViewController {
 
 //in de getmapping
     @GetMapping("/rekening-overzicht")
-    public ModelAndView accountViewHandler(Model model){
+    public ModelAndView accountViewHandler(Customer customer,Model model){
         ModelAndView mav = new ModelAndView("accountview");
         return mav;
+
+
+
     }
 //request for opening account from accountview.html
     @GetMapping("/rekening-overzicht/rekening-openen")
