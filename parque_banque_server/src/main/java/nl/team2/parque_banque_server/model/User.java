@@ -16,7 +16,7 @@ public abstract class User {
     protected String phoneNumber;
     protected String eMailAddress;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     protected Address address;
 
     public User() {
