@@ -19,10 +19,10 @@ public class LoginService {
     public boolean employeeLoginValidation(LoginEmployeeFormBean loginEmployeeFormBean) {
         Employee employee = employeeService.findByEmployeeNumber(loginEmployeeFormBean.getEmployeeNumber());
 
+        // Check for same EmployeeNumber is done by if, check for the same password is done by else
         if (employee == null) {
             return false;
-        } else return loginEmployeeFormBean.getEmployeeNumber() == employee.getEmployeeNumber() &&
-                loginEmployeeFormBean.getPassword().equals(employee.getPassword());
+        } else return loginEmployeeFormBean.getPassword().equals(employee.getPassword());
     }
 
     public boolean customerLoginValidation(LoginCustomerFormBean loginCustomerFormBean) {
