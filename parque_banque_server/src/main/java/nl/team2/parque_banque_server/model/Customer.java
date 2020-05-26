@@ -1,40 +1,43 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class
-Customer extends User {
+@Entity
+public class Customer extends User {
 
     private String bsn;
     private String userName;
     private String password;
+
+    @ManyToMany(mappedBy = "accountHolders", cascade = CascadeType.ALL)
     private List<PaymentAccount> paymentAccounts;
 
     public Customer() {
-        super();
     }
 
     public Customer(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address) {
         super(surName, firstName, affix, phoneNumber, eMailAddress, address);
     }
 
-    public Customer(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address, String bsn, String userName, String password, List<PaymentAccount> paymentAccounts) {
+    public Customer(String surName, String firstName, String affix, String phoneNumber, String eMailAddress, Address address, String bsn, String userName, String password) {
         super(surName, firstName, affix, phoneNumber, eMailAddress, address);
         this.bsn = bsn;
         this.userName = userName;
         this.password = password;
-        this.paymentAccounts = paymentAccounts;
+        this.paymentAccounts = new ArrayList<>();
     }
 
-    public Customer(String bsn, String userName, String password, List<PaymentAccount> paymentAccounts) {
+    public Customer(String bsn, String userName, String password) {
         this.bsn = bsn;
         this.userName = userName;
         this.password = password;
-        this.paymentAccounts = paymentAccounts;
+        this.paymentAccounts = new ArrayList<>();
     }
 
-    public void addPaymentAccount(PaymentAccount paymentAccount){
+    public void addPaymentAccount(PaymentAccount paymentAccount) {
         paymentAccounts.add(paymentAccount);
     }
 
@@ -62,21 +65,12 @@ Customer extends User {
         this.password = password;
     }
 
-    public List<PaymentAccount> getPaymentAccounts() {
-        return paymentAccounts;
-    }
-
-    public void setPaymentAccounts(List<PaymentAccount> paymentAccounts) {
-        this.paymentAccounts = paymentAccounts;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +
-                "BSN='" + bsn + '\'' +
+                "bsn='" + bsn + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", paymentAccounts=" + paymentAccounts +
                 '}';
     }
 
@@ -88,12 +82,11 @@ Customer extends User {
         Customer customer = (Customer) o;
         return getBsn().equals(customer.getBsn()) &&
                 getUserName().equals(customer.getUserName()) &&
-                getPassword().equals(customer.getPassword()) &&
-                Objects.equals(getPaymentAccounts(), customer.getPaymentAccounts());
+                getPassword().equals(customer.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getBsn(), getUserName(), getPassword(), getPaymentAccounts());
+        return Objects.hash(super.hashCode(), getBsn(), getUserName(), getPassword());
     }
 }

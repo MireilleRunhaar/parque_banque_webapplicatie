@@ -7,6 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AccountViewController {
 
+
+//in de getmapping
     @GetMapping("/rekening-overzicht")
     public ModelAndView accountViewHandler(){
         ModelAndView mav = new ModelAndView("accountview");

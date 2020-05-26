@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 80%;
-    }
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
+<!--<style>-->
+<!--    table {-->
+<!--        font-family: arial, sans-serif;-->
+<!--        border-collapse: collapse;-->
+<!--        width: 80%;-->
+<!--    }-->
+<!--    td, th {-->
+<!--        border: 1px solid #dddddd;-->
+<!--        text-align: left;-->
+<!--        padding: 8px;-->
+<!--    }-->
 
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
+<!--    tr:nth-child(even) {-->
+<!--        background-color: #dddddd;-->
+<!--    }-->
+<!--</style>-->
 <head>
     <meta charset="UTF-8">
     <title>rekeningoverzicht</title>
+
+    <img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80" height="45">
 </head>
 <br>
 <body>
 <tr>
     <td>
-        <button onclick="document.location = 'rekening-overzicht/wijzigen-rekening'">Wijzigen gegevens</button>
+        <button onclick="document.location = '/wijzigen-rekening'">Wijzigen gegevens</button>
     </td>
     <td>
-        <button onclick="document.location = '/rekening-overzicht/rekening-openen'">Rekening openen</button>
+        <button onclick="document.location = '/rekening-openen'">Rekening openen</button>
     </td>
     <td>
         <button onclick="document.location = '/rekening-overzicht/rekening_koppelen'">Rekening koppelen</button>
