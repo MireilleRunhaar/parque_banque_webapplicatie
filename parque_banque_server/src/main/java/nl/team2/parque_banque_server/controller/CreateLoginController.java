@@ -34,7 +34,10 @@ public class CreateLoginController {
                                                     BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
 
-        if (bindingResult.hasErrors()) {
+        // Check whether input contains errors, or whether username is taken
+        if (bindingResult.hasErrors() || customerService.findByUserName(createLoginFormBean.getUsername()) != null) {
+            System.out.println("**** createLogin has errors");
+            System.out.println("**** user: " + createLoginFormBean.getUsername());
             mav.setViewName("createlogin");
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("form");

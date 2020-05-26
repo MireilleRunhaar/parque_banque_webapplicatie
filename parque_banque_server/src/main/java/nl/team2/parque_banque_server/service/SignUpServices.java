@@ -18,7 +18,6 @@ public class SignUpServices {
     private final static String NONCAP_DER = "der";
     private final static String NONCAP_VAN = "van";
     private final static String NONCAP_EN = "en";
-    private final static String NONCAP_APOSTROPHE_S = "'s";
 
     public static SignUpFormBean formatFormInput(SignUpFormBean signUpFormBean) {
         // TODO: split names based on '-' and capitalize both names?
@@ -44,13 +43,14 @@ public class SignUpServices {
     // Capitalize all words except specified words
     private static List<String> capitalizeStrings(String string) {
         List<String> stringParts = new ArrayList<>(Arrays.asList(string.trim().split("\\s")));
-        for (int index = 0; index < stringParts.size(); index++) {
+        String streetCaps = StringUtils.capitalize(stringParts.remove(0));
+        stringParts.add(0, streetCaps);
+        for (int index = 1; index < stringParts.size(); index++) {
             if (!stringParts.get(index).equalsIgnoreCase(NONCAP_VAN) &&
                     !stringParts.get(index).equalsIgnoreCase(NONCAP_DE) &&
                     !stringParts.get(index).equalsIgnoreCase(NONCAP_DER) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_EN) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_APOSTROPHE_S)) {
-                String streetCaps = StringUtils.capitalize(stringParts.remove(index));
+                    !stringParts.get(index).equalsIgnoreCase(NONCAP_EN)) {
+                streetCaps = StringUtils.capitalize(stringParts.remove(index));
                 stringParts.add(index, streetCaps);
             }
         }

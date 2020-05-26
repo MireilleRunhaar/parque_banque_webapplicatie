@@ -1,18 +1,17 @@
 package nl.team2.parque_banque_server.utilities;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class CreateLoginFormBean {
 
     @NotBlank
     @Size(min = 5, max = 50)
+    @Pattern(regexp = "[A-Za-z0-9]{5,}")
     private String username;
 
     @NotBlank
     @Size(min = 8)
+    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%?&]{8,}")
     private String password;
 
 
