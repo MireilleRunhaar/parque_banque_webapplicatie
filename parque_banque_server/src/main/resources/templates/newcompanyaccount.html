@@ -34,7 +34,7 @@
         <br><br>
     <label>Sector</label>
     <select th:field="*{sector}">
-        <!--<option th:each="p : ${sector}" th:value="${p}" th:text="${p}"/> -->
+        <option th:each="sector : ${sectoren}" th:value="${sector}" th:text="${sector.getName()}"/>
     </select>
         <br><br>
     <button type="submit">Bedrijf aanmelden</button>

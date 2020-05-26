@@ -1,17 +1,24 @@
 package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Company;
+import nl.team2.parque_banque_server.model.Sector;
+import nl.team2.parque_banque_server.model.repositories.CompanyRepository;
+import nl.team2.parque_banque_server.model.service.CompanyService;
+import nl.team2.parque_banque_server.model.service.SectorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 public class NewCompanyAccountController {
+
+    @Autowired
+    private SectorService sectorService;
 
     //Klant is via een rekening gekoppeld aan een(of meer) bedrijf(ven)
     //Klant wil voor een van zijn/haar bedrijven een nieuwe rekening openen
@@ -32,8 +39,7 @@ public class NewCompanyAccountController {
     public String showNewCompanyAccount(Model model) {
         Company company = new Company();
         model.addAttribute("company", company);
-        //List<String> sectoren = Arrays.asList("Handel", "Industrie", "Zorg");
-        //model.addAttribute("sector", sectoren);
+        model.addAttribute("sectoren", sectorService.sectorIterable()); //Service aanroepen die sectoren via de Repo uit DB haalt en in lijst laadt
         return "newcompanyaccount";
     }
     //Tonen van het ingevulde formulier op de confirmcompany pagina
