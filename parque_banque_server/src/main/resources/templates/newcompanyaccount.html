@@ -22,7 +22,7 @@
 <p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p><br>
 
 <!--Formulier met nieuwe bedrijfsgegevens-->
-<form action="#" th:action="@{/newcompanyaccount}" method="post" th:object="${company}">
+<form action="#" th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${company}">
     <label>Btw-nummer</label>
     <input type="text" th:field="*{btwNr}">
         <br><br>
@@ -37,7 +37,7 @@
         <option th:each="sector : ${sectoren}" th:value="${sector}" th:text="${sector.getName()}"/>
     </select>
         <br><br>
-    <button type="submit">Bedrijf aanmelden</button>
+    <button type="submit">Bedrijf aanmelden</button> <!--Hoe zorg ik voor: 1 een formbean en 2 een link naar confirmcompany?-->
 </form>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class NewCompanyAccountController {
     //Klant heeft nog geen zakelijke rekening(en)
     //Klant wil een nieuw bedrijf aanmaken bij Parque Banque en een rekening openen
     //Tonen van de pagina newcompanyaccount met invulformulier
-    @GetMapping("/newcompanyaccount")
+    @GetMapping("/nieuw-bedrijf-aanmaken")
     public String showNewCompanyAccount(Model model) {
         Company company = new Company();
         model.addAttribute("company", company);
@@ -48,7 +48,5 @@ public class NewCompanyAccountController {
         System.out.println(company);
         return "confirmcompany";
     }
-
-
 
 }
