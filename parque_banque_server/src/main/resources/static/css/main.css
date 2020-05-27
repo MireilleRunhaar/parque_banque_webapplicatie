@@ -6,6 +6,11 @@ html{
       font-family: 'Poppins', sans-serif;
 }
 
+.logolink {
+    width: 80px;
+    height: 45px;
+}
+
 footer {
     display: block;
     padding: 5px;
@@ -46,9 +51,18 @@ footer {
 
 }
 
-
-
-
 footer.footer-contact {
     alignment: right;
 }
+
+a.main-linkbutton:link, a.main-linkbutton:visited {
+    background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+    
+    
+}
+

@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>contact page</title>
+    <meta name="author" content="Lisa Kemeling">
+
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <title>Contactpagina</title>
 </head>
 <body>
-<h1>Hier komen de contactgegevens</h1>
+
+<!-- navigatie-->
+<header class="pbMenu">
+    <nav class="pbMenu-homeNav">
+        <!-- logo met link-->
+        <a href="/" class="pbMenu-logoLink"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80" height="45"></a>
+        <div align="right"><a href="/contact" class="pbNav-button">Contact>></a></div>
+
+    </nav>
+</header>
+
+<!-- body -->
+<main id="content">
+    <div class="pbMain"align="center">
+        <img src="../static/parque-banque-logo.jpg" th:src="@{parque-banque-logo.jpg}" alt="parque banque" width="1000" height="165">
+
+        <h1>Welkom bij Parque Banque!</h1>
+        <a href="/inloggen">Inloggen</a>
+        <a href="/klant-worden">Klant worden</a>
+    </div>
+</main>
+
+<!-- footer -->
+<footer>
+    <div class="footer-links">
+        <ul>
+            <li><a href="/inloggen">Inloggen</a></li>
+            <li><a href="/klant-worden">Klant worden</a></li>
+            <li><a href="/rekening-openen">Rekening openen</a></li>
+            <li><a href="/personeel">inloggen personeel</a></li>
+        </ul>
+    </div>
+    <div class="footer-contact">
+        <address>
+            Parque Banque<br>
+            Parklaan 1056<br>
+            0000 XY Bankert <br>
+        </address>
+    </div>
+
+    <div class="footer-license">© 2020 Parque Banque door team 2 | kvk 20016354 </div>
+
+</footer>
+
+
+
+
 </body>
 </html>
