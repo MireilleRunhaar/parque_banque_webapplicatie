@@ -9,6 +9,6 @@ import javax.persistence.Id;
 import java.util.List;
 
 @Repository
-public interface CompanyRepository extends CrudRepository<Company, Id> {
+public interface CompanyRepository extends CrudRepository<Company, Integer> {
 
 }

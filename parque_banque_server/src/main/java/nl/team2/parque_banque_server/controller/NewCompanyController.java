@@ -1,7 +1,7 @@
 package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Company;
-import nl.team2.parque_banque_server.model.service.SectorService;
+import nl.team2.parque_banque_server.service.SectorService;
 import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
