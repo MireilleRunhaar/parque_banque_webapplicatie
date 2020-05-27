@@ -13,7 +13,7 @@
         padding: 8px;
         width: 300px;
     }
-
+    thead {font-size: 8px}
 
     tr:nth-child(even) {
         background-color: #dddddd;
@@ -23,7 +23,9 @@
     <meta charset="UTF-8">
     <title>rekeningoverzicht</title>
     <img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80" height="45">
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
 </head>
+<h1>Welkom <span>th:text="${name}"</span></h1>
 <br/>
 <br/>
 <br/>
@@ -36,7 +38,7 @@
         <button onclick="document.location = '/rekening-openen'">Rekening openen</button>
     </td>
     <td>
-        <button onclick="document.location = '/rekening-overzicht/rekening_koppelen'">Rekening koppelen</button>
+        <button onclick="document.location = '/rekening-koppelen'">Rekening koppelen</button>
     </td>
     <td>
         <button onclick="document.location = '/'">Uitloggen</button>
@@ -44,27 +46,29 @@
 </tr>
 
 <br/><br/>
-Hier vindt u het overzicht van uw rekening(en).
+<h1>Hier vindt u het overzicht van uw rekening(en).</h1>
 <br/>
-<br/><br/><br/><br/><br/>
+<br/>
+<br/>
+
 
 
 <table>
-    <th>Zakelijke rekeningen</th>
+    <h1>Zakelijke rekeningen</h1>
     <tr>
         <td>IBAN</td>
         <td>Rekeninghouder</td>
         <td>Saldo</td>
     </tr>
-<!--    <tr>-->
-<!--        <td><span th: text="${iban}"/></td>-->
-<!--        <td><span th: text="${affix}"/> <span th: text="${surname}"/></td>-->
-<!--        <td><span th: text="${balanceCent}"/></td>-->
-<!--    </tr>-->
+    <tr>
+        <td><span th: text="${affix}"/> <span th: text="${surname}"/></td>
+        <td><span th: text="${iban}"/></td>
+        <td><span th: text="${balanceCent}"/></td>
+    </tr>
 </table>
 
 <table>
-    <th>Prive rekeningen</th>
+    <h1>Prive rekeningen</h1>
     <tr>
         <td>IBAN</td>
         <td>Bedrijf</td>
