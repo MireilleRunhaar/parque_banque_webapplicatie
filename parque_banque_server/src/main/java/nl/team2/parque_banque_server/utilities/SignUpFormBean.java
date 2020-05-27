@@ -33,8 +33,8 @@ public class SignUpFormBean {
     @Pattern(regexp = "[1-9][0-9]{0,4}")
     private String number;
 
-    @Size(max = 1)
-    @Pattern(regexp = "$|[1-9a-zA-Z]")
+    @Size(max = 3)
+    @Pattern(regexp = "$|[-1-9a-zA-Z]")
     private String addition;
 
     @NotBlank
