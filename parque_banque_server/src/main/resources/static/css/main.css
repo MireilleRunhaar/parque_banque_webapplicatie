@@ -25,29 +25,18 @@ footer {
     max-width: 1400px;
 }
 
-.content.footer-list {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
+.footer-list {
+    display: inline-block;
     list-style-type: none;
 }
 
 .content.footer-address{
   display: inline-block;
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
 
 }
 
 .footer-license{
-    grid-row-start: 2;
-    grid-row-end: 3;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    margin-top: 25px;
+    display: inline-block;
 
 }
 
