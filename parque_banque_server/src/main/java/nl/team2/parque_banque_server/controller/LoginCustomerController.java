@@ -32,9 +32,6 @@ public class LoginCustomerController {
     @GetMapping("/inloggen")
     public String loginHandler(@ModelAttribute LoginCustomerFormBean loginCustomerFormBean,
                                Model model) {
-        Object id = model.getAttribute("customerId");
-
-        /*Employee employee = employeeService.findByEmployeeNumber(loginEmployeeFormBean.getEmployeeNumber());*/
 
         if (model.containsAttribute("customerId")) {
             return "accountview";
