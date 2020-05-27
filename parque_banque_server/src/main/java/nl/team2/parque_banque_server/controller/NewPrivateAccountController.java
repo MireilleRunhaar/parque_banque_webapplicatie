@@ -30,6 +30,8 @@ public class NewPrivateAccountController {
     }
 
 
+
+
     @PostMapping("/particuliere-rekening-openen")
     public ModelAndView createNewPrivateAccount(Model model){
         ModelAndView mav=new ModelAndView("confirmprivateaccount");
