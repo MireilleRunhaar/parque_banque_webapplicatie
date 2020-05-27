@@ -7,10 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
-    Customer findByUserName(String userName);
-
-    // klant object uit de sessie halen
-    Customer findCustomerByCustomerId(long id);
-
-
+    Customer findCustomerByUserName(String userName);
 }
