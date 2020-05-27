@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.management.Attribute;
 import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 @SessionAttributes("customerId")
@@ -32,8 +33,7 @@ public class LoginCustomerController {
     @GetMapping("/inloggen")
     public String loginHandler(@ModelAttribute LoginCustomerFormBean loginCustomerFormBean,
                                Model model) {
-
-        if (model.containsAttribute("customerId")) {
+        if (model.containsAttribute("customerId") && loginCustomerFormBean == null) {
             return "accountview";
         } else {
             model.addAttribute("customerId", loginCustomerFormBean);

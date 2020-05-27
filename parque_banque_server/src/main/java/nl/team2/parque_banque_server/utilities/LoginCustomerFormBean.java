@@ -36,7 +36,7 @@ public class LoginCustomerFormBean {
     @Override
     public String toString() {
         return "LoginCustomerFormBean{" +
-                ", userName='" + userName + '\'' +
+                "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
