@@ -74,6 +74,14 @@ public class Customer extends User {
         this.password = password;
     }
 
+    public List<PaymentAccount> getPaymentAccounts() {
+        return paymentAccounts;
+    }
+
+    public void setPaymentAccounts(List<PaymentAccount> paymentAccounts) {
+        this.paymentAccounts = paymentAccounts;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
