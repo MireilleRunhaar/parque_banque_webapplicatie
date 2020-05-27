@@ -15,6 +15,7 @@ public class Customer extends User {
     @ManyToMany(mappedBy = "accountHolders", cascade = CascadeType.ALL)
     private List<PaymentAccount> paymentAccounts;
 
+
     public Customer() {
     }
 

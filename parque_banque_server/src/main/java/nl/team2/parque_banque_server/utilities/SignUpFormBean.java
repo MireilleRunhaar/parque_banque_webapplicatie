@@ -1,46 +1,53 @@
 package nl.team2.parque_banque_server.utilities;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class SignUpFormBean {
 
     @NotBlank
     @Size(min = 2, max = 30)
+    @Pattern(regexp = "^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,30}$")
     private String firstName;
 
     @Size(max = 10)
+    @Pattern(regexp = "$|^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{1,10}")
     private String infix;
 
     @NotBlank
     @Size(min = 2, max = 50)
+    @Pattern(regexp = "^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,50}$")
     private String lastName;
 
     @NotBlank
     @Size(min = 9, max = 9)
+    @Pattern(regexp = "[0-9]{9}")
     private String bsn;
 
     @NotBlank
     @Size(min = 2, max = 50)
+    @Pattern(regexp = "[-.' A-Za-z]{2,50}")
     private String street;
 
     @NotBlank
     @Min(1)
+    @Pattern(regexp = "[1-9][0-9]{0,4}")
     private String number;
 
     @Size(max = 1)
+    @Pattern(regexp = "$|[1-9a-zA-Z]")
     private String addition;
 
     @NotBlank
     @Size(min = 6, max = 6)
+    @Pattern(regexp = "[1-9][0-9]{3}[A-Za-z]{2}")
     private String zipcode;
 
     @NotBlank
     @Size(min = 2)
+    @Pattern(regexp = "[-' A-Za-z]{2,}")
     private String city;
 
+    @Pattern(regexp = "$|[0][0-9]{9}")
     private String phone;
 
     @Email
