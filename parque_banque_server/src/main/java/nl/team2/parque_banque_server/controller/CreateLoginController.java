@@ -26,7 +26,7 @@ public class CreateLoginController {
     }
 
 
-    // If user finishes signup, create user object, save to database and send user to account view
+    // If user finishes signup, create user object, save to database and send user to login
     @PostMapping(value = "/klant-worden", params = "action=finish")
     public ModelAndView sendLoginCredentialsHandler(@Valid CreateLoginFormBean createLoginFormBean,
                                                     BindingResult bindingResult, Model model) {
@@ -45,7 +45,7 @@ public class CreateLoginController {
             // Create customer object and save to the database; redirect user to account view
             Customer customer = SignUpService.createNewCustomer(signUpFormBean, createLoginFormBean);
             customerService.saveCustomer(customer);
-            mav.setViewName("redirect:/rekening-overzicht");
+            mav.setViewName("redirect:/inloggen");
         }
 
         return mav;
