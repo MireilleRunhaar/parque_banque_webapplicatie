@@ -1,6 +1,7 @@
 package nl.team2.parque_banque_server.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,6 +24,12 @@ public abstract class PaymentAccount {
     public PaymentAccount(String iban, long balanceCent){
         this.iban = iban;
         this.balanceCent = balanceCent;
+        this.accountHolders=new ArrayList<>();
+
+    }
+
+    public void addCustomer(Customer customer){
+        accountHolders.add(customer);
     }
 
     public String getIban() {
