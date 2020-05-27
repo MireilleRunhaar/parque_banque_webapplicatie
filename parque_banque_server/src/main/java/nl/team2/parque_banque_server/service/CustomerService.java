@@ -19,4 +19,9 @@ public class CustomerService {
         return customerRepo.findByUserName(username);
     }
 
+    //geeft Customer object terug op basis van een id
+    public Customer findCustomerByCustomerId(long id){
+       return customerRepo.findCustomerByCustomerId(id);
+    }
+
 }
