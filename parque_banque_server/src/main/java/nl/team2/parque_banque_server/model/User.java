@@ -16,7 +16,7 @@ public abstract class User {
     protected String phoneNumber;
     protected String eMailAddress;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     protected Address address;
 
     public User() {
@@ -30,6 +30,14 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
         this.eMailAddress = eMailAddress;
         this.address = address;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getSurName() {

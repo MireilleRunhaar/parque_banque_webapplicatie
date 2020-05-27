@@ -72,6 +72,14 @@ public class Customer extends User {
                 "bsn='" + bsn + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", paymentAccounts=" + paymentAccounts +
+                ", id=" + id +
+                ", surName='" + surName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", affix='" + affix + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", eMailAddress='" + eMailAddress + '\'' +
+                ", address=" + address +
                 '}';
     }
 
