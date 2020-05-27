@@ -1,7 +1,7 @@
 package nl.team2.parque_banque_server.utilities;
 
 import nl.team2.parque_banque_server.model.PrivateAccount;
-import nl.team2.parque_banque_server.service.IbanService;
+import nl.team2.parque_banque_server.service.PaymentAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CreatePrivateAccountBackingBean {
@@ -9,7 +9,7 @@ public class CreatePrivateAccountBackingBean {
     public final long START_SALDO=0;
 
     @Autowired
-    private IbanService ibanService;
+    private PaymentAccountService.IbanService ibanService;
 
     private String iban;
     private long balanceCent;
