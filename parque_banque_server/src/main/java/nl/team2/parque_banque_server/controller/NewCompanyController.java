@@ -1,21 +1,20 @@
 package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Company;
-import nl.team2.parque_banque_server.model.Sector;
-import nl.team2.parque_banque_server.model.repositories.CompanyRepository;
-import nl.team2.parque_banque_server.model.service.CompanyService;
 import nl.team2.parque_banque_server.model.service.SectorService;
+import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class NewCompanyAccountController {
+@SessionAttributes("form")
+public class NewCompanyController {
 
     @Autowired
     private SectorService sectorService;
@@ -34,19 +33,22 @@ public class NewCompanyAccountController {
 
     //Klant heeft nog geen zakelijke rekening(en)
     //Klant wil een nieuw bedrijf aanmaken bij Parque Banque en een rekening openen
+
     //Tonen van de pagina newcompanyaccount met invulformulier
-    @GetMapping("/nieuw-bedrijf-aanmaken")
+    @GetMapping("/bedrijf-aanmaken")
     public String showNewCompanyAccount(Model model) {
         Company company = new Company();
-        model.addAttribute("company", company);
-        model.addAttribute("sectoren", sectorService.sectorIterable()); //Service aanroepen die sectoren via de Repo uit DB haalt en in lijst laadt
-        return "newcompanyaccount";
+        model.addAttribute("company", new CompanyFormBean());
+        model.addAttribute("sectoren", sectorService.sectorIterable());
+        return "newcompany";
     }
+
     //Tonen van het ingevulde formulier op de confirmcompany pagina
-    @PostMapping("/newcompanyaccount")
-    public String submitForm(@ModelAttribute("company") Company company) {
-        System.out.println(company);
-        return "confirmcompany";
+    @PostMapping("/nieuw-bedrijf-aanmaken")
+    public ModelAndView submitForm(@ModelAttribute CompanyFormBean companyFormBean) {
+        ModelAndView mav = new ModelAndView("confirmcompany");
+        mav.addObject("companyFormBean", companyFormBean);
+        return mav;
     }
 
 }

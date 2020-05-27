@@ -13,16 +13,20 @@
 </head>
 <body>
 <h1>Controleer de bedrijfsgegevens</h1>
+
+<form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
 <div align="left">
-    <span>BTW-nummer:</span><span th:text="${company.btwNr}"></span><br>
-    <span>KVK-nummer:</span><span th:text="${company.kvkNr}"></span><br>
-    <span>Bedrijfsnaam:</span><span th:text="${company.name}"></span><br>
-    <span>Sector:</span><span th:text="${company.getSector()}"></span><br>
+    <span>KVK-nummer:</span><span th:text="${companyFormBean.kvkNr}"></span><br>
+    <span>BTW-nummer:</span><span th:text="${companyFormBean.btwNr}"></span><br>
+    <span>Bedrijfsnaam:</span><span th:text="${companyFormBean.companyName}"></span><br>
+    <span>Sector:</span><span th:text="${companyFormBean.sectorName}"></span><br>
 </div>
+
 <!--Formbean newCompanyAccountBean-->
 <button type="submit"> Rekening openen</button>
 <button type="submit"> Bedrijfsgegevens aanpassen</button><br><br>
 <button type="submit"> Annuleren, terug naar rekeningoverzicht</button>
+</form>
 
 </body>
 </html>

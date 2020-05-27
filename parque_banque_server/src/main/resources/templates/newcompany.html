@@ -23,17 +23,17 @@
 
 <!--Formulier met nieuwe bedrijfsgegevens-->
 <form action="#" th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${company}">
+    <label>KvK-nummer</label>
+    <input type="text" th:field="*{kvkNr}">
+    <br/><br/>
     <label>Btw-nummer</label>
     <input type="text" th:field="*{btwNr}">
         <br><br>
-    <label>KvK-nummer</label>
-    <input type="text" th:field="*{kvkNr}">
-        <br/><br/>
     <label>Bedrijfsnaam</label>
-    <input type="password" th:field="*{name}">
+    <input type="password" th:field="*{companyName}">
         <br><br>
     <label>Sector</label>
-    <select th:field="*{sector}">
+    <select th:field="*{sectorName}">
         <option th:each="sector : ${sectoren}" th:value="${sector}" th:text="${sector.getName()}"/>
     </select>
         <br><br>
