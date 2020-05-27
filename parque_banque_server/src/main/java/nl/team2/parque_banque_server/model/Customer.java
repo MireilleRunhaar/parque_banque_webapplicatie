@@ -37,6 +37,15 @@ public class Customer extends User {
         this.paymentAccounts = new ArrayList<>();
     }
 
+    //make constructor for accountview
+    public Customer(String firstName, String affix, String surName, String userName){
+        this.firstName = firstName;
+        this.affix = affix;
+        this.surName = surName;
+        this.userName = userName;
+        this.paymentAccounts= new ArrayList<>();
+    }
+
     public void addPaymentAccount(PaymentAccount paymentAccount) {
         paymentAccounts.add(paymentAccount);
     }
