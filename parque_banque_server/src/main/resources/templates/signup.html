@@ -11,7 +11,7 @@
         <table>
             <tr>
                 <td> <label for="firstName">Voornaam</label> </td>
-                <td> <input id="firstName" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]+$" th:field="*{firstName}"
+                <td> <input id="firstName" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,30}$" th:field="*{firstName}"
                             oninvalid="setCustomValidity('Voornaam is verplicht')"
                             oninput="setCustomValidity('')"/> </td>
             </tr>
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td> <label for="lastName">Achternaam</label> </td>
-                <td> <input id="lastName" type="text" required pattern="^[-'A-Za-zÀ-ÖØ-öø-ÿ]+$" th:field="*{lastName}"
+                <td> <input id="lastName" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,50}$" th:field="*{lastName}"
                             oninvalid="setCustomValidity('Achternaam is verplicht')"
                             oninput="setCustomValidity('')" /> </td>
             </tr>
@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td> <label for="street">Straatnaam</label> </td>
-                <td> <input id="street" type="text" required pattern="[A-Z. a-z-]{2,50}" th:field="*{street}"
+                <td> <input id="street" type="text" required pattern="[-.' A-Za-z]{2,50}" th:field="*{street}"
                             title="Minstens 2 karakters"
                             oninvalid="setCustomValidity('Straatnaam is verplicht (minstens 2 karakters)')"
                             oninput="setCustomValidity('')" /> </td>
@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <td> <label for="city">Woonplaats</label> </td>
-                <td> <input id="city" type="text" required pattern="[A-Za-z-' ]{2,}" th:field="*{city}"
+                <td> <input id="city" type="text" required pattern="[-' A-Za-z]{2,}" th:field="*{city}"
                             oninvalid="setCustomValidity('Woonplaats is verplicht')"
                             oninput="setCustomValidity('')" /> </td>
             </tr>

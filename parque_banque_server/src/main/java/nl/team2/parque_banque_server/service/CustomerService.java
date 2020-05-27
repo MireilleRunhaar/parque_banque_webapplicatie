@@ -1,7 +1,7 @@
 package nl.team2.parque_banque_server.service;
 
 import nl.team2.parque_banque_server.model.Customer;
-import nl.team2.parque_banque_server.repository.CustomerRepository;
+import nl.team2.parque_banque_server.model.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,6 @@ public class CustomerService {
     }
 
     public Customer findByUserName(String username) {
-        return customerRepo.findByUserName(username);
+        return customerRepo.findCustomerByUserName(username);
     }
-
 }

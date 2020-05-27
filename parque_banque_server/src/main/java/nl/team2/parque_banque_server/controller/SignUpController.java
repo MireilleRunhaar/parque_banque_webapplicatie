@@ -1,6 +1,6 @@
 package nl.team2.parque_banque_server.controller;
 
-import nl.team2.parque_banque_server.service.SignUpServices;
+import nl.team2.parque_banque_server.service.SignUpService;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -37,7 +37,7 @@ public class SignUpController {
             mav.setViewName("confirmsignup");
 
             // Capitalize the appropriate fields in the signUpFormBean
-            SignUpFormBean formattedSignUpFormBean = SignUpServices.formatFormInput(signUpFormBean);
+            SignUpFormBean formattedSignUpFormBean = SignUpService.formatFormInput(signUpFormBean);
 
             mav.addObject("form", formattedSignUpFormBean);
             return mav;
