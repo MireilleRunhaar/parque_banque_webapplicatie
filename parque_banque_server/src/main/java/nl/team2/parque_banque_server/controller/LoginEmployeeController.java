@@ -29,7 +29,8 @@ public class LoginEmployeeController {
     @GetMapping("/personeel")
     public String loginHandler(@ModelAttribute LoginEmployeeFormBean loginEmployeeFormBean,
                                Model model) {
-        if (model.containsAttribute("employeeId")) {
+        if (model.containsAttribute("employeeId") && loginEmployeeFormBean == null) {
+            //Data for employeehome.html
             long employeeId = (long) model.getAttribute("employeeId");
             Employee employee = employeeService.findEmployeeByLongId(employeeId);
             model.addAttribute("employee", employee);
@@ -48,6 +49,7 @@ public class LoginEmployeeController {
             model.addAttribute("invalidCredentials", true);
             return "loginemployee";
         } else {
+            //Data for employeehome.html
             Employee employee = employeeService.findByEmployeeNumber(loginEmployeeFormBean.getEmployeeNumber());
             model.addAttribute("employeeId", employee.getId());
             model.addAttribute("employee", employee);
