@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zakelijke rekening openen</title>
+</head>
+<body>
+<h1>Open een zakelijke rekening</h1>
+<h2>Selecteer het bedrijf waarvoor u een nieuwe rekening wilt openen</h2>
+<br>
+<p>
+<label for="company">Bedrijfsnaam</label>
+<select id="company" th:field="*{company}">
+    <option th:each="c:${companies}" th:value="${c}" th:text="${c.getName()}"></option>
+</select>
+</p>
+
+<p>Wilt u een rekening openen voor een ander bedrijf? Meld dan eerst het bedrijf bij ons aan.</p>
+<p>Button</p>
+<!--Deze knop leidt naar een pagina waar Klant een nieuw bedrijf kan aanmelden-->
+
+</body>
+</html>

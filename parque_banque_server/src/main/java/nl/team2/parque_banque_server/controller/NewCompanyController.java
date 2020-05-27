@@ -24,7 +24,7 @@ public class NewCompanyController {
     //Tonen pagina
     @GetMapping("/zakelijke-rekening-openen")
     public String showNewCompanyAccount(){
-        return "zakelijke-rekening-openen";
+        return "newbusinessaccount";
     }
     //Uit de DB de bedrijven te halen van de ingelogde klant
 

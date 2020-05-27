@@ -10,7 +10,7 @@ public class Company {
     private String kvkNr;
 
     private String btwNr;
-    private String companyName;
+    private String name;
 
     @ManyToOne
     private Sector sector;
@@ -20,10 +20,10 @@ public class Company {
         super();
     }
 
-    public Company(String kvkNr, String btwNr, String companyName, Sector sector) {
+    public Company(String kvkNr, String btwNr, String name, Sector sector) {
         this.kvkNr = kvkNr;
         this.btwNr = btwNr;
-        this.companyName = companyName;
+        this.name = name;
         this.sector = sector;
     }
 
@@ -43,12 +43,12 @@ public class Company {
         this.btwNr = btwNr;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getName() {
+        return name;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Sector getSector() {
@@ -64,7 +64,7 @@ public class Company {
         return "Company{" +
                 "kvkNr='" + kvkNr + '\'' +
                 ", btwNr='" + btwNr + '\'' +
-                ", companyName='" + companyName + '\'' +
+                ", companyName='" + name + '\'' +
                 ", sector=" + sector +
                 '}';
     }
@@ -76,12 +76,12 @@ public class Company {
         Company company = (Company) o;
         return getKvkNr().equals(company.getKvkNr()) &&
                 getBtwNr().equals(company.getBtwNr()) &&
-                getCompanyName().equals(company.getCompanyName()) &&
+                name.equals(company.name) &&
                 getSector().equals(company.getSector());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getBtwNr(), getKvkNr(), getCompanyName(), getSector());
+        return Objects.hash(getKvkNr(), getBtwNr(), name, getSector());
     }
 }
