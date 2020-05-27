@@ -1,4 +1,4 @@
-package nl.team2.parque_banque_server.repository;
+package nl.team2.parque_banque_server.model.repositories;
 
 import nl.team2.parque_banque_server.model.PaymentAccount;
 import org.springframework.data.repository.CrudRepository;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 
-public interface PaymentAccountRepository extends CrudRepository<PaymentAccount,Integer> {
+public interface PaymentAccountRepository extends CrudRepository<PaymentAccount,String> {
 
         // last added PaymentAccount
         PaymentAccount findTopByOrderByIbanDesc();
