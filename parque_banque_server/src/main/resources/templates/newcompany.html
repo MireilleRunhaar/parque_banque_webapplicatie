@@ -37,7 +37,7 @@
         <option th:each="sector : ${sectoren}" th:value="${sector}" th:text="${sector.getName()}"/>
     </select>
         <br><br>
-    <button type="submit">Bedrijf aanmelden</button> <!--Hoe zorg ik voor: 1 een formbean en 2 een link naar confirmcompany?-->
+    <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
 </form>
 </body>
 </html>

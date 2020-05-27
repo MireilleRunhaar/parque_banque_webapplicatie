@@ -22,10 +22,9 @@
     <span>Sector:</span><span th:text="${companyFormBean.sectorName}"></span><br>
 </div>
 
-<!--Formbean newCompanyAccountBean-->
-<button type="submit"> Rekening openen</button>
-<button type="submit"> Bedrijfsgegevens aanpassen</button><br><br>
-<button type="submit"> Annuleren, terug naar rekeningoverzicht</button>
+<button type="submit" name="action" value="rekeningOpenen"> Rekening openen</button>
+<button type="submit" name="action" value ="wijzigBedrijfsinformatie"> Bedrijfsgegevens aanpassen</button><br><br>
+<button type="submit" name="action" value="annulerenGaNaarRekeningoverzicht" formnovalidate> Annuleren, terug naar rekeningoverzicht</button>
 </form>
 
 </body>
