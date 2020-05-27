@@ -24,6 +24,7 @@
                 <td> <input id="username" type="text" required pattern="[A-Za-z0-9]{5,}" th:field="*{username}"
                             oninvalid="setCustomValidity('Gebruikersnaam moet minimaal 5 tekens lang zijn')"
                             oninput="setCustomValidity('')" /> </td>
+                <td th:if="${usernameTaken}" class="error">Deze gebruikersnaam bestaat al. Bedenk een andere.</td>
             </tr>
             <tr>
                 <td> <label for="password">Wachtwoord</label></td>
@@ -39,7 +40,7 @@
             <tr>
                 <td> <label for="confirmpassword">Bevestig wachtwoord</label> </td>
                 <td> <input id="confirmpassword" type="password" required /> </td>
-                <td> <span id="passMismatch" style="display: none; color: red">Wachtwoorden zijn niet gelijk!</span></td>
+                <td> <span id="passMismatch" class="error" style="display: none">Wachtwoorden zijn niet gelijk!</span></td>
             </tr>
             <tr>
                 <td> </td>

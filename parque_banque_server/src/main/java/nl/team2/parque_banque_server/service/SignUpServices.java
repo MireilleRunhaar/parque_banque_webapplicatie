@@ -20,28 +20,28 @@ public class SignUpServices {
     private final static String NONCAP_EN = "en";
 
     public static SignUpFormBean formatFormInput(SignUpFormBean signUpFormBean) {
-        // TODO: split names based on '-' and capitalize both names?
-        signUpFormBean.setFirstName(StringUtils.capitalize(signUpFormBean.getFirstName()));
-        signUpFormBean.setLastName(StringUtils.capitalize(signUpFormBean.getLastName()));
+        // Split the Strings of name, street and city, and capitalize all relevant parts
+        String firstNameCaps = capitalizeStrings(signUpFormBean.getFirstName());
+        signUpFormBean.setFirstName(firstNameCaps);
 
-        // Split the Strings of street and city, and capitalize all relevant words
-        String street = signUpFormBean.getStreet();
-        List<String> streetParts = capitalizeStrings(street);
-        street = String.join(" ", streetParts);
-        signUpFormBean.setStreet(street);
+        String lastNameCaps = capitalizeStrings(signUpFormBean.getLastName());
+        signUpFormBean.setLastName(lastNameCaps);
 
-        String city = signUpFormBean.getCity();
-        List<String> cityParts = capitalizeStrings(city);
-        city = String.join(" ", cityParts);
-        signUpFormBean.setCity(city);
+        String streetCaps = capitalizeStrings(signUpFormBean.getStreet());
+        signUpFormBean.setStreet(streetCaps);
+
+        String cityCaps = capitalizeStrings(signUpFormBean.getCity());
+        signUpFormBean.setCity(cityCaps);
+
 
         signUpFormBean.setZipcode(signUpFormBean.getZipcode().toUpperCase());
 
         return signUpFormBean;
     }
 
-    // Capitalize all words except specified words
-    private static List<String> capitalizeStrings(String string) {
+    // Capitalize all Strings delimited by a space, except for specified Strings
+    private static String capitalizeStrings(String string) {
+        string = capitalizeDashedName(string);
         List<String> stringParts = new ArrayList<>(Arrays.asList(string.trim().split("\\s")));
         String streetCaps = StringUtils.capitalize(stringParts.remove(0));
         stringParts.add(0, streetCaps);
@@ -54,7 +54,17 @@ public class SignUpServices {
                 stringParts.add(index, streetCaps);
             }
         }
-        return stringParts;
+        return String.join(" ", stringParts);
+    }
+
+    // Capitalize all strings delimited by '-'
+    private static String capitalizeDashedName(String name) {
+        List<String> nameParts = new ArrayList<>(Arrays.asList(name.trim().split("-")));
+        for (int index = 0; index < nameParts.size(); index++) {
+            String nameCap = StringUtils.capitalize(nameParts.remove(index));
+            nameParts.add(index, nameCap);
+        }
+        return String.join("-", nameParts);
     }
 
     public static Customer createNewCustomer(SignUpFormBean signUpFormBean, CreateLoginFormBean createLoginFormBean) {

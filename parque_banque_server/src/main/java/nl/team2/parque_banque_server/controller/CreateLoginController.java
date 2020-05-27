@@ -39,8 +39,8 @@ public class CreateLoginController {
         if (bindingResult.hasErrors()) {
             mav.setViewName("createlogin");
         } else if (customerService.findByUserName(createLoginFormBean.getUsername()) != null) {
-            mav.setViewName("createloginerror");
-            mav.addObject("createLoginFormBean", createLoginFormBean);
+            mav.addObject("usernameTaken", true);
+            mav.setViewName("createlogin");
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("form");
             // TODO: throw catch block with error page?
@@ -48,7 +48,7 @@ public class CreateLoginController {
             // Create customer object and save to the database; redirect user to account view
             Customer customer = SignUpServices.createNewCustomer(signUpFormBean, createLoginFormBean);
             customerService.saveCustomer(customer);
-            mav.setViewName("redirect:/rekeningoverzicht");
+            mav.setViewName("redirect:/rekening-overzicht");
         }
 
         return mav;
