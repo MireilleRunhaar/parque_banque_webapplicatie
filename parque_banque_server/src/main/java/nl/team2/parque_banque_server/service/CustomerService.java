@@ -16,6 +16,7 @@ public class CustomerService {
     }
 
     public Customer findByUserName(String username) {
-        return customerRepo.findCustomerByUserName(username);
+        return customerRepo.findByUserName(username);
     }
+
 }

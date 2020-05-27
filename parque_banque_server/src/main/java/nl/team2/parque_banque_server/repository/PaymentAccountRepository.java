@@ -13,7 +13,6 @@ public interface PaymentAccountRepository extends CrudRepository<PaymentAccount,
         // last added PaymentAccount
         PaymentAccount findTopByOrderByIbanDesc();
 
-       // List<PaymentAccount>f
 
 
 
