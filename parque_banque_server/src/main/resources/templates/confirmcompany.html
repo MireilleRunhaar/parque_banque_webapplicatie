@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Aangemaakt bedrijf bevestigen</title>
+    <style type="text/css">
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
+<h1>Controleer de bedrijfsgegevens</h1>
+
+<form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
+<div align="left">
+    <span>KVK-nummer:</span><span th:text="${companyFormBean.kvkNr}"></span><br>
+    <span>BTW-nummer:</span><span th:text="${companyFormBean.btwNr}"></span><br>
+    <span>Bedrijfsnaam:</span><span th:text="${companyFormBean.companyName}"></span><br>
+    <span>Sector:</span><span th:text="${companyFormBean.sectorName}"></span><br>
+</div>
+
+<button type="submit" name="action" value="rekeningOpenen"> Rekening openen</button>
+<button type="submit" name="action" value ="wijzigBedrijfsinformatie"> Bedrijfsgegevens aanpassen</button><br><br>
+<button type="submit" name="action" value="annulerenGaNaarRekeningoverzicht" formnovalidate> Annuleren, terug naar rekeningoverzicht</button>
+</form>
 
 </body>
 </html>
