@@ -13,6 +13,19 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepo;
+/*
+    public Employee findById(int idLong) {
+        int id = Math.toIntExact(idLong);
+        Optional<Employee> employeeOption = employeeRepo.findById(id);
+        if (employeeOption.isPresent()) {
+            return employeeOption.get();
+        }
+        return null;
+    }*/
+
+    public Employee findEmployeeByLongId(long idLong) {
+        return employeeRepo.findEmployeeById(idLong);
+    }
 
     public Employee findByEmployeeNumber(int employeeNumber) {
         return employeeRepo.findEmployeeByEmployeeNumber(employeeNumber);
