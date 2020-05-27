@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@SessionAttributes("customerId")
 public class NewPrivateAccountController {
 
     public final long START_SALDO=0;
@@ -22,13 +24,6 @@ public class NewPrivateAccountController {
         this.ibanService = ibanService;
         this.paymentAccountService = paymentAccountService;
     }
-
-
-    @GetMapping("/rekening-openen")
-    public String goToNewPaymentAccount(){
-        return "newpaymentaccount";
-    }
-
 
     @PostMapping("/particuliere-rekening-openen")
     public ModelAndView createNewPrivateAccount(){

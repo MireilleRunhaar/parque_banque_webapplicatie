@@ -28,7 +28,7 @@ public abstract class PaymentAccount {
 
     }
 
-    public void addCustomer(Customer customer){
+    public void addCustomerToAccountHolder(Customer customer){
         accountHolders.add(customer);
     }
 
