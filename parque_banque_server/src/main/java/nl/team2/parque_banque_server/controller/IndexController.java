@@ -11,17 +11,6 @@ public class IndexController {
         return "contact";
     }
 
-    @GetMapping("/inloggen")
-    public String goToLoginCustomerPage(){
-        return "logincustomer";
-    }
-
-
-    @GetMapping("/personeel")
-    public String goToLoginEmployee(){
-        return "loginemployee";
-    }
-
     @GetMapping("/rekening-openen")
     public String goToNewPaymentAccount(){
         return "newpaymentaccount";
