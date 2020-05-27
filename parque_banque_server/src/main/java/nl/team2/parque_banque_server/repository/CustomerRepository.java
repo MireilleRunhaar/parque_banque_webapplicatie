@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
     Customer findByUserName(String userName);
+
+    Customer findCustomerByCustomerId(long id);
+
 }

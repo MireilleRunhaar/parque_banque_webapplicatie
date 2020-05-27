@@ -19,4 +19,8 @@ public class CustomerService {
         return customerRepo.findByUserName(username);
     }
 
+    //geeft customer (value) terug die hoort bij de sessie id(key)
+    public Customer findCustomerByCustomerId(long id){
+        return customerRepo.findCustomerByCustomerId(id);
+    }
 }
