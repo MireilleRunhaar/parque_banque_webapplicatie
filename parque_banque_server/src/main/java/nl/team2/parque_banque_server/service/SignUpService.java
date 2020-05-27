@@ -12,12 +12,14 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class SignUpServices {
+public class SignUpService {
 
     private final static String NONCAP_DE = "de";
     private final static String NONCAP_DER = "der";
     private final static String NONCAP_VAN = "van";
     private final static String NONCAP_EN = "en";
+    private final static String NONCAP_IN = "in";
+    private final static String NONCAP_TOT = "tot";
 
     public static SignUpFormBean formatFormInput(SignUpFormBean signUpFormBean) {
         // Split the Strings of name, street and city, and capitalize all relevant parts
@@ -49,7 +51,9 @@ public class SignUpServices {
             if (!stringParts.get(index).equalsIgnoreCase(NONCAP_VAN) &&
                     !stringParts.get(index).equalsIgnoreCase(NONCAP_DE) &&
                     !stringParts.get(index).equalsIgnoreCase(NONCAP_DER) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_EN)) {
+                    !stringParts.get(index).equalsIgnoreCase(NONCAP_EN) &&
+                    !stringParts.get(index).equalsIgnoreCase(NONCAP_IN) &&
+                    !stringParts.get(index).equalsIgnoreCase(NONCAP_TOT)) {
                 streetCaps = StringUtils.capitalize(stringParts.remove(index));
                 stringParts.add(index, streetCaps);
             }
@@ -60,9 +64,18 @@ public class SignUpServices {
     // Capitalize all strings delimited by '-'
     private static String capitalizeDashedName(String name) {
         List<String> nameParts = new ArrayList<>(Arrays.asList(name.trim().split("-")));
+        String nameCaps = StringUtils.capitalize(nameParts.remove(0));
+        nameParts.add(0, nameCaps);
         for (int index = 0; index < nameParts.size(); index++) {
-            String nameCap = StringUtils.capitalize(nameParts.remove(index));
-            nameParts.add(index, nameCap);
+            if (!nameParts.get(index).startsWith(NONCAP_VAN + " ") &&
+                    !nameParts.get(index).startsWith(NONCAP_DE + " ") &&
+                    !nameParts.get(index).startsWith(NONCAP_DER + " ") &&
+                    !nameParts.get(index).startsWith(NONCAP_EN + " ") &&
+                    !nameParts.get(index).startsWith(NONCAP_IN + " ") &&
+                    !nameParts.get(index).startsWith(NONCAP_TOT + " ")) {
+                nameCaps = StringUtils.capitalize(nameParts.remove(index));
+                nameParts.add(index, nameCaps);
+            }
         }
         return String.join("-", nameParts);
     }

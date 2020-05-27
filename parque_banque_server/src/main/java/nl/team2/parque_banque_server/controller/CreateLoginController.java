@@ -2,15 +2,12 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.service.CustomerService;
-import nl.team2.parque_banque_server.service.SignUpServices;
+import nl.team2.parque_banque_server.service.SignUpService;
 import nl.team2.parque_banque_server.utilities.CreateLoginFormBean;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,7 +43,7 @@ public class CreateLoginController {
             // TODO: throw catch block with error page?
             assert signUpFormBean != null;
             // Create customer object and save to the database; redirect user to account view
-            Customer customer = SignUpServices.createNewCustomer(signUpFormBean, createLoginFormBean);
+            Customer customer = SignUpService.createNewCustomer(signUpFormBean, createLoginFormBean);
             customerService.saveCustomer(customer);
             mav.setViewName("redirect:/rekening-overzicht");
         }
