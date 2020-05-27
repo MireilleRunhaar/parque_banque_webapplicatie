@@ -23,11 +23,16 @@ public class AccountViewController {
 //in de getmapping
     @GetMapping("/rekening-overzicht")
     public String showAccountView(Model model){
-        long customerId=(long)model.getAttribute("customerId");
-        Customer customer= customerService.findCustomerByCustomerId(customerId);
-        model.addAttribute("name",customer.getFirstName());
-        model.addAttribute("paymentAccounts",customer.getPaymentAccounts());
-        return "/accountview";
+        if(!model.containsAttribute("customerId")){
+            return "logincustomer";
+        }
+        else {
+            long customerId = (long) model.getAttribute("customerId");
+            Customer customer = customerService.findCustomerById(customerId);
+            model.addAttribute("name", customer.getFirstName());
+            model.addAttribute("paymentAccounts", customer.getPaymentAccounts());
+            return "accountview";
+        }
 
     }
 //request for opening account from accountview.html

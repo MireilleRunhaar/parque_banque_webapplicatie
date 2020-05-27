@@ -19,8 +19,8 @@ public class CustomerService {
         return customerRepo.findByUserName(username);
     }
 
-    public Customer findCustomerByCustomerId (long customerId){
-        return customerRepo.findCustomerByCustomerId(customerId);
+    public Customer findCustomerById (long customerId){
+        return customerRepo.findCustomerById(customerId);
     }
 
 }
