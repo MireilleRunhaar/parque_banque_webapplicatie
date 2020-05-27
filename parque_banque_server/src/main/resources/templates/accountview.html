@@ -2,21 +2,36 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <style>
     table {
-       alignment: left;
+       alignment: center;
+        width: auto;
     }
     td{
+        font-family: "Arial";
         width: 100px;
+        font-size: small;
     }
     th {
         border: 1px solid #dddddd;
         text-align: left;
+        font-family: "Arial Black";
         padding: 8px;
         width: 300px;
     }
     thead {font-size: 8px}
 
+    h1 {
+        font-family: "Arial";
+        font-size: x-large;
+    }
+    h2 {
+        font-family: "Arial";
+        font-size: small;
+    }
+
     tr:nth-child(even) {
         background-color: #dddddd;
+    }
+    button {alignment: left;
     }
 </style>
 <head>
@@ -25,7 +40,6 @@
     <img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80" height="45">
 
 </head>
-<h1>Welkom <span th:text="${firstName}"/> <span th:text="${affix}"/> <span th:text="${surName}"/></h1>
 <br/>
 <br/>
 <br/>
@@ -46,7 +60,11 @@
 </tr>
 
 <br/><br/>
-<h1>Hier vindt u het overzicht van uw rekening(en).</h1>
+<h1>Welkom <span th:text="${firstName}"/> <span th:text="${affix}"/> <span th:text="${surName}"/> bij Parque Banque!
+    <br/>
+    <h2>Hier vindt u het overzicht van uw rekening(en)</h2>
+</h1>
+
 <br/>
 <br/>
 <br/>
@@ -65,6 +83,9 @@
 <!--        <td><span th: text="${iban}"/></td>-->
 <!--        <td><span th: text="${balanceCent}"/></td>    </tr>-->
 </table>
+<br/>
+<br/>
+<br/>
 
 <table>
     <h1>Prive rekeningen</h1>
