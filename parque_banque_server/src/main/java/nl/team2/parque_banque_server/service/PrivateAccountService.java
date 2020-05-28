@@ -15,5 +15,9 @@ public class PrivateAccountService {
         privateAccountRepository.save(privateAccount);
     }
 
+//    public PrivateAccount findIdByIban(String iban){
+//        return privateAccountRepository.findIdByIban(iban);
+//    }
+
 
 }

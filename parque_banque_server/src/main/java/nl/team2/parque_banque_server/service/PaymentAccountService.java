@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.service;
 
 import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.model.PrivateAccount;
+import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.PaymentAccountRepository;
 
 import nl.team2.parque_banque_server.model.repositories.PrivateAccountRepository;
@@ -30,25 +31,52 @@ public class PaymentAccountService {
         private PaymentAccountRepository paymentAccountRepository;
         @Autowired
         private PrivateAccountRepository privateAccountRepository;
+        @Autowired
+        private BusinessAccountRepository businessAccountRepository;
 
         public IbanService() {
         }
 
-        // get last the last added iban and add 1.
-        public String createNewIban(){
-           String lastAddedPaymentAccount=privateAccountRepository.findTopByOrderByIbanDesc().getIban();
-           if (lastAddedPaymentAccount==null){
-               String lastAddedIban=IBAN_00;
-               String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
-                       +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT))+INCREMENT);
-               return newIban;
-           } else {
+//        // get last the last added iban and add 1.
+//        public String createNewIban(){
+//           String lastAddedPaymentAccount=privateAccountRepository.findTopByOrderByIbanDesc().getIban();
+//           if (lastAddedPaymentAccount==null){
+//               String lastAddedIban=IBAN_00;
+//               String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
+//                       +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT))+INCREMENT);
+//               return newIban;
+//           } else {
+//
+//               // laatste 9 cijferige nummerreeks splitsen en hierbij 1 optellen ; hier hangt (nog) geen limiet aan
+//               String newIban=lastAddedPaymentAccount.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
+//                       +(Integer.parseInt(lastAddedPaymentAccount.substring(UPPER_LIMIT))+INCREMENT);
+//               return newIban;
+//           }
+//
+//        }
 
-               // laatste 9 cijferige nummerreeks splitsen en hierbij 1 optellen ; hier hangt (nog) geen limiet aan
-               String newIban=lastAddedPaymentAccount.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
-                       +(Integer.parseInt(lastAddedPaymentAccount.substring(UPPER_LIMIT))+INCREMENT);
-               return newIban;
-           }
+        public String createNewIban(){
+            String lastAddedPrivateIban=privateAccountRepository.findTopByOrderByIbanDesc().getIban();
+            String lastAddedBusinessIban=businessAccountRepository.findTopByOrderByIbanDesc().getIban();
+            int privateIban=Integer.parseInt(lastAddedPrivateIban.substring(UPPER_LIMIT));
+            int businessIban=Integer.parseInt(lastAddedBusinessIban.substring(UPPER_LIMIT));
+            if(lastAddedPrivateIban==null||lastAddedBusinessIban==null){
+                String lastAddedIban=IBAN_00;
+                String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
+                        +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT))+INCREMENT);
+                return newIban;
+            } else if (privateIban>businessIban){
+                String lastAddedIban=lastAddedPrivateIban;
+                String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT)
+                        +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT))+INCREMENT);
+                return newIban;
+            } else {
+                String lastAddedIban=lastAddedBusinessIban;
+                String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT)
+                        +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT))+INCREMENT);
+                return newIban;
+            }
+
 
         }
 
