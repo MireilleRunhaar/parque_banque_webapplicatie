@@ -6,5 +6,12 @@
 </head>
 <body>
     <h1>Welkom terug <span th:text="${employee.firstName}"></span></h1>
+
+    Pagina's voor <span th:text="${employee.role.name}"></span>:
+    </br>
+
+    <a th:if="${employee.role.id} eq '1'" class="private" href="/overzicht-particulier">Overzicht particulieren</a>
+
+    <a th:if="${employee.role.id} eq '2'" class="business"  href="/overzicht-bedrijven">Overzicht MKB</a>
 </body>
 </html>

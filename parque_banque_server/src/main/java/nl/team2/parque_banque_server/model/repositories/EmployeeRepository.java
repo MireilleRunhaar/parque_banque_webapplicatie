@@ -9,5 +9,5 @@ public interface EmployeeRepository extends  CrudRepository<Employee, Integer> {
 
     Employee findEmployeeByEmployeeNumber(int employeeNumber);
 
-    Employee findEmployeeById(long idLong);
+    Employee findEmployeeById(long id);
 }

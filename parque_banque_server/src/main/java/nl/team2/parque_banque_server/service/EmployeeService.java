@@ -11,12 +11,17 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepo;
 
-    public Employee findEmployeeByLongId(long idLong) {
-        return employeeRepo.findEmployeeById(idLong);
-    }
-
     public Employee findByEmployeeNumber(int employeeNumber) {
         return employeeRepo.findEmployeeByEmployeeNumber(employeeNumber);
     }
 
+    public Employee findEmployeeByEmployeeId(long id) {
+        return employeeRepo.findEmployeeById(id);
+    }
+
+    //Find Employee By Session Attribute Id
+    public Employee findEmployeeBySAId(Object object) {
+        long id = (long) object;
+        return findEmployeeByEmployeeId(id);
+    }
 }
