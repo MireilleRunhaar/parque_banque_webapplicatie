@@ -1,8 +1,12 @@
 package nl.team2.parque_banque_server.controller;
 
+import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Customer;
+import nl.team2.parque_banque_server.model.PaymentAccount;
+import nl.team2.parque_banque_server.model.PrivateAccount;
 import nl.team2.parque_banque_server.service.CustomerService;
 import nl.team2.parque_banque_server.service.LoginService;
+import nl.team2.parque_banque_server.service.PrivateAccountService;
 import nl.team2.parque_banque_server.utilities.LoginCustomerFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @SessionAttributes("customerId")
@@ -24,6 +30,9 @@ public class LoginCustomerController {
 
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    private PrivateAccountService privateAccountService;
 
     @GetMapping("/inloggen")
     public String loginHandler(@ModelAttribute LoginCustomerFormBean loginCustomerFormBean,
@@ -49,7 +58,9 @@ public class LoginCustomerController {
             model.addAttribute("firstName", customer.getFirstName());
             model.addAttribute("affix", customer.getAffix());
             model.addAttribute("surName",customer.getSurName());
-            model.addAttribute("paymentaccounts",customer.getPaymentAccounts());
+            List<PaymentAccount> paymentAccountList= customer.getPaymentAccounts();
+            List<PrivateAccount> privateAccounts = privateAccountService.getPrivateAccountsByCustomer(customer);
+            model.addAttribute("privateaccounts", privateAccounts);
             return "accountview";
         }
     }
