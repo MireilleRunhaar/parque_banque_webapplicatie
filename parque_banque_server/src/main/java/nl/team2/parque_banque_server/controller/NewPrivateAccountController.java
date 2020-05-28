@@ -2,8 +2,10 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.model.PrivateAccount;
+import nl.team2.parque_banque_server.model.repositories.PrivateAccountRepository;
 import nl.team2.parque_banque_server.service.CustomerService;
 import nl.team2.parque_banque_server.service.PaymentAccountService;
+import nl.team2.parque_banque_server.service.PrivateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +21,14 @@ public class NewPrivateAccountController {
     public final long START_SALDO=0;
 
     private PaymentAccountService.IbanService ibanService;
-    private PaymentAccountService paymentAccountService;
     private CustomerService customerService;
+    private PrivateAccountService privateAccountService;
 
     @Autowired
-    public NewPrivateAccountController(PaymentAccountService.IbanService ibanService, PaymentAccountService paymentAccountService, CustomerService customerService) {
+    public NewPrivateAccountController(PaymentAccountService.IbanService ibanService, CustomerService customerService, PrivateAccountService privateAccountService) {
         this.ibanService = ibanService;
-        this.paymentAccountService = paymentAccountService;
         this.customerService = customerService;
+        this.privateAccountService = privateAccountService;
     }
 
 
@@ -41,7 +43,7 @@ public class NewPrivateAccountController {
         PrivateAccount privateAccount=new PrivateAccount(ibanService.createNewIban(),START_SALDO);
         privateAccount.addCustomerToAccountHolder(customer);
 
-        paymentAccountService.savePrivateAccount(privateAccount);
+        privateAccountService.savePrivateAccount(privateAccount);
 
         mav.addObject("iban",privateAccount.getIban());
         mav.addObject("balanceCent",privateAccount.getBalanceCent());
