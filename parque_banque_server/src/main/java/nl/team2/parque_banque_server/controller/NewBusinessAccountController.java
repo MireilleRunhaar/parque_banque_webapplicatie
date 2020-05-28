@@ -22,8 +22,10 @@ import java.util.List;
 @SessionAttributes("customerId")
 public class NewBusinessAccountController {
 
-    @Autowired private CustomerService customerService;
-    @Autowired private NewBusinessAccountService nbas;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private NewBusinessAccountService nbas;
 
     @GetMapping("/zakelijke-rekening")
     public String goToNewBusinessAccount(Model model){

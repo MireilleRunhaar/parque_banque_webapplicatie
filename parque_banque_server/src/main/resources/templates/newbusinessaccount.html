@@ -10,7 +10,7 @@
 <br>
 <p>
 <label for="company">Bedrijfsnaam</label>
-<select id="company" th:field="*{company}">
+<select id="company" >
     <option th:each="c:${companies}" th:value="${c}" th:text="${c.getName()}"></option>
 </select>
 </p>

@@ -26,7 +26,7 @@ public class NewBusinessAccountService {
      * @author Lisa Kemeling
      */
     public List<Company> getCompaniesFromCustomer(Customer customer){
-        List<Customer> accountholders = new ArrayList<>();
+        ArrayList<Customer> accountholders = new ArrayList<>();
         accountholders.add(customer);
         List<BusinessAccount> businessAccounts =findBusinessAccountsByCustomer(accountholders);
         List<Company> companies = new ArrayList<>();
@@ -38,8 +38,8 @@ public class NewBusinessAccountService {
     }
 
     //helps finding companies
-    public List<BusinessAccount> findBusinessAccountsByCustomer(List<Customer> accountholders){
-        return businessAccountRepo.findBusinessAccountsByAccountHolders(accountholders);
+    public List<BusinessAccount> findBusinessAccountsByCustomer(ArrayList<Customer> accountholders){
+        return businessAccountRepo.findBusinessAccountsByAccountHoldersIn(accountholders);
     }
 
     /*public BusinessAccount findById(int Id){
