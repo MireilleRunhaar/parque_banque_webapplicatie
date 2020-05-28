@@ -49,6 +49,7 @@ public class LoginCustomerController {
             model.addAttribute("firstName", customer.getFirstName());
             model.addAttribute("affix", customer.getAffix());
             model.addAttribute("surName",customer.getSurName());
+            model.addAttribute("iban",customer.getPaymentAccounts());
             return "accountview";
         }
     }
