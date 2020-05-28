@@ -46,7 +46,7 @@ public class NewBusinessAccountController {
     public String goToNewBusinessAccount(Model model){
 
         //get customer from session
-        Customer customer =customerService.makeCustomerFromSession(model.getAttribute("customerId"));
+        Customer customer =customerService.findCustomerBySAId(model.getAttribute("customerId"));
         if(customer != null){
 
             //get all the companies where customer has accounts of and add to model
