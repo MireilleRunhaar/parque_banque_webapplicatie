@@ -20,13 +20,10 @@ public class EmployeeHomeController {
         if(!model.containsAttribute("employeeId")) {
             return "loginemployee";
         } else {
-            long employeeId = (long) model.getAttribute("employeeId");
-            Employee employee = employeeService.findEmployeeByLongId(employeeId);
+            //Create an employee from the session attribute
+            Employee employee = employeeService.findEmployeeBySAId(model.getAttribute("employeeId"));
             model.addAttribute("employee", employee);
             return "employeehome";
         }
     }
-
-
-
 }

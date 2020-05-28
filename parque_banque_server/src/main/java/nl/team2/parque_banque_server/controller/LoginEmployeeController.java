@@ -45,7 +45,6 @@ public class LoginEmployeeController {
             model.addAttribute("invalidCredentials", true);
             return "loginemployee";
         } else {
-            //Data for employeehome.html
             Employee employee = employeeService.findByEmployeeNumber(loginEmployeeFormBean.getEmployeeNumber());
             model.addAttribute("employeeId", employee.getId());
             return "redirect:/personeel-home";
