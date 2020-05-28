@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes("newCompanyForm")
 public class NewCompanyController {
 
     @Autowired
@@ -34,7 +33,7 @@ public class NewCompanyController {
     //Klant heeft nog geen zakelijke rekening(en)
     //Klant wil een nieuw bedrijf aanmaken bij Parque Banque en een rekening openen
 
-    //Tonen van de pagina newcompanyaccount met invulformulier
+    //Tonen van de pagina newcompanyaccount met invulformulier voor bedrijfsgegevens
     @GetMapping("/bedrijf-aanmaken")
     public String showNewCompanyAccount(Model model) {
         Company company = new Company();

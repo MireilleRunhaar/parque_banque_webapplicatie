@@ -21,7 +21,7 @@ public class ConfirmCompanyController {
         super();
     }
 
-    //Als klant ingevulde bedrijfsgegevens goedkeurt volgen 2 acties: bedrijf in DB en zakelijke rekening aanmaken
+    //Klant bevestigt bedrijfsgegevens: opslaan bedrijf in DB, rekening openen, bevestigingspagina tonen
     @PostMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=rekeningOpenen")
     public ModelAndView confirmNewCompanyHandler(@ModelAttribute CompanyFormBean companyFormBean) {
         ModelAndView mav = new ModelAndView("newbusinessaccount");
@@ -30,7 +30,7 @@ public class ConfirmCompanyController {
         return mav;
     }
 
-    //Als klant zich bedenkt moet hij/zij terugkeren naar het rekeningoverzicht.
+    //Klant bedenkt zich en keert terug naar rekeningoverzicht.
     @PostMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=annulerenGaNaarRekeningoverzicht")
     public String goBackToAccountViewHandler() {
         return "accountview";
