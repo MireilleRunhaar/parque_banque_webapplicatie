@@ -22,7 +22,8 @@
             <tr>
                 <td> <label for="username">Gebruikersnaam</label></td>
                 <td> <input id="username" type="text" required pattern="[A-Za-z0-9]{5,}" th:field="*{username}"
-                            oninvalid="setCustomValidity('Gebruikersnaam moet minimaal 5 tekens lang zijn')"
+                            title="Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)"
+                            oninvalid="setCustomValidity('Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)')"
                             oninput="setCustomValidity('')" /> </td>
                 <td th:if="${usernameTaken}" class="error">Deze gebruikersnaam bestaat al. Bedenk een andere.</td>
             </tr>
