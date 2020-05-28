@@ -47,8 +47,8 @@ public class Company {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String companyName) {
+        this.name = companyName;
     }
 
     public Sector getSector() {
@@ -64,7 +64,7 @@ public class Company {
         return "Company{" +
                 "kvkNr='" + kvkNr + '\'' +
                 ", btwNr='" + btwNr + '\'' +
-                ", name='" + name + '\'' +
+                ", companyName='" + name + '\'' +
                 ", sector=" + sector +
                 '}';
     }
@@ -84,5 +84,4 @@ public class Company {
     public int hashCode() {
         return Objects.hash(getBtwNr(), getKvkNr(), getName(), getSector());
     }
-
 }

@@ -15,7 +15,7 @@ public class ConfirmSignUpController {
     }
 
     // If user is happy with the input data, user is sent to page for creating login credentials
-    @PostMapping(value = "/klant-worden", params = "action=send")
+    @PostMapping(value = "/klant-worden", params = "action=createaccount")
     public ModelAndView confirmSignupHandler(@ModelAttribute SignUpFormBean signUpFormBean) {
         ModelAndView mav = new ModelAndView();
 
