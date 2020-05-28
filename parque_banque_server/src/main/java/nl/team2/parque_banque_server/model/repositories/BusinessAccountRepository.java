@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BusinessAccountRepository extends CrudRepository <BusinessAccount, Id> {
+public interface BusinessAccountRepository extends CrudRepository <BusinessAccount, Long> {
 
+    BusinessAccount findTopByOrderByIbanDesc();
 }
