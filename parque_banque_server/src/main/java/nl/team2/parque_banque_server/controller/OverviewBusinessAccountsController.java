@@ -10,20 +10,22 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @SessionAttributes("employeeId")
-public class EmployeeHomeController {
+public class OverviewBusinessAccountsController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/personeel-home")
-    public String handleEmployeeHomepage(Model model) {
+    @GetMapping("/overzicht-bedrijven")
+    public String handleOverviewBusiness(Model model) {
+        //Create an employee from the session attribute
+        Employee employee = employeeService.findEmployeeBySAId(model.getAttribute("employeeId"));
+
         if(!model.containsAttribute("employeeId")) {
             return "loginemployee";
+        } else if (employee.getRole().getId() != 2)   {
+            return "redirect:/personeel-home";
         } else {
-            //Create an employee from the session attribute
-            Employee employee = employeeService.findEmployeeBySAId(model.getAttribute("employeeId"));
-            model.addAttribute("employee", employee);
-            return "employeehome";
+            return "overviewbusinessaccounts";
         }
     }
 }
