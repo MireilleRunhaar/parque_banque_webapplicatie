@@ -1,9 +1,6 @@
 package nl.team2.parque_banque_server.utilities;
 
-import nl.team2.parque_banque_server.model.PaymentAccount;
-
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 public class LoginCustomerFormBean {
 
@@ -36,7 +33,7 @@ public class LoginCustomerFormBean {
     @Override
     public String toString() {
         return "LoginCustomerFormBean{" +
-                ", userName='" + userName + '\'' +
+                "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

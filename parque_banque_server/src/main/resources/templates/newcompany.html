@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nieuw bedrijf aanmaken bij Parque Banque</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 100px;
+            margin: 5px;
+            text-align: left;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Bedrijf aanmelden bij Parque Banque</h1>
+<p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p><br>
+
+<!--Formulier met nieuwe bedrijfsgegevens-->
+<form action="#" th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${company}">
+    <label>KvK-nummer</label>
+    <input type="text" th:field="*{kvkNr}">
+    <br/><br/>
+    <label>Btw-nummer</label>
+    <input type="text" th:field="*{btwNr}">
+        <br><br>
+    <label>Bedrijfsnaam</label>
+    <input type="password" th:field="*{companyName}">
+        <br><br>
+    <label>Sector</label>
+    <select th:field="*{sectorName}">
+        <option th:each="sector : ${sectoren}" th:value="${sector}" th:text="${sector.getName()}"/>
+    </select>
+        <br><br>
+    <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
+</form>
+</body>
+</html>
