@@ -84,4 +84,5 @@ public class Company {
     public int hashCode() {
         return Objects.hash(getBtwNr(), getKvkNr(), getCompanyName(), getSector());
     }
+
 }

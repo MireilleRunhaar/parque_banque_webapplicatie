@@ -22,7 +22,7 @@
 <p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p><br>
 
 <!--Formulier met nieuwe bedrijfsgegevens-->
-<form action="#" th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${company}">
+<form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${company}">
     <label>KvK-nummer</label>
     <input type="text" th:field="*{kvkNr}">
     <br/><br/>

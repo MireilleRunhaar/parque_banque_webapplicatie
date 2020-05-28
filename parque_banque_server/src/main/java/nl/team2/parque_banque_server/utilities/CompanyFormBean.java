@@ -18,7 +18,7 @@ public class CompanyFormBean {
     private String companyName;
 
     @NotBlank
-    @Size(min = 2, max = 30)
+    @Size(min = 2, max = 200)
     private String sectorName;
 
 
