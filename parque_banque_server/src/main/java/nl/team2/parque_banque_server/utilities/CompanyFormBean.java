@@ -26,6 +26,7 @@ public class CompanyFormBean {
         super();
     }
 
+
     public String getKvkNr() {
         return kvkNr;
     }

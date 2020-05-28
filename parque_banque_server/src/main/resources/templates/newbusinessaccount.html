@@ -8,16 +8,20 @@
 <h1>Open een zakelijke rekening</h1>
 <h2>Selecteer het bedrijf waarvoor u een nieuwe rekening wilt openen</h2>
 <br>
-<p>
-<label for="company">Bedrijfsnaam</label>
-<select id="company" >
-    <option th:each="c:${companies}" th:value="${c}" th:text="${c.getName()}"></option>
-</select>
-</p>
+<form action="#" th:action="@{/open-zakelijke-rekening}" method="post" th:object="${company}">
+    <p>
+        <label for="company">Bedrijfsnaam</label>
+        <select id="company" th:field="*{name}">
+            <option th:each="c:${companies}" th:value="${c}" th:text="${c.getName()}"></option>
+        </select>
+    </p>
+    <button type="submit" name="action" value="submit">Bevestig openen rekening</button>
+</form>
+
 
 <p>Wilt u een rekening openen voor een ander bedrijf? Meld dan eerst het bedrijf bij ons aan.</p>
 <a href="/bedrijf-aanmaken">Meld hier een nieuw bedrijf aan</a>
-<!--Deze knop leidt naar een pagina waar Klant een nieuw bedrijf kan aanmelden-->
+
 
 </body>
 </html>

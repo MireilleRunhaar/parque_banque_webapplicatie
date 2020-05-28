@@ -19,6 +19,7 @@ public class NewBusinessAccountService {
     private BusinessAccountRepository businessAccountRepo;
 
 
+
     /**
      * find al the companies in the database from the user
      * @param customer takes in a customer, in this case the logged in user

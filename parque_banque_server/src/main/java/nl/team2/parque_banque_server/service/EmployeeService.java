@@ -11,6 +11,7 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepo;
 
+
     public Employee findByEmployeeNumber(int employeeNumber) {
         return employeeRepo.findEmployeeByEmployeeNumber(employeeNumber);
     }
@@ -23,5 +24,9 @@ public class EmployeeService {
     public Employee findEmployeeBySAId(Object object) {
         long id = (long) object;
         return findEmployeeByEmployeeId(id);
+    }
+
+    public Employee findOneByRoleName(String roleName){
+        return employeeRepo.findOneByRole_Name(roleName);
     }
 }
