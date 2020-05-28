@@ -38,6 +38,15 @@ public class Customer extends User {
         this.paymentAccounts = new ArrayList<>();
     }
 
+    //make constructor for accountview
+    public Customer(String firstName, String affix, String surName, String userName){
+        this.firstName = firstName;
+        this.affix = affix;
+        this.surName = surName;
+        this.userName = userName;
+        this.paymentAccounts= new ArrayList<>();
+    }
+
     public void addPaymentAccount(PaymentAccount paymentAccount) {
         paymentAccounts.add(paymentAccount);
     }
@@ -64,6 +73,14 @@ public class Customer extends User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<PaymentAccount> getPaymentAccounts() {
+        return paymentAccounts;
+    }
+
+    public void setPaymentAccounts(List<PaymentAccount> paymentAccounts) {
+        this.paymentAccounts = paymentAccounts;
     }
 
     @Override

@@ -46,6 +46,10 @@ public class LoginCustomerController {
         } else {
             Customer customer = customerService.findByUserName(loginCustomerFormBean.getUserName());
             model.addAttribute("customerId", customer.getId());
+            model.addAttribute("firstName", customer.getFirstName());
+            model.addAttribute("affix", customer.getAffix());
+            model.addAttribute("surName",customer.getSurName());
+            model.addAttribute("paymentaccounts",customer.getPaymentAccounts());
             return "accountview";
         }
     }
