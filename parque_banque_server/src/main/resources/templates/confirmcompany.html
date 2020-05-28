@@ -5,20 +5,26 @@
     <meta charset="UTF-8">
     <title>Aangemaakt bedrijf bevestigen</title>
     <style type="text/css">
+        img{
+            display: inline-block;
+            height: 50px;
+        }
         button {
             padding: 5px;
             margin: 10px;
+            background-color: #37AD49;
         }
     </style>
 </head>
 <body>
+<img src="../static/logo-small.png"/>
 <h1>Controleer de bedrijfsgegevens</h1>
 
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
 <div align="left">
     <span>KVK-nummer:</span><span th:text="${companyFormBean.kvkNr}"></span><br>
     <span>BTW-nummer:</span><span th:text="${companyFormBean.btwNr}"></span><br>
-    <span>Bedrijfsnaam:</span><span th:text="${companyFormBean.companyName}"></span><br>
+    <span>Bedrijfsnaam:</span><span th:text="${companyFormBean.name}"></span><br>
     <span>Sector:</span><span th:text="${companyFormBean.sectorName}"></span><br>
 </div>
 
