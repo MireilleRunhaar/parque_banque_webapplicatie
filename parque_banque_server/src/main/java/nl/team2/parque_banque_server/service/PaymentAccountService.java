@@ -27,8 +27,8 @@ public class PaymentAccountService {
 
         public final int INCREMENT=1;
         public final int LOWER_LIMIT=0;
-        public final int UPPER_LIMIT=8;
-        public final String IBAN_00="NL01PARQ1234123400";
+        public final int UPPER_LIMIT=9;
+        public final String IBAN_00="NL01PARQ0100000000";
 
         @Autowired
         private PaymentAccountRepository paymentAccountRepository;
@@ -41,14 +41,14 @@ public class PaymentAccountService {
            PaymentAccount lastAddedPaymentAccount=paymentAccountRepository.findTopByOrderByIbanDesc();
            if (lastAddedPaymentAccount==null){
                String lastAddedIban=IBAN_00;
-               String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ"
-                       +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT,lastAddedIban.length()))+INCREMENT);
+               String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
+                       +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT))+INCREMENT);
                return newIban;
            } else {
                String lastAddedIban=lastAddedPaymentAccount.getIban();
-               // laatste 10 cijferige nummerreeks splitsen en hierbij 1 optellen ; hier hangt (nog) geen limiet aan
-               String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL02PNBQ"
-                       +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT,lastAddedIban.length()))+INCREMENT);
+               // laatste 9 cijferige nummerreeks splitsen en hierbij 1 optellen ; hier hangt (nog) geen limiet aan
+               String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
+                       +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT))+INCREMENT);
                return newIban;
            }
 
