@@ -79,10 +79,11 @@
         <td>Rekeninghouder</td>
         <td>Saldo</td>
     </tr>
-    <tr>
-        <td><span th:text="Jan"/></td>
-        <td><span th:text="${name}"/></td>
-<!--        <td><span th: text="${balanceCent}"/></td>    </tr>-->
+    <tr th:each="paymentaccount : ${paymentaccounts}">
+        <td><span th:text="{paymentaccount.iban}"/></td>
+        <td><span th:text="${firstName}"/> <span th:text="${affix}"/> <span th:text="${surName}"/></td>
+        <td><span th:text="${paymentaccount.balanceCent}"/></td>
+    </tr>
 </table>
 <br/>
 <br/>
