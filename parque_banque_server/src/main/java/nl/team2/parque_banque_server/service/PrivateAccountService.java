@@ -21,4 +21,13 @@ public class PrivateAccountService {
         return privateAccountRepository.findPrivateAccountsByAccountHoldersIn(customerList);
     }
 
+    public void savePrivateAccount(PrivateAccount privateAccount){
+        privateAccountRepository.save(privateAccount);
+    }
+
+//    public PrivateAccount findIdByIban(String iban){
+//        return privateAccountRepository.findIdByIban(iban);
+//    }
+
+
 }
