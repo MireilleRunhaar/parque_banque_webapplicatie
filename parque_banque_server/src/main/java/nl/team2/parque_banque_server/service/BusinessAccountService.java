@@ -11,7 +11,7 @@ import java.util.Optional;
 public class BusinessAccountService {
 
     @Autowired
-    private BusinessAccountRepository businessAccountRepo;
+    private BusinessAccountRepository businessAccountRepository;
 
     /*public BusinessAccount findById(int Id){
         Optional<BusinessAccount> businessAccountOption = businessAccountRepo.findById(id); //Optional = wrapper
@@ -21,4 +21,8 @@ public class BusinessAccountService {
             return null;
         }
     }*/
+
+    public void saveBusinessAccount(BusinessAccount businessAccount){
+        businessAccountRepository.save(businessAccount);
+    }
 }

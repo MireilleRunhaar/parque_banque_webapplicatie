@@ -1,34 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<style>
+    table {
+        alignment: center;
+        width: 100%;
+        border: 1px solid black
+    }
+    td{
+        font-family: "Arial";
+        width: 100px;
+        font-size: small;
+    }
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        font-family: "Arial Black";
+        padding: 8px;
+        width: 300px;
+    }
+    thead {font-size: 8px}
+
+    h1 {
+        font-family: "Arial";
+        font-size: x-large;
+    }
+    h2 {
+        font-family: "Arial";
+        font-size: small;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    button {alignment: left;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
-    <title>Rekeningoverzicht</title>
+    <title>rekeningoverzicht</title>
+    <img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80" height="45">
+
 </head>
-<br>
+<br/>
+<br/>
+<br/>
 <body>
-<!--als een klant een nieuwe klant is dan verschijnt een extra tekst. Hij komt dan vanuit scherm confirmsignup-->
-<img src="images/logoPB.jpg">
-Wij zijn blij u als klant bij Parque Banque te verwelkomen.
-<br>
-<br>Hieronder vind u de gegevens van uw rekening.
-<!-- als een klant al een rekening heeft dan komt hij vanuit scherm 'signup' = inloggen.
--->
-<br>
-<br><button>Wijzigen rekening</button>
-<button>Rekening openen</button>
-<button>Rekeninghouder toevoegen</button>
-<button>Sign out</button>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<UL><p style="font-family: 'Arial Black'">IBAN naam saldo</p>
+<tr>
+    <td>
+        <button onclick="document.location = '/wijzigen-rekening'">Wijzigen gegevens</button>
+    </td>
+    <td>
+        <button onclick="document.location = '/rekening-openen'">Rekening openen</button>
+    </td>
+    <td>
+        <button onclick="document.location = '/rekening-koppelen'">Rekening koppelen</button>
+    </td>
+    <td>
+        <button onclick="document.location = '/'">Uitloggen</button>
+    </td>
+</tr>
 
-</UL>
+<br/><br/>
+<h1>Welkom <span th:text="${firstName}"/> <span th:text="${affix}"/> <span th:text="${surName}"/> bij Parque Banque!
+    <br/>
+    <h2>Hier vindt u het overzicht van uw rekening(en)</h2>
+</h1>
 
+<br/>
+<br/>
+<br/>
+
+
+
+<table>
+    <h1>Zakelijke rekeningen</h1>
+    <tr>
+        <td>IBAN</td>
+        <td>Rekeninghouder</td>
+        <td>Saldo</td>
+    </tr>
+    <tr th:each="paymentaccount : ${paymentaccounts}">
+        <td><span th:text="${paymentaccount}"/></td>
+        <td><span th:text="${firstName}"/> <span th:text="${affix}"/> <span th:text="${surName}"/></td>
+        <td><span th:text="${paymentaccount.balanceCent}"/></td>
+    </tr>
+</table>
+<br/>
+<br/>
+<br/>
+
+<table>
+    <h1>Prive rekeningen</h1>
+    <tr>
+        <td>IBAN</td>
+        <td>Bedrijf</td>
+        <td>Saldo</td>
+    </tr>
+    <!--    <tr>-->
+    <!--        <td><span th: text="${iban}"/></td>-->
+    <!--        <td><span th: text="${companyaffix}"/> <span th: text="${surname}"/></td>-->
+    <!--        <td><span th: text="${balanceCent}"/></td>-->
+    <!--    </tr>-->
+</table>
 </body>
-</html>

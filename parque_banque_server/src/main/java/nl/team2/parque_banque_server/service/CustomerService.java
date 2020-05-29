@@ -23,4 +23,10 @@ public class CustomerService {
     public Customer findCustomerByCustomerId(long id){
         return customerRepo.findCustomerById(id);
     }
+
+    //Find Customer By Session Attribute Id
+    public Customer findCustomerBySAId(Object object) {
+        long id = (long) object;
+        return findCustomerByCustomerId(id);
+    }
 }
