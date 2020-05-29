@@ -43,12 +43,4 @@ public class NewBusinessAccountService {
         return businessAccountRepo.findBusinessAccountsByAccountHoldersIn(accountholders);
     }
 
-    /*public BusinessAccount findById(int Id){
-        Optional<BusinessAccount> businessAccountOption = businessAccountRepo.findById(id); //Optional = wrapper
-        if (businessAccountOption.isPresent()){
-          return businessAccountOption.get();
-        } else {
-            return null;
-        }
-    }*/
 }

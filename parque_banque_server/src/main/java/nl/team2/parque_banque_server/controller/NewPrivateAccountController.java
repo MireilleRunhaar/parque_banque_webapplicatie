@@ -2,14 +2,12 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.model.PrivateAccount;
-import nl.team2.parque_banque_server.model.repositories.PrivateAccountRepository;
 import nl.team2.parque_banque_server.service.CustomerService;
 import nl.team2.parque_banque_server.service.PaymentAccountService;
 import nl.team2.parque_banque_server.service.PrivateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,7 +34,7 @@ public class NewPrivateAccountController {
 
     @PostMapping("/particuliere-rekening-openen")
     public ModelAndView createNewPrivateAccount(Model model){
-        ModelAndView mav=new ModelAndView("confirmprivateaccount");
+        ModelAndView mav=new ModelAndView("confirmnewaccount");
         long id= (long) model.getAttribute("customerId");
         Customer customer=customerService.findCustomerByCustomerId(id);
 

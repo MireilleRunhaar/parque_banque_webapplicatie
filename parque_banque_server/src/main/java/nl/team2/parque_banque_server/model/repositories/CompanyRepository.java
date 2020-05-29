@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface CompanyRepository extends CrudRepository<Company, String> {
 
-    Company findCompanyByName(String name);
+    Company findCompanyByKvkNr(String kvk);
 }
