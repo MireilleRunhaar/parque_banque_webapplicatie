@@ -54,6 +54,9 @@ public class NewBusinessAccountController {
 
             //get all the companies where customer has accounts of and add to model
             List<Company> companies = nbas.getCompaniesFromCustomer(customer);
+
+            // FIXME: 29/05/2020 De company wordt al volledig opgehaald uit de database en meegegeven aan het model, bean niet nodig?
+
             model.addAttribute("companies", companies);
             model.addAttribute("company", new BusinessAccountBean());
             return "newbusinessaccount";
@@ -63,8 +66,11 @@ public class NewBusinessAccountController {
     }
 
     @PostMapping("open-zakelijke-rekening")
-    public String createBusinessAccount(Model model){
-        String name = (String) model.getAttribute("company");
+    public String createBusinessAccount(@ModelAttribute("company") BusinessAccountBean bab, Model model){
+        String name = bab.getName();
+
+        // FIXME: 29/05/2020 Er worden al volledige companies getoond vanuit de lijst die uit de database komt omzetten in bean is niet nodig?
+
         Company company = companyService.findOneByName(name);
 
         //make businessaccount
@@ -78,9 +84,9 @@ public class NewBusinessAccountController {
         businessAccountService.saveBusinessAccount(businessAccount);
 
         model.addAttribute("iban", businessAccount.getIban());
-        model.addAttribute("balance", businessAccount.getBalance());
+        model.addAttribute("balanceCent", businessAccount.getBalance());
 
-        return "confirmbusinessaccount";
+        return "confirmprivateaccount";
     }
 
 }

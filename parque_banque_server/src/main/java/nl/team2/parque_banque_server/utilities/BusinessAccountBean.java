@@ -4,6 +4,9 @@ public class BusinessAccountBean {
 
     private String name;
 
+    public BusinessAccountBean() {
+    }
+
     public BusinessAccountBean(String name) {
         this.name = name;
     }
@@ -12,7 +15,7 @@ public class BusinessAccountBean {
         return name;
     }
 
-    public BusinessAccountBean() {
+    public void setName(String name) {
+        this.name = name;
     }
-
 }
