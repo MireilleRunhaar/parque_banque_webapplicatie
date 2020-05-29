@@ -29,7 +29,7 @@ public class AccountViewController {
             long customerId = (long) model.getAttribute("customerId");
             Customer customer = customerService.findCustomerByCustomerId(customerId);
             model.addAttribute("name", customer.getFirstName());
-            model.addAttribute("paymentaccounts", customer.getPaymentAccounts());
+            model.addAttribute("paymentAccounts", customer.getPaymentAccounts());
             return "accountview";
         }
 
