@@ -14,7 +14,7 @@ public class NewPaymentAccountController {
 
 
     @GetMapping("/particuliere-rekening-openen")
-    public String newPrivateAccount(){
+    public String newPrivateAccount() {
         return "newprivateaccount";
     }
 

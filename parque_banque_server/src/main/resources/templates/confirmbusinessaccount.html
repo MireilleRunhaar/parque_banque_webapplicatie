@@ -1,5 +1,5 @@
-!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>confirm business account</title>
@@ -7,7 +7,8 @@
 <body>
 <h1> Gefeliciteerd! U heeft een nieuwe rekening geopend!</h1>
 <h2>Detailinformatie nieuwe bankrekening</h2>
-<h1>IBAN: <span th:text="${iban}" /></h1>
-<h1>Naam bedrijf: <span th:text="${balanceCent}" /></h1>
+<h1>IBAN: <span th:text="${iban}"></span></h1>
+<h1>Saldo: <span th:text="${balance}"></span></h1>
+
 </body>
 </html>

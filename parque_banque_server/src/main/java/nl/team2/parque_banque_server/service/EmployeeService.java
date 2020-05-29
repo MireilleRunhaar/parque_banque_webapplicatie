@@ -27,6 +27,6 @@ public class EmployeeService {
     }
 
     public Employee findOneByRoleName(String roleName){
-        return employeeRepo.findOneByRole_Name(roleName);
+        return employeeRepo.findTopByRole_Name(roleName);
     }
 }

@@ -12,5 +12,5 @@ public interface EmployeeRepository extends  CrudRepository<Employee, Integer> {
 
     Employee findEmployeeById(long id);
 
-    Employee findOneByRole_Name(String roleName);
+    Employee findTopByRole_Name(String roleName);
 }

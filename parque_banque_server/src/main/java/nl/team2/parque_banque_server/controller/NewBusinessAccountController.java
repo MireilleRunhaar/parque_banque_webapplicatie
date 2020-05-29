@@ -27,6 +27,7 @@ import java.util.Map;
 @SessionAttributes("customerId")
 public class NewBusinessAccountController {
 
+    public static final int START_BALANCE = 2500;
     @Autowired
     private CustomerService customerService;
     @Autowired
@@ -39,6 +40,8 @@ public class NewBusinessAccountController {
     private PaymentAccountService.IbanService ibanService;
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private BusinessAccountService businessAccountService;
 
 
 
@@ -59,14 +62,23 @@ public class NewBusinessAccountController {
         }
     }
 
-    @PostMapping(value="/open-zakelijke-rekening", params = "action:submit")
+    @PostMapping("open-zakelijke-rekening")
     public String createBusinessAccount(Model model){
         String name = (String) model.getAttribute("company");
         Company company = companyService.findOneByName(name);
 
         //make businessaccount
         BusinessAccount businessAccount =
-                new BusinessAccount(ibanService.createNewIban(), 0, employeeService.findOneByRoleName("Accountmanager"),company);
+                new BusinessAccount(ibanService.createNewIban(), START_BALANCE, employeeService.findOneByRoleName("Accountmanager"),company);
+
+        //make current customer accountholder
+        businessAccount.addCustomerToAccountHolder(customerService.findCustomerBySAId(model.getAttribute("customerId")));
+
+        //save business account
+        businessAccountService.saveBusinessAccount(businessAccount);
+
+        model.addAttribute("iban", businessAccount.getIban());
+        model.addAttribute("balance", businessAccount.getBalance());
 
         return "confirmbusinessaccount";
     }
