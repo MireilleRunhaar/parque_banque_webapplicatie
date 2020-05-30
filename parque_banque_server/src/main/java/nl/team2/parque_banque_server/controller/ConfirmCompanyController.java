@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes("company")
+@SessionAttributes("customerId")
 public class ConfirmCompanyController {
 
     @Autowired
@@ -27,6 +27,14 @@ public class ConfirmCompanyController {
         ModelAndView mav = new ModelAndView("newbusinessaccount");
         Company company = companyService.createCompanyOutOfBean(companyFormBean);
         companyService.saveCompany(company);
+        return mav;
+    }
+
+    //Klant ziet fout en kan bedrijfsgegevens aanpassen
+    @PostMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=wijzigBedrijfsinformatie")
+    public ModelAndView editNewCompanyHandler(@ModelAttribute CompanyFormBean companyFormBean) {
+        ModelAndView mav = new ModelAndView("newbusinessaccount");
+        Company company = companyService.createCompanyOutOfBean(companyFormBean);
         return mav;
     }
 
