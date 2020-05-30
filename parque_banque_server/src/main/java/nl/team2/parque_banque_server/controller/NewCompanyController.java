@@ -22,7 +22,7 @@ public class NewCompanyController {
     @GetMapping("/bedrijf-aanmaken")
     public String showNewCompanyAccount(Model model) {
         Company company = new Company();
-        model.addAttribute("company", new CompanyFormBean());
+        model.addAttribute("newCompany", new CompanyFormBean());
         model.addAttribute("sectoren", sectorService.sectorIterable());
         return "newcompany";
     }

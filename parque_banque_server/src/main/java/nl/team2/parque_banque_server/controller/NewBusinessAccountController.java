@@ -5,6 +5,7 @@ import nl.team2.parque_banque_server.model.Company;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.service.*;
 import nl.team2.parque_banque_server.utilities.BusinessAccountBean;
+import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,8 @@ public class NewBusinessAccountController {
     private EmployeeService employeeService;
     @Autowired
     private CompanyService companyService;
+    @Autowired
+    private SectorService sectorService;
 
 
     @GetMapping("/zakelijke-rekening")
@@ -47,11 +50,19 @@ public class NewBusinessAccountController {
         Customer customer =customerService.findCustomerBySAId(model.getAttribute("customerId"));
         if(customer != null){
 
-            //get all the companies where customer has accounts of and add to model
+            //if customer has no businessaccounts, direct to making new company.
+            //else show company's and give option to select
+
             Set<Company> companies = bas.getCompaniesFromCustomer(customer);
+            if(companies.isEmpty()){
+                model.addAttribute("newCompany", new CompanyFormBean());
+                model.addAttribute("sectoren", sectorService.sectorIterable());
+                return "newcompany";
+            } else {
             model.addAttribute("companies", companies);
             model.addAttribute("company", new BusinessAccountBean());
             return "newbusinessaccount";
+            }
         }else{
             return "logincustomer";
         }
