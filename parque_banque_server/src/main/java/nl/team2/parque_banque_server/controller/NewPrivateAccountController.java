@@ -50,7 +50,7 @@ public class NewPrivateAccountController {
         return mav;
     }
 
-    //terug knop
+
     @PostMapping(value = "/particuliere-rekening-openen", params = "action=terug")
     public String cancelNewPrivateAccount(){
         return "redirect:/rekening-openen";
