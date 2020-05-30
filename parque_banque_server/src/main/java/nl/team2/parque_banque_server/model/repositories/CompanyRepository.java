@@ -12,4 +12,5 @@ import java.util.List;
 public interface CompanyRepository extends CrudRepository<Company, String> {
 
     Company findCompanyByKvkNr(String kvk);
+
 }

@@ -21,12 +21,14 @@ public class NewPrivateAccountController {
     private PaymentAccountService.IbanService ibanService;
     private CustomerService customerService;
     private PrivateAccountService privateAccountService;
+    private PaymentAccountService paymentAccountService;
 
     @Autowired
-    public NewPrivateAccountController(PaymentAccountService.IbanService ibanService, CustomerService customerService, PrivateAccountService privateAccountService) {
+    public NewPrivateAccountController(PaymentAccountService paymentAccountService,PaymentAccountService.IbanService ibanService, CustomerService customerService, PrivateAccountService privateAccountService) {
         this.ibanService = ibanService;
         this.customerService = customerService;
         this.privateAccountService = privateAccountService;
+        this.paymentAccountService = paymentAccountService;
     }
 
 
@@ -44,7 +46,7 @@ public class NewPrivateAccountController {
         privateAccountService.savePrivateAccount(privateAccount);
 
         mav.addObject("iban",privateAccount.getIban());
-        mav.addObject("balanceCent",privateAccount.getBalanceCent());
+        mav.addObject("balanceCent",paymentAccountService.balanceInEuros(privateAccount.getBalanceCent()));
         return mav;
     }
 

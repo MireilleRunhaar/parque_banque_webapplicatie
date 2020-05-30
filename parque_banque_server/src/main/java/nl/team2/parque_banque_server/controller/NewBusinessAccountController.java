@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -25,17 +25,17 @@ import java.util.List;
 @SessionAttributes("customerId")
 public class NewBusinessAccountController {
 
-    public static final int START_BALANCE = 2500;
+    public static final long START_BALANCE = 2500L;
     @Autowired
     private CustomerService customerService;
     @Autowired
-    private NewBusinessAccountService nbas;
+    private BusinessAccountService bas;
     @Autowired
     private PaymentAccountService.IbanService ibanService;
     @Autowired
-    private EmployeeService employeeService;
+    private PaymentAccountService pas;
     @Autowired
-    private BusinessAccountService businessAccountService;
+    private EmployeeService employeeService;
     @Autowired
     private CompanyService companyService;
 
@@ -48,9 +48,7 @@ public class NewBusinessAccountController {
         if(customer != null){
 
             //get all the companies where customer has accounts of and add to model
-            List<Company> companies = nbas.getCompaniesFromCustomer(customer);
-
-
+            Set<Company> companies = bas.getCompaniesFromCustomer(customer);
             model.addAttribute("companies", companies);
             model.addAttribute("company", new BusinessAccountBean());
             return "newbusinessaccount";
@@ -73,10 +71,10 @@ public class NewBusinessAccountController {
         businessAccount.addCustomerToAccountHolder(customerService.findCustomerBySAId(model.getAttribute("customerId")));
 
         //save business account
-        businessAccountService.saveBusinessAccount(businessAccount);
+        bas.saveBusinessAccount(businessAccount);
 
         model.addAttribute("iban", businessAccount.getIban());
-        model.addAttribute("balanceCent", businessAccount.getBalance());
+        model.addAttribute("balanceCent", pas.balanceInEuros(businessAccount.getBalance()));
 
         return "confirmnewaccount";
     }
