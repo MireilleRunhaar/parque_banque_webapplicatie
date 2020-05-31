@@ -19,6 +19,12 @@ public class CompanyService {
         return companyRepo.findAll();
     }
 
+    public Company findOneByName(String kvk){
+        return companyRepo.findCompanyByKvkNr(kvk);
+    }
+
+
+
     public void saveCompany(Company company){
         companyRepo.save(company);
     }

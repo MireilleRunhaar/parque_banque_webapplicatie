@@ -12,16 +12,11 @@ public class NewPaymentAccountController {
     public NewPaymentAccountController() {
     }
 
-
     @GetMapping("/particuliere-rekening-openen")
-    public String newPrivateAccount(){
+    public String newPrivateAccount() {
         return "newprivateaccount";
     }
 
-    @GetMapping("/newcompany")
-    public String newCompanyAccount(){
-        return "newcompany";
-    }
 }
 
 

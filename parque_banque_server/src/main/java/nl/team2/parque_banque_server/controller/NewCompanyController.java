@@ -13,32 +13,16 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes("customerId")
+@SessionAttributes("form")
 public class NewCompanyController {
 
     @Autowired
     private SectorService sectorService;
 
-    //Klant is via een rekening gekoppeld aan een(of meer) bedrijf(ven)
-    //Klant wil voor een van zijn/haar bedrijven een nieuwe rekening openen
-    //Tonen pagina
-    //@GetMapping("/zakelijke-rekening-openen")
-    //public String showNewCompanyAccount(){
-    //    return "zakelijke-rekening-openen";
-    //}
-    //Uit de DB de bedrijven te halen van de ingelogde klant
-
-    //Klant is via een rekening gekoppeld aan een(of meer) bedrijf(ven)
-    //Klant wil een nieuw bedrijf aanmaken bij Parque Banque en een rekening openen
-
-    //Klant heeft nog geen zakelijke rekening(en)
-    //Klant wil een nieuw bedrijf aanmaken bij Parque Banque en een rekening openen
-
-    //Tonen van de pagina newcompanyaccount met invulformulier voor bedrijfsgegevens
-    @GetMapping("/zakelijke-rekening-openen")
+    @GetMapping("/bedrijf-aanmaken")
     public String showNewCompanyAccount(Model model) {
         Company company = new Company();
-        model.addAttribute("company", new CompanyFormBean());
+        model.addAttribute("newCompany", new CompanyFormBean());
         model.addAttribute("sectoren", sectorService.sectorIterable());
         return "newcompany";
     }
