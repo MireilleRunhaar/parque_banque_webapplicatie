@@ -72,7 +72,7 @@ public class NewBusinessAccountController {
     public String createBusinessAccount(@ModelAttribute("company") BusinessAccountBean bab, Model model){
 
         //make company
-        Company company = companyService.findOneByName(bab.getKvk());
+        Company company = companyService.findOneByKVK(bab.getKvk());
 
         //make businessaccount
         BusinessAccount businessAccount =

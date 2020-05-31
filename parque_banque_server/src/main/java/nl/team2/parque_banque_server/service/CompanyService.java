@@ -19,7 +19,7 @@ public class CompanyService {
         return companyRepo.findAll();
     }
 
-    public Company findOneByName(String kvk){
+    public Company findOneByKVK(String kvk){
         return companyRepo.findCompanyByKvkNr(kvk);
     }
 
