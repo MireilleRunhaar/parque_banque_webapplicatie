@@ -43,6 +43,7 @@
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${company}">
     <label>Kvk-nummer *</label>
     <input type="text" th:field="*{kvkNr}"
+           required pattern="^(?=.*\d){8,}$"
            title="Het KvK-nummer bestaat uit 8 cijfers."
            oninvalid="setCustomValidity('Controleer of het KvK-nummer klopt')">
     <br/><br/>
