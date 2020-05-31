@@ -40,7 +40,7 @@
 <p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p>
 <p>Velden met een * zijn verplicht.</p><br>
 <!--Formulier met nieuwe bedrijfsgegevens-->
-<form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${company}">
+<form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${newCompany}">
     <label>Kvk-nummer *</label>
     <input type="text" th:field="*{kvkNr}"
            required pattern="^(?=.*\d){8,}$"
@@ -58,7 +58,7 @@
         <br><br>
     <label>Sector *</label>
     <select th:field="*{sectorName}">
-        <option th:each="sector : ${sectoren}" th:value="${sector}" th:text="${sector.getName()}"/>
+        <option th:each="sector : ${sectoren}" th:value="${sector.getName()}" th:text="${sector.getName()}"/>
     </select>
         <br><br>
     <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
