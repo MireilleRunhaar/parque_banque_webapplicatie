@@ -28,8 +28,9 @@ public class LoginCustomerController {
     @GetMapping("/inloggen")
     public String loginHandler(@ModelAttribute LoginCustomerFormBean loginCustomerFormBean,
                                Model model) {
-        if (model.containsAttribute("customerId") && loginCustomerFormBean == null) {
-            return "accountview";
+        if (model.containsAttribute("customerId") && loginCustomerFormBean == null
+            || model.getAttribute("customerId") != null) {
+            return "redirect:/rekening-overzicht";
         } else {
             model.addAttribute("customerId", loginCustomerFormBean);
             return "logincustomer";
@@ -46,11 +47,7 @@ public class LoginCustomerController {
         } else {
             Customer customer = customerService.findByUserName(loginCustomerFormBean.getUserName());
             model.addAttribute("customerId", customer.getId());
-            model.addAttribute("firstName", customer.getFirstName());
-            model.addAttribute("affix", customer.getAffix());
-            model.addAttribute("surName",customer.getSurName());
-            //model.addAttribute("paymentaccounts",customer.getPaymentAccounts());
-            return "accountview";
+            return "redirect:/rekening-overzicht";
         }
     }
 }
