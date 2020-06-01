@@ -3,15 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <title>nieuwe particuliere rekening openen</title>
+    <style>
+        body{
+            padding: 50px;
+        }
+        .hoofd-div{
+            width: 960px;
+            height: 800px;
+            text-align: center;
+/*            border: 2px solid red;*/
+            margin: 0 auto;
+          
+    
+        }
+        .sub-div{
+            width: 400px;
+            height: 150px;
+            border: 2px solid #37AD49;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-220%);
+            
+            
+        }
+        .knop-div{
+            width: 300px;
+             height: 100px;
+/*            border: 2px solid blue;*/
+            margin: 0 auto;
+            
+        }
+        
+    h1 {
+            font-family: sans-serif;    
+        }
+        
+    h4 {
+            font-family: sans-serif;  
+        }
+    #bevestigen{
+     
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #37AD49;
+            border: 2px solid #37AD49;
+            border-color: #37AD49;
+            cursor: pointer;
+     
+     
+        }
+    #terug{
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #37AD49;
+            border: 2px solid #37AD49;
+            border-color: #37AD49;
+            cursor: pointer;
+     
+        }
+    
+    
+    </style>
 </head>
+    
 <body>
+<div class="hoofd-div">
 <h1>Nieuwe Particuliere Rekening Openen</h1>
-<h2>Weet u het zeker?</h2>
-        <form action="/particuliere-rekening-openen" method="post" th:object="${privateAccount}">
-<!--    <form th:action="@{}" method="post" th:object="${}">-->
-        <input type="submit" name="submitbutton" value="bevestigen">
-        <input type="submit" name="action" value="terug">
+<div class="sub-div">
+<h4>Druk op bevestigen om een nieuwe rekening te openen of druk op terug om naar de vorige pagina te gaan.
+    </h4></div>
+<div class="knop-div">    
+<form action="/particuliere-rekening-openen" method="post" th:object="${privateAccount}">
+
+    
+<input type="submit" name="submitbutton" value="Bevestigen" id="bevestigen">
+    
+<input type="submit" name="action" value="Terug" id="terug">
 
     </form>
+    </div>
+    </div>
 </body>
 </html>

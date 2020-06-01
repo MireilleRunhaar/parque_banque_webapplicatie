@@ -51,7 +51,7 @@ public class NewPrivateAccountController {
     }
 
 
-    @PostMapping(value = "/particuliere-rekening-openen", params = "action=terug")
+    @PostMapping(value = "/particuliere-rekening-openen", params = "action=Terug")
     public String cancelNewPrivateAccount(){
         return "redirect:/rekening-openen";
     }
