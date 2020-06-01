@@ -1,4 +1,4 @@
-package nl.team2.parque_banque_server.service;
+package nl.team2.parque_banque_server;
 
 import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Company;
