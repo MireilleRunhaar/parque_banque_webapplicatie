@@ -62,7 +62,9 @@ public class ConfirmCompanyController {
     //Klant ziet fout en kan bedrijfsgegevens aanpassen
     @PostMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=wijzigBedrijfsinformatie")
     public ModelAndView editNewCompanyHandler(@ModelAttribute CompanyFormBean companyFormBean) {
-        ModelAndView mav = new ModelAndView("newcompany");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("newcompany");
+        mav.addObject("CompanyFormBean", companyFormBean);
         return mav;
     }
 
