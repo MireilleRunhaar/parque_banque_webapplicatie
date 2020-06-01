@@ -27,6 +27,10 @@ public class PaymentAccountService {
         return format.format(balanceCents / 100.00);
     }
 
+    public long getRandomBalance(){
+        return (long) (10000000000L * Math.random()) + 1;
+    }
+
     @Service
     public static class IbanService {
 
