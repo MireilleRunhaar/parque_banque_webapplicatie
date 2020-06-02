@@ -1,43 +1,68 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Nieuw bedrijf aanmaken bij Parque Banque</title>
     <style type="text/css">
+        img{
+            display: inline-block;
+            height: 50px;
+        }
         label {
+            font-family: Segoe;
             display: inline-block;
             width: 100px;
             margin: 5px;
             text-align: left;
         }
+        h1 {
+            font-family: "Segoe";
+        }
+        p{
+            font-family: Segoe;
+        }
         button {
             padding: 5px;
             margin: 10px;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            border-bottom-color: #242121;
+            background-color: #37AD49;
+            color: white;
         }
+
     </style>
 </head>
 <body>
+<img src="../static/logo-small.png"/>
 <h1>Bedrijf aanmelden bij Parque Banque</h1>
-<p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p><br>
-
+<p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p>
+<p>Velden met een * zijn verplicht.</p><br>
 <!--Formulier met nieuwe bedrijfsgegevens-->
-<form action="#" th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${newCompany}">
-    <label>KvK-nummer</label>
-    <input type="text" th:field="*{kvkNr}">
+<form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${newCompany}">
+    <label>Kvk-nummer *</label>
+    <input type="text" th:field="*{kvkNr}"
+           required pattern="^(?=.*\d){8,}$"
+           title="Het KvK-nummer bestaat uit 8 cijfers."
+           oninvalid="setCustomValidity('Controleer of het KvK-nummer klopt')">
     <br/><br/>
-    <label>Btw-nummer</label>
-    <input type="text" th:field="*{btwNr}">
+    <label>Btw-nummer *</label>
+    <input type="text" th:field="*{btwNr}"
+           required pattern="^(?=.*[A-Z])(?=.*[A-Z]){14,}$"
+           title="Het btw-nummer bestaat uit 14 tekens en begint met een landcode, bijvoorbeeld NL."
+           oninvalid="setCustomValidity('Controleer of het btw-nummer klopt')">
         <br><br>
-    <label>Bedrijfsnaam</label>
-    <input type="password" th:field="*{name}">
+    <label>Bedrijfsnaam *</label>
+    <input type="text" th:field="*{name}">
         <br><br>
-    <label>Sector</label>
+    <label>Sector *</label>
     <select th:field="*{sectorName}">
-        <option th:each="sector : ${sectoren}" th:value="${sector}" th:text="${sector.getName()}"/>
+        <option th:each="sector : ${sectoren}" th:value="${sector.getName()}" th:text="${sector.getName()}"/>
     </select>
         <br><br>
     <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
 </form>
+
 </body>
 </html>
