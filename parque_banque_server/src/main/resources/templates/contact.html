@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>contact page</title>
+    <meta name="author" content="Lisa Kemeling">
+
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <title>Contactpagina</title>
 </head>
 <body>
-<h1>Hier komen de contactgegevens</h1>
+
+<!-- navigatie-->
+<header class="pbMenu">
+    <nav class="pbMenu-homeNav">
+        <!-- logo met link-->
+        <a href="/" class="pbMenu-logoLink"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80" height="45"></a>
+        <div align="right"><a href="/contact" class="pbNav-button">Contact>></a></div>
+
+    </nav>
+</header>
+
+<!-- body -->
+<h1>Parque Banque <img src="../static/green-heart.png" th:src="@{green-heart.png}" width="74px" height="74px"> van klanten</h1>
+<p>Daarom is zaken doen met ons 'like a walk in the park'</p>
+
+<h2>Online</h2>
+<p>
+    Een nieuwe betaalrekening opent u bij ons gemakkelijk online<br>
+    Overboeken? 24/7 beschikbaar met enkele klikken heeft u het geregeld!<br>
+</p>
+<h2>Bezoekadres</h2>
+<p>
+    Bij ons kunt u nog ouderwets op de koffie komen en uw vragen stellen<br>
+    Er zit altijd een medewerkers voor uw klaar op één van onze Parque Banques
+</p>
+<address>
+    Parque Banque<br>
+    Parklaan 1056<br>
+    1919 CO Bankert <br>
+</address>
+
+
+<!-- footer -->
+<footer>
+    <div class="content">
+        <ul class="footer-list">
+            <li><a href="/inloggen">Inloggen</a></li>
+            <li><a href="/klant-worden">Klant worden</a></li>
+            <li><a href="/rekening-openen">Rekening openen</a></li>
+            <li><a href="/personeel">inloggen personeel</a></li>
+        </ul>
+    </div>
+    <div class="footer-contact">
+        <address>
+            Parque Banque<br>
+            Parklaan 1056<br>
+            1919 CO Bankert <br>
+        </address>
+    </div>
+
+    <div class="footer-license">© 2020 Parque Banque door team 2 | kvk 20016354 </div>
+
+</footer>
+
+
+
+
 </body>
 </html>

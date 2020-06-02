@@ -27,4 +27,8 @@ public class EmployeeService {
         long id = (long) object;
         return findById(id);
     }
+
+    public Employee findOneByRoleName(String roleName){
+        return employeeRepo.findTopByRole_Name(roleName);
+    }
 }
