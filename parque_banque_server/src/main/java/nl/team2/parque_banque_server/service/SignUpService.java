@@ -21,6 +21,10 @@ public class SignUpService {
     private final static String NONCAP_IN = "in";
     private final static String NONCAP_TOT = "tot";
 
+    private final static int ELF_PROEF_STARTING_FACTOR = 9;
+    private final static int BSN_LENGTH = 9;
+    private final static int ELFPROEF_DIVISOR = 11;
+
     public static SignUpFormBean formatFormInput(SignUpFormBean signUpFormBean) {
         // Split the Strings of name, street and city, and capitalize all relevant parts
         String firstNameCaps = capitalizeStrings(signUpFormBean.getFirstName());
@@ -35,8 +39,9 @@ public class SignUpService {
         String cityCaps = capitalizeStrings(signUpFormBean.getCity());
         signUpFormBean.setCity(cityCaps);
 
-
-        signUpFormBean.setZipcode(signUpFormBean.getZipcode().toUpperCase());
+        // Remove possible space from input zipcode and capitalize string
+        String formattedZipcode = String.join("", signUpFormBean.getZipcode().split("\\s")).toUpperCase();
+        signUpFormBean.setZipcode(formattedZipcode);
 
         return signUpFormBean;
     }
@@ -92,6 +97,26 @@ public class SignUpService {
         customer.setPassword(createLoginFormBean.getPassword());
 
         return customer;
+    }
+
+    // Tests whether a bsn passes the 'elfproef' test. The result of the calculation:
+    // (9 × A) + (8 × B) + (7 × C) + (6 × D) + (5 × E) + (4 × F) + (3 × G) + (2 × H) + (-1 × I)
+    // should be divisible by 11.
+    public static boolean passesElfproef(String bsn) {
+        if (bsn.length() != BSN_LENGTH) return false;
+
+        int calculation = 0;
+        int factor = ELF_PROEF_STARTING_FACTOR;
+        for (int index = 0; index < bsn.length(); index++) {
+            if (index == bsn.length() - 1 ) {
+                calculation += -factor * Integer.parseInt(bsn.substring(index, index + 1));
+            } else {
+                calculation += factor * Integer.parseInt(bsn.substring(index, index + 1));
+                factor -= 1;
+            }
+        }
+
+        return calculation % ELFPROEF_DIVISOR == 0 && calculation != 0;
     }
 
 }
