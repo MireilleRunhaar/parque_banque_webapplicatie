@@ -61,7 +61,7 @@
 </tr>
 
 <br/><br/>
-<h1>Welkom <span th:text="${firstName}"/> <span th:text="${affix}"/> <span th:text="${surName}"/> bij Parque Banque!
+<h1>Welkom <span th:text="${customer.firstName}"/> <span th:text="${customer.affix}"/> <span th:text="${customer.surName}"/> bij Parque Banque!
     <br/>
     <h2>Hier vindt u het overzicht van uw rekening(en)</h2>
 </h1>
@@ -81,7 +81,7 @@
     </tr>
     <tr th:each="paymentaccount : ${paymentaccounts}">
         <td><span th:text="${paymentaccount}"/></td>
-        <td><span th:text="${firstName}"/> <span th:text="${affix}"/> <span th:text="${surName}"/></td>
+        <td><span th:text="${customer.firstName}"/> <span th:text="${customer.affix}"/> <span th:text="${cutomer.surName}"/></td>
         <td><span th:text="${paymentaccount.balanceCent}"/></td>
     </tr>
 </table>
