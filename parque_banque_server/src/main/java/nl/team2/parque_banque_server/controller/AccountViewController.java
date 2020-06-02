@@ -30,6 +30,9 @@ public class AccountViewController {
             Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
             model.addAttribute("customer", customer);
             model.addAttribute("paymentAccounts", customer.getPaymentAccounts());
+            model.addAttribute("firstName", customer.getFirstName());
+            model.addAttribute("affix", customer.getFirstName());
+            model.addAttribute("surName", customer.getSurName());
             return "accountview";
         }
 
