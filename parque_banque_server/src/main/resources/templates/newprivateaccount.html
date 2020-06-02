@@ -4,48 +4,59 @@
     <meta charset="UTF-8">
     <title>nieuwe particuliere rekening openen</title>
     <style>
-        body{
-            padding: 50px;
+/*        reset*/
+/*
+        *{ 
+            margin: 0;
+            padding: 0;
         }
+*/
+/*
+        body{
+            padding-left: 110px;
+        }
+*/
         .hoofd-div{
-            width: 960px;
-            height: 800px;
-            text-align: center;
+/*            padding: 50px;*/
+            padding-top: 100px;
+            padding-left: 110px;
+            margin-top: 100px;
+            margin-left: -8px;
+            margin-right: -8px;
+            background-color:#37AD49; 
+           
+/*            text-align: center;*/
 /*            border: 2px solid red;*/
-            margin: 0 auto;
-          
-    
+            font-family: sans-serif; 
+            margin-bottom: 100px;
+         
         }
         .sub-div{
-            width: 400px;
-            height: 150px;
-            border: 2px solid #37AD49;
-            position: relative;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-220%);
-            
-            
+             padding-left: 110px;
+/*            background-color:aqua;*/
+/*
+            border-right: 10px solid #37AD49;
+            border-bottom: 10px solid #37AD49;
+*/
+/*            border: 3px solid #37AD49;*/
+            font-family: sans-serif;
+            padding-top: 50px;
+            padding-bottom: 100px;
+            margin-right: 1300px;
         }
         .knop-div{
-            width: 300px;
-             height: 100px;
+             padding-left: 110px;
+            padding-top: 100px;
 /*            border: 2px solid blue;*/
-            margin: 0 auto;
             
+       
+                  
         }
         
-    h1 {
-            font-family: sans-serif;    
-        }
-        
-    h4 {
-            font-family: sans-serif;  
-        }
+   
     #bevestigen{
-     
-            color: #fff;
-            padding: 10px 20px;
+            padding: 20px 40px;
+            color: #fff; 
             border-radius: 25px;
             background-color: #37AD49;
             border: 2px solid #37AD49;
@@ -55,13 +66,15 @@
      
         }
     #terug{
+            padding: 20px 40px;
             color: #fff;
-            padding: 10px 20px;
             border-radius: 25px;
             background-color: #37AD49;
             border: 2px solid #37AD49;
             border-color: #37AD49;
             cursor: pointer;
+            margin-left: 10px;
+            
      
         }
     
@@ -72,9 +85,12 @@
 <body>
 <div class="hoofd-div">
 <h1>Nieuwe Particuliere Rekening Openen</h1>
+</div>
+    
 <div class="sub-div">
-<h4>Druk op bevestigen om een nieuwe rekening te openen of druk op terug om naar de vorige pagina te gaan.
-    </h4></div>
+<h3>Druk op bevestigen om een nieuwe rekening te openen of druk op terug om naar de vorige pagina te gaan.
+</h4>
+</div>
 <div class="knop-div">    
 <form action="/particuliere-rekening-openen" method="post" th:object="${privateAccount}">
 
@@ -83,8 +99,8 @@
     
 <input type="submit" name="action" value="Terug" id="terug">
 
-    </form>
-    </div>
-    </div>
+</form>
+</div>
+ 
 </body>
 </html>
