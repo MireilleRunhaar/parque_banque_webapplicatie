@@ -1,7 +1,9 @@
 package nl.team2.parque_banque_server.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import java.util.Objects;
 
 @Entity
 public class BusinessAccount extends PaymentAccount{
@@ -39,5 +41,29 @@ public class BusinessAccount extends PaymentAccount{
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    @Override
+    public String toString() {
+        return "BusinessAccount{" +
+                "accountmanager=" + accountmanager +
+                ", company=" + company +
+                '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BusinessAccount)) return false;
+        if (!super.equals(o)) return false;
+        BusinessAccount that = (BusinessAccount) o;
+        return getAccountmanager().equals(that.getAccountmanager()) &&
+                getCompany().equals(that.getCompany());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getAccountmanager(), getCompany());
     }
 }

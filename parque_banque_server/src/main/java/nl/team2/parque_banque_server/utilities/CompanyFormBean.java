@@ -1,6 +1,7 @@
 package nl.team2.parque_banque_server.utilities;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class CompanyFormBean {
@@ -10,15 +11,16 @@ public class CompanyFormBean {
     private String kvkNr;
 
     @NotBlank
-    @Size(min = 12, max = 12)
+    @Size(min = 14, max = 14)
+    @Pattern(regexp = "(?=.*[A-Z])(?=.*[A-Z]){14,}")
     private String btwNr;
 
     @NotBlank
     @Size(min = 2, max = 30)
-    private String companyName;
+    private String name;
 
     @NotBlank
-    @Size(min = 2, max = 30)
+    @Size(min = 2, max = 200)
     private String sectorName;
 
 
@@ -42,12 +44,12 @@ public class CompanyFormBean {
         this.btwNr = btwNr;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getName() {
+        return name;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSectorName() {
@@ -63,7 +65,7 @@ public class CompanyFormBean {
         return "CompanyFormBean{" +
                 "kvkNr='" + kvkNr + '\'' +
                 ", btwNr='" + btwNr + '\'' +
-                ", companyName='" + companyName + '\'' +
+                ", name='" + name + '\'' +
                 ", sectorName='" + sectorName + '\'' +
                 '}';
     }

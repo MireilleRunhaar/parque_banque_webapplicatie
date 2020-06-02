@@ -5,6 +5,8 @@ import nl.team2.parque_banque_server.model.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CustomerService {
 
@@ -15,17 +17,18 @@ public class CustomerService {
         customerRepo.save(customer);
     }
 
-    public Customer findByUserName(String username) {
-        return customerRepo.findByUserName(username);
+    public Customer findById(long id) {
+        Optional<Customer> customerOption = customerRepo.findById(id);
+        return customerOption.orElse(null);
     }
 
-    //geeft customer (value) terug die hoort bij de sessie id(key)
-    public Customer findCustomerByCustomerId(long id){ return customerRepo.findCustomerById(id);
+    public Customer findByUserName(String username) {
+        return customerRepo.findByUserName(username);
     }
 
     //Find Customer By Session Attribute Id
     public Customer findCustomerBySAId(Object object) {
         long id = (long) object;
-        return findCustomerByCustomerId(id);
+        return findById(id);
     }
 }

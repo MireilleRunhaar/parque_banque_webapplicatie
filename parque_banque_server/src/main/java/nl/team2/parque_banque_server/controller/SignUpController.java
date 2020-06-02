@@ -32,7 +32,10 @@ public class SignUpController {
 
         if (bindingResult.hasErrors()) {
             mav.setViewName("signup");
-            return mav;
+//            return mav;
+        } else if (!SignUpService.passesElfproef(signUpFormBean.getBsn())) {
+            mav.setViewName("signup");
+            mav.addObject("invalidBsn", true);
         } else {
             mav.setViewName("confirmsignup");
 
@@ -40,8 +43,9 @@ public class SignUpController {
             SignUpFormBean formattedSignUpFormBean = SignUpService.formatFormInput(signUpFormBean);
 
             mav.addObject("form", formattedSignUpFormBean);
-            return mav;
+//            return mav;
         }
+        return mav;
     }
 
     // If user changes their mind and presses cancel button, return to homepage

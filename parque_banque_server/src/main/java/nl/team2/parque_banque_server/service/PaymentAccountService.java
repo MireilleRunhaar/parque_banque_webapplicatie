@@ -1,23 +1,31 @@
 package nl.team2.parque_banque_server.service;
 
-import nl.team2.parque_banque_server.model.PaymentAccount;
-import nl.team2.parque_banque_server.model.PrivateAccount;
+
 import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.PaymentAccountRepository;
-
 import nl.team2.parque_banque_server.model.repositories.PrivateAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.text.NumberFormat;
+
 
 @Service
 public class PaymentAccountService {
-    //-hier komt iban generator, savePrivateAccount fn?
 
 
 
     public PaymentAccountService() {
     }
 
+    /**
+     * takes a balance in cents and converts it to euro's in a customerfriendly way
+     * @param balanceCents
+     * @return String of euro sign and amount in euro's
+     */
+    public String balanceInEuros(long balanceCents){
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        return format.format(balanceCents / 100.00);
+    }
 
     @Service
     public static class IbanService {

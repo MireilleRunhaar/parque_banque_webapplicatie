@@ -2,19 +2,56 @@ main {
     min-height: 500px;
 }
 
+html{
+      font-family: 'Poppins', sans-serif;
+}
+
+.logolink {
+    width: 80px;
+    height: 45px;
+}
+
 footer {
-    display: flex;
-    justify-content: left;
+    display: block;
     padding: 5px;
+    margin: 0px;
     background-color: #242121;
     color: #fff;
+}
+
+.footer.content{
+    display: grid;
+    margin: auto;
+    max-width: 1400px;
+}
+
+.footer-list {
+    display: inline-block;
+    list-style-type: none;
+}
+
+.content.footer-address{
+  display: inline-block;
 
 }
 
-footer.footer-links {
-    alignment: left;
+.footer-license{
+    display: inline-block;
+
 }
 
 footer.footer-contact {
     alignment: right;
 }
+
+a.main-linkbutton:link, a.main-linkbutton:visited {
+    background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+    
+    
+}
+
