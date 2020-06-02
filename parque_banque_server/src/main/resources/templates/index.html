@@ -7,41 +7,45 @@
     rekeningen opent en transacties verricht. Zowel voor uw onderneming als prive.">
 
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
     <title>Homepage</title>
 </head>
 <body>
 
 <!-- navigatie-->
 <header class="header">
-    <nav class="header nav">
-            <!-- logo met link-->
-            <a href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink"></a>
-            <div align="right"><a href="/contact" class="pbNav-button">Contact>></a></div>
+     <!-- logo met link-->
+    <a class="logo-link" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" width="80px" height="45px"></a>
+    
+    <nav class="navigation">
+        <ul>
+         <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
+         <li class="nav-link"><a  href="/klant-worden">Klant worden</a></li>
+         <li class="nav-link"><a  href="/contact">Contact</a></li>   
+        </ul>
+       
     </nav>
-</header>
+    </header>
 
 <!-- body -->
-<main id="content">
-    <div class="pbMain"align="center">
+<main class="main">
+    <div class="main-content">
         <img src="../static/parque-banque-logo.jpg" th:src="@{parque-banque-logo.jpg}" alt="parque banque" width="1000" height="165">
 
 <h1>Welkom bij Parque Banque!</h1>
-    <a href="/inloggen">Inloggen</a>
-    <a href="/klant-worden">Klant worden</a>
     </div>
 </main>
 
 <!-- footer -->
 <footer class="footer">
-    <div class="content">
+    <div class="content-container">
         <ul class= "footer-list">
-            <li><a href="/inloggen">Inloggen</a></li>
-            <li><a href="/klant-worden">Klant worden</a></li>
-            <li><a href="/rekening-openen">Rekening openen</a></li>
-            <li><a href="/personeel">inloggen personeel</a></li>
+            <li><a class= list-link href="/inloggen">Inloggen</a></li>
+            <li><a class= list-link href="/klant-worden">Klant worden</a></li>
+            <li><a class= list-link href="/rekening-openen">Rekening openen</a></li>
+            <li><a class= list-link href="/personeel">inloggen personeel</a></li>
         </ul>
-    <div class="footer-address">
+    <div id="footer-address">
         <address>
             Parque Banque<br>
             Parklaan 1056<br>
@@ -49,12 +53,9 @@
         </address>
     </div>
 
-    <div class="footer-license">© 2020 Parque Banque door team 2 | kvk 20016354 </div>
+    <div id="footer-license">© 2020 Parque Banque door team 2 | kvk 20016354 </div>
     </div>
 </footer>
-
-
-
 
 </body>
 </html>

@@ -1,28 +1,66 @@
-main {
-    min-height: 500px;
-}
-
 html{
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Montserrat', sans-serif;
 }
 
-.logolink {
-    width: 80px;
-    height: 45px;
+header {
+    
 }
+
+.logo-link {
+    display: inline-block;
+    
+}
+
+.navigation ul{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+     overflow: hidden;
+    background-color: #37ad49;
+    
+}
+
+li.nav-link {
+    float: right;
+    width: 125px;
+    margin-right: 0.625%;
+    text-align: center;
+    line-height: 3;
+    background:#37ad49;   
+}
+
+li.nav-link a:hover {
+    border-bottom: 2px solid black;
+}
+
+
+main {
+    display: flex;
+    min-height: 500px;
+    margin-top: 40px;
+    margin-bottom: 0;
+
+}
+
+.main-content{
+
+text-align: center;
+    
+}
+
 
 footer {
     display: block;
     padding: 5px;
     margin: 0px;
-    background-color: #242121;
+    background-color: #2e2a2a;
     color: #fff;
 }
 
-.footer.content{
-    display: grid;
+.content-container{
     margin: auto;
     max-width: 1400px;
+    font-size: 12px;
 }
 
 .footer-list {
@@ -30,28 +68,31 @@ footer {
     list-style-type: none;
 }
 
-.content.footer-address{
+#footer-address{
   display: inline-block;
 
 }
 
-.footer-license{
-    display: inline-block;
+#footer-license{
+    display: block;
+    font-size:10px;
 
 }
 
-footer.footer-contact {
-    alignment: right;
+a {
+    outline: none;
+    text-decoration: none;
+    color: white;
 }
 
-a.main-linkbutton:link, a.main-linkbutton:visited {
-    background-color: #f44336;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+
+
+
+a.list-link{
     
-    
 }
+
+
+
+
 
