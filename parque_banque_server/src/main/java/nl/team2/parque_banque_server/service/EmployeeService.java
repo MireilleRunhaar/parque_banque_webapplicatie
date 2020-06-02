@@ -5,25 +5,27 @@ import nl.team2.parque_banque_server.model.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepo;
 
+    public Employee findById(long id) {
+        Optional<Employee> employeeOption = employeeRepo.findById(id);
+        return employeeOption.orElse(null);
+    }
 
     public Employee findByEmployeeNumber(int employeeNumber) {
         return employeeRepo.findEmployeeByEmployeeNumber(employeeNumber);
     }
-
-    public Employee findEmployeeByEmployeeId(long id) {
-        return employeeRepo.findEmployeeById(id);
-    }
-
+    
     //Find Employee By Session Attribute Id
     public Employee findEmployeeBySAId(Object object) {
         long id = (long) object;
-        return findEmployeeByEmployeeId(id);
+        return findById(id);
     }
 
     public Employee findOneByRoleName(String roleName){
