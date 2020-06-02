@@ -16,7 +16,8 @@
     th {
         border: 1px solid #dddddd;
         text-align: left;
-        font-family: "Arial Black";
+        font-family: "Arial";
+        font-size: small;
         padding: 8px;
         width: 300px;
     }
@@ -94,9 +95,9 @@
         <td colspan="3"> Geen rekeningen></td>
     </tr>
     <tr th:each="privateaccount : ${privateaccounts}">
-        <td><span th:text="${privateaccount.iban}">IBAN</span></td>
-        <td><span th:text="${privateaccount.firstname}">Naam</span></td>
-        <td><span th:text="${privateaccount.balanceCent}">Saldo</span></td>
+        <td th:text="${privateaccount.iban}"></td>
+        <td th:text="${privateaccount.firstname}"></td>
+        <td th:text="${privateaccount.balanceCent}"></td>
     </tr>
     </tbody>
 </table>
