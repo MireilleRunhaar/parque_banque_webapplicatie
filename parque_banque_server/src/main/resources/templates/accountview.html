@@ -6,11 +6,13 @@
         width: 100%;
         border: 1px solid black
     }
-    td{
+
+    td {
         font-family: "Arial";
         width: 100px;
         font-size: small;
     }
+
     th {
         border: 1px solid #dddddd;
         text-align: left;
@@ -18,12 +20,16 @@
         padding: 8px;
         width: 300px;
     }
-    thead {font-size: 8px}
+
+    thead {
+        font-size: 8px
+    }
 
     h1 {
         font-family: "Arial";
         font-size: x-large;
     }
+
     h2 {
         font-family: "Arial";
         font-size: small;
@@ -32,13 +38,16 @@
     tr:nth-child(even) {
         background-color: #dddddd;
     }
-    button {alignment: left;
+
+    button {
+        alignment: left;
     }
 </style>
 <head>
     <meta charset="UTF-8">
     <title>rekeningoverzicht</title>
-    <img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80" height="45">
+    <img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80"
+         height="45">
 
 </head>
 <br/>
@@ -71,35 +80,24 @@
 <br/>
 
 
-
+<head>Prive Rekening</head>
 <table>
-    <h1>Zakelijke rekeningen</h1>
+    <thead>
     <tr>
-        <td>IBAN</td>
-        <td>Rekeninghouder</td>
-        <td>Saldo</td>
+        <th>IBAN</th>
+        <th>Naam</th>
+        <th>Saldo</th>
     </tr>
-    <tr th:each="privateaccount: ${privateaccounts}">
-        <td th:text="${privateaccount.iban}"><span th:value="${privateaccount}" th:text="${privateaccount.iban}"/></td>
-<!--        <td><span th:text="${firstName}"/> <span th:text="${affix}"/> <span th:text="${surName}"/></td>-->
-        <td><span th:text="${privateaccount.balanceCent}"/></td>
+    </thead>
+    <tbody>
+    <tr th:if="${privateaccounts.empty}">
+        <td colspan="3"> Geen rekeningen></td>
     </tr>
-</table>
-<br/>
-<br/>
-<br/>
-
-<table>
-    <h1>Prive rekeningen</h1>
-    <tr>
-        <td>IBAN</td>
-        <td>Bedrijf</td>
-        <td>Saldo</td>
+    <tr th:each="privateaccount : ${privateaccounts}">
+        <td><span th:text="${privateaccount.iban}">IBAN</span></td>
+        <td><span th:text="${privateaccount.firstname}">Naam</span></td>
+        <td><span th:text="${privateaccount.balanceCent}">Saldo</span></td>
     </tr>
-    <!--    <tr>-->
-    <!--        <td><span th: text="${iban}"/></td>-->
-    <!--        <td><span th: text="${companyaffix}"/> <span th: text="${surname}"/></td>-->
-    <!--        <td><span th: text="${balanceCent}"/></td>-->
-    <!--    </tr>-->
+    </tbody>
 </table>
 </body>

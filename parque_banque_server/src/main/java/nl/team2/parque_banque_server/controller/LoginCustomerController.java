@@ -11,6 +11,7 @@ import nl.team2.parque_banque_server.utilities.LoginCustomerFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,8 +48,8 @@ public class LoginCustomerController {
 
     @PostMapping("/inloggen")
     public String customerLoginFormHandler(@Valid LoginCustomerFormBean loginCustomerFormBean,
-                                                 BindingResult bindingResult,
-                                                 Model model) {
+                                           BindingResult bindingResult,
+                                           Model model) {
         if (bindingResult.hasErrors() || !loginService.customerLoginValidation(loginCustomerFormBean)){
             model.addAttribute("invalidCredentials", true);
             return "logincustomer";
@@ -58,9 +59,9 @@ public class LoginCustomerController {
             model.addAttribute("firstName", customer.getFirstName());
             model.addAttribute("affix", customer.getAffix());
             model.addAttribute("surName",customer.getSurName());
-            List<PaymentAccount> paymentAccountList= customer.getPaymentAccounts();
-            List<PrivateAccount> privateAccounts = privateAccountService.getPrivateAccountsByCustomer(customer);
-            model.addAttribute("privateaccounts", privateAccounts);
+//            List<PaymentAccount> paymentAccountList= customer.getPaymentAccounts();
+            List<PrivateAccount> privateAccountList=privateAccountService.getPrivateAccountsByCustomer(customer);
+            model.addAttribute("privateaccounts", privateAccountList);
             return "accountview";
         }
     }

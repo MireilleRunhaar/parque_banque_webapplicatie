@@ -20,8 +20,7 @@ public class CustomerService {
     }
 
     //geeft customer (value) terug die hoort bij de sessie id(key)
-    public Customer findCustomerByCustomerId(long id){
-        return customerRepo.findCustomerById(id);
+    public Customer findCustomerByCustomerId(long id){ return customerRepo.findCustomerById(id);
     }
 
     //Find Customer By Session Attribute Id
