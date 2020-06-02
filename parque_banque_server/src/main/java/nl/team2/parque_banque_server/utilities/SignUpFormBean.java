@@ -5,17 +5,17 @@ import javax.validation.constraints.*;
 public class SignUpFormBean {
 
     @NotBlank
-    @Size(min = 2, max = 30)
-    @Pattern(regexp = "^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,30}$")
+    @Size(min = 2, max = 255)
+    @Pattern(regexp = "^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,}$")
     private String firstName;
 
-    @Size(max = 10)
-    @Pattern(regexp = "$|^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{1,10}")
+    @Size(max = 255)
+    @Pattern(regexp = "$|^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{1,}")
     private String infix;
 
     @NotBlank
-    @Size(min = 2, max = 50)
-    @Pattern(regexp = "^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,50}$")
+    @Size(min = 2, max = 255)
+    @Pattern(regexp = "^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,}$")
     private String lastName;
 
     @NotBlank
@@ -24,8 +24,8 @@ public class SignUpFormBean {
     private String bsn;
 
     @NotBlank
-    @Size(min = 2, max = 50)
-    @Pattern(regexp = "[-.' A-Za-z]{2,50}")
+    @Size(min = 2, max = 255)
+    @Pattern(regexp = "[-.' A-Za-z]{2,}")
     private String street;
 
     @NotBlank
@@ -33,17 +33,17 @@ public class SignUpFormBean {
     @Pattern(regexp = "[1-9][0-9]{0,4}")
     private String number;
 
-    @Size(max = 3)
-    @Pattern(regexp = "$|[-1-9a-zA-Z]")
+    @Size(max = 255)
+    @Pattern(regexp = "$|[-.' A-Za-z]+")
     private String addition;
 
     @NotBlank
-    @Size(min = 6, max = 6)
-    @Pattern(regexp = "[1-9][0-9]{3}[A-Za-z]{2}")
+    @Size(min = 6, max = 7)
+    @Pattern(regexp = "[1-9][0-9]{3}[A-Za-z]{2}|[1-9][0-9]{3}[\\s][A-Za-z]{2}")
     private String zipcode;
 
     @NotBlank
-    @Size(min = 2)
+    @Size(min = 2, max = 255)
     @Pattern(regexp = "[-' A-Za-z]{2,}")
     private String city;
 
@@ -51,6 +51,7 @@ public class SignUpFormBean {
     private String phone;
 
     @Email
+    @Size(max = 255)
     private String emailAddress;
 
 

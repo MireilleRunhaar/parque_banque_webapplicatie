@@ -38,7 +38,7 @@ public class NewPrivateAccountController {
     public ModelAndView createNewPrivateAccount(Model model){
         ModelAndView mav=new ModelAndView("confirmnewaccount");
         long id= (long) model.getAttribute("customerId");
-        Customer customer=customerService.findCustomerByCustomerId(id);
+        Customer customer=customerService.findById(id);
 
         PrivateAccount privateAccount=new PrivateAccount(ibanService.createNewIban(),START_SALDO);
         privateAccount.addCustomerToAccountHolder(customer);
