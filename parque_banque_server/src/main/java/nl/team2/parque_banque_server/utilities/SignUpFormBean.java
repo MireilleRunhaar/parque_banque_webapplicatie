@@ -25,7 +25,7 @@ public class SignUpFormBean {
 
     @NotBlank
     @Size(min = 2, max = 255)
-    @Pattern(regexp = "[-.' A-Za-z]{2,}")
+    @Pattern(regexp = "^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}$")
     private String street;
 
     @NotBlank
@@ -34,7 +34,7 @@ public class SignUpFormBean {
     private String number;
 
     @Size(max = 255)
-    @Pattern(regexp = "$|[-.' A-Za-z]+")
+    @Pattern(regexp = "$|[0-9a-zA-Z -]+")
     private String addition;
 
     @NotBlank
@@ -44,12 +44,14 @@ public class SignUpFormBean {
 
     @NotBlank
     @Size(min = 2, max = 255)
-    @Pattern(regexp = "[-' A-Za-z]{2,}")
+    @Pattern(regexp = "^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}$")
     private String city;
 
-    @Pattern(regexp = "$|[0][0-9]{9}")
+    @NotBlank
+    @Pattern(regexp = "[0][0-9]{9}")
     private String phone;
 
+    @NotBlank
     @Email
     @Size(max = 255)
     private String emailAddress;

@@ -32,7 +32,6 @@ public class SignUpController {
 
         if (bindingResult.hasErrors()) {
             mav.setViewName("signup");
-//            return mav;
         } else if (!SignUpService.passesElfproef(signUpFormBean.getBsn())) {
             mav.setViewName("signup");
             mav.addObject("invalidBsn", true);
@@ -43,7 +42,6 @@ public class SignUpController {
             SignUpFormBean formattedSignUpFormBean = SignUpService.formatFormInput(signUpFormBean);
 
             mav.addObject("form", formattedSignUpFormBean);
-//            return mav;
         }
         return mav;
     }
