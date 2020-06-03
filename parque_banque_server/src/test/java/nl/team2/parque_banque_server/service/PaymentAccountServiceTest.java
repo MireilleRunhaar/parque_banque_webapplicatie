@@ -5,11 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PaymentAccountServiceTest {
 
+    private PaymentAccountService paymentAccountService;
 
     // FIXME: 30/05/2020 Waarom slaagt de test niet terwijl output hetzelfde is? Misschien ziet een ander het?
     @Test
     void balanceInEuros(){
-        PaymentAccountService paymentAccountService= new PaymentAccountService();
+       paymentAccountService= new PaymentAccountService();
        assertEquals("€ 25,00", paymentAccountService.balanceInEuros(2500));
        assertEquals("€ 0,45", paymentAccountService.balanceInEuros(45));
        assertEquals("€ 1,32", paymentAccountService.balanceInEuros(132));
