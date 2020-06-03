@@ -89,28 +89,16 @@
     </thead>
     <tbody>
 
-<!--uitproberen met paymentaccount-->
-    <tr th:if="${paymentAccounts.empty}">
+
+
+    <tr th:if="${privateaccounts.empty}">
         <td colspan="3"> Geen rekeningen></td>
     </tr>
-<!--    <tr th:each="paymentAccount : ${paymentAccounts}">-->
-<!--&lt;!&ndash;        <td th:text="${paymentAccount.iban}"></td>&ndash;&gt;-->
-<!--        <td th:text="${paymentAccount.firstName}"></td>-->
-<!--        <td th:text="${paymentAccount.balanceCent}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-
-
-
-<!--    -->
-<!--    <tr th:if="${privateaccounts.empty}">-->
-<!--        <td colspan="3"> Geen rekeningen></td>-->
-<!--    </tr>-->
-<!--    <tr th:each="privateaccount : ${privateaccounts}">-->
-<!--        <td th:text="${privateaccount.iban}"></td>-->
-<!--        <td th:text="${privateaccount.firstname}"></td>-->
-<!--        <td th:text="${privateaccount.balanceCent}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
+    <tr th:each="privateaccount : ${privateaccounts}">
+        <td th:text="${privateaccount.iban}"></td>
+        <td th:text="${privateaccount.firstname}"></td>
+        <td th:text="${privateaccount.balanceCent}"></td>
+    </tr>
+    </tbody>
 </table>
 </body>

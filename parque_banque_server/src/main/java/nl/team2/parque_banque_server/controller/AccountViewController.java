@@ -37,14 +37,12 @@ public class AccountViewController {
              *
              */
             Customer customer = customerService.findCustomerBySAId (model.getAttribute("customerId"));
-//            ArrayList<Customer> accountholders = new ArrayList<>();
-//            accountholders.add(customer);
-//            ArrayList <PrivateAccount> privateAccountList = (ArrayList<PrivateAccount>) privateAccountService.findPrivateAccountsByCustomer(accountholders);
+            List <PrivateAccount> privateAccountList = privateAccountService.getPrivateAccountsByCustomer(customer);
             model.addAttribute("customer", customer);
             model.addAttribute("firstName", customer.getFirstName());
-            model.addAttribute("affix", customer.getFirstName());
+            model.addAttribute("affix", customer.getAffix());
             model.addAttribute("surName", customer.getSurName());
-            model.addAttribute("iban", customer.getPaymentAccounts());
+            model.addAttribute("privateaccounts", privateAccountList);
             return "accountview";
         }
 
