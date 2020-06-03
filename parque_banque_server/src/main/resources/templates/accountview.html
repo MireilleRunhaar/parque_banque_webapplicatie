@@ -83,7 +83,7 @@
     <thead>
     <tr>
         <th>IBAN</th>
-        <th>Naam</th>
+<!--        <th>Naam</th>-->
         <th>Saldo</th>
     </tr>
     </thead>
@@ -92,11 +92,11 @@
 
 
     <tr th:if="${privateaccounts.empty}">
-        <td colspan="3"> Geen rekeningen></td>
+        <td> Geen rekeningen></td>
     </tr>
     <tr th:each="privateaccount : ${privateaccounts}">
         <td th:text="${privateaccount.iban}"></td>
-        <td th:text="${privateaccount.firstname}"></td>
+<!--        <td th:text="${privateaccount.firstName}"></td>-->
         <td th:text="${privateaccount.balanceCent}"></td>
     </tr>
     </tbody>

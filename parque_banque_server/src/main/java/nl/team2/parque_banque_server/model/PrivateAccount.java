@@ -15,10 +15,13 @@ public class PrivateAccount extends PaymentAccount {
         super(iban, balanceCent);
     }
 
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "PrivateAccount{" +
+                "iban='" + iban + '\'' +
+                ", balanceCent=" + balanceCent +
+                ", transactionHistory=" + transactionHistory +
+                ", accountHolders=" + accountHolders +
+                '}';
+    }
 }
