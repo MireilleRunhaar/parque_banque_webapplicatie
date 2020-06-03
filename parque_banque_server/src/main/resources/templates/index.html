@@ -6,26 +6,29 @@
     <meta name="description" content="Parque Banque biedt een online applicatie waar u gemakkelijk en snel
     rekeningen opent en transacties verricht. Zowel voor uw onderneming als prive.">
 
+    <!-- should show logo and text when shared on slack/facebook-->
+    <meta property="og:image" content="../static/logo-small.png" th:src="@{logo-small.png}">
+    <meta property="og:description" content="Parque Banque biedt een online applicatie waar u gemakkelijk en snel
+    rekeningen opent en transacties verricht. Zowel voor uw onderneming als prive.">
+    <meta property="og:title" content="Parque Banque">
+
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
     <title>Homepage</title>
 </head>
 <body>
+    <div class="page-content">
 
 <!-- navigatie-->
-<header class="header">
-     <!-- logo met link-->
-    <a class="logo-link" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" width="80px" height="45px"></a>
-    
     <nav class="navigation">
         <ul>
-         <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
-         <li class="nav-link"><a  href="/klant-worden">Klant worden</a></li>
-         <li class="nav-link"><a  href="/contact">Contact</a></li>   
+            <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+            <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
+            <li class="nav-link"><a  href="/klant-worden">Klant worden</a></li>
+            <li class="nav-link"><a  href="/contact">Contact</a></li>   
         </ul>
        
     </nav>
-    </header>
 
 <!-- body -->
 <main class="main">
@@ -49,13 +52,13 @@
         <address>
             Parque Banque<br>
             Parklaan 1056<br>
-            0000 XY Bankert <br>
+            1919 CO Bankert <br>
         </address>
     </div>
 
     <div id="footer-license">© 2020 Parque Banque door team 2 | kvk 20016354 </div>
     </div>
 </footer>
-
+</div>
 </body>
 </html>
