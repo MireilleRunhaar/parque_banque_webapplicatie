@@ -27,6 +27,7 @@ public class PaymentAccountService {
         return format.format(balanceCents / 100.00);
     }
 
+
     @Service
     public static class IbanService {
 

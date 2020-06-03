@@ -17,10 +17,6 @@ public class BusinessAccount extends PaymentAccount{
     public BusinessAccount() {
     }
 
-    public BusinessAccount(String iban, long balanceCent) {
-        super(iban, balanceCent);
-    }
-
     public BusinessAccount(String iban, long balanceCent, Employee accountmanager, Company company) {
         super(iban, balanceCent);
         this.accountmanager = accountmanager;
