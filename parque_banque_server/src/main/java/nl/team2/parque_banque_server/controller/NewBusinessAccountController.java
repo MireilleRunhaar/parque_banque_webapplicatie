@@ -77,6 +77,8 @@ public class NewBusinessAccountController {
         //make businessaccount
         BusinessAccount businessAccount =
                 new BusinessAccount(ibanService.createNewIban(), START_BALANCE, employeeService.findOneByRoleName("Accountmanager"),company);
+                model.addAttribute("name", bab.getName());
+                model.addAttribute("businessAccount", true);
 
         //make current customer accountholder
         businessAccount.addCustomerToAccountHolder(customerService.findCustomerBySAId(model.getAttribute("customerId")));

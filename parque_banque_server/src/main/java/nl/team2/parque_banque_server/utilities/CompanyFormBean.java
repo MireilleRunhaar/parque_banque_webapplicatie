@@ -8,11 +8,12 @@ public class CompanyFormBean {
 
     @NotBlank
     @Size(min = 8, max = 8)
+    @Pattern(regexp = "^[0-9]{8}$")
     private String kvkNr;
 
     @NotBlank
     @Size(min = 14, max = 14)
-    @Pattern(regexp = "(?=.*[A-Z])(?=.*[A-Z]){14,}")
+    @Pattern(regexp = "^[A-Za-z]{2}[0-9]{9}[Bb][0-9]{2}$")
     private String btwNr;
 
     @NotBlank

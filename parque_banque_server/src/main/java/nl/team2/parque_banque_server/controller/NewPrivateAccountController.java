@@ -47,6 +47,8 @@ public class NewPrivateAccountController {
 
         mav.addObject("iban",privateAccount.getIban());
         mav.addObject("balanceCent",paymentAccountService.balanceInEuros(privateAccount.getBalanceCent()));
+        mav.addObject("name", customer.getFirstName());
+        mav.addObject("privateAccount", true);
         return mav;
     }
 

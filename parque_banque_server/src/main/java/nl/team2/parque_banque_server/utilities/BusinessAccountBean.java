@@ -5,8 +5,17 @@ import java.util.Objects;
 public class BusinessAccountBean {
 
    private String kvk;
+   private String name;
 
     public BusinessAccountBean() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getKvk() {

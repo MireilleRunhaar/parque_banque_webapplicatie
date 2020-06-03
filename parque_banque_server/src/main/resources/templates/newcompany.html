@@ -43,7 +43,7 @@
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${newCompany}">
     <label>Kvk-nummer *</label>
     <input type="text" th:field="*{kvkNr}"
-           required pattern="^(?=.*\d){8,}$"
+           required pattern="^[0-9]{8}$"
            title="Het KvK-nummer bestaat uit 8 cijfers."
            oninvalid="setCustomValidity('Controleer of het KvK-nummer klopt')"
            oninput="setCustomValidity('')">
@@ -51,7 +51,7 @@
 
     <label>Btw-nummer *</label>
     <input type="text" th:field="*{btwNr}"
-           required pattern="^(?=.*[A-Z])(?=.*[A-Z]){14,}$"
+           required pattern="^[A-Za-z]{2}[0-9]{9}[Bb][0-9]{2}$"
            title="Het btw-nummer bestaat uit 14 tekens en begint met een landcode, bijvoorbeeld NL."
            oninvalid="setCustomValidity('Controleer of het btw-nummer klopt')"
            oninput="setCustomValidity('')">
@@ -59,6 +59,8 @@
 
     <label>Bedrijfsnaam *</label>
     <input type="text" th:field="*{name}"
+           required pattern="^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[a-zA-Z0-9 '~@#&?!*+-]{2,254}$"
+           oninvalid="setCustomValidity('Controleer of de bedrijfsnaam klopt.')"
            oninput="setCustomValidity('')">
         <br><br>
 
