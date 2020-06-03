@@ -11,7 +11,7 @@
 <form action="#" th:action="@{/open-zakelijke-rekening}" method="post" th:object="${company}">
     <p>
         <label for="company">Bedrijfsnaam</label>
-        <select id="company" th:field="*{kvk}">
+        <select id="company" th:field="*{kvkNr}">
             <option th:each="c:${companies}" th:value="${c.getKvkNr()}" th:text="${c.getName()}"></option>
         </select>
     </p>

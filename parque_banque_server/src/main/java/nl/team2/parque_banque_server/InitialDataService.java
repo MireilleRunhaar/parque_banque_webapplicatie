@@ -4,6 +4,7 @@ import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Company;
 import nl.team2.parque_banque_server.model.PrivateAccount;
 import nl.team2.parque_banque_server.model.repositories.*;
+import nl.team2.parque_banque_server.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,13 +17,13 @@ import java.util.List;
 
 
 /**
- * Creates starter accounts for database and saves them. Only run firs time starting up
+ * Creates starter accounts for database and saves them. Only run first time starting up
  * @author Lisa Kemeling
  */
 
 
 @Component
-@Order(Ordered.LOWEST_PRECEDENCE)
+@Order
 public class InitialDataService  implements ApplicationRunner {
 
     public static final int MAX_CUSTOMER_ID = 4000;
@@ -44,13 +45,13 @@ public class InitialDataService  implements ApplicationRunner {
     @Autowired
     private CompanyRepository companyRepository;
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
 
 
     @Override
     public void run(ApplicationArguments args) throws Exception{
-        businessAccountRepository.saveAll(provideListOfBusinessAccounts());
-        privateAccountRepository.saveAll(provideListOfPrivateAccounts());
+       businessAccountRepository.saveAll(provideListOfBusinessAccounts());
+       privateAccountRepository.saveAll(provideListOfPrivateAccounts());
     }
 
     public Iterable<PrivateAccount> provideListOfPrivateAccounts(){
@@ -59,7 +60,7 @@ public class InitialDataService  implements ApplicationRunner {
             String iban = createNewIban(lastAddedPaymentAccount);
             lastAddedPaymentAccount = iban;
             PrivateAccount privateAccount = new PrivateAccount(iban, getRandomBalance());
-            privateAccount.addCustomerToAccountHolder(customerRepository.findCustomerById(getRandomCustomerId()));
+            privateAccount.addCustomerToAccountHolder(customerService.findById(getRandomCustomerId()));
             privateAccounts.add(privateAccount);
         }
         return privateAccounts;
@@ -74,7 +75,7 @@ public class InitialDataService  implements ApplicationRunner {
             lastAddedPaymentAccount = iban;
             BusinessAccount businessAccount = new BusinessAccount(iban, getRandomBalance(),
                     employeeRepository.findTopByRole_Name("Accountmanager"),companies.get(i));
-            businessAccount.addCustomerToAccountHolder(customerRepository.findCustomerById(getRandomCustomerId()));
+            businessAccount.addCustomerToAccountHolder(customerService.findById(getRandomCustomerId()));
             businessAccounts.add(businessAccount);
         }
         return businessAccounts;
