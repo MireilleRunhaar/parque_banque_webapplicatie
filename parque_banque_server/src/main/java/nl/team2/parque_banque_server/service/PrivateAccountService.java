@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class PrivateAccountService {
@@ -15,19 +16,24 @@ public class PrivateAccountService {
     @Autowired
     private PrivateAccountRepository privateAccountRepository;
 
+    /**find all private accounts from user in database
+     * @param customer, the logged in user
+     * @return list of privateaccounts
+     */
+
     public List<PrivateAccount> getPrivateAccountsByCustomer(Customer customer){
-        List<Customer> customerList = new ArrayList<>();
-        customerList.add(customer);
-        return privateAccountRepository.findPrivateAccountsByAccountHoldersIn(customerList);
+        ArrayList<Customer> accountholders = new ArrayList<>();
+        accountholders.add(customer);
+        List<PrivateAccount> privateAccounts = findPrivateAccountsByCustomer(accountholders);
+        return privateAccounts;
+    }
+
+    public List <PrivateAccount> findPrivateAccountsByCustomer(ArrayList<Customer> accountholders){
+        return privateAccountRepository.findPrivateAccountsByAccountHoldersIn(accountholders);
     }
 
     public void savePrivateAccount(PrivateAccount privateAccount){
         privateAccountRepository.save(privateAccount);
     }
 
-//    public PrivateAccount findIdByIban(String iban){
-//        return privateAccountRepository.findIdByIban(iban);
-//    }
-
-
-}
+  }

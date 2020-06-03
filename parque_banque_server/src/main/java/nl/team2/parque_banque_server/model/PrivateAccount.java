@@ -9,7 +9,7 @@ import java.util.List;
 public class PrivateAccount extends PaymentAccount {
 
     public PrivateAccount() {
-    }
+         }
 
     public PrivateAccount(String iban, long balanceCent) {
         super(iban, balanceCent);
