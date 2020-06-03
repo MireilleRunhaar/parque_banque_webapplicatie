@@ -11,11 +11,11 @@
         <table>
             <tr>
                 <td> <label for="firstName">Voornaam</label> </td>
-                <td> <input id="firstName" type="text" readonly th:field="${form.firstName}" /> </td>
+                <td> <span id="firstName" th:text="${form.firstName}" /> </td>
             </tr>
             <tr>
                 <td> <label for="infix">Tussenvoegsel</label> </td>
-                <td> <input id="infix" type="text" readonly th:field="${form.infix}" /> </td>
+                <td> <span id="infix" th:text="${form.infix}"></span></td>
             </tr>
             <tr>
                 <td> <label for="lastName">Achternaam</label> </td>

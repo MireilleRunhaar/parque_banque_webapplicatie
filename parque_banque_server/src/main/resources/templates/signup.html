@@ -13,7 +13,7 @@
                 <td> <label for="firstName">Voornaam</label> </td>
                 <td> <input id="firstName" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}$" th:field="*{firstName}"
                             title="Vul uw voornaam in"
-                            oninvalid="setCustomValidity('Voornaam is verplicht (maximaal 30 tekens)')"
+                            oninvalid="setCustomValidity('Voornaam is verplicht')"
                             oninput="setCustomValidity('')"/> </td>
             </tr>
             <tr>
@@ -25,7 +25,7 @@
                 <td> <label for="lastName">Achternaam</label> </td>
                 <td> <input id="lastName" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}$" th:field="*{lastName}"
                             title="Vul uw achternaam in"
-                            oninvalid="setCustomValidity('Achternaam is verplicht (maximaal 50 tekens)')"
+                            oninvalid="setCustomValidity('Achternaam is verplicht')"
                             oninput="setCustomValidity('')" /> </td>
             </tr>
             <tr>
@@ -38,9 +38,9 @@
             </tr>
             <tr>
                 <td> <label for="street">Straatnaam</label> </td>
-                <td> <input id="street" type="text" required pattern="[-.' A-Za-z]{2,255}" th:field="*{street}"
+                <td> <input id="street" type="text" required pattern="[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}" th:field="*{street}"
                             title="Vul uw straatnaam in"
-                            oninvalid="setCustomValidity('Straatnaam is verplicht (minstens 2 tekens)')"
+                            oninvalid="setCustomValidity('Straatnaam is verplicht')"
                             oninput="setCustomValidity('')" /> </td>
             </tr>
             <tr>
@@ -67,7 +67,7 @@
             </tr>
             <tr>
                 <td> <label for="city">Woonplaats</label> </td>
-                <td> <input id="city" type="text" required pattern="[-' A-Za-z]{2,255}" th:field="*{city}"
+                <td> <input id="city" type="text" required pattern="[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}" th:field="*{city}"
                             title="Vul uw woonplaats in"
                             oninvalid="setCustomValidity('Woonplaats is verplicht')"
                             oninput="setCustomValidity('')" /> </td>
