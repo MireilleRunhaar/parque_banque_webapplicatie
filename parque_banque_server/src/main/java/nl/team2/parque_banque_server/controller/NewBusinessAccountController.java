@@ -4,7 +4,6 @@ import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Company;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.service.*;
-import nl.team2.parque_banque_server.utilities.BusinessAccountBean;
 import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +59,7 @@ public class NewBusinessAccountController {
                 return "newcompany";
             } else {
             model.addAttribute("companies", companies);
-            model.addAttribute("company", new BusinessAccountBean());
+            model.addAttribute("company", new CompanyFormBean());
             return "newbusinessaccount";
             }
         }else{
@@ -69,10 +68,10 @@ public class NewBusinessAccountController {
     }
 
     @PostMapping("open-zakelijke-rekening")
-    public String createBusinessAccount(@ModelAttribute("company") BusinessAccountBean bab, Model model){
+    public String createBusinessAccount(@ModelAttribute("company") CompanyFormBean cfb, Model model){
 
         //make company
-        Company company = companyService.findOneByKVK(bab.getKvk());
+        Company company = companyService.findOneByKVK(cfb.getKvkNr());
 
         //make businessaccount
         BusinessAccount businessAccount =

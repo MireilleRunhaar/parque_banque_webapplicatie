@@ -26,10 +26,10 @@ public class AccountViewController {
             return "logincustomer";
         }
         else {
-            long customerId = (long) model.getAttribute("customerId");
-            Customer customer = customerService.findCustomerByCustomerId(customerId);
-            model.addAttribute("name", customer.getFirstName());
-            //model.addAttribute("paymentAccounts", customer.getPaymentAccounts());
+            //Get the customer from the customerId
+            Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
+            model.addAttribute("customer", customer);
+            model.addAttribute("paymentAccounts", customer.getPaymentAccounts());
             return "accountview";
         }
 

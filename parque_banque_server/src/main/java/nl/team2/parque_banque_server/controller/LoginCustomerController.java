@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("customerId")
+@SessionAttributes({"customerId", "form"})
 public class LoginCustomerController {
 
     @Autowired
@@ -28,10 +28,14 @@ public class LoginCustomerController {
     @GetMapping("/inloggen")
     public String loginHandler(@ModelAttribute LoginCustomerFormBean loginCustomerFormBean,
                                Model model) {
-        if (model.containsAttribute("customerId") && loginCustomerFormBean == null) {
-            return "accountview";
+        // Without this if statement, the application doesn't know what to do when you arrive at this page after
+        // you've visited a page with an "form" session attribute and left it empty (not filling in the form).
+        if (model.containsAttribute("form")) {
+            return "logincustomer";
+        }else if (model.containsAttribute("customerId") && loginCustomerFormBean == null
+            || model.getAttribute("customerId") != null) {
+            return "redirect:/rekening-overzicht";
         } else {
-            model.addAttribute("customerId", loginCustomerFormBean);
             return "logincustomer";
         }
     }
@@ -46,11 +50,7 @@ public class LoginCustomerController {
         } else {
             Customer customer = customerService.findByUserName(loginCustomerFormBean.getUserName());
             model.addAttribute("customerId", customer.getId());
-            model.addAttribute("firstName", customer.getFirstName());
-            model.addAttribute("affix", customer.getAffix());
-            model.addAttribute("surName",customer.getSurName());
-            //model.addAttribute("paymentaccounts",customer.getPaymentAccounts());
-            return "accountview";
+            return "redirect:/rekening-overzicht";
         }
     }
 }

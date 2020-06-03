@@ -1,29 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Aangemaakt bedrijf bevestigen</title>
-    <style type="text/css">
+    <style>
+        img{
+            display: inline-block;
+            height: 50px;
+        }
+        label {
+            font-family: Segoe;
+            display: inline-block;
+            width: 100px;
+            margin: 5px;
+            text-align: left;
+        }
         button {
             padding: 5px;
             margin: 10px;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            border-bottom-color: #242121;
+            background-color: #37AD49;
+            color: white;
         }
-    </style>
+        </style>
 </head>
 <body>
-<h1>Controleer de bedrijfsgegevens</h1>
+<img src="../static/logo-small.png"/>
+<h1>Klopt het allemaal? Controleer de bedrijfsgegevens</h1>
 
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
 <div align="left">
-    <span>KVK-nummer:</span><span th:text="${companyFormBean.kvkNr}"></span><br>
-    <span>BTW-nummer:</span><span th:text="${companyFormBean.btwNr}"></span><br>
-    <span>Bedrijfsnaam:</span><span th:text="${companyFormBean.name}"></span><br>
-    <span>Sector:</span><span th:text="${companyFormBean.sectorName}"></span><br>
+    <label for="kvkNr">KvK-nummer</label>
+    <input id="kvkNr" type="text" readonly th:field="${companyFormBean.kvkNr}"/><br>
+    <label for="btwNr">Btw-nummer</label>
+    <input id="btwNr" type="text" readonly th:field="${companyFormBean.btwNr}"/><br>
+    <label for="bedrijfsNaam">Bedrijfsnaam</label>
+    <input id="bedrijfsNaam" type="text" readonly th:field="${companyFormBean.name}"/><br>
+    <label for="sector">Sector</label>
+    <input id="sector" type="text" readonly th:field="${companyFormBean.sectorName}"/><br><br> <!--Todo: display sectornaam-->
 </div>
 
 <button type="submit" name="action" value="rekeningOpenen"> Rekening openen</button>
-<button type="submit" name="action" value ="wijzigBedrijfsinformatie"> Bedrijfsgegevens aanpassen</button><br><br>
+<button type="submit" name="action" value ="wijzigBedrijfsinformatie"> Bedrijfsgegevens aanpassen</button>
 <button type="submit" name="action" value="annulerenGaNaarRekeningoverzicht" formnovalidate> Annuleren, terug naar rekeningoverzicht</button>
 </form>
 
