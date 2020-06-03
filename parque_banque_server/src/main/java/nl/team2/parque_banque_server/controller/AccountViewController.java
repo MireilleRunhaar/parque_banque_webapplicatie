@@ -1,8 +1,11 @@
 package nl.team2.parque_banque_server.controller;
 
+import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.model.PrivateAccount;
+import nl.team2.parque_banque_server.service.BusinessAccountService;
 import nl.team2.parque_banque_server.service.CustomerService;
+import nl.team2.parque_banque_server.service.PaymentAccountService;
 import nl.team2.parque_banque_server.service.PrivateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,10 @@ public class AccountViewController {
     private CustomerService customerService;
     @Autowired
     private PrivateAccountService privateAccountService;
+    @Autowired
+    private BusinessAccountService businessAccountService;
+    @Autowired
+    private PaymentAccountService paymentAccountService;
 
 
 //in de getmapping
@@ -38,11 +45,13 @@ public class AccountViewController {
              */
             Customer customer = customerService.findCustomerBySAId (model.getAttribute("customerId"));
             List <PrivateAccount> privateAccountList = privateAccountService.getPrivateAccountsByCustomer(customer);
+            List<BusinessAccount> businessAccountList=businessAccountService.getBusinessAccountsByCustomer(customer);
             model.addAttribute("customer", customer);
             model.addAttribute("firstName", customer.getFirstName());
             model.addAttribute("affix", customer.getAffix());
             model.addAttribute("surName", customer.getSurName());
             model.addAttribute("privateaccounts", privateAccountList);
+            model.addAttribute("businessaccounts", businessAccountList);
             return "accountview";
         }
 

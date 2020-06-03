@@ -90,15 +90,42 @@
     <tbody>
 
 
-
     <tr th:if="${privateaccounts.empty}">
         <td> Geen rekeningen></td>
     </tr>
     <tr th:each="privateaccount : ${privateaccounts}">
         <td th:text="${firstName + affix + surName}"></td>
         <td th:text="${privateaccount.iban}"></td>
-<!--        <td th:text="${firstName + affix + surName}"></td>-->
+        <!--        <td th:text="${firstName + affix + surName}"></td>-->
         <td th:text="${privateaccount.balanceCent}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+<br/>
+<br/>
+</body>
+<head>Zakelijke rekening</head>
+<table>
+    <thead>
+    <tr>
+        <th>Rekeninghouder</th>
+        <th>IBAN</th>
+        <th>Saldo</th>
+<!--        <th>Bedrijf</th>-->
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <tr th:if="${businessaccounts.empty}">
+        <td> Geen rekeningen></td>
+    </tr>
+    <tr th:each="businessaccount : ${businessaccounts}">
+        <td th:text="${firstName + affix + surName}"></td>
+        <td th:text="${businessaccount.iban}"></td>
+        <td th:text="${businessaccount.balanceCent}"></td>
+<!--        <td th:text="${bussinessaccount.getName}"></td>-->
     </tr>
     </tbody>
 </table>

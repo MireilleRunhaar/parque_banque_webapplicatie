@@ -3,6 +3,7 @@ package nl.team2.parque_banque_server.service;
 import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Company;
 import nl.team2.parque_banque_server.model.Customer;
+import nl.team2.parque_banque_server.model.PrivateAccount;
 import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ public class BusinessAccountService {
 
     @Autowired
     private BusinessAccountRepository businessAccountRepo;
+
 
 
 
@@ -37,6 +39,17 @@ public class BusinessAccountService {
     //helps finding companies
     public List<BusinessAccount> findBusinessAccountsByCustomer(ArrayList<Customer> accountholders){
         return businessAccountRepo.findBusinessAccountsByAccountHoldersIn(accountholders);
+    }
+
+    /** find all business accounts from user in db
+     * @param customer, the loggedin user
+     *return list of business accounts
+     */
+    public List<BusinessAccount> getBusinessAccountsByCustomer(Customer customer){
+        ArrayList<Customer> accountholders = new ArrayList<>();
+        accountholders.add(customer);
+        List<BusinessAccount> businessAccounts = findBusinessAccountsByCustomer(accountholders);
+        return businessAccounts;
     }
 
     public void saveBusinessAccount(BusinessAccount businessAccount){

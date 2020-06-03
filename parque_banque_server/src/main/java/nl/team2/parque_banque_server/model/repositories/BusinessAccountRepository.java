@@ -14,7 +14,6 @@ public interface BusinessAccountRepository extends CrudRepository <BusinessAccou
 
     List<BusinessAccount> findBusinessAccountsByAccountHoldersIn(List<Customer> accountholders);
 
-
     BusinessAccount findTopByOrderByIbanDesc();
 
 
