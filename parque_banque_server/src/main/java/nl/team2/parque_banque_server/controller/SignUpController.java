@@ -13,13 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("form")
+@SessionAttributes("signupform")
 public class SignUpController {
 
     @GetMapping("/klant-worden")
     public ModelAndView signupHandler(@ModelAttribute SignUpFormBean signUpFormBean) {
         ModelAndView mav = new ModelAndView("signup");
-        mav.addObject("form", signUpFormBean);
+        mav.addObject("signupform", signUpFormBean);
 
         return mav;
     }
@@ -32,9 +32,9 @@ public class SignUpController {
 
         if (bindingResult.hasErrors()) {
             mav.setViewName("signup");
-//            return mav;
         } else if (!SignUpService.passesElfproef(signUpFormBean.getBsn())) {
             mav.setViewName("signup");
+            mav.addObject("signupform", signUpFormBean);
             mav.addObject("invalidBsn", true);
         } else {
             mav.setViewName("confirmsignup");
@@ -42,8 +42,7 @@ public class SignUpController {
             // Capitalize the appropriate fields in the signUpFormBean
             SignUpFormBean formattedSignUpFormBean = SignUpService.formatFormInput(signUpFormBean);
 
-            mav.addObject("form", formattedSignUpFormBean);
-//            return mav;
+            mav.addObject("signupform", formattedSignUpFormBean);
         }
         return mav;
     }
