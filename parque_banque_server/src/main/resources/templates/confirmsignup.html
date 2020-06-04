@@ -7,21 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <style>
         div > div {
-            width: 335px;
-            display: inline-block;
-            margin: 0px;
+            width: 645px;
         }
 
-        label {
-            float: right;
-        }
-
-        span {
-            float: left;
-            margin: 5px;
-        }
-
-        div > div:nth-of-type(2) {
+        div > input {
             color: #666666;
             font-weight: bold;
         }
@@ -43,94 +32,55 @@
 
         <div>
             <p>PERSOONSGEGEVENS</p>
-            <div>
+            <div style="width: 480px">
                 <label for="firstName">Voornaam</label>
+                <input id="firstName" type="text" readonly th:field="${signupform.firstName}"/>
             </div>
-            <div>
-                <span id="firstName" th:text="${signupform.firstName}"></span>
-            </div>
-        </div>
-        <div>
-            <div>
+            <div style="width: 140px">
                 <label for="infix">Tussenvoegsel</label>
+                <input id="infix" type="text" readonly th:field="${signupform.infix}"/>
             </div>
-            <div>
-                <span id="infix" th:text="${signupform.infix}"></span>
-<!--                <span id="infix" th:text="${signupform.infix}?: 'd'"></span>-->
-            </div>
-        </div>
-        <div>
             <div>
                 <label for="lastName">Achternaam</label>
+                <input id="lastName" type="text" readonly th:field="${signupform.lastName}"/>
             </div>
-            <div>
-                <span id="lastName" th:text="${signupform.lastName}"></span>
-            </div>
-        </div>
-        <div>
             <div>
                 <label for="bsn">Burger Service Nummer</label>
-            </div>
-            <div>
-                <span id="bsn" th:text="${signupform.bsn}"></span>
+                <input id="bsn" type="text" readonly th:field="${signupform.bsn}"/>
             </div>
         </div>
         <div>
             <p>ADRESGEGEVENS</p>
-            <div>
+            <div style="width: 520px">
                 <label for="street">Straat</label>
+                <input id="street" type="text" readonly th:field="${signupform.street}"/>
             </div>
-            <div>
-                <span id="street" th:text="${signupform.street}"></span>
-            </div>
-        </div>
-        <div>
-            <div>
+            <div style="width: 100px">
                 <label for="number">Huisnummer</label>
+                <input id="number" type="text" readonly th:field="${signupform.number}"/>
             </div>
-            <div>
-                <span id="number" th:text="${signupform.number}"></span>
-            </div>
-        </div>
-        <div>
-            <div>
+            <div style="width: 100px">
                 <label for="addition">Toevoeging</label>
+                <input id="addition" type="text" readonly th:field="${signupform.addition}"/>
             </div>
-            <div>
-                <span id="addition" th:text="${signupform.addition}"></span>
-            </div>
-        </div>
-        <div>
-            <div>
+            <div style="width: 80px">
                 <label for="zipcode">Postcode</label>
+                <input id="zipcode" type="text" readonly th:field="${signupform.zipcode}"/>
             </div>
-            <div>
-                <span id="zipcode" th:text="${signupform.zipcode}"></span>
-            </div>
-        </div>
-        <div>
-            <div>
+            <div style="width: 415px">
                 <label for="city">Woonplaats</label>
-            </div>
-            <div>
-                <span id="city" th:text="${signupform.city}"></span>
+                <input id="city" type="text" readonly th:field="${signupform.city}"/>
             </div>
         </div>
         <div>
             <p>CONTACTGEGEVENS</p>
             <div>
                 <label for="phone">Telefoon nummer</label>
+                <input id="phone" type="tel" readonly th:field="${signupform.phone}"/>
             </div>
-            <div>
-                <span id="phone" th:text="${signupform.phone}"></span>
-            </div>
-        </div>
-        <div>
             <div>
                 <label for="email">Email</label>
-            </div>
-            <div>
-                <span id="email" th:text="${signupform.emailAddress}"></span>
+                <input id="email" type="email" readonly th:field="${signupform.emailAddress}"/>
             </div>
         </div>
         <div>

@@ -34,6 +34,7 @@ public class SignUpController {
             mav.setViewName("signup");
         } else if (!SignUpService.passesElfproef(signUpFormBean.getBsn())) {
             mav.setViewName("signup");
+            mav.addObject("signupform", signUpFormBean);
             mav.addObject("invalidBsn", true);
         } else {
             mav.setViewName("confirmsignup");

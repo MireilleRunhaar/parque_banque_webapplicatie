@@ -35,9 +35,6 @@ public class ConfirmSignUpController {
         mav.setViewName("signup");
         mav.addObject("signupform", signUpFormBean);
 
-        //TODO remove sout
-        System.out.println("*** firstname:  " + signUpFormBean.getFirstName());
-
         return mav;
     }
 }
