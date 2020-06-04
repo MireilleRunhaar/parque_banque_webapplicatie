@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes({"customerId", "form"})
+@SessionAttributes("customerId")
 public class LoginCustomerController {
 
     @Autowired
@@ -32,8 +33,8 @@ public class LoginCustomerController {
         // you've visited a page with an "form" session attribute and left it empty (not filling in the form).
         if (model.containsAttribute("form")) {
             return "logincustomer";
-        }else if (model.containsAttribute("customerId") && loginCustomerFormBean == null
-            || model.getAttribute("customerId") != null) {
+        // Checks if the customerId is not empty, if that's the case the user will be redirected to the accountview
+        } else if (model.getAttribute("customerId") != null) {
             return "redirect:/rekening-overzicht";
         } else {
             return "logincustomer";
@@ -44,6 +45,7 @@ public class LoginCustomerController {
     public String customerLoginFormHandler(@Valid LoginCustomerFormBean loginCustomerFormBean,
                                                  BindingResult bindingResult,
                                                  Model model) {
+        // Checks the bean validation of the input and if the login is valid.
         if (bindingResult.hasErrors() || !loginService.customerLoginValidation(loginCustomerFormBean)){
             model.addAttribute("invalidCredentials", true);
             return "logincustomer";
@@ -53,4 +55,11 @@ public class LoginCustomerController {
             return "redirect:/rekening-overzicht";
         }
     }
+
+    @GetMapping("/uitloggen")
+    public String userLogOuthandler(SessionStatus sessionStatus){
+        sessionStatus.setComplete();
+        return "redirect:/";
+    }
+
 }
