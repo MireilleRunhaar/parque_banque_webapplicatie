@@ -36,4 +36,5 @@ public class PrivateAccountService {
         privateAccountRepository.save(privateAccount);
     }
 
+
   }
