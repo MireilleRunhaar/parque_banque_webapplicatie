@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Rekeninghouder toevoegen | Parque Banque</title>
+</head>
+<body>
+    <h1>Rekeninghouder toevoegen</h1>
+    <p>Vul hieronder de gebruikersnaam in van de klant die u wilt toevoegen aan uw rekening.</p>
+    <p>De persoon die u wilt toevoegen moet dus al klant bij Parque Banque zijn.</p>
+    <form th:action="@{/rekeninghouder-toevoegen}" th:object="${addaccountholderform}" method="post">
+        <div>
+            <label for="username">Gebruikersnaam</label>
+            <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}" />
+        </div>
+        <div>
+            <label for="securityCode">Beveiligingscode</label>
+            <input id="securityCode" type="text" required pattern="[0-9]{5}" th:field="*{securityCode}" />
+        </div>
+        <div>
+            <button type="submit" name="action" value="finish">OK</button>
+            <button type="submit" name="action" value="cancel">Terug</button>
+        </div>
+    </form>
+</body>
+</html>
