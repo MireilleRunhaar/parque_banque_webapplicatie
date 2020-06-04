@@ -41,6 +41,8 @@ public class NewCompanyController {
             mav.setViewName("confirmcompany");
         }
         mav.addObject("companyFormBean", companyFormBean);
+        mav.addObject("name", companyFormBean.getName());
+        mav.addObject("businessAccount", true);
         return mav;
     }
 

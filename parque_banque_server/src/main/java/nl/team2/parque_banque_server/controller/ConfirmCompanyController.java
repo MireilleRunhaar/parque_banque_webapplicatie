@@ -51,7 +51,7 @@ public class ConfirmCompanyController {
         bas.saveBusinessAccount(businessAccount);
         model.addAttribute("iban", businessAccount.getIban());
         model.addAttribute("balanceCent", pas.balanceInEuros(businessAccount.getBalance()));
-        model.addAttribute("name", company.getName());
+        model.addAttribute("name", companyFormBean.getName());
         model.addAttribute("businessAccount", true);
         return mav;
     }
