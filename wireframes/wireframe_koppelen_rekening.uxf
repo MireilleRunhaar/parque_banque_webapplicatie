@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>108</x>
+      <y>54</y>
+      <w>333</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>Rekeningoverzicht
+-.
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>270</x>
+      <y>99</y>
+      <w>153</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Rekening koppelen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>522</x>
+      <y>54</y>
+      <w>342</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>Rekening koppelen
+-.
+halign=left
+
+[bij foute invoer: controleer de invoer goed, als u zeker bent, 
+controleer of de eigenaar van de bankrekening uw 
+gebruikernsaam goed heeft ingevuld.]
+
+
+
+Vul het IBAN in
+
+
+Vul de 5-cijferige code in</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>558</x>
+      <y>306</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Terug</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>720</x>
+      <y>306</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>OK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>675</x>
+      <y>162</y>
+      <w>117</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>[iban]
+valign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>675</x>
+      <y>207</y>
+      <w>117</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>[beveiligingscode]
+valign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>522</x>
+      <y>450</y>
+      <w>351</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>Rekening gekoppeld
+-.
+halign=left
+
+
+Gelukt!
+
+U bent als rekeninghouder toegevoegd aan de rekening 
+met IBAN [nr]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>648</x>
+      <y>648</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>OK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>315</y>
+      <w>234</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>240.0;10.0;110.0;160.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>738</x>
+      <y>333</y>
+      <w>54</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>279</x>
+      <y>333</y>
+      <w>387</w>
+      <h>351</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>410.0;370.0;200.0;280.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>414</x>
+      <y>108</y>
+      <w>126</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;30.0</additional_attributes>
+  </element>
+</diagram>
