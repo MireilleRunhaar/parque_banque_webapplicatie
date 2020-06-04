@@ -5,13 +5,17 @@
     <title>Zakelijke rekening openen</title>
 </head>
 <body>
+<a href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80px" height="45px"></a>
+<a href="/uitloggen">Uitloggen</a>
+
+
 <h1>Open een zakelijke rekening</h1>
 <h2>Selecteer het bedrijf waarvoor u een nieuwe rekening wilt openen</h2>
 <br>
 <form action="#" th:action="@{/open-zakelijke-rekening}" method="post" th:object="${company}">
     <p>
         <label for="company">Bedrijfsnaam</label>
-        <select id="company" th:field="*{kvk}">
+        <select id="company" th:field="*{kvkNr}">
             <option th:each="c:${companies}" th:value="${c.getKvkNr()}" th:text="${c.getName()}"></option>
         </select>
     </p>

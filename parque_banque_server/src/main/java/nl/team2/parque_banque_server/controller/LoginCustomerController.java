@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 
@@ -28,10 +29,14 @@ public class LoginCustomerController {
     @GetMapping("/inloggen")
     public String loginHandler(@ModelAttribute LoginCustomerFormBean loginCustomerFormBean,
                                Model model) {
-        if (model.containsAttribute("customerId") && loginCustomerFormBean == null) {
-            return "accountview";
+        // Without this if statement, the application doesn't know what to do when you arrive at this page after
+        // you've visited a page with an "form" session attribute and left it empty (not filling in the form).
+        if (model.containsAttribute("signupform")) {
+            return "logincustomer";
+        // Checks if the customerId is not empty, if that's the case the user will be redirected to the accountview
+        } else if (model.getAttribute("customerId") != null) {
+            return "redirect:/rekening-overzicht";
         } else {
-            model.addAttribute("customerId", loginCustomerFormBean);
             return "logincustomer";
         }
     }
@@ -40,17 +45,21 @@ public class LoginCustomerController {
     public String customerLoginFormHandler(@Valid LoginCustomerFormBean loginCustomerFormBean,
                                                  BindingResult bindingResult,
                                                  Model model) {
+        // Checks the bean validation of the input and if the login is valid.
         if (bindingResult.hasErrors() || !loginService.customerLoginValidation(loginCustomerFormBean)){
             model.addAttribute("invalidCredentials", true);
             return "logincustomer";
         } else {
             Customer customer = customerService.findByUserName(loginCustomerFormBean.getUserName());
             model.addAttribute("customerId", customer.getId());
-            model.addAttribute("firstName", customer.getFirstName());
-            model.addAttribute("affix", customer.getAffix());
-            model.addAttribute("surName",customer.getSurName());
-            //model.addAttribute("paymentaccounts",customer.getPaymentAccounts());
-            return "accountview";
+            return "redirect:/rekening-overzicht";
         }
     }
+
+    @GetMapping("/uitloggen")
+    public String userLogOuthandler(SessionStatus sessionStatus){
+        sessionStatus.setComplete();
+        return "redirect:/";
+    }
+
 }
