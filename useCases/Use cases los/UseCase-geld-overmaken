@@ -1,0 +1,26 @@
+Use case: geld overmaken
+Primary Actor: Klant
+Preconditions: de klant is ingelogd en aanwezig op de rekeningpagina van de rekening waarvan hij/zij wil overboeken
+Success guarantee: De klant heeft geld overgemaakt van zijn/haar rekening naar een andere rekening bij Parque Banque
+en de overboeking is te zien in de transactiehistorie
+Main success scenario:
+1. De klant kiest de optie om een overboeking te doen van de betreffende betaalrekening
+2. Klant voert nummer van de creditrekening, het bedrag en beschrijving in
+3. De bank geeft een overzicht van de ingevulde gegevens door de Klant
+4. De bank checkt saldo en of de creditrekening bestaat, bedrag wordt afgeschreven van debitrekening
+5. Klant bevestigt de overboeking
+6. De bank zorgt dat bedrag wordt bijgeschreven op creditrekening
+7. De bank werkt transactiehistorie bij van credit- en debitrekening
+8. De klant keert terug naar rekeningpagina en ziet daar gelijk de transactie
+
+Extensions:
+    2.a. Klant voert een ongeldig rekeningnummer in
+      - Klant krijgt melding over de juiste opbouw van de rekening
+      b. Klant voert een ongeldig saldo in (negatief of letters/vreemde tekens)
+      - Klant krijgt melding over foutieve invoer
+    3.a. Klant heeft een fout gemaakt en wil terug om de gegevens aan te passen
+      - Klant keert terug naar stap 2
+    5.a. Klant voert ongeldig rekeningnummer in (bestaat niet)
+      - Klant krijgt een melding dat het rekeningnummer niet bekend is, keert terug naar stap 2
+      b. Er is onvoldoende saldo aanwezig
+      - Klant krijgt melding dat saldo ontoereikend is en keert terug naar stap 2

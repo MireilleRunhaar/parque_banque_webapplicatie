@@ -1,0 +1,44 @@
+Use cases inloggen klant/medewerker
+
+Use case: inloggen (klant)
+Primary Actor: Gebruiker
+Preconditions: de Gebruiker is klant van de bank.
+Success guarantee: de Gebruiker krijgt toegang tot zijn of haar rekeningoverzicht.
+Main success scenario:
+1. Gebruiker selecteert "inloggen klant".
+2. Systeem stuurt de data van de inlogpagina (voor klanten) van Parque Banque.
+3. Gebruiker vult zijn of haar gebruikersnaam en wachtwoord in.
+4. Gebruiker bevestigt.
+5. Systeem checkt of de ingevoerde gegevens overeenkomen met de gegevens in de database.
+6. Systeem haalt informatie op over de rekeningen van de Gebruiker.
+7. Gebruiker wordt doorverwezen naar zijn of haar rekeningoverzicht.
+
+Extensions:
+    4a. Gebruiker bevestigd met één of meerdere lege velden.
+        - Melding met de waarschuwing ‘Vul zowel gebruikersnaam als wachtwoord in.’
+    4b. Gebruiker voert verkeerde gebruikersnaam en/of wachtwoord in.
+	    - Melding met de waarschuwing ‘De combinatie tussen gebruikersnaam en  
+          wachtwoord is onjuist. Probeer het opnieuw.’
+
+
+
+
+Use case: inloggen (medewerker)
+Primary Actor: Gebruiker
+Preconditions: de Gebruiker is een medewerker van de bank.
+Success guarantee: de Gebruiker krijgt toegang tot zijn of haar medewerkerspagina.
+Main success scenario:
+1. Gebruiker selecteert "inloggen medewerker".
+2. Systeem stuurt de data van de inlogpagina (voor medewerkers) van Parque Banque.
+3. Gebruiker vult zijn of haar personeelsnummer en wachtwoord in.
+4. Gebruiker bevestigt.
+5. Systeem checkt of de ingevoerde gegevens overeenkomen met de gegevens in de database.
+6. Systeem haalt de medewerkersinformatie op van de Gebruiker.
+7. Gebruiker wordt doorverwezen naar zijn of haar medewerkerspagina.
+
+Extensions:
+    4a. Gebruiker bevestigd met één of meerdere lege velden.
+        - Melding met de waarschuwing ‘Vul zowel personeelsnummer als wachtwoord in.’
+    4b. Gebruiker voert verkeerde gebruikersnaam en/of wachtwoord in.
+        - Melding met de waarschuwing ‘De combinatie tussen personeelsnummer en 
+	    wachtwoord is onjuist. Probeer het opnieuw.’
