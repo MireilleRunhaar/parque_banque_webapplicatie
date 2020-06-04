@@ -50,8 +50,8 @@ public class InitialDataService  implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception{
-       businessAccountRepository.saveAll(provideListOfBusinessAccounts());
-       privateAccountRepository.saveAll(provideListOfPrivateAccounts());
+ //      businessAccountRepository.saveAll(provideListOfBusinessAccounts());
+  //     privateAccountRepository.saveAll(provideListOfPrivateAccounts());
     }
 
     public Iterable<PrivateAccount> provideListOfPrivateAccounts(){
