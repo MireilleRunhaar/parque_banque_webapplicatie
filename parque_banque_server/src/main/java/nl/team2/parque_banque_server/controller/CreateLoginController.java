@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("form")
+@SessionAttributes("signupform")
 public class CreateLoginController {
 
     private final CustomerService customerService;

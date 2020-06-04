@@ -22,7 +22,8 @@
         }
 
         div > div:nth-of-type(2) {
-            color: #257431;
+            color: #666666;
+            font-weight: bold;
         }
 
     </style>
@@ -38,7 +39,7 @@
     <h1>Bevestig uw gegevens</h1>
     <p style="margin-bottom: 5px;">Controleer uw gegevens zorgvuldig. Klik op Wijzig gegevens als u iets wilt veranderen.</p>
     <p style="margin-bottom: 5px;">Als u alles correct hebt ingevuld, klik dan op Volgende om een account aan te maken</p>
-    <form th:action="@{/klant-worden}" th:object="${form}" method="post">
+    <form th:action="@{/klant-worden}" th:object="${signupform}" method="post">
 
         <div>
             <p>PERSOONSGEGEVENS</p>
@@ -46,7 +47,7 @@
                 <label for="firstName">Voornaam</label>
             </div>
             <div>
-                <span id="firstName" th:text="${form.firstName}"></span>
+                <span id="firstName" th:text="${signupform.firstName}"></span>
             </div>
         </div>
         <div>
@@ -54,8 +55,8 @@
                 <label for="infix">Tussenvoegsel</label>
             </div>
             <div>
-<!--                <span id="infix" th:text="${form.infix}"></span>-->
-                <span id="infix" th:text="${form.infix}?: 'd'"></span>
+                <span id="infix" th:text="${signupform.infix}"></span>
+<!--                <span id="infix" th:text="${signupform.infix}?: 'd'"></span>-->
             </div>
         </div>
         <div>
@@ -63,7 +64,7 @@
                 <label for="lastName">Achternaam</label>
             </div>
             <div>
-                <span id="lastName" th:text="${form.lastName}"></span>
+                <span id="lastName" th:text="${signupform.lastName}"></span>
             </div>
         </div>
         <div>
@@ -71,7 +72,7 @@
                 <label for="bsn">Burger Service Nummer</label>
             </div>
             <div>
-                <span id="bsn" th:text="${form.bsn}"></span>
+                <span id="bsn" th:text="${signupform.bsn}"></span>
             </div>
         </div>
         <div>
@@ -80,7 +81,7 @@
                 <label for="street">Straat</label>
             </div>
             <div>
-                <span id="street" th:text="${form.street}"></span>
+                <span id="street" th:text="${signupform.street}"></span>
             </div>
         </div>
         <div>
@@ -88,7 +89,7 @@
                 <label for="number">Huisnummer</label>
             </div>
             <div>
-                <span id="number" th:text="${form.number}"></span>
+                <span id="number" th:text="${signupform.number}"></span>
             </div>
         </div>
         <div>
@@ -96,7 +97,7 @@
                 <label for="addition">Toevoeging</label>
             </div>
             <div>
-                <span id="addition" th:text="${form.addition}"></span>
+                <span id="addition" th:text="${signupform.addition}"></span>
             </div>
         </div>
         <div>
@@ -104,7 +105,7 @@
                 <label for="zipcode">Postcode</label>
             </div>
             <div>
-                <span id="zipcode" th:text="${form.zipcode}"></span>
+                <span id="zipcode" th:text="${signupform.zipcode}"></span>
             </div>
         </div>
         <div>
@@ -112,7 +113,7 @@
                 <label for="city">Woonplaats</label>
             </div>
             <div>
-                <span id="city" th:text="${form.city}"></span>
+                <span id="city" th:text="${signupform.city}"></span>
             </div>
         </div>
         <div>
@@ -121,7 +122,7 @@
                 <label for="phone">Telefoon nummer</label>
             </div>
             <div>
-                <span id="phone" th:text="${form.phone}"></span>
+                <span id="phone" th:text="${signupform.phone}"></span>
             </div>
         </div>
         <div>
@@ -129,7 +130,7 @@
                 <label for="email">Email</label>
             </div>
             <div>
-                <span id="email" th:text="${form.emailAddress}"></span>
+                <span id="email" th:text="${signupform.emailAddress}"></span>
             </div>
         </div>
         <div>
