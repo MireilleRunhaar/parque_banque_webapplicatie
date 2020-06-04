@@ -28,7 +28,7 @@
         </style>
 </head>
 <body>
-<img src="../static/logo-small.png"/>
+<a href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80px" height="45px"></a>
 <h1>Klopt het allemaal? Controleer de bedrijfsgegevens</h1>
 
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
