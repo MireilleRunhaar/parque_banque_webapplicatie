@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @SessionAttributes("customerId") // key -value
 public class NewPrivateAccountController {
 
-    public final long START_SALDO=2500;
+    public final long START_SALDO=2500L;
 
     private PaymentAccountService.IbanService ibanService;
     private CustomerService customerService;
