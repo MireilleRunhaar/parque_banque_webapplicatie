@@ -31,7 +31,7 @@ public class LoginCustomerController {
                                Model model) {
         // Without this if statement, the application doesn't know what to do when you arrive at this page after
         // you've visited a page with an "form" session attribute and left it empty (not filling in the form).
-        if (model.containsAttribute("form")) {
+        if (model.containsAttribute("signupform")) {
             return "logincustomer";
         // Checks if the customerId is not empty, if that's the case the user will be redirected to the accountview
         } else if (model.getAttribute("customerId") != null) {
