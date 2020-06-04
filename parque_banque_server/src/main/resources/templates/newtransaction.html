@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Lisa Kemeling">
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>new transaction</title>
+</head>
+<body>
+<!-- navigatie-->
+<nav class="navigation">
+    <ul>
+        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+        <li class="nav-link"><a  href="/contact">Contact</a></li>
+        <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+        <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
+    </ul>
+
+<!-- main-content-->
+    <main>
+        <form action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >
+            <fieldset>
+                <legend>Overboeking van rekening <span>NLXXPARQ0XXXXXXXX</span></legend>
+                <div>
+                    <label for="amount">Bedrag</label>
+                    <input th:field="*{amount}" id="amount" type="text" pattern="\d{0,6}" placeholder="0" size="8" dir="rtl">
+                    <label for="cents">,</label>
+                    <input th:field="*{cents}" id="cents" type="text" size="2" pattern="\d{2}" placeholder="00">
+                </div>
+                <div>
+                    <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
+                    <input th:field="*{iban}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18">
+                </div>
+                <div>
+                    <!-- hier js voor terugtellen tekens -->
+                    <label for="description">Omschrijving</label>
+                    <input th:field="*{description}" id="description" type="text" max="140" size="18">
+                    <label for></label>
+                </div>
+            </fieldset>
+            <button th:type="submit">Volgende</button>
+        </form>
+    </main>
+
+</nav>
+</body>
+</html>

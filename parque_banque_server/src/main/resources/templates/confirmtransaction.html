@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Lisa Kemeling">
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>new transaction</title>
+</head>
+<body>
+<!-- navigatie-->
+<nav class="navigation">
+    <ul>
+        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+        <li class="nav-link"><a  href="/contact">Contact</a></li>
+        <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+        <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
+    </ul>
+
+<!-- main-content-->
+    <main>
+        <form>
+            <fieldset>
+                <legend>Controleer onderstaande gegevens</span></legend>
+                <div>
+                    <label>Bedrag</label>
+                    <input readonly>
+                    <label>,</label>
+                    <input readonly>
+                </div>
+                <div>
+                    <label>Rekeningnummer (IBAN) ontvanger</label>
+                    <input readonly>
+                </div>
+                <div>
+                    <label>Omschrijving</label>
+                    <input readonly>
+                </div>
+            </fieldset>
+            <button>Annuleer</button>
+            <button>Verzenden</button>
+        </form>
+    </main>
+
+</nav>
+</body>
+</html>
