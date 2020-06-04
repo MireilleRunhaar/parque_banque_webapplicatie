@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Voeg rekening toe</title>
+</head>
+<body>
+<h1>Vul hier het rekeningnummer en de code in die u heeft gekregen van de rekeninghouder.</h1>
+<form action="#" th:action="@{/rekening-overzicht}" th:object="${rekening-overzicht}" method="post">
+    <p>Rekeningnummer: <input type="text" th:field=*{iban}"/></p>
+    <p>Beveiligingscode: <input type="text" th:field=*{securityCode}"/></p>
+    <p><input type="submit" value="Submit"/></p>
+</form>
+</body>
+</html>
