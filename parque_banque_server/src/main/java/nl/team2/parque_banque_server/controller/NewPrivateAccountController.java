@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes("customerId") // key -value
+@SessionAttributes("customerId") 
 public class NewPrivateAccountController {
 
-    public final long START_SALDO=0;
+    public final long START_SALDO=2500L;
 
     private PaymentAccountService.IbanService ibanService;
     private CustomerService customerService;
@@ -47,7 +47,16 @@ public class NewPrivateAccountController {
 
         mav.addObject("iban",privateAccount.getIban());
         mav.addObject("balanceCent",paymentAccountService.balanceInEuros(privateAccount.getBalanceCent()));
+        mav.addObject("privateAccount", true);
+        mav.addObject("name", customer.getFirstName());
         return mav;
     }
+
+
+    @PostMapping(value = "/particuliere-rekening-openen", params = "action=Terug")
+    public String cancelNewPrivateAccount(){
+        return "redirect:/rekening-openen";
+    }
+
 
 }
