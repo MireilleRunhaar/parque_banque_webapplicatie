@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.time.LocalDateTime;
@@ -25,22 +26,21 @@ public class SelectedAccountController {
     @Autowired
     CustomerService customerService;
 
-    @Autowired
-    PaymentAccountService.IbanService ibanService;
-
-    //Rekeningpagina ophalen en ingelogde klant meegeven als session attribute
-    @GetMapping("/selectedaccount")
-    public String showSelectedAccountPageHandler(Model model){
-        if(!model.containsAttribute("customerId")) {
-            return "logincustomer";
-        } else {
-            Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
-            model.addAttribute("customer", customer);
-          //  model.addAttribute("iban", )
-            model.addAttribute("DatumEnTijd", getCurrentTimeWithTimeZone());
-            return "selectedaccount";
+        @GetMapping("/rekening-overzicht/details{iban}")
+        public String handleDetails(@PathVariable(value="iban") String iban,
+                                    Model model) {
+            if(!model.containsAttribute("customerId")) {
+                return "logincustomer";
+            } else {
+                Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
+                model.addAttribute("customer", customer);
+                model.addAttribute("name", customer.getUserName()); //meer accountholders, bedrijf+accountholder, bedrijf+accountholders
+                model.addAttribute("DatumEnTijd", getCurrentTimeWithTimeZone());
+                model.addAttribute("iban", iban);
+                model.addAttribute("saldo", iban); //iban > rekening > getSaldo
+                return "selectedaccount";
+            }
         }
-    }
 
     //Van de geselecteerde rekeningnummer ophalen: rekeningnummer, tenaamstelling, saldo en de laatste 10 transacties.
 

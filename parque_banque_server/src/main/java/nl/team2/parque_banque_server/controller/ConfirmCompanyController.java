@@ -7,6 +7,7 @@ import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -57,7 +58,7 @@ public class ConfirmCompanyController {
     }
 
     //Klant ziet fout en kan bedrijfsgegevens aanpassen
-    @PostMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=wijzigBedrijfsinformatie")
+    @GetMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=wijzigBedrijfsinformatie")
     public ModelAndView editNewCompanyHandler(@ModelAttribute CompanyFormBean companyFormBean) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("newcompany");
