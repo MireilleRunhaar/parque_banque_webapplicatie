@@ -16,32 +16,35 @@
         <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
         <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
     </ul>
+</nav>
 
-<!-- main-content-->
+    <!-- main-content-->
     <main>
-        <form>
+        <form action="#" th:action="@{/overboeken-volgende}" th:object="${transactionFormBean}" method="post" >
             <fieldset>
-                <legend>Controleer onderstaande gegevens</span></legend>
+                <legend>Overboeking van rekening <span>NLXXPARQ0XXXXXXXX</span></legend>
                 <div>
-                    <label>Bedrag</label>
-                    <input readonly>
-                    <label>,</label>
-                    <input readonly>
+                    <label for="amount">Bedrag</label>
+                    <input th:field="*{amount}" id="amount" type="text" pattern="\d{0,6}" placeholder="0" size="8" dir="rtl">
+                    <label for="cents">,</label>
+                    <input th:field="*{cents}" id="cents" type="text" size="2" pattern="\d{2}" placeholder="00">
                 </div>
                 <div>
-                    <label>Rekeningnummer (IBAN) ontvanger</label>
-                    <input readonly>
+                    <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
+                    <input th:field="*{iban}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18">
                 </div>
                 <div>
-                    <label>Omschrijving</label>
-                    <input readonly>
+                    <!-- hier js voor terugtellen tekens -->
+                    <!-- nog het invoervak grote maken -->
+                    <label for="description">Omschrijving</label>
+                    <input th:field="*{description}" id="description" type="text" max="140" size="18">
+                    <label for></label>
                 </div>
             </fieldset>
-            <button>Annuleer</button>
-            <button>Verzenden</button>
+            <button th:type="submit">Volgende</button>
         </form>
     </main>
 
-</nav>
+
 </body>
 </html>

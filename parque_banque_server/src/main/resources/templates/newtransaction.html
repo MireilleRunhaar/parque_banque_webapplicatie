@@ -16,7 +16,7 @@
         <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
         <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
     </ul>
-
+</nav>
 <!-- main-content-->
     <main>
         <form action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >
@@ -30,19 +30,20 @@
                 </div>
                 <div>
                     <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
-                    <input th:field="*{iban}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18">
+                    <input th:field="*{creditAccount}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18">
                 </div>
                 <div>
                     <!-- hier js voor terugtellen tekens -->
+                    <!-- nog het invoervak grote maken -->
                     <label for="description">Omschrijving</label>
                     <input th:field="*{description}" id="description" type="text" max="140" size="18">
                     <label for></label>
                 </div>
             </fieldset>
-            <button th:type="submit">Volgende</button>
+            <button type="submit" name="action" value="next">Volgende</button>
         </form>
     </main>
 
-</nav>
+
 </body>
 </html>
