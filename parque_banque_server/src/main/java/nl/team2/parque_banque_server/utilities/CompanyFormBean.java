@@ -17,11 +17,10 @@ public class CompanyFormBean {
     private String btwNr;
 
     @NotBlank
-    @Size(min = 2, max = 30)
+    @Size(min = 2, max = 254)
     private String name;
 
     @NotBlank
-    @Size(min = 2, max = 200)
     private String sectorName;
 
 

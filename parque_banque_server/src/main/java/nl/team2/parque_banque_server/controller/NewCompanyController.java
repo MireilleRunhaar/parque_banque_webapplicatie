@@ -32,7 +32,7 @@ public class NewCompanyController {
     //Tonen van het ingevulde formulier op de confirmcompany pagina
     @PostMapping("/nieuw-bedrijf-aanmaken")
     public ModelAndView submitNewCompanyForm(@ModelAttribute CompanyFormBean companyFormBean,
-                                             BindingResult bindingResult) {
+                                             @Valid BindingResult bindingResult) {
         ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()){
             mav.setViewName("newcompany");
