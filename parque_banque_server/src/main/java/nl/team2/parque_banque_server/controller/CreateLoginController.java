@@ -40,7 +40,6 @@ public class CreateLoginController {
             mav.setViewName("createlogin");
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("signupform");
-            // Create customer object and save to the database; redirect user to account view
             if ( signUpFormBean != null ) {
                 Customer customer = SignUpService.createNewCustomer(signUpFormBean, createLoginFormBean);
                 customerService.saveCustomer(customer);
