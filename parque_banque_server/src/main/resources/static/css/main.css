@@ -1,57 +1,133 @@
-main {
-    min-height: 500px;
-}
-
 html{
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Montserrat', sans-serif;
 }
 
-.logolink {
-    width: 80px;
-    height: 45px;
+body {
+    padding: 0;
+    margin: 0;
 }
+
+.page-content {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    color: white;
+}
+
+#logo img{
+    width: 80px; 
+    height:50px;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.logo-link {
+    display: inline-block;
+    position:relative;
+    
+}
+
+.navigation{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navigation ul{
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    list-style-type: none;
+     overflow: hidden;
+    background-color: #37ad49;
+    
+}
+
+li.nav-link {
+    float: right;
+    width: 125px;
+    margin-right: 0.625%;
+    text-align: center;
+    line-height: 3;
+    background:#37ad49;   
+}
+
+li.nav-link a:hover {
+    border-bottom: 2px solid black;
+}
+
+
+main {
+    display: block;
+    min-height: 500px;
+    margin-top: 125px;
+    margin-left:auto;
+
+}
+
+.main-content{
+text-align: center;
+}
+
+.main-content img{
+    width: 100%;
+    max-width: 940px;
+    height: auto;
+}
+
 
 footer {
-    display: block;
-    padding: 5px;
-    margin: 0px;
-    background-color: #242121;
+   display: inline-block;
+  position: fixed;
+  bottom: 10px;
+    width: 100%;
+    background-color: #2e2a2a;
     color: #fff;
 }
 
-.footer.content{
-    display: grid;
-    margin: auto;
-    max-width: 1400px;
+.content-container{
+    margin: 0;
+    font-size: 12px;
 }
 
 .footer-list {
     display: inline-block;
+    margin: 1em;
     list-style-type: none;
 }
 
-.content.footer-address{
+
+a.list-link:hover{
+    text-decoration: underline;
+}
+
+#footer-address{
   display: inline-block;
+    margin-left: 50px;
 
 }
 
-.footer-license{
-    display: inline-block;
-
+#footer-license{
+    display: block;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size:10px;
 }
 
-footer.footer-contact {
-    alignment: right;
+a {
+    outline: none;
+    text-decoration: none;
+    color: white;
 }
 
-a.main-linkbutton:link, a.main-linkbutton:visited {
-    background-color: #f44336;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-    
-    
-}
+
+
+
+
+
 

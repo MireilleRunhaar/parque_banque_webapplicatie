@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Maak account - Parque Banque</title>
+    <link th:href="@{/css/signup.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script>
         function Validate() {
             var password = document.getElementById("password").value;
@@ -14,43 +16,54 @@
             return true;
         }
     </script>
+    <style>
+        input {
+            width: 660px;
+        }
+
+    </style>
+
 </head>
 <body>
-    <h1>Vul gebruikersnaam en wachtwoord in</h1>
+
+    <header class="pbMenu">
+        <nav class="pbMenu-homeNav">
+            <a href="/" class="pbMenu-logoLink"><img th:src="@{logo-small.png}" class="logolink" width="162.8" height="41.6"></a>
+        </nav>
+    </header>
+
+    <h1>Maak een account</h1>
+    <p>Bedenk voor uw account een gebruikersnaam en wachtwoord. Onthoud deze goed.</p>
+    <p>Als u op Klaar klikt, dan kunt u meteen inloggen en bankieren bij Parque Banque!</p>
     <form action="#" th:action="@{/klant-worden}" th:object="${createLoginFormBean}" method="post">
-        <table>
-            <tr>
-                <td> <label for="username">Gebruikersnaam</label></td>
-                <td> <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
-                            title="Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)"
-                            oninvalid="setCustomValidity('Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)')"
-                            oninput="setCustomValidity('')" /> </td>
-                <td th:if="${usernameTaken}" class="error">Deze gebruikersnaam bestaat al. Bedenk een andere.</td>
-            </tr>
-            <tr>
-                <td> <label for="password">Wachtwoord</label></td>
-                <td> <input id="password" type="password" required
-                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%?&]{8,255}$"
-                            th:field="*{password}"
-                            title="Wachtwoord moet minstens 8 tekens lang zijn, en in elk geval een hoofdletter, een kleine letter, een cijfer een een speciaal teken (@$!%?&) bevatten"
-                            oninvalid="setCustomValidity('Wachtwoord moet minstens 8 tekens lang zijn, en in elk ' +
+        <div>
+            <label for="username">Gebruikersnaam</label>
+            <span th:if="${usernameTaken}" class="error" style="float: right">Deze gebruikersnaam bestaat al</span>
+            <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
+                   title="Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)"
+                   oninvalid="setCustomValidity('Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)')"
+                   oninput="setCustomValidity('')" />
+        </div>
+        <div>
+            <label for="password">Wachtwoord</label>
+            <input id="password" type="password" required
+                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%?&]{8,255}$" th:field="*{password}"
+                   title="Wachtwoord moet minstens 8 tekens lang zijn, en in elk geval een hoofdletter, een kleine letter, een cijfer een een speciaal teken (@$!%?&) bevatten"
+                   oninvalid="setCustomValidity('Wachtwoord moet minstens 8 tekens lang zijn, en in elk ' +
                              'geval een hoofdletter, een kleine letter, een cijfer een een speciaal teken (@$!%?&) ' +
                               'bevatten')"
-                            oninput="setCustomValidity('')" /> </td>
-            </tr>
-            <tr>
-                <td> <label for="confirmpassword">Bevestig wachtwoord</label> </td>
-                <td> <input id="confirmpassword" type="password" required /> </td>
-                <td> <span id="passMismatch" class="error" style="display: none">Wachtwoorden zijn niet gelijk!</span></td>
-            </tr>
-            <tr>
-                <td> </td>
-                <td> <button type="submit" name="action" value="finish" onclick="return Validate()">Klaar</button></td>
-            </tr>
-            <tr>
-                <td> <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button> </td>
-            </tr>
-        </table>
+                   oninput="setCustomValidity('')" />
+        </div>
+        <div>
+            <label for="confirmpassword">Bevestig wachtwoord</label>
+            <span id="passMismatch" class="error" style="display: none; float: right">Wachtwoorden zijn niet gelijk</span>
+            <input id="confirmpassword" type="password" required />
+        </div>
+        <div>
+            <button type="submit" name="action" value="finish" onclick="return Validate()" style="float: right">Klaar</button>
+            <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button>
+        </div>
+
     </form>
 </body>
 </html>
