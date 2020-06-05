@@ -61,7 +61,10 @@
 </head>
 <body>
     <div class="hoofd-div">
-    <h1> Gefeliciteerd! U heeft een nieuwe rekening geopend!</h1>
+    <h1> Gefeliciteerd! U heeft een nieuwe rekening geopend voor
+        <span th:if="${businessAccount}" class="businessClass" th:text="${name}"/>
+        <span th:if="${privateAccount}" class="privateClass" th:text="${name}"/>
+    </h1>
     </div>
     
     <div class="sub-div">
