@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.utilities;
 
 import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.model.Transaction;
+import nl.team2.parque_banque_server.service.PaymentAccountService;
 
 import javax.validation.constraints.*;
 
@@ -28,13 +29,14 @@ public class TransactionFormBean {
 
     @NotBlank
     @Pattern(regexp = "NL\\d{2}PARQ0\\d{9}")
-    private PaymentAccount creditAccount;
+    private String ibanCreditAccount;
 
     public TransactionFormBean() { }
 
     public Transaction createTransaction(){
+        PaymentAccountService paymentAccountService= new PaymentAccountService();
         long amountCent = getTotalAmountInCents(amount, cents);
-       return new Transaction(amountCent, description, null, creditAccount, null);
+       return new Transaction(amountCent, description, null, paymentAccountService.findOneByIban(ibanCreditAccount), null);
     }
 
     public long getTotalAmountInCents(int amount, int cents){
@@ -71,11 +73,11 @@ public class TransactionFormBean {
         this.description = description;
     }
 
-    public PaymentAccount getCreditAccount() {
-        return creditAccount;
+    public String getIbanCreditAccount() {
+        return ibanCreditAccount;
     }
 
-    public void setCreditAccount(PaymentAccount creditAccount) {
-        this.creditAccount = creditAccount;
+    public void setIbanCreditAccount(String ibanCreditAccount) {
+        this.ibanCreditAccount = ibanCreditAccount;
     }
 }

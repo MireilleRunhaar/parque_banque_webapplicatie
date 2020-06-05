@@ -1,6 +1,8 @@
 package nl.team2.parque_banque_server.controller;
 
+import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.model.Transaction;
+import nl.team2.parque_banque_server.service.PaymentAccountService;
 import nl.team2.parque_banque_server.service.TransactionService;
 import nl.team2.parque_banque_server.utilities.TransactionFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,30 +21,34 @@ public class NewTransactionController {
 
     @Autowired
     TransactionService transactionService;
+    @Autowired
+    PaymentAccountService paymentAccountService;
 
     @GetMapping("/overboeken")
     public String newTransactionHandler(Model model){
+        model.addAttribute("ibanDebitAccount", "NL10PARQ0100000001");
         model.addAttribute("transactionFormBean", new TransactionFormBean());
         return "newtransaction";
     }
 
+    // TODO: 05/06/2020 validaties tonen op scherm
     @PostMapping(value= "/overboeken", params= "action:next")
     public String transactionHandler(@ModelAttribute @Valid TransactionFormBean transactionFormBean,
                                      BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-            // TODO: 05/06/2020 Hier is het mooier als je dan een volledig ingevuld en aanpasbaar formulier krijgt
-            return "newtransaction";
-        } else if(!transactionService.validateIBANExcists()){
-            // TODO: 05/06/2020 Regel op pagina dat IBAN niet bekend is
-            return "newtransaction";
-        } else if (!transactionService.validateSufficientFunds()){
-            // TODO: 05/06/2020 Regel op pagina dat saldo onvoldoende is
             return "newtransaction";
         } else{
-            Transaction transaction = transactionFormBean.createTransaction();
-           model.addAttribute("transactionInput",transaction);
+            PaymentAccount creditAccount = paymentAccountService.findOneByIban(transactionFormBean.getIbanCreditAccount());
+            PaymentAccount debitAccount = paymentAccountService.findOneByIban((String)model.getAttribute("ibanDebitAccount"));
+            if(creditAccount == null){
+                model.addAttribute("invalidCreditAccount", true);
+                return "newtransaction";
+            } else if(!debitAccount.validateSufficientBalance(transactionFormBean.getAmount())){
+                model.addAttribute("unsufficientBalance", true);
+                return "newtransaction";
+            }
+            model.addAttribute("transactionInput",transactionFormBean);
             return "confirmtransaction";
         }
     }
-
 }

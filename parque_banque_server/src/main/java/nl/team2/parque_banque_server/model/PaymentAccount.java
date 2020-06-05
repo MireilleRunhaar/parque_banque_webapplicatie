@@ -28,6 +28,10 @@ public abstract class PaymentAccount {
 
     }
 
+    public boolean validateSufficientBalance(long transactionAmount){
+        return balanceCent >= transactionAmount;
+    }
+
     public void addCustomerToAccountHolder(Customer customer){
         accountHolders.add(customer);
     }

@@ -1,17 +1,21 @@
 package nl.team2.parque_banque_server.service;
 
 
+import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.PaymentAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.PrivateAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.NumberFormat;
+import java.util.Optional;
 
 
 @Service
 public class PaymentAccountService {
 
+    @Autowired
+    PaymentAccountRepository paymentAccountRepo;
 
 
     public PaymentAccountService() {
@@ -25,6 +29,11 @@ public class PaymentAccountService {
     public String balanceInEuros(long balanceCents){
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
         return numberFormat.format(balanceCents / 100.00);
+    }
+
+    public PaymentAccount findOneByIban(String iban){
+       Optional<PaymentAccount> optional= paymentAccountRepo.findById(iban);
+       return optional.orElse(null);
     }
 
 
