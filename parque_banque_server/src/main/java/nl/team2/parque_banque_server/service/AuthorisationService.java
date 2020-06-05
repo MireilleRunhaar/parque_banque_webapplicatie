@@ -17,7 +17,7 @@ public class AuthorisationService {
         authorisationRepository.save(authorisation);
     }
 
-    public List<Authorisation> findByUserName(String username) {
-        return authorisationRepository.findByUserName(username);
+    public List<Authorisation> findAllByUserName(String username) {
+        return authorisationRepository.findAllByUserName(username);
     }
 }

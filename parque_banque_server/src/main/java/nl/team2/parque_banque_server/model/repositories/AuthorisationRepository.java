@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface AuthorisationRepository extends CrudRepository<Authorisation, Integer> {
 
-    List<Authorisation> findByUserName(String userName);
+    List<Authorisation> findAllByUserName(String userName);
 
 }

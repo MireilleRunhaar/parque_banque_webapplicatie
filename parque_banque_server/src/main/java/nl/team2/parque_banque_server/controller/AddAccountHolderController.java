@@ -32,6 +32,7 @@ public class AddAccountHolderController {
         mav.addObject(new AddAccountHolderFormBean());
 //        if (model.containsAttribute("customerId")) {
 //            mav.setViewName("addaccountholder/addaccountholder");
+//            mav.addObject(new AddAccountHolderFormBean());
 //        } else {
 //            mav.setViewName("redirect:/inloggen");
 //        }
