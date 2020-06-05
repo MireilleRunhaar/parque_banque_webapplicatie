@@ -25,20 +25,13 @@ public class BusinessAccountService {
      * @author Lisa Kemeling
      */
     public Set<Company> getCompaniesFromCustomer(Customer customer){
-        ArrayList<Customer> accountholders = new ArrayList<>();
-        accountholders.add(customer);
-        List<BusinessAccount> businessAccounts =findBusinessAccountsByCustomer(accountholders);
+        List<BusinessAccount> businessAccounts =getBusinessAccountsByCustomer(customer);
         Set<Company> companies = new HashSet<>();
         for (BusinessAccount businessAccount :
                 businessAccounts) {
             companies.add(businessAccount.getCompany());
         }
         return companies;
-    }
-
-    //helps finding companies
-    public List<BusinessAccount> findBusinessAccountsByCustomer(ArrayList<Customer> accountholders){
-        return businessAccountRepo.findBusinessAccountsByAccountHoldersIn(accountholders);
     }
 
     /** find all business accounts from user in db
@@ -48,8 +41,7 @@ public class BusinessAccountService {
     public List<BusinessAccount> getBusinessAccountsByCustomer(Customer customer){
         ArrayList<Customer> accountholders = new ArrayList<>();
         accountholders.add(customer);
-        List<BusinessAccount> businessAccounts = findBusinessAccountsByCustomer(accountholders);
-        return businessAccounts;
+        return businessAccountRepo.findBusinessAccountsByAccountHoldersIn(accountholders);
     }
 
     public void saveBusinessAccount(BusinessAccount businessAccount){

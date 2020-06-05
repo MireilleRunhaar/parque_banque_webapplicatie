@@ -83,22 +83,22 @@ public class Customer extends User {
         this.paymentAccounts = paymentAccounts;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Customer{" +
-//                "bsn='" + bsn + '\'' +
-//                ", userName='" + userName + '\'' +
-//                ", password='" + password + '\'' +
-//                ", paymentAccounts=" + paymentAccounts +
-//                ", id=" + id +
-//                ", surName='" + surName + '\'' +
-//                ", firstName='" + firstName + '\'' +
-//                ", affix='" + affix + '\'' +
-//                ", phoneNumber='" + phoneNumber + '\'' +
-//                ", eMailAddress='" + eMailAddress + '\'' +
-//                ", address=" + address +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "bsn='" + bsn + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", paymentAccounts=" + paymentAccounts +
+                ", id=" + id +
+                ", surName='" + surName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", affix='" + affix + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", eMailAddress='" + eMailAddress + '\'' +
+                ", address=" + address +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {

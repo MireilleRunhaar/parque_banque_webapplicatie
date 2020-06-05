@@ -16,25 +16,22 @@ public class PrivateAccountService {
     @Autowired
     private PrivateAccountRepository privateAccountRepository;
 
-    /**find all private accounts from user in database
+    /**
+     * find all private accounts from user in database
+     *
      * @param customer, the logged in user
      * @return list of privateaccounts
      */
 
-    public List<PrivateAccount> getPrivateAccountsByCustomer(Customer customer){
+    public List<PrivateAccount> getPrivateAccountsByCustomer(Customer customer) {
         ArrayList<Customer> accountholders = new ArrayList<>();
         accountholders.add(customer);
-        List<PrivateAccount> privateAccounts = findPrivateAccountsByCustomer(accountholders);
-        return privateAccounts;
-    }
-
-    public List <PrivateAccount> findPrivateAccountsByCustomer(ArrayList<Customer> accountholders){
         return privateAccountRepository.findPrivateAccountsByAccountHoldersIn(accountholders);
     }
 
-    public void savePrivateAccount(PrivateAccount privateAccount){
+    public void savePrivateAccount(PrivateAccount privateAccount) {
         privateAccountRepository.save(privateAccount);
     }
 
 
-  }
+}
