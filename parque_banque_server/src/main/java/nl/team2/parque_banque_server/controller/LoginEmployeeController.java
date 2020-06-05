@@ -28,8 +28,8 @@ public class LoginEmployeeController {
     @GetMapping("/personeel")
     public String loginHandler(@ModelAttribute LoginEmployeeFormBean loginEmployeeFormBean,
                                Model model) {
-        if (model.containsAttribute("employeeId") && loginEmployeeFormBean == null
-                || model.getAttribute("employeeId") != null) {
+        // Checks if there isn't already a valid active employeeId in the application
+        if (model.getAttribute("employeeId") != null) {
             return "redirect:/personeel-home";
         } else {
             model.addAttribute("employeeId", loginEmployeeFormBean);
@@ -41,6 +41,7 @@ public class LoginEmployeeController {
     public String employeeLoginFormHandler(@Valid LoginEmployeeFormBean loginEmployeeFormBean,
                                            BindingResult bindingResult,
                                            Model model) {
+        // Checks the bean validation of the input and if the login is valid
         if (bindingResult.hasErrors() || !loginService.employeeLoginValidation(loginEmployeeFormBean)) {
             model.addAttribute("invalidCredentials", true);
             return "loginemployee";
