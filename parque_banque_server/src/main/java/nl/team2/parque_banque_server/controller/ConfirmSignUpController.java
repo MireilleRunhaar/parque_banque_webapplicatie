@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes("signupform")
+@SessionAttributes("form")
 public class ConfirmSignUpController {
 
     public ConfirmSignUpController() {
@@ -33,7 +33,7 @@ public class ConfirmSignUpController {
         ModelAndView mav = new ModelAndView();
 
         mav.setViewName("signup");
-        mav.addObject("signupform", signUpFormBean);
+        mav.addObject("form", signUpFormBean);
 
         return mav;
     }

@@ -3,104 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>nieuwe particuliere rekening openen</title>
-    <style>
-
-        .hoofd-div{
-
-            padding-top: 5%;
-            padding-left: 20%;
-            margin-top: 3%;
-            margin-left: -8%;
-            margin-right: -8%;
-            background-color:#37AD49; 
-            font-family:sans-serif; 
-            margin-bottom: 10%;
-         
-        }
-        .sub-div{
-
-            padding-left: 20%;
-            font-family: sans-serif;
-           margin-top: -5%;
-            margin-left: -8%;
-            margin-right: 55%;
-        }
-        
-        
-        .tekst-div{
-
-            padding-left: 20%;
-            font-family: sans-serif;
-           margin-top: 2%;
-            margin-left: -8%;
-            margin-right: 65%;
-        }
-        .knop-div{
-
-           
-            margin-top:   10%;
-            padding-left: 20%;
-             margin-left: -8%;
-            margin-right: -8%;
-            
-       
-                  
-        }
-        
-   
-    #bevestigen{
-            padding: 20px 40px;
-            color: #fff; 
-            border-radius: 25px;
-            background-color: #37AD49;
-            border: 2px solid #37AD49;
-            border-color: #37AD49;
-            cursor: pointer;
-     
-     
-        }
-    #terug{
-            padding: 20px 40px;
-            color: #fff;
-            border-radius: 25px;
-            background-color: #37AD49;
-            border: 2px solid #37AD49;
-            border-color: #37AD49;
-            cursor: pointer;
-            margin-left: 10px;
-            
-     
-        }
-    
-    
-    </style>
 </head>
-    
 <body>
-<div class="hoofd-div">
 <h1>Nieuwe Particuliere Rekening Openen</h1>
-</div>
-    
-<div class="sub-div">
-<h3>Druk op bevestigen om een nieuwe rekening te openen of druk op terug om naar de vorige pagina te gaan.
-</h3>
-</div>
+<h2>Weet u het zeker?</h2>
+        <form action="/particuliere-rekening-openen" method="post" th:object="${privateAccount}">
+<!--    <form th:action="@{}" method="post" th:object="${}">-->
+        <input type="submit" name="submitbutton" value="bevestigen">
 
-<div class="tekst-div">
-<h4>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-</h4>
-</div>
-    
-<div class="knop-div">    
-<form action="/particuliere-rekening-openen" method="post" th:object="${privateAccount}" >
-
-    
-<input type="submit" name="submitbutton" value="Bevestigen" id="bevestigen">
-    
-<input type="submit" name="action" value="Terug" id="terug">
-
-</form>
-</div>
- 
+    </form>
 </body>
 </html>

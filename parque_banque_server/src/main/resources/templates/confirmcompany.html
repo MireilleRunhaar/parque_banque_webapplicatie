@@ -28,7 +28,7 @@
         </style>
 </head>
 <body>
-<a href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80px" height="45px"></a>
+<img src="../static/logo-small.png"/>
 <h1>Klopt het allemaal? Controleer de bedrijfsgegevens</h1>
 
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
@@ -40,7 +40,7 @@
     <label for="bedrijfsNaam">Bedrijfsnaam</label>
     <input id="bedrijfsNaam" type="text" readonly th:field="${companyFormBean.name}"/><br>
     <label for="sector">Sector</label>
-    <input id="sector" type="text" readonly th:field="${companyFormBean.sectorName}"/><br><br>
+    <input id="sector" type="text" readonly th:field="${companyFormBean.sectorName}"/><br><br> <!--Todo: display sectornaam-->
 </div>
 
 <button type="submit" name="action" value="rekeningOpenen"> Rekening openen</button>

@@ -20,7 +20,6 @@ public class SignUpService {
     private final static String NONCAP_EN = "en";
     private final static String NONCAP_IN = "in";
     private final static String NONCAP_TOT = "tot";
-    private final static String NONCAP_DES = "des";
 
     private final static int ELF_PROEF_STARTING_FACTOR = 9;
     private final static int BSN_LENGTH = 9;
@@ -59,8 +58,7 @@ public class SignUpService {
                     !stringParts.get(index).equalsIgnoreCase(NONCAP_DER) &&
                     !stringParts.get(index).equalsIgnoreCase(NONCAP_EN) &&
                     !stringParts.get(index).equalsIgnoreCase(NONCAP_IN) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_TOT) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_DES)) {
+                    !stringParts.get(index).equalsIgnoreCase(NONCAP_TOT)) {
                 streetCaps = StringUtils.capitalize(stringParts.remove(index));
                 stringParts.add(index, streetCaps);
             }
@@ -79,8 +77,7 @@ public class SignUpService {
                     !nameParts.get(index).startsWith(NONCAP_DER + " ") &&
                     !nameParts.get(index).startsWith(NONCAP_EN + " ") &&
                     !nameParts.get(index).startsWith(NONCAP_IN + " ") &&
-                    !nameParts.get(index).startsWith(NONCAP_TOT + " ") &&
-                    !nameParts.get(index).startsWith(NONCAP_DES + " ")) {
+                    !nameParts.get(index).startsWith(NONCAP_TOT + " ")) {
                 nameCaps = StringUtils.capitalize(nameParts.remove(index));
                 nameParts.add(index, nameCaps);
             }

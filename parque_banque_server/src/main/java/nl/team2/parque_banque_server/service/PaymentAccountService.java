@@ -23,8 +23,8 @@ public class PaymentAccountService {
      * @return String of euro sign and amount in euro's
      */
     public String balanceInEuros(long balanceCents){
-        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
-        return numberFormat.format(balanceCents / 100.00);
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        return format.format(balanceCents / 100.00);
     }
 
 

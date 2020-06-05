@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("signupform")
+@SessionAttributes("form")
 public class CreateLoginController {
 
     private final CustomerService customerService;
@@ -39,15 +39,13 @@ public class CreateLoginController {
             mav.addObject("usernameTaken", true);
             mav.setViewName("createlogin");
         } else {
-            SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("signupform");
+            SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("form");
+            // TODO: throw catch block with error page?
+            assert signUpFormBean != null;
             // Create customer object and save to the database; redirect user to account view
-            if ( signUpFormBean != null ) {
-                Customer customer = SignUpService.createNewCustomer(signUpFormBean, createLoginFormBean);
-                customerService.saveCustomer(customer);
-                mav.setViewName("redirect:/inloggen");
-            } else {
-                mav.setViewName("error");
-            }
+            Customer customer = SignUpService.createNewCustomer(signUpFormBean, createLoginFormBean);
+            customerService.saveCustomer(customer);
+            mav.setViewName("redirect:/inloggen");
         }
 
         return mav;
