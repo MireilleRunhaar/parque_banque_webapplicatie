@@ -41,28 +41,27 @@ public class ConfirmCompanyController {
         ModelAndView mav = new ModelAndView("confirmnewaccount");
         Company company = companyService.createCompanyOutOfBean(companyFormBean);
         companyService.saveCompany(company);
-
         //make businessaccount
         BusinessAccount businessAccount =
                 new BusinessAccount(ibanService.createNewIban(),
                         START_BALANCE, employeeService.findOneByRoleName("Accountmanager"),company);
-
         //make current customer accountholder
         businessAccount.addCustomerToAccountHolder(customerService.findCustomerBySAId(model.getAttribute("customerId")));
-
         //save business account
         bas.saveBusinessAccount(businessAccount);
-
         model.addAttribute("iban", businessAccount.getIban());
         model.addAttribute("balanceCent", pas.balanceInEuros(businessAccount.getBalance()));
-
+        model.addAttribute("name", companyFormBean.getName());
+        model.addAttribute("businessAccount", true);
         return mav;
     }
 
     //Klant ziet fout en kan bedrijfsgegevens aanpassen
     @PostMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=wijzigBedrijfsinformatie")
     public ModelAndView editNewCompanyHandler(@ModelAttribute CompanyFormBean companyFormBean) {
-        ModelAndView mav = new ModelAndView("newcompany");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("newcompany");
+        mav.addObject("CompanyFormBean", companyFormBean);
         return mav;
     }
 

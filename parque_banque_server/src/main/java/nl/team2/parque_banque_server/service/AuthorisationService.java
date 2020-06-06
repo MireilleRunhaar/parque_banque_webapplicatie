@@ -13,7 +13,11 @@ public class AuthorisationService {
     @Autowired
     private AuthorisationRepository authorisationRepository;
 
-    List<Authorisation> findByUserName(String username) {
-        return authorisationRepository.findByUserName(username);
+    public void saveAuthorisation(Authorisation authorisation) {
+        authorisationRepository.save(authorisation);
+    }
+
+    public List<Authorisation> findAllByUserName(String username) {
+        return authorisationRepository.findAllByUserName(username);
     }
 }

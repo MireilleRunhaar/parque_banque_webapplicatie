@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Rekeninghouder toevoegen | Parque Banque</title>
+    <style>
+        span {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>bevestigingspagina voor toevoegen rekeninghouder</h1>
+    <h1>Gelukt!</h1>
+    <p>De klant met de gebruikersnaam <span th:text="${authorisation.userName}">[username]</span> kan
+        aan rekening <span th:text="${authorisation.iban}">[iban]</span> worden toegevoegd.</p>
+    <p>Geef de code <span th:text="${authorisation.securityCode}">[code]</span> aan deze klant.
+        Hij/zij heeft deze code nodig om gekoppeld te worden aan deze rekening.</p>
+<!--  TODO: redirect to page of paymentaccount  -->
+    <a href="/rekening-overzicht"><button>OK</button></a>
 </body>
 </html>
