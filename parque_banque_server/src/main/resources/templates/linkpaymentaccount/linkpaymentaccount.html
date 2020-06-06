@@ -8,9 +8,12 @@
 </head>
 <body>
 <h1>Vul hier het rekeningnummer en de code in die u heeft gekregen van de rekeninghouder.</h1>
-<form action="#" th:action="@{/rekening-overzicht}" th:object="${rekening-overzicht}" method="post">
-    <p>Rekeningnummer: <input type="text" th:field=*{iban}"/></p>
-    <p>Beveiligingscode: <input type="text" th:field=*{securityCode}"/></p>
+<form th:action="@{/rekening-overzicht}" th:object="${linkAccountFormBean}" method="post">
+    <label for="iban">Rekeningnummer:</label>
+    <input type="text" id="iban" name="iban" autofocus="autofocus"/></form>
+<br/>
+    <label for="safetycode">Beveiligingcode:</label>
+    <input type="text" id="safetycode" name="safetycode" autofocus="autofocus"/>
     <p><input type="submit" value="OK"/></p>
 </form>
 </body>

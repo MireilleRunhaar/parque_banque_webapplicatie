@@ -11,4 +11,7 @@ public interface AuthorisationRepository extends CrudRepository<Authorisation, I
 
     List<Authorisation> findAllByUserName(String userName);
 
+    //get the authorisation for customer2 by iban
+    Authorisation findAuthorisationByIban(String iban);
+
 }

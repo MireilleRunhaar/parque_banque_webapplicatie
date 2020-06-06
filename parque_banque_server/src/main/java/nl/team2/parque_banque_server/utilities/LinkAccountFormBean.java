@@ -2,14 +2,17 @@ package nl.team2.parque_banque_server.utilities;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class LinkAccountFormBean {
 
    @NotBlank
    private String iban;
 
+
    @NotBlank
-    private String safetycode;
+   @Pattern(regexp = "[0-9]{5}")
+   private String securityCode;
 
    public LinkAccountFormBean(){super();}
 
@@ -21,11 +24,12 @@ public class LinkAccountFormBean {
         this.iban = iban;
     }
 
-    public String getSafetycode() {
-        return safetycode;
+
+    public String getSecurityCode() {
+        return securityCode;
     }
 
-    public void setSafetycode(String safetycode) {
-        this.safetycode = safetycode;
+    public void setSecurityCode(String securityCode) {
+        this.securityCode = securityCode;
     }
 }
