@@ -4,6 +4,7 @@ import nl.team2.parque_banque_server.model.Address;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.utilities.CreateLoginFormBean;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -13,6 +14,9 @@ import java.util.List;
 
 @Service
 public class SignUpService {
+
+    @Autowired
+    private CustomerService customerService;
 
     private final static String NONCAP_DE = "de";
     private final static String NONCAP_DER = "der";
@@ -88,7 +92,7 @@ public class SignUpService {
         return String.join("-", nameParts);
     }
 
-    public static Customer createNewCustomer(SignUpFormBean signUpFormBean, CreateLoginFormBean createLoginFormBean) {
+    public void saveNewCustomer(SignUpFormBean signUpFormBean, CreateLoginFormBean createLoginFormBean) {
         Address address = new Address(signUpFormBean.getStreet(), signUpFormBean.getNumber(),
                 signUpFormBean.getAddition(), signUpFormBean.getZipcode(),
                 signUpFormBean.getCity());
@@ -99,7 +103,7 @@ public class SignUpService {
         customer.setUserName(createLoginFormBean.getUsername());
         customer.setPassword(createLoginFormBean.getPassword());
 
-        return customer;
+        customerService.saveCustomer(customer);
     }
 
     // Tests whether a bsn passes the 'elfproef' test. The result of the calculation:
@@ -120,6 +124,10 @@ public class SignUpService {
         }
 
         return calculation % ELFPROEF_DIVISOR == 0 && calculation != 0;
+    }
+
+    public boolean isUserNameTaken(String username) {
+        return customerService.findByUserName(username) != null;
     }
 
 }
