@@ -15,22 +15,20 @@ import java.util.List;
 @Service
 public class SignUpService {
 
-    @Autowired
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
-    private final static String NONCAP_DE = "de";
-    private final static String NONCAP_DER = "der";
-    private final static String NONCAP_VAN = "van";
-    private final static String NONCAP_EN = "en";
-    private final static String NONCAP_IN = "in";
-    private final static String NONCAP_TOT = "tot";
-    private final static String NONCAP_DES = "des";
+    private static final List<String> NONCAP_STRINGS = Arrays.asList("de", "der", "van", "en", "in", "tot", "des");
 
     private final static int ELF_PROEF_STARTING_FACTOR = 9;
     private final static int BSN_LENGTH = 9;
     private final static int ELFPROEF_DIVISOR = 11;
 
-    public static SignUpFormBean formatFormInput(SignUpFormBean signUpFormBean) {
+    @Autowired
+    public SignUpService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    public SignUpFormBean formatFormInput(SignUpFormBean signUpFormBean) {
         // Split the Strings of name, street and city, and capitalize all relevant parts
         String firstNameCaps = capitalizeStrings(signUpFormBean.getFirstName());
         signUpFormBean.setFirstName(firstNameCaps);
@@ -58,13 +56,7 @@ public class SignUpService {
         String streetCaps = StringUtils.capitalize(stringParts.remove(0));
         stringParts.add(0, streetCaps);
         for (int index = 1; index < stringParts.size(); index++) {
-            if (!stringParts.get(index).equalsIgnoreCase(NONCAP_VAN) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_DE) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_DER) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_EN) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_IN) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_TOT) &&
-                    !stringParts.get(index).equalsIgnoreCase(NONCAP_DES)) {
+            if (!NONCAP_STRINGS.contains(stringParts.get(index))) {
                 streetCaps = StringUtils.capitalize(stringParts.remove(index));
                 stringParts.add(index, streetCaps);
             }
@@ -78,13 +70,9 @@ public class SignUpService {
         String nameCaps = StringUtils.capitalize(nameParts.remove(0));
         nameParts.add(0, nameCaps);
         for (int index = 0; index < nameParts.size(); index++) {
-            if (!nameParts.get(index).startsWith(NONCAP_VAN + " ") &&
-                    !nameParts.get(index).startsWith(NONCAP_DE + " ") &&
-                    !nameParts.get(index).startsWith(NONCAP_DER + " ") &&
-                    !nameParts.get(index).startsWith(NONCAP_EN + " ") &&
-                    !nameParts.get(index).startsWith(NONCAP_IN + " ") &&
-                    !nameParts.get(index).startsWith(NONCAP_TOT + " ") &&
-                    !nameParts.get(index).startsWith(NONCAP_DES + " ")) {
+            // Only capitalize the first word after a dash if it is not an excepted String
+            String[] splitBySpace = nameParts.get(index).split("\\s");
+            if (!NONCAP_STRINGS.contains(splitBySpace[0])) {
                 nameCaps = StringUtils.capitalize(nameParts.remove(index));
                 nameParts.add(index, nameCaps);
             }
@@ -109,7 +97,7 @@ public class SignUpService {
     // Tests whether a bsn passes the 'elfproef' test. The result of the calculation:
     // (9 × A) + (8 × B) + (7 × C) + (6 × D) + (5 × E) + (4 × F) + (3 × G) + (2 × H) + (-1 × I)
     // should be divisible by 11.
-    public static boolean passesElfproef(String bsn) {
+    public boolean passesElfproef(String bsn) {
         if (bsn.length() != BSN_LENGTH) return false;
 
         int calculation = 0;
@@ -130,4 +118,7 @@ public class SignUpService {
         return customerService.findByUserName(username) != null;
     }
 
+    public CustomerService getCustomerService() {
+        return customerService;
+    }
 }

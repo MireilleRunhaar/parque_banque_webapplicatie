@@ -18,8 +18,12 @@ import javax.validation.Valid;
 @SessionAttributes("signupform")
 public class CreateLoginController {
 
+    private final SignUpService signUpService;
+
     @Autowired
-    private SignUpService signUpService;
+    public CreateLoginController(SignUpService signUpService) {
+        this.signUpService = signUpService;
+    }
 
 
     // If user finishes signup, create user object, save to database and send user to login
