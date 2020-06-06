@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Bevestig uw gegevens - Parque Banque</title>
     <link th:href="@{/css/signup.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <style>
         div > div {
@@ -19,11 +20,15 @@
 </head>
 <body>
 
-    <header class="pbMenu">
-        <nav class="pbMenu-homeNav">
-            <a href="/" class="pbMenu-logoLink"><img th:src="@{logo-small.png}" class="logolink" width="162.8" height="41.6"></a>
-        </nav>
-    </header>
+    <nav class="navigation">
+        <ul>
+            <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+            <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
+            <li class="nav-link"><a  href="/contact">Contact</a></li>
+            <li class="nav-link"><a  href="/">Home</a></li>
+        </ul>
+    </nav>
+    <div class="navPadding"> </div>
 
     <h1>Bevestig uw gegevens</h1>
     <p style="margin-bottom: 5px;">Controleer uw gegevens zorgvuldig. Klik op Wijzig gegevens als u iets wilt veranderen.</p>

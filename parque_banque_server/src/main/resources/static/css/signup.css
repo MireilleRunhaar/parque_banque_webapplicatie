@@ -65,3 +65,7 @@ input {
 .error {
     color: red;
 }
+
+.navPadding {
+    height: 50px;
+}
