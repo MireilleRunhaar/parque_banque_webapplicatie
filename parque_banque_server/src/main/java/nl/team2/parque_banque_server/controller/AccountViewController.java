@@ -56,7 +56,7 @@ public class AccountViewController {
     //request for connectaccount
     @GetMapping("/rekening-overzicht/connectaccount")
     public ModelAndView connectaccountHandler(){
-    ModelAndView mav = new ModelAndView("connectaccount");
+    ModelAndView mav = new ModelAndView("linkpaymentaccount");
     return mav;
     }
 
