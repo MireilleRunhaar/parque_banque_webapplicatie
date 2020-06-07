@@ -1,7 +1,12 @@
 package nl.team2.parque_banque_server.controller;
 
+import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Customer;
+import nl.team2.parque_banque_server.model.PrivateAccount;
+import nl.team2.parque_banque_server.service.BusinessAccountService;
 import nl.team2.parque_banque_server.service.CustomerService;
+import nl.team2.parque_banque_server.service.PaymentAccountService;
+import nl.team2.parque_banque_server.service.PrivateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +15,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @SessionAttributes("customerId")
 public class AccountViewController {
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private PrivateAccountService privateAccountService;
+    @Autowired
+    private BusinessAccountService businessAccountService;
+    @Autowired
+    private PaymentAccountService paymentAccountService;
 
 
 //in de getmapping
@@ -27,13 +40,23 @@ public class AccountViewController {
         }
         else {
             //Get the customer from the customerId
-            Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
+            /** Zoek de privateaccounts op op basis van de customerList
+             *
+             */
+            Customer customer = customerService.findCustomerBySAId (model.getAttribute("customerId"));
+            List <PrivateAccount> privateAccountList = privateAccountService.getPrivateAccountsByCustomer(customer);
+            List<BusinessAccount> businessAccountList=businessAccountService.getBusinessAccountsByCustomer(customer);
             model.addAttribute("customer", customer);
-            model.addAttribute("paymentAccounts", customer.getPaymentAccounts());
+            model.addAttribute("firstName", customer.getFirstName());
+            model.addAttribute("affix", customer.getAffix());
+            model.addAttribute("surName", customer.getSurName());
+            model.addAttribute("privateaccounts", privateAccountList);
+            model.addAttribute("businessaccounts", businessAccountList);
             return "accountview";
         }
 
     }
+
 //request for opening account from accountview.html
     @GetMapping("/rekening-overzicht/rekening-openen")
     public ModelAndView newPaymentAccountHandler(){

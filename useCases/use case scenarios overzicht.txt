@@ -1,0 +1,283 @@
+USE CASE SCENARIO'S
+
+KLANT WORDEN
+Use Case: Klant worden
+Primary Actor: Bezoeker van de website
+Preconditions: Bezoeker heeft BSN; bezoeker heeft postadres in Nederland.
+Success Guarantee: Bezoeker is opgeslagen als klant van Parque Banque, 
+		met klantgegevens: gebruikersnaam en wachtwoord.
+Main Success Scenario:
+1. Bezoeker bezoekt de site.
+2. Systeem stuurt de data van de startpagina van Parque Banque.
+3. Bezoeker klikt op knop om klant te worden.
+4. Systeem stuurt de data van de pagina met het formulier om klant te worden.
+5. Bezoeker vult het formulier in: geeft BSN en NAW-gegevens op, bedenkt een gebruikersnaam
+	 en wachtwoord, geeft aan of deze ook een rekening wil openen. Bezoeker verstuurt formulier.
+6. Systeem slaat bezoeker op als nieuwe klant.
+7. Als bezoeker aangegeven heeft dat deze ook een rekening bij de bank wil openen, dan gaat 
+	systeem door naar de use case ‘Rekening openen’. Anders stuurt het systeem de data 
+	voor het scherm rekeningoverzicht, dat getoond wordt.
+
+Extensions:
+    5a. BSN is in fout format (niet enkel cijfers, verkeerde lengte).
+	Systeem geeft foutmelding.
+    5b. Postcode is in fout format (te weinig cijfers & letters).
+	Systeem geeft foutmelding.
+    5c. Naam en adres voldoen niet aan eisen (enkel letters).
+	Systeem geeft foutmelding.
+    5d. Gebruikersnaam bestaat al.
+	Systeem geeft foutmelding.
+    5e. Wachtwoord voldoet niet aan eisen (lengte, alfanumeriek, speciale tekens).
+	Systeem geeft foutmelding.
+    5f. Een verplicht invulveld is leeg.
+	Systeem geeft foutmelding.
+    6a. Er is al een klant met het opgegeven BSN.
+	Systeem geeft melding: er is iets mis gegaan, neem contact op met de bank.
+
+
+REKENING OPENEN PARTICULIER
+Use case: Particuliere rekening openen
+References user story: Rekening openen
+Primary actor: Klant
+Secondary actor: Bank
+Preconditions: Klant is ingelogd
+Success guarantee: Particuliere rekening is geopend en vastgelegd bij de bank
+Main success scenario:
+1. Klant kiest voor rekening openen
+2. Klant kiest voor particuliere rekening
+3. Klant bevestigt dat hij/zij dit type rekening wil openen
+4. Bank maakt IBAN aan met tenaamstelling particulier
+5. Bank neemt rekeninggegevens op in de administratie
+6. Klant krijgt bevestiging en felicitatie dat rekening is aangemaakt
+7. Klant ziet rekening in zijn/haar rekeningoverzicht
+
+Extensions:
+    1a. Klant kiest voor particuliere rekening openen, maar vergist zich, terug naar 
+	rekeningoverzicht of welkom scherm. 
+    2a. Klant kiest voor particuliere rekening openen, maar wil een zakelijke rekening openen. 
+	Terug naar rekeningoverzicht of welkom scherm.
+    4 + 5 Er kan geen verbinding worden gemaakt met de database. Klant krijgt melding dat
+	openen rekening niet gelukt is, probeer het later nog eens of neem contact op met de bank.
+
+
+REKENING OPENEN ZAKELIJK
+Use case: Zakelijke rekening openen
+References user story: Rekening openen
+Primary actor: Klant
+Secondary actor: Bank
+Preconditions: Klant is ingelogd
+Success guarantee: Zakelijke rekening is geopend en vastgelegd bij de bank
+Main success scenario:
+1. Klant kiest voor rekening openen
+2. Klant kiest voor zakelijke rekening
+3. Klant krijgt overzicht van eventueel bestaande bedrijven op zijn/haar naam. Kiest
+	 voor nieuw bedrijf of rekening voor bestaand bedrijf. 
+4. Klant bevestigt dat hij/zij dit type rekening wil openen
+5a. Als nieuw bedrijf: 
+	- Klant vult gegevens over het bedrijf aan: KvK en naam bedrijf
+	- Bank checkt of bedrijf al bekend is op basis van KVK en naam
+5b. Als bekend klant bevestigt openen rekening
+	- Klant kiest een sector en voert BTW in
+	- Bank neemt bedrijf op in database
+6. Bank maakt IBAN aan met tenaamstelling bedrijf + naam beheerder
+7. Bank neemt rekeninggegevens op in de administratie
+8. Klant krijgt bevestiging en felicitatie dat zakelijke rekening is aangemaakt
+9. Klant ziet rekening in zijn/haar rekeningoverzicht
+
+Extensions:
+    1a. Klant kiest voor zakelijke rekening openen, maar vergist zich, terug naar rekeningoverzicht 
+	of welkom scherm. 
+    2a. Klant kiest voor zakelijke rekening openen, maar wil een particuliere rekening openen. 
+	Terug naar rekeningoverzicht of welkom scherm.
+    5a. Velden zijn niet gevuld of foutieve invoer, klant krijgt melding en verzoek juiste invoer.
+      b. Klant wil niet nog een rekening openen voor dit bedrijf en annuleert.
+    6. Er kan geen contact worden gemaakt met de database, klant wordt geinformeerd. Probeer 
+	later nog eens of neem contact op met uw bank.
+
+
+INLOGGEN KLANT
+Use case: inloggen (klant)
+Primary Actor: Gebruiker
+Preconditions: de Gebruiker is klant van de bank.
+Success guarantee: de Gebruiker krijgt toegang tot zijn of haar rekeningoverzicht.
+Main success scenario:
+1. Gebruiker selecteert "inloggen klant".
+2. Systeem stuurt de data van de inlogpagina (voor klanten) van Parque Banque.
+3. Gebruiker vult zijn of haar gebruikersnaam en wachtwoord in.
+4. Gebruiker bevestigt.
+5. Systeem checkt of de ingevoerde gegevens overeenkomen met de gegevens in de database.
+6. Systeem haalt informatie op over de rekeningen van de Gebruiker.
+7. Gebruiker wordt doorverwezen naar zijn of haar rekeningoverzicht.
+
+Extensions:
+    4a. Gebruiker bevestigd met één of meerdere lege velden.
+        - Melding met de waarschuwing ‘Vul zowel gebruikersnaam als wachtwoord in.’
+    4b. Gebruiker voert verkeerde gebruikersnaam en/of wachtwoord in.
+	    - Melding met de waarschuwing ‘De combinatie tussen gebruikersnaam en  
+          wachtwoord is onjuist. Probeer het opnieuw.’
+
+
+INLOGGEN MEDEWERKER
+Use case: inloggen (medewerker)
+Primary Actor: Gebruiker
+Preconditions: de Gebruiker is een medewerker van de bank.
+Success guarantee: de Gebruiker krijgt toegang tot zijn of haar medewerkerspagina.
+Main success scenario:
+1. Gebruiker selecteert "inloggen medewerker".
+2. Systeem stuurt de data van de inlogpagina (voor medewerkers) van Parque Banque.
+3. Gebruiker vult zijn of haar personeelsnummer en wachtwoord in.
+4. Gebruiker bevestigt.
+5. Systeem checkt of de ingevoerde gegevens overeenkomen met de gegevens in de database.
+6. Systeem haalt de medewerkersinformatie op van de Gebruiker.
+7. Gebruiker wordt doorverwezen naar zijn of haar medewerkerspagina.
+
+Extensions:
+    4a. Gebruiker bevestigd met één of meerdere lege velden.
+        - Melding met de waarschuwing ‘Vul zowel personeelsnummer als wachtwoord in.’
+    4b. Gebruiker voert verkeerde gebruikersnaam en/of wachtwoord in.
+        - Melding met de waarschuwing ‘De combinatie tussen personeelsnummer en 
+	    wachtwoord is onjuist. Probeer het opnieuw.’
+
+
+REKENINGOVERZICHT/SALDO INZIEN
+Use Case:	Rekeningoverzicht bekijken
+Primary Actor: Klant
+Preconditions: De klant is ingelogd in het systeem
+Succes guarantee: Klant ziet zijn zakelijke en priverekeningen. Hij ziet hiervan het ibannummer, 
+	het saldo en de tenaamstelling. 
+Main successcenario
+1. Klant is ingelogd.
+2. Klant ziet op het rekeningoverzicht de rekeningen die op zijn naam staan met het saldo en 
+	het ibannummer en de tenaamstelling
+3. Klant logt uit, opent een nieuwe rekening of klikt door naar de details van een specifieke rekening
+	
+
+GELD OVERMAKEN
+Use case: geld overmaken
+Primary Actor: Klant
+Preconditions: de klant is ingelogd en aanwezig op de rekeningpagina van de rekening waarvan 
+	hij/zij wil overboeken
+Success guarantee: De klant heeft geld overgemaakt van zijn/haar rekening naar een andere 
+	rekening bij Parque Banque en de overboeking is te zien in de transactiehistorie
+Main success scenario:
+1. De klant kiest de optie om een overboeking te doen van de betreffende betaalrekening
+2. Klant voert nummer van de creditrekening, het bedrag en beschrijving in
+3. De bank geeft een overzicht van de ingevulde gegevens door de Klant
+4. De bank checkt saldo en of de creditrekening bestaat, bedrag wordt afgeschreven van debitrekening
+5. Klant bevestigt de overboeking
+6. De bank zorgt dat bedrag wordt bijgeschreven op creditrekening
+7. De bank werkt transactiehistorie bij van credit- en debitrekening
+8. De klant keert terug naar rekeningpagina en ziet daar gelijk de transactie
+
+Extensions:
+    2a. Klant voert een ongeldig rekeningnummer in
+     	 - Klant krijgt melding over de juiste opbouw van de rekening
+      b. Klant voert een ongeldig saldo in (negatief of letters/vreemde tekens)
+    	  - Klant krijgt melding over foutieve invoer
+    3. Klant heeft een fout gemaakt en wil terug om de gegevens aan te passen
+    	  - Klant keert terug naar stap 2
+    5a. Klant voert ongeldig rekeningnummer in (bestaat niet)
+    	  - Klant krijgt een melding dat het rekeningnummer niet bekend is, keert terug naar stap 2
+      b. Er is onvoldoende saldo aanwezig
+      	- Klant krijgt melding dat saldo ontoereikend is en keert terug naar stap 2
+
+
+REKENINGKEUZE
+Use case: rekeningkeuze
+Primary Actor: Klant
+Preconditions: de Klant is ingelogd op de webapplicatie en bevind zich op het rekeningoverzicht.
+Succes guarantee: de Klant krijgt een rekeningpagina te zien met daarop het rekeningnummer, de 
+	tenaamstelling van de rekening, de huidige datum en tijd, het saldo
+	op de rekening en een overzicht van de laatste 10 transacties.
+Main success scenario:
+1. De Klant selecteert een rekening uit het rekeningoverzicht.
+2. Het Systeem haalt de benodigde informatie over de rekening op.
+3. Het Systeem geeft de opgehaalde informatie weer.
+4. De Klant wordt doorverwezen naar de rekeningpagina.
+
+
+REKENINGHOUDER TOEVOEGEN (REKENINGHOUDER KANT)
+Use Case: aanmelden nieuwe persoon als toe te voegen rekeninghouder
+Primary Actor: klant
+Preconditions: klant is ingelogd, en heeft een bankrekening; de toe te voegen persoon is al een klant.
+Success Guarantee: opgegeven informatie (IBAN, beveiligingscode, gebruikersnaam) is opgeslagen
+	 waardoor de toe te voegen persoon in staat is zichzelf toe te voegen als rekeninghouder.
+Main Success Scenario:
+1. De klant logt in, en gaat naar de rekeningpagina van de te koppelen rekening.
+2. De klant activeert de functie "Rekeninghouder toevoegen" vanaf de rekening-pagina van
+	 de betreffende rekening.
+3. De klant voert de gebruikersnaam van de beoogde nieuwe rekeninghouder in, en vult 
+	een beveiligingscode (een getal van 5 cijfers) in.
+4. Opgegeven informatie (IBAN, gebruikersnaam en beveiligingscode) wordt opgeslagen in 
+	de database, waardoor toe te voegen persoon zichzelf kan aanmelden.
+5. De klant krijgt een melding dat hij/zij de code moet geven aan de toe te voegen klant, en
+	 wordt teruggeleid naar de rekeningpagina.
+
+Extensions:
+3. Opgevoerde gebruikersnaam bestaat niet.
+	- Systeem slaat niets op, en geeft melding: of de reguliere melding van stap 5 
+	(vanwege security) of een melding dat de gebruikersnaam niet bestaat.
+
+
+REKENINGHOUDER TOEVOEGEN (NIEUWE REKENINGHOUDER KANT)
+Use Case: toevoegen klant aan rekening van een andere klant.
+Primary Actor: klant van Parque Banque
+Preconditions: klant is ingelogd
+Success Guarantee: klant is mede-rekeninghouder geworden van de rekening van een andere klant.
+Main Success Scenario:
+1. Klant gaat naar pagina rekeningoverzicht en kiest voor de functie “koppel nieuwe rekening”.
+2. Klant vult IBAN en beveiligingscode in.
+3. Het systeem verifieert dat de combinatie van IBAN, gebruikersnaam en beveiligingscode 
+	overeenkomt met de informatie in de database. Als het klopt, dan voegt het systeem
+	de klant toe aan de rekening.
+4. De klant krijgt een melding dat de koppeling is gelukt. 
+5. De klant wordt teruggeleid naar het rekeningoverzicht en ziet de nieuwe rekening in het overzicht. 
+
+Extensions:
+3. Combinatie van IBAN, gebruikersnaam en beveiligingscode klopt niet.
+	Systeem geeft algemeen geformuleerde melding: onjuiste combinatie.
+
+
+HOOFD PARTICULIEREN
+Use Case: Hoofd Particulieren
+Primary Actor: Medewerker van de bank
+Preconditions: Medewerker is ingelogd, zijn of haar functie is hoofd Particulieren.
+Success Guarantee: Hoofd Particulieren kan inzien welke tien particuliere klanten het 
+	hoogste saldo op hun rekening hebben staan
+Main Success Scenario:
+1. Hoofd Particulieren kiest voor het inzien saldo particuliere klanten.
+2. Bank haalt data op van de tien particuliere klanten met het hoogste saldo op. 
+3. Hoofd Particulieren ziet een lijst met de tenaamstelling van de tien particuliere 
+	klanten met het hoogste totaal. Het totaal is het cumulatieve saldo van 
+	alle rekeningen van een particuliere klant.  
+4. De lijst wordt gerangschikt van het hoogste totaal naar het laagste totaal.
+
+
+HOOFD MKB
+Use Case: Hoofd MKB
+Primary Actor: Medewerker van de bank
+Preconditions: Medewerker is ingelogd, zijn of haar functie is hoofd MKB.
+Success Guarantee: Hoofd MKB kan inzien welke tien MKB klanten het hoogste saldo op 
+	hun rekening hebben staan, per MKB-segment kunnen zien wat het gemiddelde 
+	saldo van de zakelijke rekeningen binnen dat sector is, en de tien meest actieve 
+	klanten kunnen inzien (grootste volume wat betreft debet- en credittransacties).
+Main Success Scenario:
+1a. Hoofd MKB start bij het startscherm van hoofd MKB.
+2a. Hoofd MKB kiest voor het inzien saldo MKB klanten.
+3a. Bank haalt data op van de tien zakelijke klanten met het hoogste saldo op. 
+4a. Hoofd MKB ziet een lijst met de tenaamstellingen van de tien zakelijke klanten met het hoogste
+	totaal. Het totaal is het cumulatieve saldo van alle rekeningen van een zakelijke klant.
+5a. De lijst wordt gerangschikt van het hoogste totaal naar het laagste totaal.
+
+1b. Hoofd MKB start bij het startscherm van hoofd MKB.
+2b. Hoofd MKB kiest voor het inzien sector MKB klanten.
+3b. Hoofd MKB kan kiezen uit een lijst van MKB-sectoren.
+4b. Het gemiddelde saldo van alle zakelijke rekeningen binnen dat segment wordt weergegeven.
+1c. Hoofd MKB start bij het startscherm van hoofd MKB.
+
+2c. Hoofd MKB kiest voor het inzien transacties MKB klanten.
+3c. Hoofd MKB ziet twee lijsten met de tien meest actieve klanten, oftewel de klanten met
+	de meeste transacties. De eerste lijst geeft de tenaamstelling weer met 
+	het grootste volume wat betreft credittransacties, en de tweede lijst geeft 
+	de tenaamstelling weer met het grootste volume wat betreft debet transacties.
+	De lijsten worden gerangschikt van het hoogste volume naar het laagste volume.

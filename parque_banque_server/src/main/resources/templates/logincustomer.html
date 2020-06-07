@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Klant</title>
-    <style type="text/css">
-        label {
-            display: inline-block;
-            width: 225px;
-            text-align: left;
-        }
-        input[type=text], input[type=password], select {
-            display: inline-block;
-            width: 225px;
-        }
-    </style>
+
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link th:href="@{/css/login.css}" href="../static/css/login.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Login</h1>
-    <p th:if="${invalidCredentials}" class="error">De combinatie tussen gebruikersnaam en wachtwoord is onjuist. Probeer het opnieuw. </p>
+    <!-- navigatie-->
+    <nav class="navigation">
+        <ul>
+            <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+            <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
+            <li class="nav-link"><a  href="/klant-worden">Klant worden</a></li>
+            <li class="nav-link"><a  href="/contact">Contact</a></li>
+        </ul>
 
-    <form th:action="@{/inloggen}" th:object="${logincustomer}" method="post">
+    </nav>
+
+    <!-- body-->
+    <form class="login-form" th:action="@{/inloggen}" th:object="${logincustomer}" method="post">
+        <h1>Login</h1>
+
+        <span th:if="${invalidCredentials}" class="error"> De combinatie tussen gebruikersnaam en wachtwoord is onjuist. Probeer het opnieuw. </span>
+
         <label>Gebruikersnaam</label> <br/>
         <input type="text" id="userName" name="userName" required />
         <br/>
@@ -28,10 +35,10 @@
         <input type="password" id="password" name="password" required />
         <br/> <br/>
 
-        <input type="submit" value="Log In"/>
+        <input class="loginbutton" type="submit" value="Log In"/>
         <br/> <br/>
 
-        Nog geen klant? Klik dan <a href="/klant-worden">hier</a> en wordt klant!
+        <div class="text"> Nog geen klant? Klik dan <a href="/klant-worden">hier</a> en wordt klant! </div>
     </form>
 </body>
 </html>
