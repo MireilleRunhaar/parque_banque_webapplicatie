@@ -32,4 +32,12 @@ public class LinkAccountFormBean {
     public void setSecurityCode(String securityCode) {
         this.securityCode = securityCode;
     }
+
+    @Override
+    public String toString() {
+        return "LinkAccountFormBean{" +
+                "iban='" + iban + '\'' +
+                ", securityCode='" + securityCode + '\'' +
+                '}';
+    }
 }

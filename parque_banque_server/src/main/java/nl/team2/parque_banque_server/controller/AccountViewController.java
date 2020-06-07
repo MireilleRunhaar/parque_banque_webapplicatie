@@ -70,17 +70,17 @@ public class AccountViewController {
         ModelAndView mav = new ModelAndView("changedata");
         return mav;
     }
-    //request for signout
-    @GetMapping("/rekening-overzicht/uitloggen")
-    public ModelAndView logOutHandler(){
-        ModelAndView mav = new ModelAndView("homepage");
-        return mav;
-    }
-//    //request for connectaccount
-//    @GetMapping("/rekening-toevoegen")
-//    public ModelAndView connectaccountHandler(){
-//    ModelAndView mav = new ModelAndView("linkpaymentaccount");
-//    return mav;
+//    //request for signout
+//    @GetMapping("/rekening-overzicht/uitloggen")
+//    public ModelAndView logOutHandler(){
+//        ModelAndView mav = new ModelAndView("homepage");
+//        return mav;
 //    }
+    //request for connectaccount
+    @GetMapping("/rekening-overzicht/rekening-toevoegen")
+    ModelAndView connectaccountHandler(){
+    ModelAndView mav = new ModelAndView("linkpaymentaccount");
+    return mav;
+    }
 
 }
