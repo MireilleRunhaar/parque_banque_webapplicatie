@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.time.LocalDateTime;
@@ -53,6 +54,15 @@ public class SelectedAccountController {
     }
 
     //Verwijzing naar Rekeninghouder Toevoegen
+    @PostMapping(value = "/selectedaccount", params = "action=rekeninghouderToevoegen")
+    public String goToAddAccountholderHandler() {
+        return "addAccountHolder";   //Todo: veranderen in de pagina die Machiel en Minke maken
+    }
 
     //Verwijzing naar Geld overmaken
+    @PostMapping(value = "/selectedaccount", params = "action=geldOvermaken")
+    public String goToMakeATransactionHandler() {
+        return "transferMoney";   //Todo: veranderen in de pagina die Lisa maakt
+    }
+
 }

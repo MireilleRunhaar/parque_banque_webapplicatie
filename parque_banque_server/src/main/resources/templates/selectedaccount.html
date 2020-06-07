@@ -14,6 +14,8 @@
 <h4>Tenaamstelling: <span th:text="${name}"/></h4> <!--naam rekeninghouder, namen rekeninghouders, naam bedrijf + rekeninghouder, naam bedrijf + rekeninghouders-->
 <h4>Datum en tijd:<span th:text="${DatumEnTijd}"></span></h4>
 <h2>Saldo: <span th:text="${saldo}" /></h2> <!--bedrag op de rekening obv iban-->
+<button type="submit" name="action" value="geldOvermaken"> Geld overmaken</button>
+<button type="submit" name="action" value ="rekeninghouderToevoegen"> Rekeninghouder toevoegen</button>
 <h2>Transacties</h2>
 <ul>
     <li><span th:field="Transactie1" />Transactie 1</li>
