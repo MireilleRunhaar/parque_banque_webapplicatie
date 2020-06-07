@@ -53,11 +53,11 @@ public class AccountViewController {
         ModelAndView mav = new ModelAndView("homepage");
         return mav;
     }
-    //request for connectaccount
-    @GetMapping("/rekening-overzicht/connectaccount")
-    public ModelAndView connectaccountHandler(){
-    ModelAndView mav = new ModelAndView("linkpaymentaccount");
-    return mav;
-    }
+//    //request for connectaccount
+//    @GetMapping("/rekening-toevoegen")
+//    public ModelAndView connectaccountHandler(){
+//    ModelAndView mav = new ModelAndView("linkpaymentaccount");
+//    return mav;
+//    }
 
 }
