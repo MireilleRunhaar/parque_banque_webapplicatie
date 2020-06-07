@@ -3,23 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Werknemer</title>
-    <style type="text/css">
-        label {
-            display: inline-block;
-            width: 225px;
-            text-align: left;
+
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link th:href="@{/css/login.css}" href="../static/css/login.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            margin-bottom: 20px;
         }
-        input[type=text], input[type=password], select {
-            display: inline-block;
-            width: 225px;
+        .login-form {
+            background: #FFFFFF;
+            border: thick solid #37ad49;
+        }
+        .error {
+            border-radius: inherit;
+            margin-bottom: 10px;
+        }
+        input[type=text], input[type=password] {
+            border: thin solid #000000;
         }
     </style>
+
 </head>
 <body>
-    <h1>Login Werknemer</h1>
-    <p th:if="${invalidCredentials}" class="error">De combinatie tussen personeelsnummer en wachtwoord is onjuist. Probeer het opnieuw. </p>
+    <!-- navigatie-->
+    <nav class="navigation">
+        <ul>
+            <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+            <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
+            <li class="nav-link"><a  href="/klant-worden">Klant worden</a></li>
+            <li class="nav-link"><a  href="/contact">Contact</a></li>
+        </ul>
 
-    <form th:action="@{/personeel}" th:object="${loginemployee}" method="post">
+    </nav>
+
+    <!-- body -->
+    <form class="login-form" th:action="@{/personeel}" th:object="${loginemployee}" method="post">
+        <h1>Login Werknemer</h1>
+        <p th:if="${invalidCredentials}" class="error">De combinatie tussen personeelsnummer en wachtwoord is onjuist. Probeer het opnieuw. </p>
+
         <label>Personeelsnummer</label> <br/>
         <input type="text" id="employeeNumber" name="employeeNumber" required
                pattern="[0-9]{1,}" title="Het personeelsnummer bestaat uit cijfers."/>
@@ -29,8 +51,7 @@
         <input type="password" id="password" name="password" required/>
         <br/> <br/>
 
-        <input type="submit" value="Log In"/>
+        <input class="loginbutton" type="submit" value="Log In"/>
     </form>
 </body>
-
 </html>
