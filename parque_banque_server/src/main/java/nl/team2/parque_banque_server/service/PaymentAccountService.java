@@ -14,9 +14,10 @@ import java.util.Optional;
 @Service
 public class PaymentAccountService {
 
-    @Autowired
-    PaymentAccountRepository paymentAccountRepo;
+    public static final double CENTS_IN_EURO = 100.00;
 
+    @Autowired
+    private PaymentAccountRepository paymentAccountRepo;
 
     public PaymentAccountService() {
     }
@@ -28,7 +29,12 @@ public class PaymentAccountService {
      */
     public String balanceInEuros(long balanceCents){
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
-        return numberFormat.format(balanceCents / 100.00);
+        return numberFormat.format(balanceCents / CENTS_IN_EURO);
+    }
+
+    public boolean validateFunds(String iban, long transactionAmount){
+        PaymentAccount paymentAccount = findOneByIban(iban);
+        return paymentAccount.validateSufficientFunds(transactionAmount);
     }
 
     public PaymentAccount findOneByIban(String iban){

@@ -27,7 +27,7 @@
                     <input th:field="*{amount}" id="amount" type="text" pattern="\d{0,6}" placeholder="0" size="8" dir="rtl">
                     <label for="cents">,</label>
                     <input th:field="*{cents}" id="cents" type="text" size="2" pattern="\d{2}" placeholder="00">
-                    <span th:if="${unsufficientBalance}">U heeft onvoldoende saldo op deze rekening</span>
+                    <span th:if="${insufficientFunds}">U heeft onvoldoende saldo op deze rekening</span>
                 </div>
                 <div>
                     <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
@@ -36,12 +36,12 @@
                 </div>
                 <div>
                     <!-- hier js voor terugtellen tekens -->
-                    <!-- nog het invoervak grote maken -->
+                    <!-- nog het invoervak groter maken -->
                     <label for="description">Omschrijving</label>
                     <input th:field="*{description}" id="description" type="text" max="140" size="18">
                 </div>
             </fieldset>
-            <button type="submit" name="action" value="next">Volgende</button>
+            <button type="submit">Volgende</button>
         </form>
     </main>
 
