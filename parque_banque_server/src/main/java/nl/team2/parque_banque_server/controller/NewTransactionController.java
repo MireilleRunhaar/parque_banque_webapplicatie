@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@SessionAttributes({"ibanDebitAccount", "transactionInput"})
+@SessionAttributes({"ibanDebitAccount", "transactionFormBean"})
 public class NewTransactionController {
 
     @Autowired
@@ -47,7 +47,7 @@ public class NewTransactionController {
                 model.addAttribute("invalidCreditAccount", true);
                 return "newtransaction";
             }
-            model.addAttribute("transactionInput",transactionFormBean);
+            model.addAttribute("transactionFormBean",transactionFormBean);
             model.addAttribute("ibanDebitAccount", ibanDebitAccount);
             return "confirmtransaction";
         }

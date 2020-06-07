@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes({"ibanDebitAccount", "transactionInput"})
+@SessionAttributes({"ibanDebitAccount", "transactionFormBean"})
 public class ConfirmTransactionController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class ConfirmTransactionController {
 
     @PostMapping(value="/overboeken", params = "action=send")
     public String sendTransactionHandler(Model model){
-        TransactionFormBean transactionFormBean = (TransactionFormBean)model.getAttribute("transactionInput");
+        TransactionFormBean transactionFormBean = (TransactionFormBean)model.getAttribute("transactionFormBean");
         String ibanDebitAccount = (String) model.getAttribute("ibanDebitAccount");
        if(transactionFormBean == null){
            return "error";
