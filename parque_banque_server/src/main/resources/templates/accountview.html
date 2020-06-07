@@ -94,7 +94,7 @@
             <tr th:each="privateaccount : ${privateaccounts}" th:data-href="@{/rekening-overzicht/details(${privateaccount.iban})}">
                 <td th:text="${customer.firstName + ' ' + customer.affix + ' ' + customer.surName}"></td>
                 <td th:text="${privateaccount.iban}"></td>
-                <td th:text="${privateaccount.balanceCent}"></td>
+                <td th:text="${privateaccount.balanceEuros}"></td>
             </tr>
         </tbody>
     </table>
@@ -118,7 +118,7 @@
             <tr th:each="businessaccount : ${businessaccounts}" th:data-href="@{/rekening-overzicht/details(id=${businessaccount.iban})}">
                 <td th:text="${customer.firstName + ' ' + customer.affix + ' '+ customer.surName}"></td>
                 <td th:text="${businessaccount.iban}"></td>
-                <td th:text="${businessaccount.balanceCent}"></td>
+                <td th:text="${businessaccount.balanceEuros}"></td>
             </tr>
         </tbody>
     </table>

@@ -3,10 +3,8 @@ package nl.team2.parque_banque_server.controller;
 import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.model.PrivateAccount;
-import nl.team2.parque_banque_server.service.BusinessAccountService;
-import nl.team2.parque_banque_server.service.CustomerService;
-import nl.team2.parque_banque_server.service.PaymentAccountService;
-import nl.team2.parque_banque_server.service.PrivateAccountService;
+import nl.team2.parque_banque_server.service.*;
+import nl.team2.parque_banque_server.utilities.AccountViewListBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +28,7 @@ public class AccountViewController {
     private BusinessAccountService businessAccountService;
 
     @Autowired
-    private PaymentAccountService paymentAccountService;
+    private AccountViewService accountViewService;
 
 
     @GetMapping("/rekening-overzicht")
@@ -38,14 +36,17 @@ public class AccountViewController {
         if (!model.containsAttribute("customerId")) {
             return "logincustomer";
         } else {
-            //Get the customer from the customerId
             Customer customer = customerService.findCustomerBySAId (model.getAttribute("customerId"));
             List<PrivateAccount> privateAccountList = privateAccountService.getPrivateAccountsByCustomer(customer);
             List<BusinessAccount> businessAccountList = businessAccountService.getBusinessAccountsByCustomer(customer);
 
+            //Convert long balanceCent to String balanceEuros with a bean.
+            List<AccountViewListBean> privateAccountViewList = accountViewService.convertPrivateAccountList(privateAccountList);
+            List<AccountViewListBean> businessAccountViewList = accountViewService.convertBusinessAccountList(businessAccountList);
+
             model.addAttribute("customer", customer);
-            model.addAttribute("privateaccounts", privateAccountList);
-            model.addAttribute("businessaccounts", businessAccountList);
+            model.addAttribute("privateaccounts", privateAccountViewList);
+            model.addAttribute("businessaccounts", businessAccountViewList);
             return "accountview";
         }
     }
