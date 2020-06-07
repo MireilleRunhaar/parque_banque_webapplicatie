@@ -13,12 +13,16 @@ import java.time.LocalDate;
 @Service
 public class TransactionService {
 
-    @Autowired
     private PaymentAccountRepository paymentAccountRepo;
-    @Autowired
     private TransactionRepository transactionRepo;
+    private PaymentAccountService paymentAccountService;
+
     @Autowired
-    PaymentAccountService paymentAccountService;
+    public TransactionService(PaymentAccountRepository paymentAccountRepo, TransactionRepository transactionRepo, PaymentAccountService paymentAccountService) {
+        this.paymentAccountRepo = paymentAccountRepo;
+        this.transactionRepo = transactionRepo;
+        this.paymentAccountService = paymentAccountService;
+    }
 
 
     public void executeAndSave(Transaction transaction){
@@ -33,6 +37,20 @@ public class TransactionService {
             PaymentAccount creditAccount = paymentAccountService.findOneByIban(transactionFormBean.getIbanCreditAccount());
             PaymentAccount debitAccount = paymentAccountService.findOneByIban(ibanDebit);
             return new Transaction(amountCent, transactionFormBean.getDescription(), LocalDate.now(), creditAccount , debitAccount);
+    }
+
+    public PaymentAccountRepository getPaymentAccountRepo() {
+        return paymentAccountRepo;
+    }
+
+
+    public TransactionRepository getTransactionRepo() {
+        return transactionRepo;
+    }
+
+
+    public PaymentAccountService getPaymentAccountService() {
+        return paymentAccountService;
     }
 
 }
