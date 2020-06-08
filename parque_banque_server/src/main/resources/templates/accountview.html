@@ -91,7 +91,8 @@
             <tr th:if="${privateaccounts.empty}">
                 <td> Geen rekeningen </td>
             </tr>
-            <tr th:each="privateaccount : ${privateaccounts}" th:data-href="@{/rekening-overzicht/details(${privateaccount.iban})}">
+            <tr th:each="privateaccount : ${privateaccounts}" th:data-href="@{/rekening-overzicht/details{iban}
+            (iban=${privateaccount.iban})}">
                 <td th:text="${customer.firstName + ' ' + customer.affix + ' ' + customer.surName}"></td>
                 <td th:text="${privateaccount.iban}"></td>
                 <td th:text="${privateaccount.balanceEuros}"></td>
@@ -115,7 +116,8 @@
             <tr th:if="${businessaccounts.empty}">
                 <td> Geen rekeningen </td>
             </tr>
-            <tr th:each="businessaccount : ${businessaccounts}" th:data-href="@{/rekening-overzicht/details(id=${businessaccount.iban})}">
+            <tr th:each="businessaccount : ${businessaccounts}" th:data-href="@{/rekening-overzicht/details{iban}
+            (iban=${businessaccount.iban})}">
                 <td th:text="${customer.firstName + ' ' + customer.affix + ' '+ customer.surName}"></td>
                 <td th:text="${businessaccount.iban}"></td>
                 <td th:text="${businessaccount.balanceEuros}"></td>
