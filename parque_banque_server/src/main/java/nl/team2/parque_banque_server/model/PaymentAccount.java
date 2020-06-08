@@ -12,9 +12,6 @@ public abstract class PaymentAccount {
     protected String iban;
     protected long balanceCent;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    protected List<Transaction> transactionHistory;
-
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     protected List<Customer> accountHolders;
 
@@ -56,17 +53,14 @@ public abstract class PaymentAccount {
         return balanceCent;
     }
 
-    public void setBalance(long balance) {
+    public long getBalanceCent() {
+        return balanceCent;
+    }
+
+    public void setBalanceCent(long balanceCent) {
         this.balanceCent = balanceCent;
     }
 
-    public List<Transaction> getTransactionHistory() {
-        return transactionHistory;
-    }
-
-    public void setTransactionHistory(List<Transaction> transactionHistory) {
-        this.transactionHistory = transactionHistory;
-    }
 
     public List<Customer> getAccountHolders() {
         return accountHolders;
@@ -80,8 +74,7 @@ public abstract class PaymentAccount {
     public String toString() {
         return "PaymentAccount{" +
                 "iban='" + iban + '\'' +
-                ", balance=" + balanceCent +
-                ", transactionHistory=" + transactionHistory +
+                ", balanceCent=" + balanceCent +
                 ", accountHolders=" + accountHolders +
                 '}';
     }
@@ -89,24 +82,15 @@ public abstract class PaymentAccount {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof PaymentAccount)) return false;
         PaymentAccount that = (PaymentAccount) o;
-        return balanceCent == that.balanceCent &&
-                Objects.equals(iban, that.iban) &&
-                Objects.equals(transactionHistory, that.transactionHistory) &&
-                Objects.equals(accountHolders, that.accountHolders);
+        return getBalanceCent() == that.getBalanceCent() &&
+                getIban().equals(that.getIban()) &&
+                getAccountHolders().equals(that.getAccountHolders());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(iban, balanceCent, transactionHistory, accountHolders);
-    }
-
-    public long getBalanceCent() {
-        return balanceCent;
-    }
-
-    public void setBalanceCent(long balanceCent) {
-        this.balanceCent = balanceCent;
+        return Objects.hash(getIban(), getBalanceCent(), getAccountHolders());
     }
 }
