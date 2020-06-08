@@ -4,6 +4,7 @@ package nl.team2.parque_banque_server.service;
 import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.PaymentAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.PrivateAccountRepository;
+import nl.team2.parque_banque_server.model.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.NumberFormat;
@@ -12,7 +13,8 @@ import java.text.NumberFormat;
 @Service
 public class PaymentAccountService {
 
-
+    @Autowired
+    TransactionRepository transactionRepo;
 
     public PaymentAccountService() {
     }
