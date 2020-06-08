@@ -8,6 +8,4 @@ import java.util.List;
 
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
-    List<Transaction> findTop10ByCreditAccountOrderByDateAsc(PaymentAccount creditAccount);
-    List<Transaction> findTop10ByDebitAccountOrderByDateAsc(PaymentAccount debitAccount);
 }
