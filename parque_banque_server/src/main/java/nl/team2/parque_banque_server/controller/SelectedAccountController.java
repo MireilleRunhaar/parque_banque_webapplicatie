@@ -30,18 +30,18 @@ public class SelectedAccountController {
         @GetMapping("/rekening-overzicht/details{iban}")
         public String handleDetails(@PathVariable(value="iban") String iban,
                                     Model model) {
-            if(!model.containsAttribute("customerId")) {
+            /*if(!model.containsAttribute("customerId")) {
                 return "logincustomer";
             } else {
                 Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
                 model.addAttribute("customer", customer);
-                model.addAttribute("name", customer.getUserName()); //meer accountholders, bedrijf+accountholder, bedrijf+accountholders
+                model.addAttribute("name", customer.getUserName()); //meer accountholders, bedrijf+accountholder, bedrijf+accountholders*/
                 model.addAttribute("DatumEnTijd", getCurrentTimeWithTimeZone());
                 model.addAttribute("iban", iban);
                 model.addAttribute("saldo", iban); //iban > rekening > getSaldo
                 return "selectedaccount";
             }
-        }
+
 
     //Van de geselecteerde rekeningnummer ophalen: rekeningnummer, tenaamstelling, saldo en de laatste 10 transacties.
 
@@ -59,10 +59,5 @@ public class SelectedAccountController {
         return "redirect:/rekeninghouder-toevoegen";
     }
 
-    //Verwijzing naar Geld overmaken
-    @PostMapping(value = "/selectedaccount", params = "action=geldOvermaken")
-    public String goToMakeATransactionHandler() {
-        return "redirect:/overboeken";
-    }
 
 }
