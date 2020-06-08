@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TransactionServiceTest {
 
+
     @MockBean
     PaymentAccountService paymentAccountService = Mockito.mock(PaymentAccountService.class);
     @MockBean
@@ -47,9 +48,8 @@ class TransactionServiceTest {
     @Test
     void createTransactionFromBean2(){
         assertEquals(new Transaction(23456, "test1456", LocalDate.now(), creditAccount, debitAccount),
-                transactionService.createTransactionFromBean(new TransactionFormBean(234, 56, "test11456", ibanCredit),ibanDebit));
+                transactionService.createTransactionFromBean(new TransactionFormBean(234, 56, "test1456", ibanCredit),ibanDebit));
     }
 
-    // TODO: 07/06/2020 twee testen waarin iets fout kan gaan
 
 }

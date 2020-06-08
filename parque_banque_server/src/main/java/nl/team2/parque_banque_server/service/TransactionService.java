@@ -27,8 +27,12 @@ public class TransactionService {
 
     public void executeAndSave(Transaction transaction){
         transaction.executeTransaction();
-        paymentAccountRepo.save(transaction.getCreditAccount());
-        paymentAccountRepo.save(transaction.getDebitAccount());
+        PaymentAccount creditAccount = transaction.getCreditAccount();
+        PaymentAccount debitAccount = transaction.getDebitAccount();
+        creditAccount.addTransactionToHistory(transaction);
+        debitAccount.addTransactionToHistory(transaction);
+        paymentAccountRepo.save(creditAccount);
+        paymentAccountRepo.save(debitAccount);
         transactionRepo.save(transaction);
     }
 

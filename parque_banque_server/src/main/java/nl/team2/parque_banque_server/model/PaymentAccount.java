@@ -25,6 +25,7 @@ public abstract class PaymentAccount {
         this.iban = iban;
         this.balanceCent = balanceCent;
         this.accountHolders=new ArrayList<>();
+        this.transactionHistory = new ArrayList<>();
 
     }
 
@@ -42,6 +43,10 @@ public abstract class PaymentAccount {
 
     public void addCustomerToAccountHolder(Customer customer){
         accountHolders.add(customer);
+    }
+
+    public void addTransactionToHistory(Transaction transaction){
+        transactionHistory.add(transaction);
     }
 
     public String getIban() {
