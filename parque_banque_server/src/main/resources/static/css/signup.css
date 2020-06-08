@@ -25,27 +25,31 @@ div {
     align-self: center;
 }
 
-div > p {
-    margin-left: -10px;
-}
-
 form {
     width: 700px;
     margin: auto;
     border-style: outset;
     border-radius: 10px;
     border-color: #37AD49;
+    z-index: -1;
 }
 
-form > div > p {
-    border-bottom-style: groove;
-    border-bottom-width: thin;
+main {
+    margin-top: 80px;
+    margin-bottom: 100px;
+
 }
 
 h1, p {
     width: 700px;
     margin: auto;
     text-align: center;
+}
+
+form > div > p {
+    margin-left: -10px;
+    border-bottom-style: groove;
+    border-bottom-width: thin;
 }
 
 body > p {
@@ -64,8 +68,4 @@ input {
 
 .error {
     color: red;
-}
-
-.navPadding {
-    height: 50px;
 }

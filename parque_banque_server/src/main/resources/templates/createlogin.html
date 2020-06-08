@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Maak account - Parque Banque</title>
-    <link th:href="@{/css/signup.css}" rel="stylesheet">
     <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/signup.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script>
         function Validate() {
@@ -32,43 +32,43 @@
             <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
             <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
             <li class="nav-link"><a  href="/contact">Contact</a></li>
-            <li class="nav-link"><a  href="/">Home</a></li>
         </ul>
     </nav>
-    <div class="navPadding"> </div>
 
-    <h1>Maak een account</h1>
-    <p>Bedenk voor uw account een gebruikersnaam en wachtwoord. Onthoud deze goed.</p>
-    <p>Als u op Klaar klikt, dan kunt u meteen inloggen en bankieren bij Parque Banque!</p>
-    <form action="#" th:action="@{/klant-worden}" th:object="${createLoginFormBean}" method="post">
-        <div>
-            <label for="username">Gebruikersnaam</label>
-            <span th:if="${usernameTaken}" class="error" style="float: right">Deze gebruikersnaam bestaat al</span>
-            <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
-                   title="Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)"
-                   oninvalid="setCustomValidity('Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)')"
-                   oninput="setCustomValidity('')" />
-        </div>
-        <div>
-            <label for="password">Wachtwoord</label>
-            <input id="password" type="password" required
-                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%?&]{8,255}$" th:field="*{password}"
-                   title="Wachtwoord moet minstens 8 tekens lang zijn, en in elk geval een hoofdletter, een kleine letter, een cijfer een een speciaal teken (@$!%?&) bevatten"
-                   oninvalid="setCustomValidity('Wachtwoord moet minstens 8 tekens lang zijn, en in elk ' +
-                             'geval een hoofdletter, een kleine letter, een cijfer een een speciaal teken (@$!%?&) ' +
-                              'bevatten')"
-                   oninput="setCustomValidity('')" />
-        </div>
-        <div>
-            <label for="confirmpassword">Bevestig wachtwoord</label>
-            <span id="passMismatch" class="error" style="display: none; float: right">Wachtwoorden zijn niet gelijk</span>
-            <input id="confirmpassword" type="password" required />
-        </div>
-        <div>
-            <button type="submit" name="action" value="finish" onclick="return Validate()" style="float: right">Klaar</button>
-            <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button>
-        </div>
+    <main>
+        <h1>Maak een account</h1>
+        <p>Bedenk voor uw account een gebruikersnaam en wachtwoord. Onthoud deze goed.</p>
+        <p>Als u op Klaar klikt, dan kunt u meteen inloggen en bankieren bij Parque Banque!</p>
+        <form action="#" th:action="@{/klant-worden}" th:object="${createLoginFormBean}" method="post">
+            <div>
+                <label for="username">Gebruikersnaam</label>
+                <span th:if="${usernameTaken}" class="error" style="float: right">Deze gebruikersnaam bestaat al</span>
+                <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
+                       title="Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)"
+                       oninvalid="setCustomValidity('Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)')"
+                       oninput="setCustomValidity('')" />
+            </div>
+            <div>
+                <label for="password">Wachtwoord</label>
+                <input id="password" type="password" required
+                       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%?&]{8,255}$" th:field="*{password}"
+                       title="Wachtwoord moet minstens 8 tekens lang zijn, en in elk geval een hoofdletter, een kleine letter, een cijfer een een speciaal teken (@$!%?&) bevatten"
+                       oninvalid="setCustomValidity('Wachtwoord moet minstens 8 tekens lang zijn, en in elk ' +
+                                 'geval een hoofdletter, een kleine letter, een cijfer een een speciaal teken (@$!%?&) ' +
+                                  'bevatten')"
+                       oninput="setCustomValidity('')" />
+            </div>
+            <div>
+                <label for="confirmpassword">Bevestig wachtwoord</label>
+                <span id="passMismatch" class="error" style="display: none; float: right">Wachtwoorden zijn niet gelijk</span>
+                <input id="confirmpassword" type="password" required />
+            </div>
+            <div>
+                <button type="submit" name="action" value="finish" onclick="return Validate()" style="float: right">Klaar</button>
+                <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button>
+            </div>
 
-    </form>
+        </form>
+    </main>
 </body>
 </html>
