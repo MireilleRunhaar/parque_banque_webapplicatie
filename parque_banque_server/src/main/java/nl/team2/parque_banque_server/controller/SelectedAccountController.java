@@ -56,13 +56,13 @@ public class SelectedAccountController {
     //Verwijzing naar Rekeninghouder Toevoegen
     @PostMapping(value = "/selectedaccount", params = "action=rekeninghouderToevoegen")
     public String goToAddAccountholderHandler() {
-        return "addAccountHolder";   //Todo: veranderen in de pagina die Machiel en Minke maken
+        return "redirect:/rekeninghouder-toevoegen";
     }
 
     //Verwijzing naar Geld overmaken
     @PostMapping(value = "/selectedaccount", params = "action=geldOvermaken")
     public String goToMakeATransactionHandler() {
-        return "transferMoney";   //Todo: veranderen in de pagina die Lisa maakt
+        return "redirect:/overboeken";
     }
 
 }
