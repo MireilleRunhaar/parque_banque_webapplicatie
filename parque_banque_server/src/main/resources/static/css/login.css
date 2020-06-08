@@ -1,0 +1,52 @@
+.login-form {
+    width: 350px;
+    height: 400px;
+    padding: 70px 40px;
+    background: #37AD49;
+    border-radius: 10px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 53%;
+    transform: translate(-50%,-50%);
+}
+.error {
+    display: inline-block;
+    width: 85%;
+    font-size: 13px;
+    background: #FFFFFF;
+    border: groove #FF0000;
+    text-align: center;
+    color: #000000;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+label {
+    display: inline-block;
+    width: 225px;
+    text-align: left;
+    margin-top: 5px;
+}
+input[type=text], input[type=password]{
+    display: inline-block;
+    width: 225px;
+    border: thin solid #FFFFFF;
+    text-align: left;
+}
+.loginbutton {
+    display: block;
+    width: 20%;
+    height: 5%;
+    border: none;
+    border-radius: 10px;
+    position: absolute;
+    left: 23%;
+    color: #000000;
+    cursor: pointer;
+}
+.loginbutton:hover{
+    text-decoration: underline;
+}
+.text{
+    margin-top: 15px;
+}
