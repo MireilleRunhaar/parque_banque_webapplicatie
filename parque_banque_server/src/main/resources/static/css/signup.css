@@ -31,13 +31,11 @@ form {
     border-style: outset;
     border-radius: 10px;
     border-color: #37AD49;
-    z-index: -1;
 }
 
 main {
     margin-top: 80px;
     margin-bottom: 100px;
-
 }
 
 h1, p {
