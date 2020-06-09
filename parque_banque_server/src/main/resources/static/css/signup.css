@@ -62,6 +62,10 @@ input {
     width: 100%;
 }
 
+progress {
+    border-radius: 4px;
+}
+
 .error {
     color: red;
 }
