@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @SessionAttributes("customerId")
@@ -44,13 +45,14 @@ public class LinkAccountController {
     @PostMapping("/rekening-toevoegen")
     public String linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
 
-        if (bindingResult.hasErrors() || !linkAccountService.linkAccountValidation(linkAccountFormBean)) {
+        if (bindingResult.hasErrors() || linkAccountService.linkAccountValidation(linkAccountFormBean)) {
+            System.out.println("fouten");
             model.addAttribute("invalidCredentials", true);
             return "linkpaymentaccount";
         } else {
-            Authorisation authorisation = authorisationService.findAuthorisationByIban(linkAccountFormBean.getIban());
-            model.addAttribute("customerId", authorisation.getId());
-            return "redirect:/linkpaymentaccountconfirmation";
+            List<Authorisation> authorisationList = authorisationService.findAllByUserName(linkAccountFormBean.getIban());
+            model.addAttribute("customerId", authorisationList);
+            return "linkpaymentaccountconfirmation";
 
         }
 

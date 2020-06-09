@@ -1,21 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>Voeg rekening toe</title>
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
 </head>
+<style>
+    h1 {
+        font-size: 20px;
+        margin-left: 2em;
+    }
+
+    form {
+        margin: 2em;
+    }
+
+    input {
+        margin-block: auto;
+    }
+
+    label {
+
+    }
+
+
+</style>
+<a href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink"
+                 width="80px" height="45px"></a>
 <body>
-    <h1>Vul hier het rekeningnummer en de code in die u heeft gekregen van de rekeninghouder.</h1>
-    <form th:action="@{/rekening-toevoegen}" th:object="${linkAccountFormBean}" method="post">
-       <label for="iban">Rekeningnummer:</label>
-       <input type="text" id="iban" name="iban" autofocus="autofocus"/></form>
+<h1>Vul hier het rekeningnummer en de code in die u heeft gekregen van de rekeninghouder.</h1>
+<form class="accounttoevoegen-form" th:action="@{/rekening-toevoegen}" th:object="${linkAccountFormBean}" method="post">
+    <div class="form1">
+        <span th:if="${invalidCredentials}" class="error">De combinatie tussen rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.<br/></span>
+    <br/>
+        <label for="iban">Rekeningnummer</label><br/>
+        <input type="text" id="iban" name="iban" autofocus="autofocus"/><br/></div>
 
-        <label for="securitycode">Beveiligingcode:</label>
-        <input type="text" id="securitycode" name="securitycode" autofocus="autofocus"/>
+    <div class="form1">
+        <label for="securityCode">Beveiligingcode</label><br/>
+        <input type="text" id="securityCode" name="securityCode" autofocus="autofocus"/><br/></div>
+    <br/>
 
-        <input type="submit" value="OK"/>
+    <button id=bevestig type="submit" value="OK">OK</button>
 </form>
 </body>
 </html>

@@ -51,7 +51,8 @@ public class AddAccountHolderController {
         } else {
             Authorisation authorisation = addAccountHolderService.createAuthorisation(addAccountHolderFormBean);
             // TODO remove hardcoded iban (IBAN belongs to Machiel van Bruggen) and use IBAN in SessionAttributes
-            authorisation.setIban("NL10PARQ0100004002");
+//            authorisation.setIban("NL10PARQ0100004002");
+            authorisation.setIban("NL10PARQ0100000000");
             authorisationService.saveAuthorisation(authorisation);
             mav.addObject(authorisation);
             mav.setViewName("addaccountholder/addaccountholderconfirmation");
