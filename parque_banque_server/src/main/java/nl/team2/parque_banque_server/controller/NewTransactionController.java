@@ -39,10 +39,7 @@ public class NewTransactionController {
                                      BindingResult bindingResult, Model model){
 
         String ibanDebitAccount = (String) model.getAttribute("iban");
-        if(bindingResult.hasErrors()){
-            return "newtransaction";
-        } else if(transactionFormBean.getTotalAmountInCents() < MIN_AMOUNT) {
-            model.addAttribute("lessThenOne", true);
+        if(bindingResult.hasErrors() || transactionFormBean.getTotalAmountInCents() < MIN_AMOUNT){
             return "newtransaction";
         } else {
             PaymentAccount creditAccount = paymentAccountService.findOneByIban(transactionFormBean.getIbanCreditAccount());
