@@ -10,11 +10,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
 
-    @Autowired
     private EmployeeService employeeService;
 
-    @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    public LoginService(EmployeeService employeeService, CustomerService customerService) {
+        super();
+        this.employeeService = employeeService;
+        this.customerService = customerService;
+    }
 
     public boolean employeeLoginValidation(LoginEmployeeFormBean loginEmployeeFormBean) {
         Employee employee = employeeService.findByEmployeeNumber(loginEmployeeFormBean.getEmployeeNumber());
