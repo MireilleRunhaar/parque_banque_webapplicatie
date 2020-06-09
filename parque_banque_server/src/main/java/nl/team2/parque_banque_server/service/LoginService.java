@@ -38,5 +38,13 @@ public class LoginService {
             return false;
         } else return loginCustomerFormBean.getPassword().equals(customer.getPassword());
     }
+
+    public EmployeeService getEmployeeService() {
+        return employeeService;
+    }
+
+    public CustomerService getCustomerService() {
+        return customerService;
+    }
 }
 
