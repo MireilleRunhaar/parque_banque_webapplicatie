@@ -28,6 +28,18 @@ public abstract class PaymentAccount {
 
     }
 
+    public void withdraw(long transactionAmount){
+        balanceCent = balanceCent - transactionAmount;
+    }
+
+    public void deposit(long transactionAmount){
+        balanceCent = balanceCent + transactionAmount;
+    }
+
+    public boolean validateSufficientFunds(long transactionAmount){
+        return balanceCent >= transactionAmount;
+    }
+
     public void addCustomerToAccountHolder(Customer customer){
         accountHolders.add(customer);
     }

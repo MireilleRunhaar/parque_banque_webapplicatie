@@ -7,9 +7,9 @@ Main success scenario:
 1. De klant kiest de optie om een overboeking te doen van de betreffende betaalrekening
 2. Klant voert nummer van de creditrekening, het bedrag en beschrijving in
 3. De bank geeft een overzicht van de ingevulde gegevens door de Klant
-4. De bank checkt saldo en of de creditrekening bestaat, bedrag wordt afgeschreven van debitrekening
+4. De bank checkt saldo en of de creditrekening bestaat, 
 5. Klant bevestigt de overboeking
-6. De bank zorgt dat bedrag wordt bijgeschreven op creditrekening
+6. De bank zorgt dat bedrag wordt bijgeschreven op creditrekening en afgeschreven van de decitrekening
 7. De bank werkt transactiehistorie bij van credit- en debitrekening
 8. De klant keert terug naar rekeningpagina en ziet daar gelijk de transactie
 

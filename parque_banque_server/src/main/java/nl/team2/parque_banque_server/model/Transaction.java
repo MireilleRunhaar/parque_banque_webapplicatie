@@ -15,6 +15,7 @@ public class Transaction {
     private String description;
     private LocalDate date;
 
+    // TODO: 07/06/2020 Deze op fetchtype lazy zetten en dan vanuit transactie de history vinden voor rekeningen?
     @OneToOne(cascade = CascadeType.PERSIST)
     private PaymentAccount creditAccount;
 
@@ -30,6 +31,11 @@ public class Transaction {
         this.date=date;
         this.creditAccount=creditAccount;
         this.debitAccount=debitAccount;
+    }
+
+    public void executeTransaction(){
+        creditAccount.deposit(amountCent);
+        debitAccount.withdraw(amountCent);
     }
 
     public String getDescription() {

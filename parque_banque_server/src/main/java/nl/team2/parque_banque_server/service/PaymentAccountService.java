@@ -1,6 +1,7 @@
 package nl.team2.parque_banque_server.service;
 
 
+import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.PaymentAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.PrivateAccountRepository;
@@ -8,6 +9,7 @@ import nl.team2.parque_banque_server.model.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.NumberFormat;
+import java.util.Optional;
 
 
 @Service
@@ -15,6 +17,10 @@ public class PaymentAccountService {
 
     @Autowired
     TransactionRepository transactionRepo;
+    public static final double CENTS_IN_EURO = 100.00;
+
+    @Autowired
+    private PaymentAccountRepository paymentAccountRepo;
 
     public PaymentAccountService() {
     }
@@ -26,7 +32,17 @@ public class PaymentAccountService {
      */
     public String balanceInEuros(long balanceCents){
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
-        return numberFormat.format(balanceCents / 100.00);
+        return numberFormat.format(balanceCents / CENTS_IN_EURO);
+    }
+
+    public boolean validateFunds(String iban, long transactionAmount){
+        PaymentAccount paymentAccount = findOneByIban(iban);
+        return paymentAccount.validateSufficientFunds(transactionAmount);
+    }
+
+    public PaymentAccount findOneByIban(String iban){
+       Optional<PaymentAccount> optional= paymentAccountRepo.findById(iban);
+       return optional.orElse(null);
     }
 
 
