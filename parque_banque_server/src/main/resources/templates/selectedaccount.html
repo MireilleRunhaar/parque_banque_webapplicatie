@@ -7,31 +7,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
-<!--rekeningnummer, tenaamstelling, huidige datum en tijd, saldo
-	op de rekening en een overzicht van de laatste 10 transacties.-->
+    <!--rekeningnummer, tenaamstelling, huidige datum en tijd, saldo
+        op de rekening en een overzicht van de laatste 10 transacties.-->
 
-<h4>Rekeningnummer: <span th:text="${iban}" /></h4>
-<h4>Tenaamstelling: <span th:text="${name}"/></h4> <!--naam rekeninghouder, namen rekeninghouders, naam bedrijf + rekeninghouder, naam bedrijf + rekeninghouders-->
-<h4>Datum en tijd:<span th:text="${DatumEnTijd}"></span></h4>
-<h2>Saldo: <span th:text="${saldo}" /></h2> <!--bedrag op de rekening obv iban-->
-<button type="submit" name="action" value="geldOvermaken"> Geld overmaken</button>
-<button type="submit" name="action" value ="rekeninghouderToevoegen"> Rekeninghouder toevoegen</button>
-<h2>Transacties</h2>
-<ul>
-    <li><span th:field="Transactie1" />Transactie 1</li>
-    <li><span th:field="Transactie2" />Transactie 2</li>
-    <li><span th:field="Transactie3" />Transactie 3</li>
-    <li><span th:field="Transactie4" />Transactie 4</li>
-    <li><span th:field="Transactie5" />Transactie 5</li>
-    <li><span th:field="Transactie6" />Transactie 6</li>
-    <li><span th:field="Transactie1" />Transactie 7</li>
-    <li><span th:field="Transactie2" />Transactie 8</li>
-    <li><span th:field="Transactie3" />Transactie 9</li>
-    <li><span th:field="Transactie4" />Transactie 10</li>
+    <h4>Rekeningnummer: <span th:text="${iban}" /></h4>
+    <h4>Tenaamstelling: <span th:text="${name}"/></h4> <!--naam rekeninghouder, namen rekeninghouders, naam bedrijf + rekeninghouder, naam bedrijf + rekeninghouders-->
+    <h4>Datum en tijd:<span th:text="${DatumEnTijd}"></span></h4>
+    <h2>Saldo: <span th:text="${saldo}" /></h2> <!--bedrag op de rekening obv iban-->
+    <a href="/rekeninghouder-toevoegen"><button>Rekeninghouder toevoegen</button></a>
+    <a href="/overboeken"><button>Geld overmaken</button></a>
+    <h2>Transacties</h2>
+    <ul>
+        <li><span th:field="Transactie1" />Transactie 1</li>
+        <li><span th:field="Transactie2" />Transactie 2</li>
+        <li><span th:field="Transactie3" />Transactie 3</li>
+        <li><span th:field="Transactie4" />Transactie 4</li>
+        <li><span th:field="Transactie5" />Transactie 5</li>
+        <li><span th:field="Transactie6" />Transactie 6</li>
+        <li><span th:field="Transactie1" />Transactie 7</li>
+        <li><span th:field="Transactie2" />Transactie 8</li>
+        <li><span th:field="Transactie3" />Transactie 9</li>
+        <li><span th:field="Transactie4" />Transactie 10</li>
 
-</ul>
-
-
-
+    </ul>
 </body>
 </html>
