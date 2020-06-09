@@ -27,21 +27,18 @@ public class AddAccountHolderController {
     @GetMapping("/rekeninghouder-toevoegen")
     public ModelAndView addAccountHolderHandler(Model model) {
         ModelAndView mav = new ModelAndView();
-        // TODO: validate that user is logged in (remove rows below, uncomment code in comments)
-        mav.setViewName("addaccountholder/addaccountholder");
-        mav.addObject(new AddAccountHolderFormBean());
-//        if (model.containsAttribute("customerId")) {
-//            mav.setViewName("addaccountholder/addaccountholder");
-//            mav.addObject(new AddAccountHolderFormBean());
-//        } else {
-//            mav.setViewName("redirect:/inloggen");
-//        }
+        if (model.containsAttribute("customerId")) {
+            mav.setViewName("addaccountholder/addaccountholder");
+            mav.addObject(new AddAccountHolderFormBean());
+        } else {
+            mav.setViewName("redirect:/inloggen");
+        }
         return mav;
     }
 
     @PostMapping(value = "/rekeninghouder-toevoegen", params = "action=finish")
     public ModelAndView inputFormHandler(@Valid AddAccountHolderFormBean addAccountHolderFormBean,
-                                         BindingResult bindingResult) {
+                                         BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
             mav.setViewName("addaccountholder/addaccountholder");
@@ -49,9 +46,8 @@ public class AddAccountHolderController {
             mav.setViewName("addaccountholder/addaccountholder");
             mav.addObject("insecureCode", true);
         } else {
-            Authorisation authorisation = addAccountHolderService.createAuthorisation(addAccountHolderFormBean);
-            // TODO remove hardcoded iban (IBAN belongs to Machiel van Bruggen) and use IBAN in SessionAttributes
-            authorisation.setIban("NL10PARQ0100004002");
+            Authorisation authorisation = addAccountHolderService.createAuthorisation(addAccountHolderFormBean,
+                    (String) model.getAttribute("iban"));
             authorisationService.saveAuthorisation(authorisation);
             mav.addObject(authorisation);
             mav.setViewName("addaccountholder/addaccountholderconfirmation");

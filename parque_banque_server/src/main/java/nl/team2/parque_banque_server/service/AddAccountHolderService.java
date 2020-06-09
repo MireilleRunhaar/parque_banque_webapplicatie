@@ -11,8 +11,8 @@ public class AddAccountHolderService {
     @Autowired
     AuthorisationService authorisationService;
 
-    public Authorisation createAuthorisation(AddAccountHolderFormBean formBean) {
-        return new Authorisation(formBean.getUsername(), formBean.getSecurityCode(), null);
+    public Authorisation createAuthorisation(AddAccountHolderFormBean formBean, String iban) {
+        return new Authorisation(formBean.getUsername(), formBean.getSecurityCode(), iban);
     }
 
     public boolean isInsecureCode(String code) {
