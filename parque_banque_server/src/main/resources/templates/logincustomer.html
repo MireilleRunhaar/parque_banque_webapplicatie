@@ -18,21 +18,20 @@
             <li class="nav-link"><a  href="/klant-worden">Klant worden</a></li>
             <li class="nav-link"><a  href="/contact">Contact</a></li>
         </ul>
-
     </nav>
 
     <!-- body-->
-    <form class="login-form" th:action="@{/inloggen}" th:object="${logincustomer}" method="post">
+    <form id="form" name="form" class="login-form" th:action="@{/inloggen}" th:object="${logincustomer}" method="post" onsubmit="return validate()">
         <h1>Login</h1>
-
         <span th:if="${invalidCredentials}" class="error"> De combinatie tussen gebruikersnaam en wachtwoord is onjuist. Probeer het opnieuw. </span>
 
         <label>Gebruikersnaam</label> <br/>
-        <input type="text" id="userName" name="userName" required />
-        <br/>
+        <input type="text" id="userName" name="userName"/>
+        <div id="username_empty" class="username_empty">Vul uw gebruikersnaam in.</div>
 
         <label>Wachtwoord</label> <br/>
-        <input type="password" id="password" name="password" required />
+        <input type="password" id="password" name="password"/>
+        <div id="password_empty" class="password_empty">Vul uw wachtwoord in.</div>
         <br/> <br/>
 
         <input class="loginbutton" type="submit" value="Log In"/>
@@ -40,5 +39,46 @@
 
         <div class="text"> Nog geen klant? Klik dan <a href="/klant-worden">hier</a> en wordt klant! </div>
     </form>
+
+    <script>
+        let username = document.getElementById('userName');
+        let password = document.getElementById('password');
+        let username_empty = document.getElementById('username_empty');
+        let password_empty = document.getElementById('password_empty');
+
+        username.addEventListener('textInput', username_verify);
+        password.addEventListener('textInput', password_verify);
+
+        function validate() {
+            if (username.value === '' || username.value == null) {
+                username.style.border = "1px solid #FF0000";
+                username_empty.style.display = "inline-block";
+                username.focus();
+                return false;
+            }
+            if (password.value === '' || password.value == null) {
+                password.style.border = "1px solid #FF0000";
+                password_empty.style.display = "inline-block";
+                password.focus();
+                return false;
+            }
+        }
+
+        function username_verify() {
+            if (username.value.length >= 1) {
+                username.style.border = "none";
+                username_empty.style.display = "none";
+                return true;
+            }
+        }
+
+        function password_verify() {
+            if (password.value.length >= 1) {
+                password.style.border = "none";
+                password_empty.style.display = "none";
+                return true;
+            }
+        }
+    </script>
 </body>
 </html>
