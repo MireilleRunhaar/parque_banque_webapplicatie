@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@SessionAttributes({"iban", "transactionFormBean"})
+@SessionAttributes({"customerId", "iban", "transactionFormBean"})
 public class NewTransactionController {
 
     @Autowired
@@ -24,8 +24,12 @@ public class NewTransactionController {
 
     @GetMapping("/overboeken")
     public String newTransactionHandler(Model model){
-        model.addAttribute("transactionFormBean", new TransactionFormBean());
-        return "newtransaction";
+        if(!model.containsAttribute("customerId")){
+            return "logincustomer";
+        }else {
+            model.addAttribute("transactionFormBean", new TransactionFormBean());
+            return "newtransaction";
+        }
     }
 
     // TODO: 05/06/2020 validaties voor gebruiker zijn nog niet mooi, afmaken.
