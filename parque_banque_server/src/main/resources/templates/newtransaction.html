@@ -5,6 +5,7 @@
     <meta name="author" content="Lisa Kemeling">
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script defer src="../static/scripts/newtransaction.js"></script>
     <title>Overboeken</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
 </nav>
 <!-- main-content-->
     <main>
-        <form action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >
+        <form id="form" action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >
             <fieldset>
                 <legend>Overboeking van rekening <span th:field="${ibanDebitAccount}"></span></legend>
                 <div>
@@ -29,6 +30,7 @@
                     <input th:field="*{cents}" id="cents" type="text" size="2" pattern="\d{2}" placeholder="00">
                     <span th:if="${insufficientFunds}">U heeft onvoldoende saldo op deze rekening</span>
                     <span th:if="${lessThenOne}">Minimale bedrag is 1 cent</span>
+                    <span id="amountError" clas= fa fas-></span>
                 </div>
                 <div>
                     <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
