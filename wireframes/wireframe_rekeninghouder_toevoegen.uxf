@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>144</x>
+      <y>48</y>
+      <w>320</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>Rekeningpagina
+-.
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>304</x>
+      <y>144</y>
+      <w>152</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Rekeninghouder toevoegen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>480</x>
+      <y>48</y>
+      <w>376</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>Rekeninghouder toevoegen
+-.
+halign=left
+
+
+
+
+Toe te voegen klant
+
+
+
+bedenk een code
+(5 cijfers)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>592</x>
+      <y>112</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>[userName]
+valign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>592</x>
+      <y>168</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>[beveiligingscode]
+valign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>536</x>
+      <y>328</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Terug</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>672</x>
+      <y>328</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Bevestigen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>288</x>
+      <y>176</y>
+      <w>264</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>310.0;210.0;90.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>480</x>
+      <y>464</y>
+      <w>368</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Bevestigingscherm
+-.
+halign=left
+
+
+Gelukt!
+Geef de code door aan de klant met de gebruikersnaam [userName],
+[optioneel: echte naam van de klant]
+zodat die kan worden toegevoegd.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>704</x>
+      <y>352</y>
+      <w>32</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>20.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>616</x>
+      <y>648</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>OK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>256</x>
+      <y>176</y>
+      <w>376</w>
+      <h>504</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>450.0;610.0;230.0;590.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>168</y>
+      <w>96</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;80.0</additional_attributes>
+  </element>
+</diagram>
