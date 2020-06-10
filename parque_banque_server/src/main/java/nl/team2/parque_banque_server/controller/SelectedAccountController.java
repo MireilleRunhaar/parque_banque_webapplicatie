@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.service.CustomerService;
+import nl.team2.parque_banque_server.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ public class SelectedAccountController {
 
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    TransactionService transactionService;
 
     @GetMapping("/rekening-overzicht/details{iban}")
     public String handleDetails(@PathVariable(value = "iban") String iban,
@@ -42,6 +46,8 @@ public class SelectedAccountController {
                     model.addAttribute("DatumEnTijd", getCurrentTimeWithTimeZone());
                     model.addAttribute("iban", iban);
                     model.addAttribute("saldo", iban); //iban > rekening > getSaldo
+                    model.addAttribute("transacties",
+                            transactionService.getTransactionListByIbanCreditAccount(iban));
                     return "selectedaccount";
                 }
             }

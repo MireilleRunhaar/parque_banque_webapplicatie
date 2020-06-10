@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends CrudRepository <Transaction, Long> {
 
-    List<Transaction> findTop10ByCreditAccountOrDebitAccountOrderByDateDesc(
-            PaymentAccount creditAccount, PaymentAccount debitAccount);
+    List<Transaction> findTop10ByCreditAccount_IbanOrderByDateDesc(String iban);
+
 }

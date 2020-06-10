@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class TransactionService {
@@ -35,4 +36,7 @@ public class TransactionService {
             return new Transaction(amountCent, transactionFormBean.getDescription(), LocalDate.now(), creditAccount , debitAccount);
     }
 
+    public List<Transaction> getTransactionListByIbanCreditAccount(String iban){
+        return transactionRepo.findTop10ByCreditAccount_IbanOrderByDateDesc(iban);
+    }
 }
