@@ -6,6 +6,7 @@
     <link th:href="@{/css/main.css}" rel="stylesheet">
     <link th:href="@{/css/signup.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/javascript/signup.js" defer></script>
     <style>
 
         div > div {
@@ -54,7 +55,8 @@
                 </div>
                 <div>
                     <label for="bsn">Burger Service Nummer</label>
-                    <span th:if="${invalidBsn}" class="error" style="float: right">Vul een geldig BSN in</span>
+<!--                    <span th:if="${invalidBsn}" class="error" style="float: right">Vul een geldig BSN in</span>-->
+                    <span id="validBsn" class="error" style="float: right; display: none">Vul een geldig BSN in</span>
                     <input id="bsn" type="text" required pattern="[0-9]{9}" th:field="*{bsn}"
                            title="Vul uw BSN in"
                            oninvalid="setCustomValidity('Vul een geldig BSN in')"
@@ -119,7 +121,7 @@
                 </div>
             </div>
             <div>
-                <button type="submit" style="float: right">Volgende</button>
+                <button id="submit" type="submit" style="float: right">Volgende</button>
                 <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button>
             </div>
 
