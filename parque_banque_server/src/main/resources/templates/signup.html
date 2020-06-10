@@ -55,8 +55,7 @@
                 </div>
                 <div>
                     <label for="bsn">Burger Service Nummer</label>
-<!--                    <span th:if="${invalidBsn}" class="error" style="float: right">Vul een geldig BSN in</span>-->
-                    <span id="validBsn" class="error" style="float: right; display: none">Vul een geldig BSN in</span>
+                    <span id="validBsn" class="error" style="float: right; display: none; margin-right: 0;">Vul een geldig BSN in</span>
                     <input id="bsn" type="text" required pattern="[0-9]{9}" th:field="*{bsn}"
                            title="Vul uw BSN in"
                            oninvalid="setCustomValidity('Vul een geldig BSN in')"

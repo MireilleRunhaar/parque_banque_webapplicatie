@@ -32,7 +32,6 @@
         <form id="form" action="#" th:action="@{/klant-worden}" th:object="${createLoginFormBean}" method="post">
             <div>
                 <label for="username">Gebruikersnaam</label>
-    <!--            <span th:if="${usernameTaken}" class="error" style="float: right">Deze gebruikersnaam bestaat al</span>-->
                 <span id="usernameTaken" class="error" style="float:right; display: none">Deze gebruikersnaam bestaat al</span>
                 <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
                        title="Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)"

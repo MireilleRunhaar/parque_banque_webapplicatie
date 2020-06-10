@@ -34,9 +34,6 @@ public class CreateLoginController {
         // Check whether input contains errors, or whether username is taken; else save new customer
         if (bindingResult.hasErrors()) {
             mav.setViewName("createlogin");
-        } else if (signUpService.isUserNameTaken(createLoginFormBean.getUsername())) {
-            mav.addObject("usernameTaken", true);
-            mav.setViewName("createlogin");
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("signupform");
             if ( signUpFormBean != null ) {
