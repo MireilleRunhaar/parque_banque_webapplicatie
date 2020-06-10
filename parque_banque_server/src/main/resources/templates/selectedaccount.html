@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Geselecteerde rekening</title>
-    <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!--rekeningnummer, tenaamstelling, huidige datum en tijd, saldo
-        op de rekening en een overzicht van de laatste 10 transacties.-->
-    <h4>Datum en tijd:<span th:text="${DatumEnTijd}"></span></h4> <br/>
-    <h4>Rekeningnummer: <span th:text="${iban}"></span></h4>
-    <h4 th:if="${isCompany}" class="error"> Bedrijfsnaam: <span th:text="${businessName}"></span> </h4>
-    <h4>Tenaamstelling: <span th:text="${names}"></span></h4> <!--naam rekeninghouder, namen rekeninghouders, naam bedrijf + rekeninghouder, naam bedrijf + rekeninghouders-->
-    <h4>Saldo: <span th:text="${saldo}"></span></h4> <!--bedrag op de rekening obv iban-->
+    <head>
+        <meta charset="UTF-8">
+        <title>Geselecteerde rekening</title>
+        <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- navigatie -->
+        <nav class="navigation">
+            <ul>
+                <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+                <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
+                <li class="nav-link"><a  href="/rekening-openen">Rekening openen</a></li>
+                <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+            </ul>
+        </nav>
 
-    <a href="/rekeninghouder-toevoegen"><button>Rekeninghouder toevoegen</button></a>
-    <a href="/overboeken"><button>Geld overmaken</button></a>
-    <h2>Transacties</h2>
-    <ul>
-        <li><span th:field="Transactie1" />Transactie 1</li>
-        <li><span th:field="Transactie2" />Transactie 2</li>
-        <li><span th:field="Transactie3" />Transactie 3</li>
-        <li><span th:field="Transactie4" />Transactie 4</li>
-        <li><span th:field="Transactie5" />Transactie 5</li>
-        <li><span th:field="Transactie6" />Transactie 6</li>
-        <li><span th:field="Transactie1" />Transactie 7</li>
-        <li><span th:field="Transactie2" />Transactie 8</li>
-        <li><span th:field="Transactie3" />Transactie 9</li>
-        <li><span th:field="Transactie4" />Transactie 10</li>
-    </ul>
-</body>
+        <!-- body -->
+        <!-- Thymeleaf geeft hier foutmeldingen aan, deze zijn te negeren. Alles werkt nog. Foutmelding komt waarschijnlijk
+         doordaat de model.addAttribute taken in een methode buiten de controller worden toegevoegd.--->
+
+        <p>Datum en tijd:<span th:text="${DatumEnTijd}"></span></p>
+        <br/>
+
+        <h4>Rekeningnummer: <span th:text="${iban}"></span></h4>
+        <h4 th:if="${isCompany}"> Bedrijfsnaam: <span th:text="${businessName}"></span> </h4>
+        <h4>Tenaamstelling: <span th:text="${names}"></span></h4>
+        <h4>Saldo: <span th:text="${saldo}"></span></h4>
+
+        <a href="/rekeninghouder-toevoegen"><button>Rekeninghouder toevoegen</button></a>
+        <a href="/overboeken"><button>Geld overmaken</button></a>
+        <h2>Transacties</h2>
+        <ul>
+            <li><span th:field="Transactie1" />Transactie 1</li>
+            <li><span th:field="Transactie2" />Transactie 2</li>
+            <li><span th:field="Transactie3" />Transactie 3</li>
+            <li><span th:field="Transactie4" />Transactie 4</li>
+            <li><span th:field="Transactie5" />Transactie 5</li>
+            <li><span th:field="Transactie6" />Transactie 6</li>
+            <li><span th:field="Transactie1" />Transactie 7</li>
+            <li><span th:field="Transactie2" />Transactie 8</li>
+            <li><span th:field="Transactie3" />Transactie 9</li>
+            <li><span th:field="Transactie4" />Transactie 10</li>
+        </ul>
+
+    </body>
 </html>
