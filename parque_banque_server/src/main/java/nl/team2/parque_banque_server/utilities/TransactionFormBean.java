@@ -10,11 +10,8 @@ import java.time.LocalDate;
 
 public class TransactionFormBean {
 
-    public static final int MIN_AMOUNT = 0;
     public static final int MAX_AMOUNT = 100000;
-    public static final int FALSE_RESULT = -1;
-    public static final int MIN_CENTS = 0;
-    public static final int MAX_CENTS = 10000000;
+    public static final int MAX_CENTS = 99;
 
 
     @PositiveOrZero
@@ -42,12 +39,6 @@ public class TransactionFormBean {
     }
 
     public long getTotalAmountInCents(){
-        if(amount < MIN_AMOUNT || amount > MAX_AMOUNT){
-            return FALSE_RESULT;
-        }
-        if(cents < MIN_CENTS || cents > MAX_CENTS){
-            return FALSE_RESULT;
-        }
         return (amount * 100) + cents;
     }
 
