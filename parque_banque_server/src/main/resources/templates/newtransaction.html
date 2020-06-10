@@ -6,7 +6,7 @@
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link th:href="@{/css/transaction.css}" href="../static/css/transaction.css" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <script defer src="../static/scripts/newtransaction.js"></script>
+    <script type="text/javascript" src="javascript/newtransaction.js" defer ></script>
     <title>Overboeken</title>
 </head>
 <body>
@@ -29,16 +29,17 @@
                  
                     <div class="form-control">
                         <label id="label-amount" for="amount">Bedrag</label>
-                        <input th:field="*{amount}" id="amount" class="t-amount" type="text" pattern="\d{0,6}" placeholder="0" size="8" dir="rtl">
+                        <input th:field="*{amount}" id="amount" class="t-amount" type="text" placeholder="0" size="8" dir="rtl">
                         <label for="cents">,</label>
-                        <input th:field="*{cents}" id="cents" class="t-cents" type="text" size="2" pattern="\d{2}" placeholder="00">
+                        <input th:field="*{cents}" id="cents" class="t-cents" type="text" size="2" placeholder="00">
                         <!-- <small th:if="${insufficientFunds}"></small> -->
                         <small></small>
                     </div>
                     <div class="form-control">
                         <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
                         <input th:field="*{ibanCreditAccount}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18">
-                        <small th:if="${invalidCreditAccount}">Rekeningnummer is niet bij ons bekend</small>
+                        <small></small>
+                        <!--<small th:if="${invalidCreditAccount}">Rekeningnummer is niet bij ons bekend</small>-->
                     </div>
                 <div class="form-control">
                     <label for="description">Omschrijving</label>
