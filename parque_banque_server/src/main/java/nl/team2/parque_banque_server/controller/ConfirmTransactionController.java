@@ -27,7 +27,7 @@ public class ConfirmTransactionController {
        }
         Transaction transaction = transactionService.createTransactionFromBean(transactionFormBean,ibanDebitAccount);
         transactionService.executeAndSave(transaction);
-        return "index"; // TODO: 07/06/2020 dit moet accountview worden
+        return "index";
     }
 
     @PostMapping(value = "/overboeken", params = "action=back")
