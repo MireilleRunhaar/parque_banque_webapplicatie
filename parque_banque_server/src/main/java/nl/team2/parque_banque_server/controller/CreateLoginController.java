@@ -1,7 +1,6 @@
 package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Customer;
-import nl.team2.parque_banque_server.service.CustomerService;
 import nl.team2.parque_banque_server.service.SignUpService;
 import nl.team2.parque_banque_server.utilities.CreateLoginFormBean;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
@@ -19,8 +18,12 @@ import javax.validation.Valid;
 @SessionAttributes("signupform")
 public class CreateLoginController {
 
+    private final SignUpService signUpService;
+
     @Autowired
-    private CustomerService customerService;
+    public CreateLoginController(SignUpService signUpService) {
+        this.signUpService = signUpService;
+    }
 
 
     // If user finishes signup, create user object, save to database and send user to login
@@ -32,14 +35,13 @@ public class CreateLoginController {
         // Check whether input contains errors, or whether username is taken; else save new customer
         if (bindingResult.hasErrors()) {
             mav.setViewName("createlogin");
-        } else if (customerService.findByUserName(createLoginFormBean.getUsername()) != null) {
+        } else if (signUpService.isUserNameTaken(createLoginFormBean.getUsername())) {
             mav.addObject("usernameTaken", true);
             mav.setViewName("createlogin");
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("signupform");
             if ( signUpFormBean != null ) {
-                Customer customer = SignUpService.createNewCustomer(signUpFormBean, createLoginFormBean);
-                customerService.saveCustomer(customer);
+                signUpService.saveNewCustomer(signUpFormBean, createLoginFormBean);
                 mav.setViewName("redirect:/inloggen");
             } else {
                 mav.setViewName("error");

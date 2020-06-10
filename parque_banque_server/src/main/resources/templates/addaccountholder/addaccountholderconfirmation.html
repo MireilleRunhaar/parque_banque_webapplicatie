@@ -15,7 +15,6 @@
         aan rekening <span th:text="${authorisation.iban}">[iban]</span> worden toegevoegd.</p>
     <p>Geef de code <span th:text="${authorisation.securityCode}">[code]</span> aan deze klant.
         Hij/zij heeft deze code nodig om gekoppeld te worden aan deze rekening.</p>
-<!--  TODO: redirect to page of paymentaccount  -->
-    <a href="/rekening-overzicht"><button>OK</button></a>
+    <a th:href="@{/rekening-overzicht/details{iban}(iban=${authorisation.iban})}"><button>OK</button></a>
 </body>
 </html>

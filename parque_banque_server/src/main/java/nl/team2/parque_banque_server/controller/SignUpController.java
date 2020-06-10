@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.service.SignUpService;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,13 @@ import javax.validation.Valid;
 @Controller
 @SessionAttributes("signupform")
 public class SignUpController {
+
+    private final SignUpService signUpService;
+
+    @Autowired
+    public SignUpController(SignUpService signUpService) {
+        this.signUpService = signUpService;
+    }
 
     @GetMapping("/klant-worden")
     public ModelAndView signupHandler(@ModelAttribute SignUpFormBean signUpFormBean) {
@@ -32,7 +40,7 @@ public class SignUpController {
 
         if (bindingResult.hasErrors()) {
             mav.setViewName("signup");
-        } else if (!SignUpService.passesElfproef(signUpFormBean.getBsn())) {
+        } else if (!signUpService.passesElfproef(signUpFormBean.getBsn())) {
             mav.setViewName("signup");
             mav.addObject("signupform", signUpFormBean);
             mav.addObject("invalidBsn", true);
@@ -40,7 +48,7 @@ public class SignUpController {
             mav.setViewName("confirmsignup");
 
             // Capitalize the appropriate fields in the signUpFormBean
-            SignUpFormBean formattedSignUpFormBean = SignUpService.formatFormInput(signUpFormBean);
+            SignUpFormBean formattedSignUpFormBean = signUpService.formatFormInput(signUpFormBean);
 
             mav.addObject("signupform", formattedSignUpFormBean);
         }

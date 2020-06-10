@@ -34,7 +34,7 @@
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
 <div align="left">
     <label for="kvkNr">KvK-nummer</label>
-    <input id="kvkNr" type="text" readonly th:field="${companyFormBean.kvkNr}"/><br>
+    <input id="kvkNr" type="text" th:field="${companyFormBean.kvkNr}"/><br>
     <label for="btwNr">Btw-nummer</label>
     <input id="btwNr" type="text" readonly th:field="${companyFormBean.btwNr}"/><br>
     <label for="bedrijfsNaam">Bedrijfsnaam</label>
