@@ -29,7 +29,8 @@ class LoginCustomerControllerTest {
     @MockBean
     private CustomerService customerService;
 
-    //Tests if the HTTP request works and if the paramaters are succesfully received as Java Objects by the method
+    //Tests if the HTTP request works (response status is OK) and if the paramaters are succesfully received
+    // as Java Objects by the method
     @Test
     void customerLoginFormHandler() {
         Mockito.when(loginService.customerLoginValidation(new LoginCustomerFormBean("Jaap", "Wachtwoord"))).thenReturn(false);
