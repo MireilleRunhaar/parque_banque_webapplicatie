@@ -31,16 +31,16 @@
                  width="80px" height="45px"></a>
 <body>
 <h1>Vul hier het rekeningnummer en de code in die u heeft gekregen van de rekeninghouder.</h1>
-<form class="accounttoevoegen-form" th:action="@{/rekening-toevoegen}" th:object="${linkAccountFormBean}" method="post">
+<form class="accounttoevoegen-form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post">
     <div class="form1">
         <span th:if="${invalidCredentials}" class="error">De combinatie tussen rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.<br/></span>
     <br/>
         <label for="iban">Rekeningnummer</label><br/>
-        <input type="text" id="iban" name="iban" autofocus="autofocus"/><br/></div>
+        <input type="text" id="iban" th:field="*{iban}"  name="iban" autofocus="autofocus"/><br/></div>
 
     <div class="form1">
         <label for="securityCode">Beveiligingcode</label><br/>
-        <input type="text" id="securityCode" name="securityCode" autofocus="autofocus"/><br/></div>
+        <input type="text" id="securityCode" th:field="*{securityCode}" name="securityCode" autofocus="autofocus"/><br/></div>
     <br/>
 
     <button id=bevestig type="submit" value="OK">OK</button>

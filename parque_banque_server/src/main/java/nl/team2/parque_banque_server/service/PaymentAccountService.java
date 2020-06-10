@@ -32,6 +32,10 @@ public class PaymentAccountService {
         return numberFormat.format(balanceCents / CENTS_IN_EURO);
     }
 
+    public void savePaymentAccount(PaymentAccount paymentAccount){
+        paymentAccountRepo.save(paymentAccount);
+
+    }
     public boolean validateFunds(String iban, long transactionAmount){
         PaymentAccount paymentAccount = findOneByIban(iban);
         return paymentAccount.validateSufficientFunds(transactionAmount);
@@ -60,6 +64,8 @@ public class PaymentAccountService {
 
         public IbanService() {
         }
+
+
 
 //        // get last the last added iban and add 1.
 //        public String createNewIban(){

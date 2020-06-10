@@ -16,10 +16,10 @@ public class LinkAccountService {
     @Autowired
     AuthorisationService authorisationService;
 
-    public boolean linkAccountValidation(LinkAccountFormBean linkAccountFormBean, AddAccountHolderFormBean addAccountHolderFormBean) {
+    public boolean linkAccountValidation(LinkAccountFormBean linkAccountFormBean, String username) {
         // haal een lijst op uit de database op basis van de username uit de accountholderformbean
         //als er geen authorisaties zijn dan is het resultaat false.
-        List<Authorisation> authorisationList = authorisationService.findAllByUserName(addAccountHolderFormBean.getUsername());
+        List<Authorisation> authorisationList = authorisationService.findAllByUserName(username);
         if (authorisationList.size() == 0) {
             return false;
         }
@@ -28,8 +28,10 @@ public class LinkAccountService {
         // zo ja, return true, zo nee return false
         else {
             for (Authorisation authorisation : authorisationList) {
-                return authorisation.getSecurityCode().equals(linkAccountFormBean.getSecurityCode())
-                        && authorisation.getIban().equals(linkAccountFormBean.getIban());
+                if(authorisation.getSecurityCode().equals(linkAccountFormBean.getSecurityCode())
+                        && authorisation.getIban().equals(linkAccountFormBean.getIban())){
+                    return true;
+                }
             }
             return false;
         }
