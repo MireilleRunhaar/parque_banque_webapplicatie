@@ -3,15 +3,14 @@ const amount = document.getElementById('amount');
 const cents = document.getElementById('cents');
 const iban = document.getElementById('iban');
 const description = document.getElementById('description');
+const button = document.getElementById('button');
 const MAX_TRANSACTION = 10000000;
 const MIN_TRANSACTION = 0;
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if(checkInputs() < 1){
-        form.submit();
+    if(checkInputs() > 0){
+        e.preventDefault();
     }
-
 })
 
 function checkInputs(){
@@ -20,6 +19,7 @@ function checkInputs(){
     const ibanInput = iban.value.trim();
     const descriptionInput = description.value.trim();
     let errors = 0;
+
 
 
     if(!validateTotalAmount(amountInput, centsInput)){

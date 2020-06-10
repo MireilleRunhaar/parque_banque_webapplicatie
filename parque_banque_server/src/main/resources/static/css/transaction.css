@@ -57,11 +57,11 @@ main {
 }
 
 .form-control.succes input {
-    border-color: #048226;
+    border-color: #1cfc1c;
 }
 
 .form-control.error input{
-    border-color: #e74c3c;
+    border-color: #a80a0a;
 }
 
 .form-control input{
@@ -96,10 +96,15 @@ right: 10px;
 } */
 
 .form-control small{
+    visibility: hidden;
     position: absolute;
-    color:#a80a0a;
     bottom: 0;
     left: 0;
+}
+
+.form-control.error small {
+    color:#a80a0a;
+    visibility: visible;
 }
 
 .form button {
