@@ -13,21 +13,26 @@ form.addEventListener('submit', (e) => {
 
 function checkInputs(){
     // de waarden ophalen uit de inputs
-    const amountInput = amount.value;
-    const centsInput = cents.value;
+    let amountInput = amount.value;
+    let centsInput = cents.value;
     const ibanInput = iban.value.trim();
     const descriptionInput = description.value.trim();
-    
-    
-    //amount = niet nul, een getal, minimaal 1 cent, max 100.000,00 euro
-    if(amountInput === ''){
+
+
+    if(validateTotalAmount()){
+        setSuccesFor(amount)
+    } else{
+        setErrorFor(amount, "Vul een bedag in")
+    }
+
+    /*if(centsInput === '' || amountInput === null){
         // show error
         // add error class
         setErrorFor(amount, 'Vul een bedrag in');
     } else {
         // add succes class
         setSuccesFor(amount);
-    }
+    }*/
     
     if(ibanInput === ''){
         setErrorFor(iban, 'Vul een rekeningnummer in')
@@ -57,4 +62,22 @@ function setSuccesFor(input){
 
 function validIban (iban){
     return /NL\d{2}PARQ0\d{9}/.test(iban);
+}
+
+function validateTotalAmount(amountInput, centsInput){
+    if(centsInput != null && amountInput != null){
+        centsInput = Number(centsInput);
+        amountInput = Number(amountInput);
+        if(Number.isInteger(centsInput) && Number.isInteger(amountInput)){
+            const totalAmount = (amountInput * 100) + centsInput;
+            if(totalAmount > 0 && totalAmount <= 10000000){
+                return true;
+            }
+        } else{
+            return false;
+        }
+
+    } else{
+        return false;
+    }
 }

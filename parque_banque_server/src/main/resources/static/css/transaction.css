@@ -96,9 +96,9 @@ right: 10px;
 } */
 
 .form-control small{
-    visibility: hidden;
+   /* visibility: hidden;*/
     position: absolute;
-    color: #e74c3c;
+    color:#a80a0a;
     bottom: 0;
     left: 0;
 }
