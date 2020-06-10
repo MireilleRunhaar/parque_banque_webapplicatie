@@ -24,24 +24,37 @@ class LoginCustomerControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private CustomerService customerService;
-
-    @MockBean
     private LoginService loginService;
 
-    public LoginCustomerControllerTest() {
-        super();
-    }
+    @MockBean
+    private CustomerService customerService;
 
+    //Tests if the HTTP request works and if the paramaters are succesfully received as Java Objects by the method
     @Test
     void customerLoginFormHandler() {
-        //Mockito.when(loginService.customerLoginValidation(new LoginCustomerFormBean("Jaap", "wachtwoord"))).thenReturn(true);
-        Mockito.when(customerService.findByUserName("Jaap")).thenReturn(new Customer("123456789", "Jaap", "wachtwoord"));
+        Mockito.when(loginService.customerLoginValidation(new LoginCustomerFormBean("Jaap", "Wachtwoord"))).thenReturn(false);
+        Mockito.when(customerService.findByUserName("Jaap")).thenReturn(new Customer("123456789", "Jaap", "Wachtwoord"));
 
         try {
             MockHttpServletRequestBuilder postRequest =
                     MockMvcRequestBuilders.post("/inloggen");
-            postRequest.flashAttr("loginCustomerFormBean", new LoginCustomerFormBean("Jaap", "wachtwoord"));
+            postRequest.param("userName",  "Jaap");
+            postRequest.param("password", "Welkom");
+            ResultActions result = mockMvc.perform(postRequest);
+            result.andDo(print()).andExpect(status().isOk());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Tests if the print() prints an (bindingResult) error when the parameters are empty, since the paramaters are @NotBlank
+    @Test
+    void customerLoginInputValidation() {
+        try {
+            MockHttpServletRequestBuilder postRequest =
+                    MockMvcRequestBuilders.post("/inloggen");
+            postRequest.param("userName",  "");
+            postRequest.param("password", "");
             ResultActions result = mockMvc.perform(postRequest);
             result.andDo(print()).andExpect(status().isOk());
         } catch (Exception e) {
