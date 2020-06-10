@@ -43,14 +43,14 @@ function setErrorFor(input, message){
     const small = formControl.querySelector('small');
     
     // add error message inside small
-    small.innerHTML = message;
+    small.innerText = message;
     
     // add error class for CSS
     formControl.className = 'form-control error';
 }
 
 function setSuccesFor(input){
-    const formControl = input.parentElement;
+    const formControl = input.querySelector('small');
     formControl.className = 'form-control succes';
     
 }

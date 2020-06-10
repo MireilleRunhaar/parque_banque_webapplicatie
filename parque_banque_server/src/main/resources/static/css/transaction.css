@@ -52,6 +52,10 @@ main {
     margin-bottom: 5px;
 }
 
+#label-amount {
+    display: block;
+}
+
 .form-control.succes input {
     border-color: #048226;
 }
@@ -94,15 +98,15 @@ right: 10px;
 .form-control small{
     visibility: hidden;
     position: absolute;
+    color: #e74c3c;
     bottom: 0;
     left: 0;
 }
 
-/*kleuren van de button nog niet tevreden over en hij moet iets naar rechts*/
 .form button {
     background-color: #2e2a2a;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    border: 2px solid gr;
+    border: 2px solid #a9a9a9;
     border-radius: 4px;
     color: white;
     display: block;

@@ -28,12 +28,12 @@
              <form class="form" id="form" action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >  
                  
                     <div class="form-control">
-                        <label for="amount">Bedrag</label>
+                        <label id="label-amount" for="amount">Bedrag</label>
                         <input th:field="*{amount}" id="amount" class="t-amount" type="text" pattern="\d{0,6}" placeholder="0" size="8" dir="rtl">
                         <label for="cents">,</label>
                         <input th:field="*{cents}" id="cents" class="t-cents" type="text" size="2" pattern="\d{2}" placeholder="00">
-                        <small th:if="${insufficientFunds}">U heeft onvoldoende saldo op deze rekening</small>
-                        <small id="amountError">Boek minimaal 1 cent over</small>
+                        <!-- <small th:if="${insufficientFunds}"></small> -->
+                        <small></small>
                     </div>
                     <div class="form-control">
                         <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
