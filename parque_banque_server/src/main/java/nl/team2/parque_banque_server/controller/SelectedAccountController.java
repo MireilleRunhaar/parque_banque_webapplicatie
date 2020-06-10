@@ -47,7 +47,7 @@ public class SelectedAccountController {
                     model.addAttribute("iban", iban);
                     model.addAttribute("saldo", iban); //iban > rekening > getSaldo
                     model.addAttribute("transacties",
-                            transactionService.getTransactionListByIbanCreditAccount(iban));
+                            transactionService.getTransactionListByIbanCreditOrDebitAccount(iban, iban));
                     return "selectedaccount";
                 }
             }

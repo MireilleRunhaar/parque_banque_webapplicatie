@@ -36,7 +36,9 @@ public class TransactionService {
             return new Transaction(amountCent, transactionFormBean.getDescription(), LocalDate.now(), creditAccount , debitAccount);
     }
 
-    public List<Transaction> getTransactionListByIbanCreditAccount(String iban){
-        return transactionRepo.findTop10ByCreditAccount_IbanOrderByDateDesc(iban);
+    public List<Transaction> getTransactionListByIbanCreditOrDebitAccount
+            (String creditAccount_iban, String debitAccount_iban){
+        return transactionRepo.findTop10ByCreditAccount_IbanOrDebitAccount_IbanOrderByDateDesc
+                (creditAccount_iban, debitAccount_iban);
     }
 }
