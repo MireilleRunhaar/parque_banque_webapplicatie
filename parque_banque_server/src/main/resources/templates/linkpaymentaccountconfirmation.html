@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Bevestiging rekening toegevoegd</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
 </head>
 <body>
-<h1>Gefeliciteerd! U bent mederekeninghouder geworden!</h1>
+<nav class="navigation">
+    <ul>
+        <li class="logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a><li/>
+        <li class="nav-link"><a href="/contact">Contact</a></li>
+    </ul>
+</nav>
+Gefeliciteerd! U bent mederekeninghouder geworden!
 </body>
 </html>

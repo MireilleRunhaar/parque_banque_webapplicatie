@@ -52,7 +52,7 @@ public class LinkAccountController {
 
     //checking for login credentials
     @PostMapping("/rekening-koppelen")
-    public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean,BindingResult bindingResult, Model model) {
+    public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
         System.out.println("dit is de postmapping");
         //input voor linkaccountvalidation is linkaccountformbean en addaccountholderformbean.
@@ -61,23 +61,21 @@ public class LinkAccountController {
             model.addAttribute("invalidCredentials", true);
             mav.setViewName("linkpaymentaccount");
         } else {
-            //als validatie goed is voeg dan de klant toe// dit gaat niet goed.  Long(id) toegevoegd omdat id anders niet goed gaat.
+            //alsgevoegd omdat id anders niet goed gaat.
             Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
-            if(linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())){
-                PaymentAccount paymentAccount= paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
+            if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
+                PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
                 paymentAccount.addCustomerToAccountHolder(customer);
                 paymentAccountService.savePaymentAccount(paymentAccount);
                 mav.setViewName("linkpaymentaccountconfirmation");
-
             }
-            //customer toevoegen aan de lijst met accountholders
-
-
-//            mav.setViewName("linkpaymentaccountconfirmation");
-
+            else {
+                System.out.println("verkeerd wachtwoord");
+                model.addAttribute("invalidCredentials", true);
+                mav.setViewName("linkpaymentaccount");
+            }
         }
         return mav;
     }
-// || !linkAccountService.linkAccountValidation(linkAccountFormBean, addAccountHolderFormBean)
 
 }
