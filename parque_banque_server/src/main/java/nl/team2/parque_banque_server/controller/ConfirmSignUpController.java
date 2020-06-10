@@ -10,9 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 @SessionAttributes("signupform")
 public class ConfirmSignUpController {
 
-    public ConfirmSignUpController() {
-        super();
-    }
 
     // If user is happy with the input data, user is sent to page for creating login credentials
     @PostMapping(value = "/klant-worden", params = "action=createaccount")
@@ -20,7 +17,6 @@ public class ConfirmSignUpController {
         ModelAndView mav = new ModelAndView();
 
         mav.setViewName("createlogin");
-
 
         mav.addObject(new CreateLoginFormBean());
 
