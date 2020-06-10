@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Bevestig uw gegevens - Parque Banque</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
     <link th:href="@{/css/signup.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <style>
@@ -19,75 +20,79 @@
 </head>
 <body>
 
-    <header class="pbMenu">
-        <nav class="pbMenu-homeNav">
-            <a href="/" class="pbMenu-logoLink"><img th:src="@{logo-small.png}" class="logolink" width="162.8" height="41.6"></a>
-        </nav>
-    </header>
+    <nav class="navigation">
+        <ul>
+            <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+            <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
+            <li class="nav-link"><a  href="/contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <h1>Bevestig uw gegevens</h1>
-    <p style="margin-bottom: 5px;">Controleer uw gegevens zorgvuldig. Klik op Wijzig gegevens als u iets wilt veranderen.</p>
-    <p style="margin-bottom: 5px;">Als u alles correct hebt ingevuld, klik dan op Volgende om een account aan te maken</p>
-    <form th:action="@{/klant-worden}" th:object="${signupform}" method="post">
+    <main>
+        <h1>Bevestig uw gegevens</h1>
+        <p style="margin-bottom: 5px;">Controleer uw gegevens zorgvuldig. Klik op Wijzig gegevens als u iets wilt veranderen.</p>
+        <p style="margin-bottom: 5px;">Als u alles correct hebt ingevuld, klik dan op Volgende om een account aan te maken</p>
+        <form th:action="@{/klant-worden}" th:object="${signupform}" method="post">
 
-        <div>
-            <p>PERSOONSGEGEVENS</p>
-            <div style="width: 480px">
-                <label for="firstName">Voornaam</label>
-                <input id="firstName" type="text" readonly th:field="${signupform.firstName}"/>
-            </div>
-            <div style="width: 140px">
-                <label for="infix">Tussenvoegsel</label>
-                <input id="infix" type="text" readonly th:field="${signupform.infix}"/>
+            <div>
+                <p>PERSOONSGEGEVENS</p>
+                <div style="width: 480px">
+                    <label for="firstName">Voornaam</label>
+                    <input id="firstName" type="text" readonly th:field="${signupform.firstName}"/>
+                </div>
+                <div style="width: 140px">
+                    <label for="infix">Tussenvoegsel</label>
+                    <input id="infix" type="text" readonly th:field="${signupform.infix}"/>
+                </div>
+                <div>
+                    <label for="lastName">Achternaam</label>
+                    <input id="lastName" type="text" readonly th:field="${signupform.lastName}"/>
+                </div>
+                <div>
+                    <label for="bsn">Burger Service Nummer</label>
+                    <input id="bsn" type="text" readonly th:field="${signupform.bsn}"/>
+                </div>
             </div>
             <div>
-                <label for="lastName">Achternaam</label>
-                <input id="lastName" type="text" readonly th:field="${signupform.lastName}"/>
+                <p>ADRESGEGEVENS</p>
+                <div style="width: 520px">
+                    <label for="street">Straat</label>
+                    <input id="street" type="text" readonly th:field="${signupform.street}"/>
+                </div>
+                <div style="width: 100px">
+                    <label for="number">Huisnummer</label>
+                    <input id="number" type="text" readonly th:field="${signupform.number}"/>
+                </div>
+                <div style="width: 100px">
+                    <label for="addition">Toevoeging</label>
+                    <input id="addition" type="text" readonly th:field="${signupform.addition}"/>
+                </div>
+                <div style="width: 80px">
+                    <label for="zipcode">Postcode</label>
+                    <input id="zipcode" type="text" readonly th:field="${signupform.zipcode}"/>
+                </div>
+                <div style="width: 415px">
+                    <label for="city">Woonplaats</label>
+                    <input id="city" type="text" readonly th:field="${signupform.city}"/>
+                </div>
             </div>
             <div>
-                <label for="bsn">Burger Service Nummer</label>
-                <input id="bsn" type="text" readonly th:field="${signupform.bsn}"/>
-            </div>
-        </div>
-        <div>
-            <p>ADRESGEGEVENS</p>
-            <div style="width: 520px">
-                <label for="street">Straat</label>
-                <input id="street" type="text" readonly th:field="${signupform.street}"/>
-            </div>
-            <div style="width: 100px">
-                <label for="number">Huisnummer</label>
-                <input id="number" type="text" readonly th:field="${signupform.number}"/>
-            </div>
-            <div style="width: 100px">
-                <label for="addition">Toevoeging</label>
-                <input id="addition" type="text" readonly th:field="${signupform.addition}"/>
-            </div>
-            <div style="width: 80px">
-                <label for="zipcode">Postcode</label>
-                <input id="zipcode" type="text" readonly th:field="${signupform.zipcode}"/>
-            </div>
-            <div style="width: 415px">
-                <label for="city">Woonplaats</label>
-                <input id="city" type="text" readonly th:field="${signupform.city}"/>
-            </div>
-        </div>
-        <div>
-            <p>CONTACTGEGEVENS</p>
-            <div>
-                <label for="phone">Telefoon nummer</label>
-                <input id="phone" type="tel" readonly th:field="${signupform.phone}"/>
+                <p>CONTACTGEGEVENS</p>
+                <div>
+                    <label for="phone">Telefoon nummer</label>
+                    <input id="phone" type="tel" readonly th:field="${signupform.phone}"/>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" readonly th:field="${signupform.emailAddress}"/>
+                </div>
             </div>
             <div>
-                <label for="email">Email</label>
-                <input id="email" type="email" readonly th:field="${signupform.emailAddress}"/>
+                <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button>
+                <button type="submit" name="action" value="edit">Wijzig gegevens</button>
+                <button type="submit" name="action" value="createaccount" style="float: right">Volgende</button>
             </div>
-        </div>
-        <div>
-            <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button>
-            <button type="submit" name="action" value="edit">Wijzig gegevens</button>
-            <button type="submit" name="action" value="createaccount" style="float: right">Volgende</button>
-        </div>
-    </form>
+        </form>
+    </main>
 </body>
 </html>

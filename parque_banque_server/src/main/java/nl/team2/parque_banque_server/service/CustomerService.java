@@ -31,4 +31,8 @@ public class CustomerService {
         long id = (long) object;
         return findById(id);
     }
+
+    public CustomerRepository getCustomerRepo() {
+        return customerRepo;
+    }
 }
