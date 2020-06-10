@@ -5,6 +5,7 @@ import nl.team2.parque_banque_server.service.CustomerService;
 import nl.team2.parque_banque_server.service.SignUpService;
 import nl.team2.parque_banque_server.utilities.CreateLoginFormBean;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,12 +19,8 @@ import javax.validation.Valid;
 @SessionAttributes("signupform")
 public class CreateLoginController {
 
-    private final CustomerService customerService;
-
-    public CreateLoginController(CustomerService customerService) {
-        super();
-        this.customerService = customerService;
-    }
+    @Autowired
+    private CustomerService customerService;
 
 
     // If user finishes signup, create user object, save to database and send user to login
@@ -40,7 +37,6 @@ public class CreateLoginController {
             mav.setViewName("createlogin");
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("signupform");
-            // Create customer object and save to the database; redirect user to account view
             if ( signUpFormBean != null ) {
                 Customer customer = SignUpService.createNewCustomer(signUpFormBean, createLoginFormBean);
                 customerService.saveCustomer(customer);
