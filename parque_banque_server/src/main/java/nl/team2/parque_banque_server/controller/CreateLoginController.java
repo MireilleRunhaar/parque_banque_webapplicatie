@@ -1,10 +1,10 @@
 package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Customer;
-import nl.team2.parque_banque_server.service.CustomerService;
 import nl.team2.parque_banque_server.service.SignUpService;
 import nl.team2.parque_banque_server.utilities.CreateLoginFormBean;
 import nl.team2.parque_banque_server.utilities.SignUpFormBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,11 +18,11 @@ import javax.validation.Valid;
 @SessionAttributes("signupform")
 public class CreateLoginController {
 
-    private final CustomerService customerService;
+    private final SignUpService signUpService;
 
-    public CreateLoginController(CustomerService customerService) {
-        super();
-        this.customerService = customerService;
+    @Autowired
+    public CreateLoginController(SignUpService signUpService) {
+        this.signUpService = signUpService;
     }
 
 
@@ -35,15 +35,13 @@ public class CreateLoginController {
         // Check whether input contains errors, or whether username is taken; else save new customer
         if (bindingResult.hasErrors()) {
             mav.setViewName("createlogin");
-        } else if (customerService.findByUserName(createLoginFormBean.getUsername()) != null) {
+        } else if (signUpService.isUserNameTaken(createLoginFormBean.getUsername())) {
             mav.addObject("usernameTaken", true);
             mav.setViewName("createlogin");
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("signupform");
-            // Create customer object and save to the database; redirect user to account view
             if ( signUpFormBean != null ) {
-                Customer customer = SignUpService.createNewCustomer(signUpFormBean, createLoginFormBean);
-                customerService.saveCustomer(customer);
+                signUpService.saveNewCustomer(signUpFormBean, createLoginFormBean);
                 mav.setViewName("redirect:/inloggen");
             } else {
                 mav.setViewName("error");

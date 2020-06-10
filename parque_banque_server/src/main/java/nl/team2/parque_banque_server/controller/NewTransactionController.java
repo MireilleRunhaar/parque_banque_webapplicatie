@@ -19,6 +19,7 @@ import javax.validation.Valid;
 @SessionAttributes({"customerId", "iban", "transactionFormBean"})
 public class NewTransactionController {
 
+    public static final int MIN_AMOUNT = 1;
     @Autowired
     PaymentAccountService paymentAccountService;
 
@@ -40,7 +41,10 @@ public class NewTransactionController {
         String ibanDebitAccount = (String) model.getAttribute("iban");
         if(bindingResult.hasErrors()){
             return "newtransaction";
-        } else{
+        } else if(transactionFormBean.getTotalAmountInCents() < MIN_AMOUNT) {
+            model.addAttribute("lessThenOne", true);
+            return "newtransaction";
+        } else {
             PaymentAccount creditAccount = paymentAccountService.findOneByIban(transactionFormBean.getIbanCreditAccount());
             if(!paymentAccountService.validateFunds(ibanDebitAccount, transactionFormBean.getTotalAmountInCents())){
                 model.addAttribute("insufficientFunds", true);

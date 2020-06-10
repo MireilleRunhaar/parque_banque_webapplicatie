@@ -20,8 +20,6 @@ public class PrivateAccount extends PaymentAccount {
         return "PrivateAccount{" +
                 "iban='" + iban + '\'' +
                 ", balanceCent=" + balanceCent +
-                ", transactionHistory=" + transactionHistory +
-                ", accountHolders=" + accountHolders +
                 '}';
     }
 }
