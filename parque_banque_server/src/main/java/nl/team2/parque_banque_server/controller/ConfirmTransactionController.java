@@ -27,7 +27,7 @@ public class ConfirmTransactionController {
        }
         Transaction transaction = transactionService.createTransactionFromBean(transactionFormBean,ibanDebitAccount);
         transactionService.executeAndSave(transaction);
-        return "selectedaccount";
+        return "redirect:/rekening-overzicht/details" + ibanDebitAccount;
     }
 
     @PostMapping(value = "/overboeken", params = "action=back")
