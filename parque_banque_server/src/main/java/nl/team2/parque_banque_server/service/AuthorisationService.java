@@ -24,9 +24,8 @@ public class AuthorisationService {
     //get authorisation by Iban (by customer2)
     public Authorisation findAuthorisationByIban(String iban){
         return authorisationRepository.findAuthorisationByIban(iban);
-
-
     }
+//    public Authorisation deleteAuthorisation
 
 
 }

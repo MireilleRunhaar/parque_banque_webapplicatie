@@ -67,6 +67,8 @@ public class LinkAccountController {
                 PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
                 paymentAccount.addCustomerToAccountHolder(customer);
                 paymentAccountService.savePaymentAccount(paymentAccount);
+//                Authorisation authorisation=authorisationService.findAuthorisationByIban(linkAccountFormBean.getIban());
+//                authorisation.
                 mav.setViewName("linkpaymentaccountconfirmation");
             }
             else {
