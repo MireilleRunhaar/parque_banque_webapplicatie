@@ -29,7 +29,7 @@
     <p>Bedrag   Beschrijving    Datum   Tegenrekening</p>
     <table>
         <tr>
-      <p th:each="transactie : ${transacties}"><span th:text="${transactie.getAmountCent()}">  </span>
+      <p th:each="transactie : ${transacties}"><span th:text="${transactie.amountCent}">  </span>
           <span th:text="${transactie.description}"> </span> <span th:text="${transactie.date}"> </span>
           <span th:text="${transactie.getDebitAccount().getIban()}" > </span></p>
         </tr>

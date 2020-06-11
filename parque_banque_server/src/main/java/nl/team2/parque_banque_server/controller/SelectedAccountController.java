@@ -1,8 +1,11 @@
 package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Customer;
+import nl.team2.parque_banque_server.model.PaymentAccount;
+import nl.team2.parque_banque_server.model.Transaction;
 import nl.team2.parque_banque_server.service.CustomerService;
 import nl.team2.parque_banque_server.service.TransactionService;
+import nl.team2.parque_banque_server.utilities.TransactionListBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 @Controller
@@ -46,8 +50,13 @@ public class SelectedAccountController {
                     model.addAttribute("DatumEnTijd", getCurrentTimeWithTimeZone());
                     model.addAttribute("iban", iban);
                     model.addAttribute("saldo", iban); //iban > rekening > getSaldo
-                    model.addAttribute("transacties",
-                            transactionService.getTransactionListByIbanCreditOrDebitAccount(iban, iban));
+
+                    List<Transaction> transactionList = transactionService.
+                            getTransactionListByIbanCreditOrDebitAccount(iban, iban);
+                    List<Transaction> transactionListEuro =
+                            transactionService.convertedTransactionList(transactionList);
+                    model.addAttribute("transacties", transactionListEuro);
+
                     return "selectedaccount";
                 }
             }

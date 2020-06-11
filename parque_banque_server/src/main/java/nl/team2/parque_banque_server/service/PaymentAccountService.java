@@ -35,6 +35,11 @@ public class PaymentAccountService {
         return numberFormat.format(balanceCents / CENTS_IN_EURO);
     }
 
+    public Long balanceInEurosLong(long balanceCents){
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+        return Long.valueOf(numberFormat.format(balanceCents / CENTS_IN_EURO));
+    }
+
     public boolean validateFunds(String iban, long transactionAmount){
         PaymentAccount paymentAccount = findOneByIban(iban);
         return paymentAccount.validateSufficientFunds(transactionAmount);
