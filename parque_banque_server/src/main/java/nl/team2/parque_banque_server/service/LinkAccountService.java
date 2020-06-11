@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.service;
 
 import nl.team2.parque_banque_server.model.Authorisation;
 import nl.team2.parque_banque_server.model.Customer;
+import nl.team2.parque_banque_server.model.repositories.AuthorisationRepository;
 import nl.team2.parque_banque_server.utilities.AddAccountHolderFormBean;
 import nl.team2.parque_banque_server.utilities.LinkAccountFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +18,17 @@ public class LinkAccountService {
     AuthorisationService authorisationService;
 
     public boolean linkAccountValidation(LinkAccountFormBean linkAccountFormBean, String username) {
-        // haal een lijst op uit de database op basis van de username uit de accountholderformbean
-        //als er geen authorisaties zijn dan is het resultaat false.
         List<Authorisation> authorisationList = authorisationService.findAllByUserName(username);
-        if (authorisationList.size() == 0) {
-            return false;
-        }
-        // Voor elke iban op de lijst check of de iban uit de db overeenkomt met de iban uit de bean. 
-        // en check of de securitycode overeenkomt met de securitycode uit de bean.
-        // zo ja, return true, zo nee return false
-        else {
+        if (authorisationList.size() != 0) {
             for (Authorisation authorisation : authorisationList) {
-                if(authorisation.getSecurityCode().equals(linkAccountFormBean.getSecurityCode())
-                        && authorisation.getIban().equals(linkAccountFormBean.getIban())){
+                if (authorisation.getSecurityCode().equals(linkAccountFormBean.getSecurityCode())
+                        && authorisation.getIban().equals(linkAccountFormBean.getIban())) {
                     return true;
                 }
             }
-            return false;
         }
+        return false;
     }
+
 
 }

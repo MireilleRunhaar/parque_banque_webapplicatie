@@ -37,8 +37,6 @@ public class LinkAccountController {
 
     //controleer of de customer is ingelogd. Zo nee, ga dan naar de login pagina.
     //if customer is logged in, then fill iban and safetycode in.
-    //get authorisation object by username
-    //check if iban and authorisatiecode are the same as the ones that the customer has filled.
     @GetMapping("/rekening-koppelen")
     public String linkAccountHandler(Model model) {
         if (model.getAttribute("customerId") != null) {
@@ -55,29 +53,17 @@ public class LinkAccountController {
     public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
         System.out.println("dit is de postmapping");
-        //input voor linkaccountvalidation is linkaccountformbean en addaccountholderformbean.
-        if (bindingResult.hasErrors()) {
-            System.out.println("fouten");
+        Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
+        if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
+            PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
+            paymentAccount.addCustomerToAccountHolder(customer);
+            paymentAccountService.savePaymentAccount(paymentAccount);
+            mav.setViewName("linkpaymentaccountconfirmation");
+        } else {
+            System.out.println("verkeerd wachtwoord");
             model.addAttribute("invalidCredentials", true);
             mav.setViewName("linkpaymentaccount");
-        } else {
-            //alsgevoegd omdat id anders niet goed gaat.
-            Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
-            if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
-                PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
-                paymentAccount.addCustomerToAccountHolder(customer);
-                paymentAccountService.savePaymentAccount(paymentAccount);
-//                Authorisation authorisation=authorisationService.findAuthorisationByIban(linkAccountFormBean.getIban());
-//                authorisation.
-                mav.setViewName("linkpaymentaccountconfirmation");
-            }
-            else {
-                System.out.println("verkeerd wachtwoord");
-                model.addAttribute("invalidCredentials", true);
-                mav.setViewName("linkpaymentaccount");
-            }
         }
         return mav;
     }
-
-}
+   }

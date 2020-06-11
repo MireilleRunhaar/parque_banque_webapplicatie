@@ -1,6 +1,7 @@
 package nl.team2.parque_banque_server.model.repositories;
 
 import nl.team2.parque_banque_server.model.Authorisation;
+import org.hibernate.dialect.function.AbstractAnsiTrimEmulationFunction;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ public interface AuthorisationRepository extends CrudRepository<Authorisation, I
 
     List<Authorisation> findAllByUserName(String userName);
 
-    //get the authorisation for customer2 by iban
-    Authorisation findAuthorisationByIban(String iban);
+
+
 
 }
