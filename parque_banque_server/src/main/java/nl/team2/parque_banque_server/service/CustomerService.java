@@ -5,6 +5,7 @@ import nl.team2.parque_banque_server.model.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,5 +35,10 @@ public class CustomerService {
 
     public CustomerRepository getCustomerRepo() {
         return customerRepo;
+    }
+
+    // TODO remove
+    public List<Customer> returnBsnCustomers() {
+        return customerRepo.returnBsnCustomers();
     }
 }
