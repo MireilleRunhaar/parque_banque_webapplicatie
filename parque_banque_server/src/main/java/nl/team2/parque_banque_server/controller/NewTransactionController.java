@@ -48,10 +48,10 @@ public class NewTransactionController {
 
     @CrossOrigin
     @PostMapping("saldo-check")
-    public @ResponseBody boolean checkSaldo(@RequestParam("transactionAmount") String transactionAmount, Model model){
+    public @ResponseBody boolean checkSaldo(@RequestParam("transactionAmount") long transactionAmount, Model model){
         String ibanDebitAccount = (String) model.getAttribute("iban");
-        long ta = Long.parseLong(transactionAmount);
-        return paymentAccountService.validateFunds(ibanDebitAccount, ta);
+        //long ta = Long.parseLong(transactionAmount);
+        return paymentAccountService.validateFunds(ibanDebitAccount, transactionAmount);
     }
 
     @CrossOrigin

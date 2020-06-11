@@ -6,18 +6,12 @@ const description = document.getElementById('description');
 const button = document.getElementById('button');
 const MAX_TRANSACTION = 10000000;
 const MIN_TRANSACTION = 0;
-let errors = 0;
 
-form.addEventListener('submit', (e) => {
-    errors = 0;
-    checkTransactionAmount();
-    checkIbanCreditaccount();
-    checkDescription();
+amount.addEventListener('focusout', checkTransactionAmount);
+cents.addEventListener('focusout', checkTransactionAmount);
+iban.addEventListener('focusout',checkIbanCreditaccount);
+description.addEventListener('focusout', checkDescription);
 
-    if(errors > 0){
-        e.preventDefault();
-    }
-})
 
 function checkTransactionAmount(){
     const amountInput = amount.value;
@@ -25,7 +19,7 @@ function checkTransactionAmount(){
 
     if(!validateTotalAmount(amountInput, centsInput)){
         setErrorFor(amount, "Vul een bedrag in tot 100.000 euro");
-        errors++;
+        button.disabled = true;
     } else{
         let totalAmount = (Number(amountInput) * 100) + Number(centsInput);
         checkBalanceDebitAccount(totalAmount);
@@ -35,14 +29,10 @@ function checkTransactionAmount(){
 function checkIbanCreditaccount(){
     const ibanInput = iban.value.trim();
 
-    if(ibanInput === '' || ibanInput === null){
-        setErrorFor(iban, 'Vul een rekeningnummer in');
-        errors++;
-    } else if(!validIban(ibanInput)){
+   if(!validIban(ibanInput)){
         setErrorFor(iban, 'Vul een geldig rekeningnummer in (IBAN)');
-        errors++;
     } else {
-        setSuccesFor(iban);
+        checkIbanExcist(ibanInput);
     }
 }
 
@@ -51,28 +41,9 @@ function checkDescription(){
 
     if(descriptionInput.length > 140){
         setErrorFor(description, "U kunt maximaal 140 tekens invoeren");
-        errors++;
     } else{
         setSuccesFor(description);
     }
-}
-
-
-function setErrorFor(inputField, message){
-    const formControl = inputField.parentElement;
-    const small = formControl.querySelector('small');
-    small.innerText = message;
-    formControl.className = 'form-control error';
-
-}
-
-function setSuccesFor(inputField){
-    const formControl = inputField.parentElement;
-    formControl.className = 'form-control succes';
-}
-
-function validIban (iban){
-    return /NL\d{2}PARQ0\d{9}/.test(iban);
 }
 
 
@@ -94,7 +65,6 @@ function checkBalanceDebitAccount(input){
                setSuccesFor(amount);
            } else{
                setErrorFor(amount, "Saldo is ontoereikend");
-               errors++;
            }
         })
 }
@@ -110,8 +80,47 @@ function validateTotalAmount(amountInput, centsInput){
         } else{
             return false;
         }
-
     } else{
         return false;
     }
+}
+
+function validIban (iban){
+    return /NL\d{2}PARQ0\d{9}/.test(iban);
+}
+
+function checkIbanExcist(input){
+
+    const url = "http://localhost/iban-check";
+    let data = `ibanCredit=${input}`;
+
+    fetch(url,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    })
+        .then(response => response.json())
+        .then(json => {
+            if(json){
+                setSuccesFor(iban);
+            } else{
+                setErrorFor(iban, "Rekeningnummer is niet bij ons bekend");
+            }
+        })
+}
+
+function setErrorFor(inputField, message){
+    const formControl = inputField.parentElement;
+    const small = formControl.querySelector('small');
+    small.innerText = message;
+    formControl.className = 'form-control error';
+    button.disabled = true;
+}
+
+function setSuccesFor(inputField){
+    const formControl = inputField.parentElement;
+    formControl.className = 'form-control succes';
+    button.disabled  = false;
 }
