@@ -6,28 +6,34 @@ const description = document.getElementById('description');
 const button = document.getElementById('button');
 const MAX_TRANSACTION = 10000000;
 const MIN_TRANSACTION = 0;
+let errors = 0;
 
 form.addEventListener('submit', (e) => {
-    if(checkInputs() > 0){
+    errors = 0;
+    checkTransactionAmount();
+    checkIbanCreditaccount();
+    checkDescription();
+
+    if(errors > 0){
         e.preventDefault();
     }
 })
 
-function checkInputs(){
+function checkTransactionAmount(){
     const amountInput = amount.value;
     const centsInput = cents.value;
-    const ibanInput = iban.value.trim();
-    const descriptionInput = description.value.trim();
-    let errors = 0;
-
-
 
     if(!validateTotalAmount(amountInput, centsInput)){
-        setErrorFor(amount, "Vul een bedrag in");
+        setErrorFor(amount, "Vul een bedrag in tot 100.000 euro");
         errors++;
     } else{
-        setSuccesFor(amount);
+        let totalAmount = (Number(amountInput) * 100) + Number(centsInput);
+        checkBalanceDebitAccount(totalAmount);
     }
+}
+
+function checkIbanCreditaccount(){
+    const ibanInput = iban.value.trim();
 
     if(ibanInput === '' || ibanInput === null){
         setErrorFor(iban, 'Vul een rekeningnummer in');
@@ -38,6 +44,10 @@ function checkInputs(){
     } else {
         setSuccesFor(iban);
     }
+}
+
+function checkDescription(){
+    const descriptionInput = description.value.trim();
 
     if(descriptionInput.length > 140){
         setErrorFor(description, "U kunt maximaal 140 tekens invoeren");
@@ -45,20 +55,19 @@ function checkInputs(){
     } else{
         setSuccesFor(description);
     }
-
-    return errors;
 }
 
-function setErrorFor(input, message){
-    const formControl = input.parentElement;
+
+function setErrorFor(inputField, message){
+    const formControl = inputField.parentElement;
     const small = formControl.querySelector('small');
     small.innerText = message;
     formControl.className = 'form-control error';
 
 }
 
-function setSuccesFor(input){
-    const formControl = input.parentElement;
+function setSuccesFor(inputField){
+    const formControl = inputField.parentElement;
     formControl.className = 'form-control succes';
 }
 
@@ -67,6 +76,28 @@ function validIban (iban){
 }
 
 
+function checkBalanceDebitAccount(input){
+
+    const url = "http://localhost/saldo-check";
+    let data = `transactionAmount=${input}`;
+
+    fetch(url,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    })
+        .then(response => response.json())
+        .then(json => {
+           if(json){
+               setSuccesFor(amount);
+           } else{
+               setErrorFor(amount, "Saldo is ontoereikend");
+               errors++;
+           }
+        })
+}
 
 
 function validateTotalAmount(amountInput, centsInput){
@@ -75,7 +106,6 @@ function validateTotalAmount(amountInput, centsInput){
         amountInput = Number(amountInput);
         if(Number.isInteger(centsInput) && Number.isInteger(amountInput)){
             const totalAmount = (amountInput * 100) + centsInput;
-            console.log(totalAmount);
             return totalAmount > MIN_TRANSACTION && totalAmount <= MAX_TRANSACTION;
         } else{
             return false;

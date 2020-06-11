@@ -7,12 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -42,17 +40,24 @@ public class NewTransactionController {
         if(bindingResult.hasErrors() || transactionFormBean.getTotalAmountInCents() < MIN_AMOUNT){
             return "newtransaction";
         } else {
-            PaymentAccount creditAccount = paymentAccountService.findOneByIban(transactionFormBean.getIbanCreditAccount());
-            if(!paymentAccountService.validateFunds(ibanDebitAccount, transactionFormBean.getTotalAmountInCents())){
-                model.addAttribute("insufficientFunds", true);
-                return "newtransaction";
-            } else if(creditAccount == null){
-                model.addAttribute("invalidCreditAccount", true);
-                return "newtransaction";
-            }
             model.addAttribute("transactionFormBean",transactionFormBean);
             model.addAttribute("iban", ibanDebitAccount);
             return "confirmtransaction";
         }
     }
+
+    @CrossOrigin
+    @PostMapping("saldo-check")
+    public @ResponseBody boolean checkSaldo(@RequestParam("transactionAmount") String transactionAmount, Model model){
+        String ibanDebitAccount = (String) model.getAttribute("iban");
+        long ta = Long.parseLong(transactionAmount);
+        return paymentAccountService.validateFunds(ibanDebitAccount, ta);
+    }
+
+    @CrossOrigin
+    @PostMapping("iban-check")
+    public @ResponseBody boolean checkIbanExcist(@RequestParam("ibanCredit") String ibanCredit){
+        return paymentAccountService.findOneByIban(ibanCredit) != null;
+    }
+
 }
