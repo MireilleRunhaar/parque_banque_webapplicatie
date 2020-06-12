@@ -7,6 +7,7 @@
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link th:href="@{/css/login.css}" href="../static/css/login.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/javascript/customerlogin.js" defer></script>
 
 </head>
 <body>
@@ -21,25 +22,25 @@
     </nav>
 
     <!-- body-->
-    <form id="form" name="form" class="login-form" th:action="@{/inloggen}" th:object="${logincustomer}" method="post" onsubmit="return validate()">
+    <form id="form" name="form" class="login-form" th:action="@{/inloggen}" th:object="${logincustomer}" method="post">
         <h1>Login</h1>
-        <span th:if="${invalidCredentials}" class="error"> De combinatie tussen gebruikersnaam en wachtwoord is onjuist. Probeer het opnieuw. </span>
+        <span th:if="${invalidCredentials}" class="error" style="display:inline-block">De combinatie tussen gebruikersnaam en wachtwoord is onjuist. Probeer het opnieuw.</span>
+        <span id="invalidLogin" class="error">De combinatie tussen gebruikersnaam en wachtwoord is onjuist. Probeer het opnieuw.</span>
 
-        <label>Gebruikersnaam</label> <br/>
+        <label for="userName">Gebruikersnaam</label> <br>
         <input type="text" id="userName" name="userName"/>
-        <div id="username_empty" class="username_empty">Vul uw gebruikersnaam in.</div>
+        <span id="usernameEmpty" class="error_small">Vul uw gebruikersnaam in.</span>
 
-        <label>Wachtwoord</label> <br/>
-        <input type="password" id="password" name="password"/>
-        <div id="password_empty" class="password_empty">Vul uw wachtwoord in.</div>
-        <br/> <br/>
+        <label for="password">Wachtwoord</label> <br>
+        <input type="password" id="password" name="password">
+        <span id="passwordEmpty" class="error_small">Vul uw wachtwoord in.</span>
+        <br> <br>
 
-        <input class="loginbutton" type="submit" value="Log In"/>
-        <br/> <br/>
+        <input id="done" class="loginbutton" type="submit" value="Log In"/>
+        <br> <br>
 
         <div class="text"> Nog geen klant? Klik dan <a href="/klant-worden">hier</a> en wordt klant! </div>
     </form>
 
-    <script type="text/javascript" src="/javascript/customerlogin.js" defer></script>
 </body>
 </html>

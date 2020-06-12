@@ -10,8 +10,8 @@
     top: 53%;
     transform: translate(-50%,-50%);
 }
-.error {
-    display: inline-block;
+.error, .error_big{
+    display: none;
     width: 85%;
     font-size: 13px;
     background: #FFFFFF;
@@ -21,8 +21,7 @@
     padding: 5px;
     margin-bottom: 5px;
 }
-.login-form .username_empty,
-.login-form .password_empty {
+.error_small {
     font-size: 14px;
     font-weight: bold;
     color: #C62828;

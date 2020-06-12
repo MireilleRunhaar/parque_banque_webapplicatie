@@ -19,19 +19,22 @@ public class LoginService {
     public boolean employeeLoginValidation(LoginEmployeeFormBean loginEmployeeFormBean) {
         Employee employee = employeeService.findByEmployeeNumber(loginEmployeeFormBean.getEmployeeNumber());
 
-        // Check for same EmployeeNumber is done by if, check for the same password is done by else
+        //Check for same EmployeeNumber is done by if, check for the same password is done by else
         if (employee == null) {
             return false;
         } else return loginEmployeeFormBean.getPassword().equals(employee.getPassword());
     }
 
     public boolean customerLoginValidation(LoginCustomerFormBean loginCustomerFormBean) {
-        Customer customer = customerService.findByUserName(loginCustomerFormBean.getUserName());
+        return loginValidation(loginCustomerFormBean.getUserName(), loginCustomerFormBean.getPassword());
+    }
+
+    public boolean loginValidation(String username, String password) {
+        Customer customer = customerService.findByUserName(username);
 
         // Check for same UserName is done by if, check for the same password is done by else
         if (customer == null) {
             return false;
-        } else return loginCustomerFormBean.getPassword().equals(customer.getPassword());
+        } else return password.equals(customer.getPassword());
     }
 }
-
