@@ -5,6 +5,7 @@ import nl.team2.parque_banque_server.model.Company;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.model.PrivateAccount;
 import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
+import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
@@ -12,8 +13,17 @@ import java.util.*;
 @Service
 public class BusinessAccountService {
 
+    public static final long START_BALANCE = 2500L;
+    public static final String EMPLOYEE_TYPE = "Accountmanager";
+
     @Autowired
     private BusinessAccountRepository businessAccountRepo;
+    @Autowired
+    private CompanyService companyService;
+    @Autowired
+    private PaymentAccountService.IbanService ibanService;
+    @Autowired
+    private EmployeeService employeeService;
 
 
 
@@ -42,6 +52,11 @@ public class BusinessAccountService {
         ArrayList<Customer> accountholders = new ArrayList<>();
         accountholders.add(customer);
         return businessAccountRepo.findBusinessAccountsByAccountHoldersIn(accountholders);
+    }
+
+    public BusinessAccount createBusinessAccountFromBean(CompanyFormBean cfb){
+        Company company = companyService.findOneByKVK(cfb.getKvkNr());
+        return new BusinessAccount(ibanService.createNewIban(), START_BALANCE, employeeService.findOneByRoleName(EMPLOYEE_TYPE),company);
     }
 
     public void saveBusinessAccount(BusinessAccount businessAccount){

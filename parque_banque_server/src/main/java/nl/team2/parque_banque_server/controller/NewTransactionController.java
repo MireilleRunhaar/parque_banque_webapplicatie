@@ -1,6 +1,5 @@
 package nl.team2.parque_banque_server.controller;
 
-import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.service.PaymentAccountService;
 import nl.team2.parque_banque_server.utilities.TransactionFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+
+/**
+ * @author Lisa Kemeling
+ * Controller for receiving and handling transactionrequests
+ * Transaction input is validated and send for confirmation
+ */
 
 
 @Controller
@@ -18,6 +22,7 @@ import java.util.List;
 public class NewTransactionController {
 
     public static final int MIN_AMOUNT = 1;
+
     @Autowired
     PaymentAccountService paymentAccountService;
 
@@ -31,7 +36,7 @@ public class NewTransactionController {
         }
     }
 
-    // TODO: 05/06/2020 validaties voor gebruiker zijn nog niet mooi, afmaken.
+
     @PostMapping("/overboeken")
     public String transactionHandler(@Valid @ModelAttribute("transactionFormBean") TransactionFormBean transactionFormBean,
                                      BindingResult bindingResult, Model model){
@@ -50,7 +55,6 @@ public class NewTransactionController {
     @PostMapping("saldo-check")
     public @ResponseBody boolean checkSaldo(@RequestParam("transactionAmount") long transactionAmount, Model model){
         String ibanDebitAccount = (String) model.getAttribute("iban");
-        //long ta = Long.parseLong(transactionAmount);
         return paymentAccountService.validateFunds(ibanDebitAccount, transactionAmount);
     }
 

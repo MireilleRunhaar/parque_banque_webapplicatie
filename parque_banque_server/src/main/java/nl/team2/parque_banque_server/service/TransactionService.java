@@ -26,10 +26,14 @@ public class TransactionService {
 
 
     public void executeAndSave(Transaction transaction){
-        transaction.executeTransaction();
-        paymentAccountRepo.save(transaction.getDebitAccount());
-        paymentAccountRepo.save(transaction.getCreditAccount());
-        transactionRepo.save(transaction);
+        if(!transaction.getDebitAccount().validateSufficientFunds(transaction.getAmountCent())){
+            throw new IllegalArgumentException("Illegal transactionamount, insufficiënt funds");
+        } else {
+            transaction.executeTransaction();
+            paymentAccountRepo.save(transaction.getDebitAccount());
+            paymentAccountRepo.save(transaction.getCreditAccount());
+            transactionRepo.save(transaction);
+        }
     }
 
     public Transaction createTransactionFromBean(TransactionFormBean transactionFormBean, String ibanDebit){

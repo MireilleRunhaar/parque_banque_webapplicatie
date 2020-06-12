@@ -19,7 +19,6 @@ function checkTransactionAmount(){
 
     if(!validateTotalAmount(amountInput, centsInput)){
         setErrorFor(amount, "Vul een bedrag in tot 100.000 euro");
-        button.disabled = true;
     } else{
         let totalAmount = (Number(amountInput) * 100) + Number(centsInput);
         checkBalanceDebitAccount(totalAmount);

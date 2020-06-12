@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+/**
+ * @author Lisa Kemeling
+ * Controller for handling send or cancel a transaction
+ * Transaction is executed after confirmation
+ */
+
 @Controller
 @SessionAttributes({"iban", "transactionFormBean"})
 public class ConfirmTransactionController {
@@ -26,7 +32,12 @@ public class ConfirmTransactionController {
            return "error";
        }
         Transaction transaction = transactionService.createTransactionFromBean(transactionFormBean,ibanDebitAccount);
-        transactionService.executeAndSave(transaction);
+       try {
+           transactionService.executeAndSave(transaction);
+       } catch (IllegalArgumentException e){
+           System.out.println(e.getMessage());
+           return "error";
+       }
         return "redirect:/rekening-overzicht/details" + ibanDebitAccount;
     }
 
