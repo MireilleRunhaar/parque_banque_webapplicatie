@@ -20,7 +20,7 @@ public class IndexController {
 
     @GetMapping("/contact")
     public String goToContactPage() {
-        List<Customer> result = customerService.returnBsnCustomers();
+        List<Customer> result = customerService.returnBusinessCustomers();
         System.out.println("LENGTH: " + result.size());
         for (Customer c : result) {
             System.out.println(c);

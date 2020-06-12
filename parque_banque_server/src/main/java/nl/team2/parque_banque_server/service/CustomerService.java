@@ -38,7 +38,11 @@ public class CustomerService {
     }
 
     // TODO remove
-    public List<Customer> returnBsnCustomers() {
-        return customerRepo.returnBsnCustomers();
+    public List<Customer> returnBusinessCustomers() {
+        return customerRepo.returnBusinessCustomers();
+    }
+
+    public List<Customer> returnAll() {
+        return customerRepo.returnCustomers();
     }
 }
