@@ -4,14 +4,25 @@ const passfield = document.getElementById("password");
 const confirmpass = document.getElementById("confirmpassword");
 const strengthBar = document.getElementById("strength");
 const usernameField = document.getElementById("username");
+const form = document.getElementById("form");
 
 usernameField.addEventListener("focusout", validateUsername);
 passfield.addEventListener("keyup", showStrength);
 confirmpass.addEventListener("keyup", confirmPassword);
 
+form.addEventListener("submit", function(event) {
+    if (!(validateUsername() && confirmPassword())) {
+        event.preventDefault();
+    }
+})
+
 function validateUsername() {
     if (usernameField.value.length > 4) {
-        checkUsernameExists();
+        document.getElementById("usernameTooShort").style.display = "none";
+        return !checkUsernameExists();
+    } else {
+        document.getElementById("usernameTooShort").style.display = "inline";
+        return false;
     }
 }
 
@@ -36,9 +47,11 @@ function checkUsernameExists() {
             if (json) {
                 document.getElementById("usernameTaken").style.display = "inline";
                 submit.disabled = true;
+                return true
             } else {
                 document.getElementById("usernameTaken").style.display = "none";
                 submit.disabled = false;
+                return false;
             }
         })
 }
@@ -83,8 +96,10 @@ function confirmPassword() {
     if (password !== confirmpass.value) {
         document.getElementById("passMismatch").style.display = "inline";
         submit.disabled = true;
+        return false;
     } else {
         document.getElementById("passMismatch").style.display = "none";
         submit.disabled = false;
+        return true;
     }
 }
