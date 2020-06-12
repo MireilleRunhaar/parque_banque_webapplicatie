@@ -1,7 +1,6 @@
 package nl.team2.parque_banque_server.utilities;
 
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
 
 public class SelectedAccountViewBean {
 
@@ -15,7 +14,7 @@ public class SelectedAccountViewBean {
     String description;
 
     @NotBlank
-    LocalDate date;
+   String date;
 
     public SelectedAccountViewBean() {
         super();
@@ -45,11 +44,11 @@ public class SelectedAccountViewBean {
         this.description = description;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

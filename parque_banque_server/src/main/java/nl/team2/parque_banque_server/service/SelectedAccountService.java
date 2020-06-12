@@ -83,7 +83,7 @@ public class SelectedAccountService {
             String amount = getDebitOrCredit(iban, transaction, bean);
             bean.setAmount(amount);
             bean.setDescription(transaction.getDescription());
-            bean.setDate(transaction.getDate());
+            bean.setDate(transaction.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
             transactionListConverted.add(bean);
         } return transactionListConverted;
     }

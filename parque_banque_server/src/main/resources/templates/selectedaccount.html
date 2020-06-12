@@ -85,7 +85,7 @@
                 </tr>
             </thead>
             <tr th:each="transactie : ${transacties}">
-                <td th:text="${transactie.fromOrToIban}" ></td>
+                <td th:text="${transactie.oppositeAccountIban}" ></td>
                 <td th:text="${transactie.amount}"></td>
                 <td th:text="${transactie.date}"> </td>
                 <td th:text="${transactie.description}"></td>
