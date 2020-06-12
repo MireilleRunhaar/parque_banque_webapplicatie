@@ -25,7 +25,7 @@ public interface BusinessAccountRepository extends CrudRepository <BusinessAccou
             "group by id\n" +
             "order by totale_saldo DESC\n" +
             "limit 10", nativeQuery = true)
-    List<BusinessAccount> businesAccountsTop10();
+    List<BusinessAccount> getTenRichestBusinessBalance();
 
 
 

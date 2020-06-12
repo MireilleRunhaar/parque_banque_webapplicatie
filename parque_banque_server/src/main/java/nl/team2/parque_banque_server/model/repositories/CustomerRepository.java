@@ -22,5 +22,5 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
             "group by id\n" +
             "order by totale_saldo DESC\n" +
             "limit 10", nativeQuery = true)
-    List<Customer> top10Customers();
+    List<Customer> getTenRichestBusinessCustomers();
 }
