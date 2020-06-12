@@ -24,10 +24,7 @@ public class AccountViewService {
             AccountViewListBean bean = new AccountViewListBean();
             bean.setIban(privateAccount.getIban());
             bean.setBalanceEuros(paymentAccountService.balanceInEuros(privateAccount.getBalance()));
-
             bean.setAccountholders(selectedAccountService.getListAccountHolders(privateAccount));
-
-
             privateAccountViewList.add(bean);
         }
         return privateAccountViewList;
@@ -39,10 +36,8 @@ public class AccountViewService {
             AccountViewListBean bean = new AccountViewListBean();
             bean.setIban(businessAccount.getIban());
             bean.setBalanceEuros(paymentAccountService.balanceInEuros(businessAccount.getBalance()));
-
             bean.setAccountholders(selectedAccountService.getListAccountHolders(businessAccount));
             bean.setBusinessName(businessAccount.getCompany().getName());
-
             businessAccountViewList.add(bean);
         }
         return businessAccountViewList;
