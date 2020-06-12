@@ -2,30 +2,45 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link th:href="@{/css/businessaccount.css}" href="../static/css/businessaccount.css" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <title>Zakelijke rekening openen</title>
 </head>
 <body>
-<a href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink" width="80px" height="45px"></a>
-<a href="/uitloggen">Uitloggen</a>
+<!-- navigatie-->
+<nav class="navigation">
+    <ul>
+        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+        <li class="nav-link"><a  href="/contact">Contact</a></li>
+        <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+        <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
+    </ul>
+</nav>
+    
+<!-- main -->
 
+<main>
+    <div class="container">
+        <div class="formheader">
+            <h2>Open een zakelijke rekening</h2>
+        
+        </div>
 
-<h1>Open een zakelijke rekening</h1>
-<h2>Selecteer het bedrijf waarvoor u een nieuwe rekening wilt openen</h2>
-<br>
-<form action="#" th:action="@{/open-zakelijke-rekening}" method="post" th:object="${company}">
-    <p>
-        <label for="company">Bedrijfsnaam</label>
-        <select id="company" th:field="*{kvkNr}">
-            <option th:each="c:${companies}" th:value="${c.getKvkNr()}" th:text="${c.getName()}"></option>
-        </select>
-    </p>
-    <button type="submit" name="action" value="submit">Bevestig openen rekening</button>
-</form>
-
-
-<p>Wilt u een rekening openen voor een ander bedrijf? Meld dan eerst het bedrijf bij ons aan.</p>
-<a href="/bedrijf-aanmaken">Meld hier een nieuw bedrijf aan</a>
-
-
+        <form class="form" id="form" action="#" th:action="@{/open-zakelijke-rekening}" method="post" th:object="${company}">
+            <p>Voor welk bedrijf wilt u een rekening openen?</p>
+            <div class="form-control">
+                <label for="company">Bedrijfsnaam</label>
+                <select class="select-company" id="company" th:field="*{kvkNr}">
+                <option th:each="c:${companies}" th:value="${c.getKvkNr()}" th:text="${c.getName()}"></option>
+                </select>
+                <small></small>
+            </div>
+            <a class="business-link" href="/bedrijf-aanmaken">Meld hier een nieuw bedrijf aan</a>
+            <button type="submit" name="action" value="submit">Bevestig openen rekening</button>
+        </form>  
+    </div>
+</main>
+    
 </body>
 </html>
