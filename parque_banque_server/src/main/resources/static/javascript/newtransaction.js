@@ -6,12 +6,23 @@ const description = document.getElementById('description');
 const button = document.getElementById('button');
 const MAX_TRANSACTION = 10000000;
 const MIN_TRANSACTION = 0;
+const formControlError = 'form-control error';
+const formControlSucces = 'form-control succes';
 
-amount.addEventListener('focusout', checkTransactionAmount);
-cents.addEventListener('focusout', checkTransactionAmount);
-iban.addEventListener('focusout',checkIbanCreditaccount);
-description.addEventListener('focusout', checkDescription);
+let divAmount = document.getElementById('div-amount');
+let divIban = document.getElementById('div-iban');
+let divDescription = document.getElementById('div-description');
 
+
+    amount.addEventListener('focusout', checkTransactionAmount);
+    cents.addEventListener('focusout', checkTransactionAmount);
+    iban.addEventListener('focusout', checkIbanCreditaccount);
+    description.addEventListener('focusout', checkDescription);
+
+
+if(divAmount.className === formControlError || divIban.className === formControlError || divDescription.className === formControlError){
+    button.disabled = true;
+}
 
 function checkTransactionAmount(){
     const amountInput = amount.value;
@@ -26,7 +37,7 @@ function checkTransactionAmount(){
 }
 
 function checkIbanCreditaccount(){
-    const ibanInput = iban.value.trim();
+    let ibanInput = iban.value.trim();
 
    if(!validIban(ibanInput)){
         setErrorFor(iban, 'Vul een geldig rekeningnummer in (IBAN)');
@@ -36,7 +47,7 @@ function checkIbanCreditaccount(){
 }
 
 function checkDescription(){
-    const descriptionInput = description.value.trim();
+    let descriptionInput = description.value.trim();
 
     if(descriptionInput.length > 140){
         setErrorFor(description, "U kunt maximaal 140 tekens invoeren");
@@ -111,15 +122,14 @@ function checkIbanExcist(input){
 }
 
 function setErrorFor(inputField, message){
-    const formControl = inputField.parentElement;
-    const small = formControl.querySelector('small');
+    let formControl = inputField.parentElement;
+    let small = formControl.querySelector('small');
     small.innerText = message;
-    formControl.className = 'form-control error';
-    button.disabled = true;
+    formControl.className = formControlError;
+
 }
 
 function setSuccesFor(inputField){
-    const formControl = inputField.parentElement;
-    formControl.className = 'form-control succes';
-    button.disabled  = false;
+    let formControl = inputField.parentElement;
+    formControl.className = formControlSucces;
 }
