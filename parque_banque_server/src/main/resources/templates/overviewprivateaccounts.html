@@ -1,12 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Overzicht Particulier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <style>
+
+        html {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+
+        td, th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #37AD49;
+            color: white;
+        }
+
+        h1 {
+            width: 700px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .table {
+            width: 700px;
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        .table tr:nth-child(even){
+            background-color: #ebf9ee;
+        }
+
+        .table tr:hover {
+            background-color: #d8f3dc;
+        }
+
+        .accountsColumn {
+            text-align: right;
+        }
+    </style>
 </head>
 <body>
-<a href="/uitloggen">Uitloggen</a>
-<br>
-    <h1>Overzicht particuliere rekeningen</h1>
+<a href="/uitloggen"><button>Uitloggen</button></a>
+<a href="/personeel-home"><button>Terug</button></a>
+
+    <main>
+        <h1>Overzicht particuliere rekeninghouders</h1>
+
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Klant</th>
+                <th>Saldo</th>
+                <th># rekeningen</th>
+            </tr>
+            <tr th:each="key, index : ${richestCustomers.keySet()}">
+                <td th:text="${index.count}"></td>
+                <td th:text="${richestCustomers.get(key)[0].firstName} + ' ' + ${richestCustomers.get(key)[0].affix} + ' ' + ${richestCustomers.get(key)[0].surName}"></td>
+                <td th:text="${key}"></td>
+                <td th:text="${richestCustomers.get(key)[1]}" class="accountsColumn"></td>
+            </tr>
+        </table>
+    </main>
 </body>
 </html>
