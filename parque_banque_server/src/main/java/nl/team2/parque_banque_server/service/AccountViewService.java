@@ -15,12 +15,19 @@ public class AccountViewService {
     @Autowired
     PaymentAccountService paymentAccountService;
 
+    @Autowired
+    SelectedAccountService selectedAccountService;
+
     public List<AccountViewListBean> convertPrivateAccountList(List<PrivateAccount> privateAccountList) {
         List<AccountViewListBean> privateAccountViewList = new ArrayList<>();
         for (PrivateAccount privateAccount : privateAccountList) {
             AccountViewListBean bean = new AccountViewListBean();
             bean.setIban(privateAccount.getIban());
             bean.setBalanceEuros(paymentAccountService.balanceInEuros(privateAccount.getBalance()));
+
+            bean.setAccountholders(selectedAccountService.getListAccountHolders(privateAccount));
+
+
             privateAccountViewList.add(bean);
         }
         return privateAccountViewList;
@@ -32,6 +39,10 @@ public class AccountViewService {
             AccountViewListBean bean = new AccountViewListBean();
             bean.setIban(businessAccount.getIban());
             bean.setBalanceEuros(paymentAccountService.balanceInEuros(businessAccount.getBalance()));
+
+            bean.setAccountholders(selectedAccountService.getListAccountHolders(businessAccount));
+            bean.setBusinessName(businessAccount.getCompany().getName());
+
             businessAccountViewList.add(bean);
         }
         return businessAccountViewList;
