@@ -23,8 +23,6 @@ public class CompanyService {
         return companyRepo.findCompanyByKvkNr(kvk);
     }
 
-
-
     public void saveCompany(Company company){
         companyRepo.save(company);
     }
