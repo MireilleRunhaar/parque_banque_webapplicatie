@@ -47,10 +47,10 @@ public class PaymentAccountService {
        return optional.orElse(null);
     }
 
-    public List<PaymentAccount> findAllByAccountHoldersAndIban(String iban, String customerId){
-        return paymentAccountRepo.findAllByAccountHoldersAndIban(iban, customerId);
-
-    }
+//    public List<PaymentAccount> findAllByAccountHoldersAndIban(String iban, String customerId){
+//        return paymentAccountRepo.findAllByAccountHoldersAndIban(iban, customerId);
+//
+//    }
 
     @Service
     public static class IbanService {

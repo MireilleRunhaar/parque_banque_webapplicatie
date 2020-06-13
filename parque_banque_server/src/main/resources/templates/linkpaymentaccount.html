@@ -5,6 +5,7 @@
     <title>Voeg rekening toe</title>
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<!--    <script src="../static/linkaccount.js" type="text/javascript"></script>-->
 
 </head>
 <style>
@@ -49,29 +50,57 @@
     </ul>
 </nav>
 <h1>Vul hier het rekeningnummer en de code in die u heeft gekregen van de rekeninghouder.</h1>
-<form class="accounttoevoegen-form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post">
+<form  class="accounttoevoegen-form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post" name="form">
     <div class="form1">
-        <span th:if="${invalidCredentials}" class="error">De combinatie tussen rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.<br/></span>
+        <span th:if="${invalidCredentials}" class="error">De combinatie tussen rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.</span>
         <br/>
         <label for="iban">Rekeningnummer</label><br/>
-        <input type="text" id="iban" th:field="*{iban}" name="iban" autofocus="autofocus"
-        oninvalid="setCustomValidity('Het ibannummer is niet correct')"
-        oninput="setCustomValidity('')"/>
+        <input type="text" id="iban" th:field="*{iban}" name="iban" autofocus="autofocus">
+<!--        oninvalid="setCustomValidity('Het ibannummer is niet correct')"-->
+<!--        oninput="setCustomValidity('')"/>-->
         <br/>
 
     </div>
-</form>
+    <p id="IBAN_error"></p>
 
-<form class="accounttoevoegen-form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post">
     <div class="form2">
         <label for="securityCode">Beveiligingcode</label><br/>
         <input type="text" id="securityCode" th:field="*{securityCode}" name="securityCode" required pattern="[0-9]{5}" autofocus="autofocus"
          oninvalid="setCustomValidity('Beveiligingscode moet bestaan uit 5 cijfers')"
          oninput="setCustomValidity('')"/>
         <br/>
-        </div>
-    <button type="submit" name="action=">OK</button>
+    </div>
+    <p id='sec_error'></p>
+    <button type="button" onclick="validate()">OK</button>
+<script>
 
+    function validate() {
+        document.getElementById('IBAN_error').innerHTML = ''
+        document.getElementById('sec_error').innerHTML = ''
+        var ibannr = document.getElementById("iban").value;
+        var secCode  = document.getElementById('securityCode').value;
+        var ibanRegex = /^NL\d{2}[A-Z]{4}0\d{9}$/;
+        var secRegex = /^\d{5}$/;
+        var ibanResult = ibanRegex.test(ibannr);
+        var secResult = secRegex.test(secCode);
+        console.log(secCode, secResult)
+        if (ibanResult === true && secResult === true){//ajax code en iban matchen
+            document.form.submit();
+        } else if (ibanResult === false && secResult === true) {
+            document.getElementById('IBAN_error').innerHTML = 'IBAN fout'
+        } else if (ibanResult === true && secResult === false) {
+            document.getElementById('sec_error').innerHTML = 'Beveiligingscode fout'
+        } else {
+            document.getElementById('IBAN_error').innerHTML = 'IBAN fout'
+            document.getElementById('sec_error').innerHTML = 'Beveiligingscode fout'
+        }
+
+    }
+</script>
 </form>
 </body>
+
+
+
+
 </html>

@@ -1,3 +1,26 @@
+function validate() {
+    var ibannr = document.getElementById("iban").value;
+    var ibanRegex = /^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}$/i;
+    var ibanResult = ibanRegex.test(ibannr);
+    console.log(ibanResult);
+    if (ibanResult == true){
+        document.getElementById('form').submit()
+    }
+
+
+}
+
+// $(function () {
+//     $('button').on('click', function () {
+//         validate()
+//     })
+//
+// })
+
+
+
+
+
 // let username = document.getElementById('userName');
 // let password = document.getElementById('password');
 // const submit = document.getElementById("done");
