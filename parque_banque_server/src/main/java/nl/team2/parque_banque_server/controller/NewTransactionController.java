@@ -42,7 +42,7 @@ public class NewTransactionController {
                                      BindingResult bindingResult, Model model){
 
         String ibanDebitAccount = (String) model.getAttribute("iban");
-        if(bindingResult.hasErrors() || !paymentAccountService.validateFunds(ibanDebitAccount, transactionFormBean.getTotalAmountInCents())) {
+        if(bindingResult.hasErrors()) {
             return "newtransaction";
         } else {
             model.addAttribute("transactionFormBean",transactionFormBean);
