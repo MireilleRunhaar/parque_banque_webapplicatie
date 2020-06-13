@@ -9,7 +9,7 @@
     <h1>Rekeninghouder toevoegen</h1>
     <p>Vul hieronder de gebruikersnaam in van de klant die u wilt toevoegen aan uw rekening.</p>
     <p>De persoon die u wilt toevoegen moet dus al klant bij Parque Banque zijn.</p>
-    <form th:action="@{/rekeninghouder-toevoegen}" th:object="${addAccountHolderFormBean}" method="post">
+    <form id="form" th:action="@{/rekeninghouder-toevoegen}" th:object="${addAccountHolderFormBean}" method="post">
         <div>
             <label for="username">Gebruikersnaam</label>
             <span id="unknownUsername" class="error" style="float: right; display: none">Deze gebruikersnaam bestaat niet.</span>
@@ -28,7 +28,7 @@
                    oninput="setCustomValidity('')" />
         </div>
         <div>
-            <button type="submit" name="action" value="finish">OK</button>
+            <button id="submitbutton" type="submit" name="action" value="finish">OK</button>
             <button type="submit" name="action" value="cancel">Terug</button>
         </div>
     </form>
