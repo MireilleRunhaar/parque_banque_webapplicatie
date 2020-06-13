@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class TransactionService {
@@ -24,7 +25,6 @@ public class TransactionService {
         this.paymentAccountService = paymentAccountService;
     }
 
-
     public void executeAndSave(Transaction transaction){
         transaction.executeTransaction();
         paymentAccountRepo.save(transaction.getDebitAccount());
@@ -37,6 +37,11 @@ public class TransactionService {
             PaymentAccount creditAccount = paymentAccountService.findOneByIban(transactionFormBean.getIbanCreditAccount());
             PaymentAccount debitAccount = paymentAccountService.findOneByIban(ibanDebit);
             return new Transaction(amountCent, transactionFormBean.getDescription(), LocalDate.now(), creditAccount , debitAccount);
+    }
+
+    public List<Transaction> getTransactionListByIbanCreditOrDebitAccount(String creditAccount_iban, String debitAccount_iban){
+        return transactionRepo.findTop10ByCreditAccount_IbanOrDebitAccount_IbanOrderByDateDesc
+                (creditAccount_iban, debitAccount_iban);
     }
 
     public PaymentAccountRepository getPaymentAccountRepo() {
