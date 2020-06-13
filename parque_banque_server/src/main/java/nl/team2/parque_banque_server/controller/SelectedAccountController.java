@@ -1,23 +1,14 @@
 package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Customer;
-import nl.team2.parque_banque_server.model.PaymentAccount;
-import nl.team2.parque_banque_server.model.Transaction;
 import nl.team2.parque_banque_server.service.CustomerService;
-import nl.team2.parque_banque_server.service.TransactionService;
-import nl.team2.parque_banque_server.utilities.TransactionListBean;
+import nl.team2.parque_banque_server.service.SelectedAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 
 @Controller
 @SessionAttributes({"customerId", "iban"})
@@ -27,7 +18,7 @@ public class SelectedAccountController {
     CustomerService customerService;
 
     @Autowired
-    TransactionService transactionService;
+    SelectedAccountService selectedAccountService;
 
     @GetMapping("/rekening-overzicht/details{iban}")
     public String handleDetails(@PathVariable(value = "iban") String iban,
@@ -39,37 +30,14 @@ public class SelectedAccountController {
             Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
             for (int index = 0; index < customer.getPaymentAccounts().size(); index++) {
                 if (customer.getPaymentAccounts().get(index).getIban().contains(iban)) {
-                    //SAID methode maken voor PaymentAccount
-                    //PaymentAccount meegeven aan model
-                    //Via PaymentAccount in html kan je naam(/namen) en soort rekening ophalen
-                    //Apart moeten hier de iban, het (omgerekende) saldo en de DatumEnTijd meegegeven worden
-                    //En dan nog de laatste 10 transacties
-
-                    model.addAttribute("customer", customer);
-                    model.addAttribute("name", customer.getUserName()); //meer accountholders, bedrijf+accountholder, bedrijf+accountholders
-                    model.addAttribute("DatumEnTijd", getCurrentTimeWithTimeZone());
+                    selectedAccountService.getSelectedAccountInformation(iban, model);
+                    //Iban buiten bovenstaande methode aangezien deze ook als sessionAttribute opgeslagen zal moeten worden.
                     model.addAttribute("iban", iban);
-                    model.addAttribute("saldo", iban); //iban > rekening > getSaldo
-
-                    List<Transaction> transactionList = transactionService.
-                            getTransactionListByIbanCreditOrDebitAccount(iban, iban);
-                    List<Transaction> transactionListEuro =
-                            transactionService.convertedTransactionList(transactionList);
-                    model.addAttribute("transacties", transactionListEuro);
-
                     return "selectedaccount";
                 }
             }
         }
         //When there's a customerId, but it has no access to the payment account
         return "redirect:/rekening-overzicht";
-    }
-
-    //Huidige datum en tijd weergeven
-    public static String getCurrentTimeWithTimeZone(){
-        ZoneId zoneId = ZoneId.of("Europe/Paris");
-        LocalDateTime localDateTime = LocalDateTime.now(zoneId);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        return localDateTime.format(formatter);
     }
 }

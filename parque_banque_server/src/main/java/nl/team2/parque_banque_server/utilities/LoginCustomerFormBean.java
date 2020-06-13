@@ -14,6 +14,12 @@ public class LoginCustomerFormBean {
         super();
     }
 
+    public LoginCustomerFormBean(String userName, String password) {
+        super();
+        this.userName = userName;
+        this.password = password;
+    }
+
     public String getUserName() {
         return userName;
     }

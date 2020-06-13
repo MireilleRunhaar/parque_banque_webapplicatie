@@ -1,38 +1,96 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Geselecteerde rekening</title>
-    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-</head>
-<body>
-<nav class="navigation">
-    <ul>
-        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
-        <li class="nav-link"><a  href="/contact">Contact</a></li>
-    </ul>
+    <head>
+        <meta charset="UTF-8">
+        <title>Geselecteerde rekening</title>
+        <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
-</nav>
-    <!--rekeningnummer, tenaamstelling, huidige datum en tijd, saldo
-        op de rekening en een overzicht van de laatste 10 transacties.-->
+        <style>
+            table {
+                alignment: center;
+                width: 100%;
+                border: 1px solid black
+            }
+            td {
+                font-family: "Arial",sans-serif;
+                width: 100px;
+                font-size: small;
+            }
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                font-family: "Arial",sans-serif;
+                font-size: small;
+                padding: 8px;
+                width: 300px;
+            }
+            thead {
+                font-size: 8px
+            }
+            h1 {
+                font-family: "Arial",sans-serif;
+                font-size: x-large;
+            }
+            h2 {
+                font-family: "Arial", sans-serif;
+                font-size: small;
+            }
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+            button {
+                alignment: left;
+            }
+            tr[data-href]:hover {
+                cursor: pointer;
+            }
+        </style>
 
-    <h4>Rekeningnummer:  <span th:text="${iban}" ></span></h4>
-    <h4>Tenaamstelling:  <span th:text="${name}"></span></h4>
-    <h4>Datum en tijd:   <span th:text="${DatumEnTijd}"></span></h4>
-    <h2>Saldo:  <span th:text="${saldo}" ></span></h2> <!--bedrag op de rekening obv iban-->
-    <a href="/rekeninghouder-toevoegen"><button>Rekeninghouder toevoegen</button></a>
-    <a href="/overboeken"><button>Geld overmaken</button></a>
-    <a href="/rekening-overzicht"><button>Rekeningoverzicht</button></a>
+    </head>
+    <body>
+        <!-- navigatie -->
+        <nav class="navigation">
+            <ul>
+                <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+                <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
+                <li class="nav-link"><a  href="/rekening-openen">Rekening openen</a></li>
+                <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+            </ul>
+        </nav>
 
-    <h2>Transacties</h2>
-    <p>Bedrag   Beschrijving    Datum   Tegenrekening</p>
-    <table>
-        <tr>
-      <p th:each="transactie : ${transacties}"><span th:text="${transactie.amountCent}">  </span>
-          <span th:text="${transactie.description}"> </span> <span th:text="${transactie.date}"> </span>
-          <span th:text="${transactie.getDebitAccount().getIban()}" > </span></p>
-        </tr>
-    </table>
-</body>
+        <!-- body -->
+        <!-- Thymeleaf geeft hier foutmeldingen aan, deze zijn te negeren. Alles werkt nog. Foutmelding komt waarschijnlijk
+         doordaat de model.addAttribute taken in een methode buiten de controller worden toegevoegd.--->
+
+        <p>Datum en tijd:<span th:text="${DatumEnTijd}"></span></p>
+        <br/>
+
+        <h4>Rekeningnummer: <span th:text="${iban}"></span></h4>
+        <h4 th:if="${isCompany}"> Bedrijfsnaam: <span th:text="${businessName}"></span> </h4>
+        <h4>Tenaamstelling: <span th:text="${names}"></span></h4>
+        <h4>Saldo: <span th:text="${saldo}"></span></h4>
+
+        <a href="/rekeninghouder-toevoegen"><button>Rekeninghouder toevoegen</button></a>
+        <a href="/overboeken"><button>Geld overmaken</button></a>
+
+        <h2>Transacties</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Van/naar</th>
+                    <th>Bedrag</th>
+                    <th>Datum</th>
+                    <th>Beschrijving</th>
+                </tr>
+            </thead>
+            <tr th:each="transactie : ${transacties}">
+                <td th:text="${transactie.oppositeAccountIban}" ></td>
+                <td th:text="${transactie.amount}"></td>
+                <td th:text="${transactie.date}"> </td>
+                <td th:text="${transactie.description}"></td>
+            </tr>
+        </table>
+
+    </body>
 </html>

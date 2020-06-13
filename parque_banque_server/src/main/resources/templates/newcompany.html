@@ -71,12 +71,37 @@
     <label>Sector *</label>
     <select th:field="*{sectorName}">
         <option th:each="sector : ${sectoren}" th:value="${sector.getName()}" th:text="${sector.getName()}"
-                oninput="setCustomValidity('')"/>
+                oninput="setCustomValidity('')"></option>
     </select>
         <br><br>
     <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
 </form>
-</div>
 
+<script>
+    document.getElementById("kvkNr").addEventListener("focusout", getCompanyName);
+
+    function getCompanyName() {
+        let kvknr = document.getElementById("kvkNr").value;
+        console.log(kvknr + " ");
+
+        let regex = new RegExp(/^\d{8}$/i);
+        console.log(Number.isInteger(nr));
+        if(Number.isInteger(nr)) {
+
+            fetch("http://localhost:8080/kvknummer", {
+                method: 'POST',
+                headers: {"Content-Type": 'application/x-www-form-urlencoded'},
+                body: "kvknr=" + kvknr
+            })
+                .then(response => response.json())
+                .then(json => {
+                    console.log(json);
+                    document.getElementById("handelsnaam").value = json.handelsnaam;
+                }).catch(exception => console.log(exception))
+        }
+    }
+
+</script>
+</div>
 </body>
 </html>
