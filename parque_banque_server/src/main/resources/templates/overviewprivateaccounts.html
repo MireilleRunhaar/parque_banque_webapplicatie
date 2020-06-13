@@ -63,7 +63,7 @@
             <tr th:each="key, index : ${richestCustomers.keySet()}">
                 <td th:text="${index.count}"></td>
                 <td th:text="${richestCustomers.get(key)[0].firstName} + ' ' + ${richestCustomers.get(key)[0].affix} + ' ' + ${richestCustomers.get(key)[0].surName}"></td>
-                <td th:text="${key}"></td>
+                <td th:text="'€ ' + ${#numbers.formatDecimal(key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
                 <td th:text="${richestCustomers.get(key)[1]}" class="accountsColumn"></td>
             </tr>
         </table>
