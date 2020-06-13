@@ -1,16 +1,14 @@
 package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Company;
+import nl.team2.parque_banque_server.service.CompanyService;
 import nl.team2.parque_banque_server.service.SectorService;
 import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
@@ -21,6 +19,9 @@ public class NewCompanyController {
     @Autowired
     private SectorService sectorService;
 
+    @Autowired
+    private CompanyService companyService;
+
     @GetMapping("/bedrijf-aanmaken")
     public String showNewCompanyPage(Model model) {
         Company company = new Company();
@@ -29,8 +30,22 @@ public class NewCompanyController {
         return "newcompany";
     }
 
+    //JS controle of kvk bekend is bij PB en eventueel teruggeven bedrijfsgegevens
+    @PostMapping("/kvknrinuse")
+    public @ResponseBody
+    Company kvkInUseHandler(@RequestParam ("kvkNr") String kvkNr){
+        Company knownCompany = new Company();
+        knownCompany.setBtwNr(companyService.findOneByKVK(kvkNr).getBtwNr());
+        knownCompany.setName(companyService.findOneByKVK(kvkNr).getName());
+        knownCompany.setSector(companyService.findOneByKVK(kvkNr).getSector());
+        return knownCompany;
+
+        // Todo: hoe krijg ik het btw-nr, de bedrijfsnaam en de sector in de juiste velden van newcompany geladen?
+    }
+
     //Tonen van het ingevulde formulier op de confirmcompany pagina
     @PostMapping("/nieuw-bedrijf-aanmaken")
+
     public ModelAndView submitNewCompanyForm(@Valid @ModelAttribute CompanyFormBean companyFormBean,
                                               BindingResult bindingResult) {
         ModelAndView mav = new ModelAndView();
@@ -45,5 +60,6 @@ public class NewCompanyController {
         mav.addObject("businessAccount", true);
         return mav;
     }
+
 
 }

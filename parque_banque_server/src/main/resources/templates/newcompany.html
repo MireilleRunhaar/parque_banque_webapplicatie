@@ -46,6 +46,9 @@
 <!--Formulier met nieuwe bedrijfsgegevens-->
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${newCompany}">
     <label>Kvk-nummer *</label>
+    <span id="kvkBekend", class="error" style="float:right; display: none">
+        Er lijkt al een bedrijf met dit Kvk-nummer bij ons bekend te zijn.
+        Kloppen deze gegevens? Neem bij twijfel contact op, dan helpen we u persoonlijk.</span>
     <input type="text" th:field="*{kvkNr}"
            required pattern="^[0-9]{8}$"
            title="Het KvK-nummer bestaat uit 8 cijfers."
@@ -77,10 +80,11 @@
     <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
 </form>
 
-<script>
-    document.getElementById("kvkNr").addEventListener("focusout", getCompanyName);
+<script id="kvknrinuse" type="text/javascript" defer>
 
-    function getCompanyName() {
+    document.getElementById("kvkNr").addEventListener("focusout", checkIfCompanyKnown);
+
+    function checkIfCompanyKnown() {
         let kvknr = document.getElementById("kvkNr").value;
         console.log(kvknr + " ");
 
@@ -88,16 +92,17 @@
         console.log(Number.isInteger(nr));
         if(Number.isInteger(nr)) {
 
-            fetch("http://localhost:8080/kvknummer", {
+            fetch("http://localhost:8080/kvknrinuse", {
                 method: 'POST',
                 headers: {"Content-Type": 'application/x-www-form-urlencoded'},
                 body: "kvknr=" + kvknr
             })
                 .then(response => response.json())
-                .then(json => {
-                    console.log(json);
-                    document.getElementById("handelsnaam").value = json.handelsnaam;
-                }).catch(exception => console.log(exception))
+                .then(json => { if (json){document.getElementById("kvknrinuse").style.display = "inline";
+                } else {
+                    document.getElementById("kvkBekend").style.display = "none";
+                }
+                });
         }
     }
 
