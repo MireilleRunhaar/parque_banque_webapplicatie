@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
-    <link th:href="@{/css/businessaccount.css}" href="../static/css/businessaccount.css" rel="stylesheet"> 
+    <link th:href="@{/css/businessaccount.css}" href="../static/css/businessaccount.css" rel="stylesheet">
+    <link th:href="@{/css/confirmwindow.css}" href="../static/css/confirmwindow.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="javascript/confirmwindow.js" defer ></script>
     <title>Zakelijke rekening openen</title>
 </head>
 <body>
@@ -41,6 +43,25 @@
         </form>  
     </div>
 </main>
+
+<script>
+    const form = document.getElementById('form');
+    form.addEventListener('submit', (e) =>{
+       e.preventDefault();
+       confirmWindow();
+    });
+
+    function confirmWindow(){
+            Confirm.open({
+                title: 'Bevestig openen zakelijke rekening',
+                message: 'Wij openen een zakelijke rekening voor u. Deze is direct zichtbaar in uw rekeningoverzicht.',
+                onok: () => {
+                    document.getElementById('form').submit();
+                }
+            });
+    }
+
+</script>
     
 </body>
 </html>
