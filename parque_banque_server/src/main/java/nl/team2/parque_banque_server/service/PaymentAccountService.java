@@ -8,6 +8,7 @@ import nl.team2.parque_banque_server.model.repositories.PrivateAccountRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -32,6 +33,10 @@ public class PaymentAccountService {
         return numberFormat.format(balanceCents / CENTS_IN_EURO);
     }
 
+    public void savePaymentAccount(PaymentAccount paymentAccount){
+        paymentAccountRepo.save(paymentAccount);
+
+    }
     public boolean validateFunds(String iban, long transactionAmount){
         PaymentAccount paymentAccount = findOneByIban(iban);
         return paymentAccount.validateSufficientFunds(transactionAmount);
@@ -41,7 +46,10 @@ public class PaymentAccountService {
        Optional<PaymentAccount> optional= paymentAccountRepo.findById(iban);
        return optional.orElse(null);
     }
+    public List<PaymentAccount> findAllByAccountHoldersAndIban(String iban, String customerId){
+        return paymentAccountRepo.findAllByAccountHoldersAndIban(iban, customerId);
 
+    }
 
     @Service
     public static class IbanService {
@@ -60,6 +68,8 @@ public class PaymentAccountService {
 
         public IbanService() {
         }
+
+
 
 //        // get last the last added iban and add 1.
 //        public String createNewIban(){

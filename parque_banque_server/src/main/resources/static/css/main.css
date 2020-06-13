@@ -80,7 +80,9 @@ text-align: center;
     max-width: 940px;
     height: auto;
 }
-
+.form1{
+    margin-left: 20px
+}
 
 footer {
    display: inline-block;
