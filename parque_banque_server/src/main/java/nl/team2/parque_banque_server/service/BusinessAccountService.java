@@ -63,4 +63,7 @@ public class BusinessAccountService {
         businessAccountRepo.save(businessAccount);
     }
 
+    public BusinessAccount findByIban(String iban) {
+        return businessAccountRepo.findByIban(iban);
+    }
 }

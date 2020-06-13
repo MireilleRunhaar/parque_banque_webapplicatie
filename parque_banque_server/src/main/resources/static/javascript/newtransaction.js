@@ -14,15 +14,19 @@ let divIban = document.getElementById('div-iban');
 let divDescription = document.getElementById('div-description');
 
 
-    amount.addEventListener('focusout', checkTransactionAmount);
-    cents.addEventListener('focusout', checkTransactionAmount);
-    iban.addEventListener('focusout', checkIbanCreditaccount);
-    description.addEventListener('focusout', checkDescription);
+amount.addEventListener('focusout', checkTransactionAmount);
+cents.addEventListener('focusout', checkTransactionAmount);
+iban.addEventListener('focusout', checkIbanCreditaccount);
+description.addEventListener('focusout', checkDescription);
 
+form.addEventListener('submit', (e) => {
 
-if(divAmount.className === formControlError || divIban.className === formControlError || divDescription.className === formControlError){
-    button.disabled = true;
-}
+    if(divAmount.className !== formControlSucces || divIban.className !== formControlSucces || divDescription.className === formControlError){
+        e.preventDefault();
+    }
+
+})
+
 
 function checkTransactionAmount(){
     const amountInput = amount.value;
