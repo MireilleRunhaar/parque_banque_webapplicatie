@@ -7,6 +7,7 @@ codeField.addEventListener("focusout", validateSecurityCode);
 
 function checkUserNameExists() {
     let input = usernameField.value;
+    console.log("CHECKING USERNAME: " + input);
 
     const url = "http://localhost/username-controle";
 
@@ -24,15 +25,16 @@ function checkUserNameExists() {
         .then(json => {
             // If username does not exist, show message
             if (json) {
-                document.getElementById("unknownUsername").style.display = "inline";
-            } else {
                 document.getElementById("unknownUsername").style.display = "none";
+            } else {
+                document.getElementById("unknownUsername").style.display = "inline";
             }
         })
 }
 
 function validateSecurityCode() {
     let codeInput = codeField.value;
+    console.log("VALIDATING CODE: " + codeInput);
 
     const url = "http://localhost/veilige-code";
 
@@ -45,12 +47,16 @@ function validateSecurityCode() {
         },
         body: data
     })
-        .then(response => respone.json)
+        .then(response => response.json)
 
         .then(json => {
-            if(json) {
+            console.log(json);
+            console.log(json === true);
+            if (json) {
+                console.log("SAFE CODE");
                 document.getElementById("insecureCode").style.display = "none";
             } else {
+                console.log("UNSAFE CODE");
                 document.getElementById("insecureCode").style.display = "inline";
             }
         })

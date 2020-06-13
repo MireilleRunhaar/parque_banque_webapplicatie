@@ -53,9 +53,11 @@ public class AddAccountHolderController {
         return mav;
     }
 
+    @CrossOrigin
     @PostMapping("/veilige-code")
     public @ResponseBody
     boolean securityCodeCheckHandler(@RequestParam("securityCode") String securityCode) {
+        System.out.println("*** CODE IS SECURE? *** -> " + !addAccountHolderService.isInsecureCode(securityCode));
         return !addAccountHolderService.isInsecureCode(securityCode);
     }
 }
