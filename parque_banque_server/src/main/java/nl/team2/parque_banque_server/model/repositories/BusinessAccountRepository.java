@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.model.repositories;
 
 import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Customer;
+import nl.team2.parque_banque_server.model.Sector;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -17,15 +18,13 @@ public interface BusinessAccountRepository extends CrudRepository <BusinessAccou
 
     BusinessAccount findTopByOrderByIbanDesc();
 
-    @Query(value="select  u.first_name, u.affix, u.sur_name, sum(p.balance_cent) as totale_saldo\n" +
-            "from user u \n" +
-            "join payment_account_account_holders pa on u.id=pa.account_holders_id\n" +
-            "join payment_account p on p.iban=pa.payment_accounts_iban\n" +
-            "where p.dtype='BusinessAccount' && u.dtype='Customer'\n" +
-            "group by id\n" +
-            "order by totale_saldo DESC\n" +
-            "limit 10", nativeQuery = true)
-    List<BusinessAccount> getTenRichestBusinessBalance();
+    @Query(value = "select *,  avg(p.balance_cent) as gemiddelde_saldo\n" +
+            "from sector s \n" +
+            "join company c on s.id=c.sector_id\n" +
+            "join payment_account p on c.kvk_nr=p.company_kvk_nr\n" +
+            "where p.dtype='BusinessAccount'\n" +
+            "group by s.name",nativeQuery = true)
+    List<BusinessAccount>getAverageBalanceSector();
 
 
 

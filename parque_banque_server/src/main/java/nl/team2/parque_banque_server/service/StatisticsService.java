@@ -3,24 +3,32 @@ package nl.team2.parque_banque_server.service;
 import nl.team2.parque_banque_server.model.*;
 import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.CustomerRepository;
+import nl.team2.parque_banque_server.model.repositories.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class StatisticsService {
 
-    private final static long LIST_SIZE=10L;
+    //private final static long LIST_SIZE=10L;
 
     private final CustomerRepository customerRepository;
     private final PaymentAccountService paymentAccountService;
+    private final SectorRepository sectorRepository;
+    private final BusinessAccountRepository businessAccountRepository;
 
     @Autowired
-    public StatisticsService(CustomerRepository customerRepository, PaymentAccountService paymentAccountService) {
+    public StatisticsService(CustomerRepository customerRepository,
+                             PaymentAccountService paymentAccountService,
+                             SectorRepository sectorRepository,
+                             BusinessAccountRepository businessAccountRepository) {
         this.customerRepository = customerRepository;
         this.paymentAccountService = paymentAccountService;
+
+        this.sectorRepository = sectorRepository;
+        this.businessAccountRepository = businessAccountRepository;
     }
 
 
@@ -133,6 +141,16 @@ public class StatisticsService {
            totalBalance=0;
            numberOfAccounts=0;
 
+        }
+        return map;
+    }
+
+    public Map<Long,Object[]> getAverageBalanceSector(){
+        Map<Long,Object[]>map=new TreeMap<>();
+        List<BusinessAccount>businessAccounts=businessAccountRepository.getAverageBalanceSector();
+        long averageBalance=0L;
+        for(BusinessAccount businessAccount:businessAccounts){
+            map.put(averageBalance+=businessAccount.getBalance(),new Object[]{businessAccount.getCompany().getSector()});
         }
         return map;
     }
