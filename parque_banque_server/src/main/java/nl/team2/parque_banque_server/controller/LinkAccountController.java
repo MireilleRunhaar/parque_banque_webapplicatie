@@ -59,14 +59,16 @@ public class LinkAccountController {
             model.addAttribute("invalidCredentials", true);
             mav.setViewName("linkpaymentaccount");
         } else {
-            //alsgevoegd omdat id anders niet goed gaat.
             Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
+//            if(paymentAccountService.checkAccount(linkAccountFormBean, customer.getUserName())){
+//                System.out.println("rekening is al gekoppeld");
+//                model.addAttribute("rekeningGekoppeld", true);
+//                mav.setViewName("linkpaymentaccount");
+//            }
             if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
                 PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
                 paymentAccount.addCustomerToAccountHolder(customer);
                 paymentAccountService.savePaymentAccount(paymentAccount);
-//                Authorisation authorisation=authorisationService.findAuthorisationByIban(linkAccountFormBean.getIban());
-//                authorisation.
                 mav.setViewName("linkpaymentaccountconfirmation");
             }
             else {
