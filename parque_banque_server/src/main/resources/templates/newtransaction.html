@@ -27,19 +27,20 @@
             <div class=formheader>
                 <h2>Overboeken van rekening <span class="debitIban" th:text="${iban.toString()}"></span></h2>
             </div>
-             <form class="form" id="form" action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >  
-                 
+             <form class="form" id="form" action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >
                     <div id="div-amount" class="form-control">
                         <label id="label-amount" for="amount">Bedrag</label>
                         <input th:field="*{amount}" id="amount" class="t-amount" type="text" placeholder="0" size="8" dir="rtl">
                         <label for="cents">,</label>
                         <input th:field="*{cents}" id="cents" class="t-cents" type="text" size="2" placeholder="00">
                         <small></small>
+                        <small class="th" th:if="${insufficientFunds}">Saldo is ontoereikend</small>
                     </div>
                     <div id="div-iban" class="form-control">
                         <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
                         <input th:field="*{ibanCreditAccount}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18">
                         <small></small>
+                        <small class="th" th:if="${ibanUnknown}">Rekeningnummer is niet bij ons bekend</small>
                     </div>
                 <div id="div-description" class="form-control">
                     <label for="description">Omschrijving</label>
