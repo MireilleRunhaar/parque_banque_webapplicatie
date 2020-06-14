@@ -5,6 +5,7 @@
     <title>Nieuw bedrijf aanmaken bij Parque Banque</title>
     <link th:href="@{/css/signup.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/javascript/kvkinuse.js" defer></script>
     <style type="text/css">
         img{
             text-align: left;
@@ -44,6 +45,7 @@
 <p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p>
 <p>Velden met een * zijn verplicht.</p><br>
 <!--Formulier met nieuwe bedrijfsgegevens-->
+<div>
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${newCompany}">
     <label>Kvk-nummer *</label>
     <span id="kvkBekend", class="error" style="float:right; display: none">
@@ -68,7 +70,7 @@
     <input type="text" th:field="*{name}"
            required pattern="^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[a-zA-Z0-9 '~@#&?!*+-]{2,254}$"
            oninvalid="setCustomValidity('Controleer of de bedrijfsnaam klopt.')"
-           oninput="setCustomValidity('')">
+           oninput="setCustomValidity('')"/>
         <br><br>
 
     <label>Sector *</label>
@@ -79,34 +81,6 @@
         <br><br>
     <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
 </form>
-
-<script id="kvknrinuse" type="text/javascript" defer>
-
-    document.getElementById("kvkNr").addEventListener("focusout", checkIfCompanyKnown);
-
-    function checkIfCompanyKnown() {
-        let kvknr = document.getElementById("kvkNr").value;
-        console.log(kvknr + " ");
-
-        let regex = new RegExp(/^\d{8}$/i);
-        console.log(Number.isInteger(nr));
-        if(Number.isInteger(nr)) {
-
-            fetch("http://localhost:8080/kvknrinuse", {
-                method: 'POST',
-                headers: {"Content-Type": 'application/x-www-form-urlencoded'},
-                body: "kvknr=" + kvknr
-            })
-                .then(response => response.json())
-                .then(json => { if (json){document.getElementById("kvknrinuse").style.display = "inline";
-                } else {
-                    document.getElementById("kvkBekend").style.display = "none";
-                }
-                });
-        }
-    }
-
-</script>
 </div>
 </body>
 </html>
