@@ -53,17 +53,50 @@ public class LinkAccountController {
     public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
         System.out.println("dit is de postmapping");
-        Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
-        if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
-            PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
-            paymentAccount.addCustomerToAccountHolder(customer);
-            paymentAccountService.savePaymentAccount(paymentAccount);
-            mav.setViewName("linkpaymentaccountconfirmation");
-        } else {
-            System.out.println("verkeerd wachtwoord");
+        //input voor linkaccountvalidation is linkaccountformbean en addaccountholderformbean.
+        if (bindingResult.hasErrors()) {
+            System.out.println("fouten");
             model.addAttribute("invalidCredentials", true);
             mav.setViewName("linkpaymentaccount");
+        } else {
+            //alsgevoegd omdat id anders niet goed gaat.
+            Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
+            if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
+                PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
+                paymentAccount.addCustomerToAccountHolder(customer);
+                paymentAccountService.savePaymentAccount(paymentAccount);
+//                Authorisation authorisation=authorisationService.findAuthorisationByIban(linkAccountFormBean.getIban());
+//                authorisation.
+                mav.setViewName("linkpaymentaccountconfirmation");
+            }
+            else {
+                System.out.println("verkeerd wachtwoord");
+                model.addAttribute("invalidCredentials", true);
+                mav.setViewName("linkpaymentaccount");
+            }
         }
         return mav;
     }
+
+
+
+
+//    //checking for login credentials
+//    @PostMapping("/rekening-koppelen")
+//    public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
+//        ModelAndView mav = new ModelAndView();
+//        System.out.println("dit is de postmapping");
+//        Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
+//        if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
+//            PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
+//            paymentAccount.addCustomerToAccountHolder(customer);
+//            paymentAccountService.savePaymentAccount(paymentAccount);
+//            mav.setViewName("linkpaymentaccountconfirmation");
+//        } else {
+//            System.out.println("verkeerd wachtwoord");
+//            model.addAttribute("invalidCredentials", true);
+//            mav.setViewName("linkpaymentaccount");
+//        }
+//        return mav;
+//    }
    }
