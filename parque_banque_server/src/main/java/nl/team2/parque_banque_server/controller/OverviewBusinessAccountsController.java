@@ -2,6 +2,8 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Employee;
+import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
+import nl.team2.parque_banque_server.service.BusinessAccountService;
 import nl.team2.parque_banque_server.service.EmployeeService;
 import nl.team2.parque_banque_server.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class OverviewBusinessAccountsController {
     private EmployeeService employeeService;
     @Autowired
     private StatisticsService statisticsService;
+    @Autowired
+    private BusinessAccountService businessAccountService;
 
     @GetMapping("/overzicht-bedrijven")
     public String handleOverviewBusiness(Model model) {
@@ -51,10 +55,9 @@ public class OverviewBusinessAccountsController {
     @RequestMapping(value = "/overzicht-bedrijven", params = "Sectoren", method = RequestMethod.POST)
     public ModelAndView averageBalanceSector(){
         ModelAndView mav=new ModelAndView("averagebalancesector");
-        Map<Long,Object[]> averageBalanceSector=statisticsService.getAverageBalanceSector();
+        List<BusinessAccount> businessAccounts=businessAccountService.findAll();
+        Map<Long,Object[]> averageBalanceSector=statisticsService.averageBalanceSector(businessAccounts);
         mav.addObject("averageBalanceSector",averageBalanceSector);
-
-
         return mav;
     }
 

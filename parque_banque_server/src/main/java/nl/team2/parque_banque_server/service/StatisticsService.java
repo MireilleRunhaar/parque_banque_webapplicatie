@@ -76,49 +76,8 @@ public class StatisticsService {
 //                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2)->e1, LinkedHashMap::new));
 //    }
 //
-//
-//    /**
-//     * iterate trough the businessAccountList and create two parallel maps for the balance and count to compute the average balance
-//     * @param businessAccountsList
-//     * @return a map with the key value pair of the sectorName and the average balance
-//     * @Author Moraad Anas
-//     */
-//    public Map<String,Long> averageBalanceSector(List<BusinessAccount>businessAccountsList){
-//        Map<String, Long> sectorTotal = new HashMap<>(); //total sum of sector balance
-//        Map<String,Long>sectorCount=new HashMap<>(); //number of sector counts
-//
-//
-//        for (BusinessAccount businessAccount : businessAccountsList){
-//            Long balance=businessAccount.getBalanceCent();
-//            Company company= businessAccount.getCompany();
-//            Sector sector=company.getSector();
-//            if (sectorTotal.containsKey(sector.getName())){
-//                //value=(total)balance value that was already stored in the map + add the new balance
-//                sectorTotal.put(sector.getName(),sectorTotal.get(sector.getName())+balance);
-//
-//                sectorCount.put(sector.getName(), sectorCount.get(sector.getName())+1);
-//
-//                //if sectortotal map is empty(value=0) add balance & and add 1 for count
-//            } else{
-//                sectorTotal.put(sector.getName(),balance);
-//                sectorCount.put(sector.getName(),1L);
-//
-//            }
-//
-//        }
-//        //create new map for the average balance
-//        Map<String,Long> sectorAverage=new HashMap<>();
-//
-//        //iterate trough the key of sectorTotal
-//        for(String sectorName:sectorTotal.keySet()){
-//            // values balance divided bij the count
-//            long averageBalance= sectorTotal.get(sectorName)/sectorCount.get(sectorName);
-//            sectorAverage.put(sectorName,averageBalance);
-//        }
-//
-//        return sectorAverage;
-//
-//    }
+
+
 
 
 
@@ -142,15 +101,68 @@ public class StatisticsService {
         return map;
     }
 
-    public Map<Long,Object[]> getAverageBalanceSector(){
-        Map<Long,Object[]>map=new TreeMap<>();
-        List<BusinessAccount>businessAccounts=businessAccountRepository.getAverageBalanceSector();
-        long averageBalance=0L;
-        for(BusinessAccount businessAccount:businessAccounts){
-            map.put(averageBalance+=businessAccount.getBalance(),new Object[]{businessAccount.getCompany().getSector()});
+//    public Map<Long,Object[]> getAverageBalanceSector(){
+//        Map<Long,Object[]>map=new TreeMap<>();
+//        List<BusinessAccount>businessAccounts=businessAccountRepository.findAll();
+//        long averageBalance=averageBalanceSector();
+//        for(BusinessAccount businessAccount:businessAccounts){
+//            averageBalance+=businessAccount.getBalance();
+//            map.put(averageBalance,new Object[]{businessAccount.getCompany().getSector()});
+//            averageBalance=0;
+//        }
+//        return map;
+//    }
+
+    /**
+     * iterate trough the businessAccountList and create two parallel maps for the balance and count to compute the average balance
+     * @param businessAccountsList
+     * @return a map with the key value pair of the sectorName and the average balance
+     * @Author Moraad Anas
+     */
+    public Map<Long,Object[]> averageBalanceSector(List<BusinessAccount>businessAccountsList){
+        Map<Object, Long> sectorTotal = new HashMap<>(); //total sum of sector balance
+        Map<Object,Long>sectorCount=new HashMap<>(); //number of sector counts
+
+
+        for (BusinessAccount businessAccount : businessAccountsList){
+            Long balance=businessAccount.getBalanceCent();
+            Sector sector=businessAccount.getCompany().getSector();
+            if (sectorTotal.containsKey(sector)){
+                //value=(total)balance value that was already stored in the map + add the new balance
+                sectorTotal.put(sector,sectorTotal.get(sector)+balance);
+
+                sectorCount.put(sector, sectorCount.get(sector)+1);
+
+                //if sectortotal map is empty(value=0) add balance & and add 1 for count
+            } else{
+                sectorTotal.put(sector,balance);
+                sectorCount.put(sector,1L);
+
+            }
+
         }
-        return map;
+        //create new map for the average balance
+        Map<Long,Object[]> sectorAverage=new TreeMap<>(Collections.reverseOrder());
+
+        //iterate trough the key of sectorTotal
+        for(Object sector:sectorTotal.keySet()){
+            // values balance divided bij the count
+            long averageBalance= sectorTotal.get(sector)/sectorCount.get(sector);
+            sectorAverage.put(averageBalance,new Object[]{sector});
+        }
+
+        return sectorAverage;
+
     }
+
+
+
+
+
+
+
+
+
 
 
 }

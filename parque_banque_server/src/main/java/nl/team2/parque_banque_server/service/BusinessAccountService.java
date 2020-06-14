@@ -48,4 +48,11 @@ public class BusinessAccountService {
         businessAccountRepo.save(businessAccount);
     }
 
+    public List<BusinessAccount> findAll(){
+        return businessAccountRepo.findAll();
+    }
+
+
+
+
 }
