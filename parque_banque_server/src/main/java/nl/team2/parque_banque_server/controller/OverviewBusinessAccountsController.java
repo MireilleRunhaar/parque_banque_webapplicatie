@@ -42,28 +42,24 @@ public class OverviewBusinessAccountsController {
     @RequestMapping(value = "/overzicht-bedrijven", params = "Saldo", method = RequestMethod.POST)
     public ModelAndView top10BalanceBusinessAccounts(){
         ModelAndView mav=new ModelAndView("tenrichestbusinessaccounts");
-
-
         Map<Long,Object[]> richestBusinessCustomers=statisticsService.getTenRichestBusinessCustomers();
-
         mav.addObject("richestBusinessCustomers",richestBusinessCustomers);
-
         return mav;
     }
 
-//    //Sector
-//    @RequestMapping(value = "/overzicht-bedrijven", params = "Sectoren", method = RequestMethod.POST)
-//    public ModelAndView averageBalanceSector(){
-//        ModelAndView mav=new ModelAndView("averagebalancesectors");
-//
-//        //List<BusinessAccount> businessAccountsList=businessAccountService.findAll();
-//
-//       // Map<String,Long> sectorAverageBalance= businessAccountService.averageBalanceSector(businessAccountsList);
-//
-//       // mav.addObject("averageBalance",sectorAverageBalance);
-//
-//        return mav;
-//    }
+    //Sector
+    @RequestMapping(value = "/overzicht-bedrijven", params = "Sectoren", method = RequestMethod.POST)
+    public ModelAndView averageBalanceSector(){
+        ModelAndView mav=new ModelAndView("averagebalancesectors");
+
+        //List<BusinessAccount> businessAccountsList=businessAccountService.findAll();
+
+       // Map<String,Long> sectorAverageBalance= businessAccountService.averageBalanceSector(businessAccountsList);
+
+       // mav.addObject("averageBalance",sectorAverageBalance);
+
+        return mav;
+    }
 
 }
 

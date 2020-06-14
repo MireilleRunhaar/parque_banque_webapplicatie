@@ -33,7 +33,7 @@
 }
 
 .content-table tbody tr:last-of-type {
-    border-bottom: 3px solid #37AD49;
+    border-bottom: 3px solid black;
 }
 
 .content-table tbody tr.active-row {
