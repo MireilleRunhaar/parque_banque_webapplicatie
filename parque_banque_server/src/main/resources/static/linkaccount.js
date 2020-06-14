@@ -1,96 +1,21 @@
 function validate() {
+    document.getElementById('IBAN_error').innerHTML = ''
+    document.getElementById('sec_error').innerHTML = ''
     var ibannr = document.getElementById("iban").value;
-    var ibanRegex = /^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}$/i;
+    var secCode  = document.getElementById('securityCode').value;
+    var ibanRegex = /^NL\d{2}[A-Z]{4}0\d{9}$/;
+    var secRegex = /^\d{5}$/;
     var ibanResult = ibanRegex.test(ibannr);
-    console.log(ibanResult);
-    if (ibanResult == true){
-        document.getElementById('form').submit()
+    var secResult = secRegex.test(secCode);
+    console.log(secCode, secResult)
+    if (ibanResult === true && secResult === true){//ajax code en iban matchen
+        document.form.submit();
+    } else if (ibanResult === false && secResult === true) {
+        document.getElementById('IBAN_error').innerHTML = 'het ibannummer bestaat uit 2 letter, 2 cijfers, 4 letters en 10 cijfers'
+    } else if (ibanResult === true && secResult === false) {
+        document.getElementById('sec_error').innerHTML = 'de beveiligingscode bestaat uit 5 cijfers'
+    } else {
+        document.getElementById('IBAN_error').innerHTML = 'het ibannummer bestaat uit 2 letter, 2 cijfers, 4 letters en 10 cijfers'
+        document.getElementById('sec_error').innerHTML =  'de beveiligingscode bestaat uit 5 cijfers'
     }
-
-
 }
-
-// $(function () {
-//     $('button').on('click', function () {
-//         validate()
-//     })
-//
-// })
-
-
-
-
-
-// let username = document.getElementById('userName');
-// let password = document.getElementById('password');
-// const submit = document.getElementById("done");
-//
-// //Validation not empty fields, plus removal of warning
-// username.addEventListener('focusout', validateUsername);
-// password.addEventListener('focusout', validatePassword);
-// username.addEventListener('textInput', usernameVerifyInput);
-// password.addEventListener('textInput', passwordVerifyInput);
-//
-// //Validation login data (if you hover above submit button)
-// submit.addEventListener('click', validateLoginData);
-//
-// function validateUsername() {
-//     if (username.value === '' || username.value == null) {
-//         username.style.border = "1px solid #FF0000";
-//         document.getElementById("usernameEmpty").style.display = "inline-block";
-//         return false;
-//     }
-// }
-//
-// function validatePassword() {
-//     if (password.value === '' || password.value == null) {
-//         password.style.border = "1px solid #FF0000";
-//         document.getElementById("passwordEmpty").style.display = "inline-block";
-//         return false;
-//     }
-// }
-//
-// function usernameVerifyInput() {
-//     if (username.value.length >= 1) {
-//         username.style.border = "none";
-//         document.getElementById("usernameEmpty").style.display = "none";
-//         return true;
-//     }
-// }
-//
-// function passwordVerifyInput() {
-//     if (password.value.length >= 1) {
-//         password.style.border = "none";
-//         document.getElementById("passwordEmpty").style.display = "none";
-//         return true;
-//     }
-// }
-//
-// function validateLoginData() {
-//     let usernameInput = username.value;
-//     let passwordInput = password.value;
-//
-//     const url = "http://localhost/inloggen-controle";
-//
-//     let usernameData = `username=${usernameInput}`;
-//     let passwordData = `password=${passwordInput}`;
-//     let data = usernameData + '&' + passwordData;
-//
-//     fetch(url, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/x-www-form-urlencoded'
-//         },
-//         body: data
-//     })
-//         .then(response => response.json())
-//
-//         //When false invalid login text will be shown
-//         .then(json => {
-//             if (json) {
-//                 document.getElementById("invalidLogin").style.display = "none";
-//             } else {
-//                 document.getElementById("invalidLogin").style.display = "inline-block";
-//             }
-//         })
-// }

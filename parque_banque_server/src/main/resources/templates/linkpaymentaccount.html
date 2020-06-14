@@ -5,7 +5,6 @@
     <title>Voeg rekening toe</title>
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-<!--    <script src="../static/linkaccount.js" type="text/javascript"></script>-->
 
 </head>
 <style>
@@ -78,38 +77,38 @@
     <div class="form2">
         <label for="securityCode">Beveiligingcode</label><br/>
         <input type="text" id="securityCode" th:field="*{securityCode}" name="securityCode" required pattern="[0-9]{5}" autofocus="autofocus">
-<!--         oninvalid="setCustomValidity('Beveiligingscode moet bestaan uit 5 cijfers')"-->
-<!--         oninput="setCustomValidity('')"/>-->
         <br/>
     </div>
     <p id='sec_error'></p>
     <button type="button" onclick="validate()">OK</button>
 
 
-<script>
-    function validate() {
-        document.getElementById('IBAN_error').innerHTML = ''
-        document.getElementById('sec_error').innerHTML = ''
-        var ibannr = document.getElementById("iban").value;
-        var secCode  = document.getElementById('securityCode').value;
-        var ibanRegex = /^NL\d{2}[A-Z]{4}0\d{9}$/;
-        var secRegex = /^\d{5}$/;
-        var ibanResult = ibanRegex.test(ibannr);
-        var secResult = secRegex.test(secCode);
-        console.log(secCode, secResult)
-        if (ibanResult === true && secResult === true){//ajax code en iban matchen
-            document.form.submit();
-        } else if (ibanResult === false && secResult === true) {
-            document.getElementById('IBAN_error').innerHTML = 'het ibannummer bestaat uit 2 letter, 2 cijfers, 4 letters en 10 cijfers'
-        } else if (ibanResult === true && secResult === false) {
-            document.getElementById('sec_error').innerHTML = 'de beveiligingscode bestaat uit 5 cijfers'
-        } else {
-            document.getElementById('IBAN_error').innerHTML = 'het ibannummer bestaat uit 2 letter, 2 cijfers, 4 letters en 10 cijfers'
-            document.getElementById('sec_error').innerHTML =  'de beveiligingscode bestaat uit 5 cijfers'
-        }
-    }
-</script>
+<!--<script>-->
+<!--    function validate() {-->
+<!--        document.getElementById('IBAN_error').innerHTML = ''-->
+<!--        document.getElementById('sec_error').innerHTML = ''-->
+<!--        var ibannr = document.getElementById("iban").value;-->
+<!--        var secCode  = document.getElementById('securityCode').value;-->
+<!--        var ibanRegex = /^NL\d{2}[A-Z]{4}0\d{9}$/;-->
+<!--        var secRegex = /^\d{5}$/;-->
+<!--        var ibanResult = ibanRegex.test(ibannr);-->
+<!--        var secResult = secRegex.test(secCode);-->
+<!--        console.log(secCode, secResult)-->
+<!--        if (ibanResult === true && secResult === true){//ajax code en iban matchen-->
+<!--            document.form.submit();-->
+<!--        } else if (ibanResult === false && secResult === true) {-->
+<!--            document.getElementById('IBAN_error').innerHTML = 'het ibannummer bestaat uit 2 letter, 2 cijfers, 4 letters en 10 cijfers'-->
+<!--        } else if (ibanResult === true && secResult === false) {-->
+<!--            document.getElementById('sec_error').innerHTML = 'de beveiligingscode bestaat uit 5 cijfers'-->
+<!--        } else {-->
+<!--            document.getElementById('IBAN_error').innerHTML = 'het ibannummer bestaat uit 2 letter, 2 cijfers, 4 letters en 10 cijfers'-->
+<!--            document.getElementById('sec_error').innerHTML =  'de beveiligingscode bestaat uit 5 cijfers'-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 </form>
 </body>
+
+<script src="../static/linkaccount.js" type="text/javascript"></script>
 
 </html>
