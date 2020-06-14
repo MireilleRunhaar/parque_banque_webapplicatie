@@ -1,6 +1,8 @@
 package nl.team2.parque_banque_server.controller;
 
+import nl.team2.parque_banque_server.model.Transaction;
 import nl.team2.parque_banque_server.service.PaymentAccountService;
+import nl.team2.parque_banque_server.service.TransactionService;
 import nl.team2.parque_banque_server.utilities.TransactionFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,13 +20,16 @@ import javax.validation.Valid;
 
 
 @Controller
-@SessionAttributes({"customerId", "iban", "transactionFormBean"})
+@SessionAttributes({"customerId", "iban"})
 public class NewTransactionController {
 
-    public static final int MIN_AMOUNT = 1;
+    //public static final int MIN_AMOUNT = 1;
 
     @Autowired
     PaymentAccountService paymentAccountService;
+    @Autowired
+    TransactionService transactionService;
+
 
     @GetMapping("/overboeken")
     public String newTransactionHandler(Model model){
@@ -44,13 +49,31 @@ public class NewTransactionController {
         String ibanDebitAccount = (String) model.getAttribute("iban");
         if(bindingResult.hasErrors()) {
             return "newtransaction";
-        } else {
-            model.addAttribute("transactionFormBean",transactionFormBean);
-            model.addAttribute("iban", ibanDebitAccount);
-            return "confirmtransaction";
+        } else if(transactionFormBean == null){
+            return "error";
         }
+        Transaction transaction = transactionService.createTransactionFromBean(transactionFormBean,ibanDebitAccount);
+        try {
+            transactionService.executeAndSave(transaction);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
+        return "redirect:/rekening-overzicht/details" + ibanDebitAccount;
     }
 
+    /*@PostMapping(value="/overboeken", params = "action=send")
+    public String sendTransactionHandler(Model model){
+        TransactionFormBean transactionFormBean = (TransactionFormBean)model.getAttribute("transactionFormBean");
+        String ibanDebitAccount = (String) model.getAttribute("iban");
+
+
+    @PostMapping(value = "/overboeken", params = "action=back")
+    public String backFromConfirmationHandler(@ModelAttribute TransactionFormBean transactionFormBean, Model model){
+        model.addAttribute("transactionFormBean", transactionFormBean);
+        return "newtransaction";
+    }
+*/
     @CrossOrigin
     @PostMapping("saldo-check")
     public @ResponseBody boolean checkSaldo(@RequestParam("transactionAmount") long transactionAmount, Model model){

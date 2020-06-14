@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="author" content="Lisa Kemeling">
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
-    <link th:href="@{/css/transaction.css}" href="../static/css/transaction.css" rel="stylesheet"> 
+    <link th:href="@{/css/transaction.css}" href="../static/css/transaction.css" rel="stylesheet">
+    <link th:href="@{/css/confirmwindow.css}" href="../static/css/confirmwindow.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script type="text/javascript" src="javascript/newtransaction.js" defer ></script>
+    <script type="text/javascript" src="javascript/confirmwindow.js" defer ></script>
     <title>Overboeken</title>
 </head>
 <body>
@@ -43,7 +45,7 @@
                     <label for="description">Omschrijving</label>
                     <input th:field="*{description}" id="description" type="text" max="140" size="18">
                 </div>
-                <button type="submit">Volgende</button>
+                 <button type="submit">Verzenden</button>
             </form>
         </div>
     </main>

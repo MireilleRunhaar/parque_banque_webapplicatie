@@ -19,13 +19,31 @@ cents.addEventListener('focusout', checkTransactionAmount);
 iban.addEventListener('focusout', checkIbanCreditaccount);
 description.addEventListener('focusout', checkDescription);
 
+
+
 form.addEventListener('submit', (e) => {
 
-    if(divAmount.className !== formControlSucces || divIban.className !== formControlSucces || divDescription.className === formControlError){
-        e.preventDefault();
+    e.preventDefault();
+    if(divAmount.className === formControlSucces && divIban.className === formControlSucces && divDescription.className !== formControlError){
+        confirmWindow();
     }
 
-})
+});
+
+function confirmWindow(){
+    let amountInput = amount.value;
+    let centsInput = cents.value;
+    let ibanInput = iban.value;
+
+    let message = 'U boekt €' + amountInput + ',' + centsInput+ ' over naar rekeningnummer ' + ibanInput
+    Confirm.open({
+        title: 'Bevestig verzenden transactie',
+        message: message,
+        onok: () => {
+            document.getElementById('form').submit();
+        }
+    });
+}
 
 
 function checkTransactionAmount(){
