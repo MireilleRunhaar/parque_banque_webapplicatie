@@ -61,23 +61,7 @@ public class PaymentAccountService {
         public IbanService() {
         }
 
-//        // get last the last added iban and add 1.
-//        public String createNewIban(){
-//           String lastAddedPaymentAccount=privateAccountRepository.findTopByOrderByIbanDesc().getIban();
-//           if (lastAddedPaymentAccount==null){
-//               String lastAddedIban=IBAN_00;
-//               String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
-//                       +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT))+INCREMENT);
-//               return newIban;
-//           } else {
-//
-//               // laatste 9 cijferige nummerreeks splitsen en hierbij 1 optellen ; hier hangt (nog) geen limiet aan
-//               String newIban=lastAddedPaymentAccount.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
-//                       +(Integer.parseInt(lastAddedPaymentAccount.substring(UPPER_LIMIT))+INCREMENT);
-//               return newIban;
-//           }
-//
-//        }
+
 
         public String createNewIban(){
             String lastAddedPrivateIban=privateAccountRepository.findTopByOrderByIbanDesc().getIban();
