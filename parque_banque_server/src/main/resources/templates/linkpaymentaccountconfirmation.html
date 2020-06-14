@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bevestiging rekening toegevoegd</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<nav class="navigation">
+    <ul>
+        <li class="logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a><li/>
+        <li class="nav-link"><a href="/contact">Contact</a></li>
+    </ul>
+</nav>
+<br/>
+<br/>
+<br/>
+<h1>U bent als mederekeninghouder toegevoegd aan de rekening.</h1>
+<button onclick="document.location = '/rekening-overzicht'">Rekeningoverzicht</button>
+</body>
+</html>
