@@ -8,6 +8,7 @@ import nl.team2.parque_banque_server.service.PrivateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,7 +33,15 @@ public class NewPrivateAccountController {
     }
 
 
+    @GetMapping("/particuliere-rekening-openen")
+    public String newPrivateAccount(Model model) {
+        if(model.containsAttribute("customerId")){
+            return "newprivateaccount";
+        } else {
+            return "logincustomer";
+        }
 
+    }
 
     @PostMapping("/particuliere-rekening-openen")
     public ModelAndView createNewPrivateAccount(Model model){
@@ -55,7 +64,7 @@ public class NewPrivateAccountController {
 
     @PostMapping(value = "/particuliere-rekening-openen", params = "action=Terug")
     public String cancelNewPrivateAccount(){
-        return "redirect:/rekening-openen";
+        return "redirect:/rekening-overzicht";
     }
 
 
