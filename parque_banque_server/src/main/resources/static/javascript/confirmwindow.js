@@ -4,7 +4,7 @@ const Confirm = {
             title: '',
             message: '',
             okText: 'OK',
-            cancelText: 'Cancel',
+            cancelText: 'Terug',
             onok: function () {},
             oncancel: function () {}
         }, options);
