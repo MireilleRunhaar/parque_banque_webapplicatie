@@ -15,7 +15,7 @@ import javax.validation.Valid;
 /**
  * @author Lisa Kemeling
  * Controller for receiving and handling transactionrequests
- * Transaction input is validated and send for confirmation
+ * Transaction input is validated and send after confirmation
  */
 
 
@@ -23,7 +23,6 @@ import javax.validation.Valid;
 @SessionAttributes({"customerId", "iban"})
 public class NewTransactionController {
 
-    //public static final int MIN_AMOUNT = 1;
 
     @Autowired
     PaymentAccountService paymentAccountService;
@@ -62,18 +61,7 @@ public class NewTransactionController {
         return "redirect:/rekening-overzicht/details" + ibanDebitAccount;
     }
 
-    /*@PostMapping(value="/overboeken", params = "action=send")
-    public String sendTransactionHandler(Model model){
-        TransactionFormBean transactionFormBean = (TransactionFormBean)model.getAttribute("transactionFormBean");
-        String ibanDebitAccount = (String) model.getAttribute("iban");
 
-
-    @PostMapping(value = "/overboeken", params = "action=back")
-    public String backFromConfirmationHandler(@ModelAttribute TransactionFormBean transactionFormBean, Model model){
-        model.addAttribute("transactionFormBean", transactionFormBean);
-        return "newtransaction";
-    }
-*/
     @CrossOrigin
     @PostMapping("saldo-check")
     public @ResponseBody boolean checkSaldo(@RequestParam("transactionAmount") long transactionAmount, Model model){
