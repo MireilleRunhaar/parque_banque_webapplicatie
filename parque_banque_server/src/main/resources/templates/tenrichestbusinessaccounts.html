@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>10 hoogste zakelijke klanten</title>
+    <link th:href="@{/css/tenrichestbusinessaccounts.css}" href="../static/css/tenrichestbusinessaccounts.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 <body>
 <h1>Zakelijke klanten</h1>
-<table class="table">
+<table id="ranking-table" table class="content-table">
+    <thead>
     <tr>
-        <th>#</th>
+        <th></th>
         <th>Klant</th>
         <th>Saldo</th>
-        <th># rekeningen</th>
+        <th>Aantal Rekeningen</th>
     </tr>
+    </thead>
     <tr th:each="key, index : ${richestBusinessCustomers.keySet()}">
         <td th:text="${index.count}"></td>
         <td th:text="${richestBusinessCustomers.get(key)[0].firstName} + ' ' + ${richestBusinessCustomers.get(key)[0].affix}
