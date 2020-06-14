@@ -14,6 +14,11 @@ public class CompanyService {
     @Autowired
     private SectorService sectorService;
 
+    public CompanyService(CompanyRepository companyRepo, SectorService sectorService) {
+        this.companyRepo = companyRepo;
+        this.sectorService = sectorService;
+    }
+
     //Iterable van alle bedrijven
     public Iterable<Company> companyList(){
         return companyRepo.findAll();
@@ -37,4 +42,11 @@ public class CompanyService {
         return newCompany;
     }
 
+    public CompanyRepository getCompanyRepo() {
+        return companyRepo;
+    }
+
+    public SectorService getSectorService() {
+        return sectorService;
+    }
 }
