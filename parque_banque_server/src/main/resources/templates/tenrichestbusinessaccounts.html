@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>10 hoogste zakelijke klanten</title>
+</head>
+
+<body>
+<h1>Zakelijke klanten</h1>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Klant</th>
+        <th>Saldo</th>
+        <th># rekeningen</th>
+    </tr>
+    <tr th:each="key, index : ${richestBusinessCustomers.keySet()}">
+        <td th:text="${index.count}"></td>
+        <td th:text="${richestBusinessCustomers.get(key)[0].firstName} + ' ' + ${richestBusinessCustomers.get(key)[0].affix}
+         + ' ' + ${richestBusinessCustomers.get(key)[0].surName}"></td>
+        <td th:text="'€ ' + ${#numbers.formatDecimal(key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
+        <td th:text="${richestBusinessCustomers.get(key)[1]}" ></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
