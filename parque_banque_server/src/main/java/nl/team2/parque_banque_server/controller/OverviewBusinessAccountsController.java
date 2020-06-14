@@ -50,13 +50,10 @@ public class OverviewBusinessAccountsController {
     //Sector
     @RequestMapping(value = "/overzicht-bedrijven", params = "Sectoren", method = RequestMethod.POST)
     public ModelAndView averageBalanceSector(){
-        ModelAndView mav=new ModelAndView("averagebalancesectors");
+        ModelAndView mav=new ModelAndView("averagebalancesector");
+        Map<Long,Object[]> averageBalanceSector=statisticsService.getAverageBalanceSector();
+        mav.addObject("averageBalanceSector",averageBalanceSector);
 
-        //List<BusinessAccount> businessAccountsList=businessAccountService.findAll();
-
-       // Map<String,Long> sectorAverageBalance= businessAccountService.averageBalanceSector(businessAccountsList);
-
-       // mav.addObject("averageBalance",sectorAverageBalance);
 
         return mav;
     }

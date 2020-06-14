@@ -14,12 +14,6 @@ public interface SectorRepository extends CrudRepository <Sector, Integer> {
 
     Sector findSectorByName(String name);
 
-    @Query(value = "select *,  avg(p.balance_cent) as gemiddelde_saldo\n" +
-            "from sector s \n" +
-            "join company c on s.id=c.sector_id\n" +
-            "join payment_account p on c.kvk_nr=p.company_kvk_nr\n" +
-            "where p.dtype='BusinessAccount'\n" +
-            "group by s.name",nativeQuery = true)
-    List<Sector>getAverageBalanceSector();
+
 
 }

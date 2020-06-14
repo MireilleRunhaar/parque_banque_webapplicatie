@@ -16,18 +16,15 @@ public class StatisticsService {
 
     private final CustomerRepository customerRepository;
     private final PaymentAccountService paymentAccountService;
-    private final SectorRepository sectorRepository;
+
     private final BusinessAccountRepository businessAccountRepository;
 
     @Autowired
     public StatisticsService(CustomerRepository customerRepository,
                              PaymentAccountService paymentAccountService,
-                             SectorRepository sectorRepository,
                              BusinessAccountRepository businessAccountRepository) {
         this.customerRepository = customerRepository;
         this.paymentAccountService = paymentAccountService;
-
-        this.sectorRepository = sectorRepository;
         this.businessAccountRepository = businessAccountRepository;
     }
 

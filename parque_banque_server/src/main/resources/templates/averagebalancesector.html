@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Gemiddelde saldo sectoren</title>
+    <link th:href="@{/css/averagebalancesector.css}" href="../static/css/averagebalancesector.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+<h2>Sectoren</h2>
+<table id="ranking-table" table class="content-table">
+    <thead>
+    <tr>
+        <th>Sector Naam</th>
+        <th>Gemiddelde Saldo</th>
+    </tr>
+    </thead>
+    <tr th:each="key, index : ${averageBalanceSector.keySet()}">
+        <td th:text="${averageBalanceSector.get(key)[0].name} "></td>
+        <td th:text="'€ ' + ${#numbers.formatDecimal(key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
+
+    </tr>
+</table>
+
+
+</body>
+
+</body>
+</html>
