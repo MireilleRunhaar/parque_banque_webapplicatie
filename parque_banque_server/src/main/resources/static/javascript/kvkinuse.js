@@ -1,24 +1,46 @@
+const kvkInput = document.getElementById("kvkNr");
+kvkInput.addEventListener("focusout", validateKvk);
 
-document.getElementById("kvkNr").addEventListener("focusout", checkIfCompanyKnown);
+function validateKvk() {
 
-function checkIfCompanyKnown() {
-    let kvknr = document.getElementById("kvkNr").value;
-    console.log(kvknr + " ");
+    let input = kvkInput.value;
+    const url = "http://localhost/kvk-check";
+    let data = 'kvk=${kvkNr}';
 
-    let regex = new RegExp(/^\d{8}$/i);
-    console.log(Number.isInteger(nr));
-    if(Number.isInteger(nr)) {
+    fetch(url, {
+        method: 'POST',
+        headers: {"Content-Type": 'application/x-www-form-urlencoded'},
+        body: data
+    })
+        .then(response => response.json())
+        .then(json => {
+            if (json) {
+                document.getElementById("validKvk").style.display = "none";
+            } else {
+                document.getElementById("invalidKvk").style.display = "inline";
+            }
+        })
+}
 
-        fetch("http://localhost:8080/kvknrinuse", {
-            method: 'POST',
-            headers: {"Content-Type": 'application/x-www-form-urlencoded'},
+function displayCompanyInfo(){
+    let kvknr = kvkNr.value;
+
+    if(!(/^\d{8}$/i).test(kvknr)) return;
+
+    let kvkLookup = "https://localhost/kvknr?kvknr=${kvkNr}";
+
+        fetch(kvkLookup, {
+            method: 'GET',
+            headers: { "Content-Type" : 'application/json'},
             body: "kvknr=" + kvknr
         })
+
             .then(response => response.json())
-            .then(json => { if (json){document.getElementById("kvknrinuse").style.display = "inline";
-            } else {
-                document.getElementById("kvkBekend").style.display = "none";
-            }
-            });
-    }
+
+            .then(json => {
+                document.getElementById("kvkNr").value = json.kvknr;
+                document.getElementById("btwNr").value = json.btwnr;
+                document.getElementById("name").value = json.name;
+                document.getElementById("sector").value = json.sector;
+            })
 }

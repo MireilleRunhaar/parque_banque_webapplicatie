@@ -31,7 +31,7 @@ public class NewCompanyController {
     }
 
     //JS controle of kvk bekend is bij PB en eventueel teruggeven bedrijfsgegevens
-    @PostMapping("/kvknrinuse")
+    @PostMapping("/kvk-check")
     public @ResponseBody
     Company kvkInUseHandler(@RequestParam ("kvkNr") String kvkNr){
         Company knownCompany;
