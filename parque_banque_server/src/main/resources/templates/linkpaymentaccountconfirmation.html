@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Bevestiging rekening toegevoegd</title>
-    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
 </head>
+<style>
+    h1 {
+        font-size: 20px;
+        margin-left: 2em;
+    }
+
+    button{
+        margin-left: 2em;
+    }
+</style>
 <body>
 <nav class="navigation">
     <ul>
@@ -17,7 +27,7 @@
 <br/>
 <br/>
 <br/>
-<h1>U bent als mederekeninghouder toegevoegd aan de rekening.</h1>
+<h1>U bent als mederekeninghouder toegevoegd aan de rekening. Op het rekeningoverzicht kunt u het saldo van de rekening vinden.</h1>
 <button onclick="document.location = '/rekening-overzicht'">Rekeningoverzicht</button>
 </body>
 </html>

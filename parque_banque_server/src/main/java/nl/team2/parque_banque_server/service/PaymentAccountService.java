@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.service;
 
 
 import nl.team2.parque_banque_server.model.Authorisation;
+import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.PaymentAccountRepository;
@@ -55,11 +56,11 @@ public class PaymentAccountService {
     /**
      * to check is a paymentaccount is already linked to the customer
      * @param linkAccountFormBean
-     * @param username
+     * @param customer
      * @return
      */
-    public boolean checkAccount(LinkAccountFormBean linkAccountFormBean, String username) {
-        List<PaymentAccount> paymentAccountList = paymentAccountRepo.findPaymentAccountByAccountHolders(username);
+    public boolean checkAccount(LinkAccountFormBean linkAccountFormBean, Customer customer) {
+        List<PaymentAccount> paymentAccountList = paymentAccountRepo.findPaymentAccountByAccountHolders(customer);
         if (paymentAccountList.size() != 0) {
             for (PaymentAccount paymentAccount : paymentAccountList) {
                 if (paymentAccount.getIban().equals(linkAccountFormBean.getIban())) ;

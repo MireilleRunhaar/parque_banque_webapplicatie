@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface PaymentAccountRepository extends CrudRepository<PaymentAccount, String> {
 
-    public List<PaymentAccount> findPaymentAccountByAccountHolders(String username);
+    public List<PaymentAccount> findPaymentAccountByAccountHolders(Customer customer);
 
 }

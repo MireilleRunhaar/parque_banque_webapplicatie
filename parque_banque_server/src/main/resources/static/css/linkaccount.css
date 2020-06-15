@@ -1,0 +1,39 @@
+h1 {
+    font-size: 20px;
+    margin-left: 2em;
+}
+
+form {
+    margin: 2em;
+}
+
+input {
+    margin-block: auto;
+}
+
+label {
+
+}
+.form1 {
+    margin-left: 30px;
+}
+.form2 {
+    margin-left: 30px;
+}
+button {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+#sec_error{
+    color: #FF0000;
+    margin-top: 5px;
+    font-size: small;
+    margin-left: 30px;
+}
+
+#IBAN_error{
+    color: #FF0000;
+    margin-top: 5px;
+    font-size: small;
+    margin-left: 30px;
+}

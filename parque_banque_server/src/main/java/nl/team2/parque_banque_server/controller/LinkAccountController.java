@@ -60,11 +60,11 @@ public class LinkAccountController {
             mav.setViewName("linkpaymentaccount");
         } else {
             Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
-//            if(paymentAccountService.checkAccount(linkAccountFormBean, customer.getUserName())){
-//                System.out.println("rekening is al gekoppeld");
-//                model.addAttribute("rekeningGekoppeld", true);
-//                mav.setViewName("linkpaymentaccount");
-//            }
+            if(paymentAccountService.checkAccount(linkAccountFormBean, customer)){
+                System.out.println("rekening is al gekoppeld");
+                model.addAttribute("rekeningGekoppeld", true);
+                mav.setViewName("linkpaymentaccount");
+            }
             if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
                 PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
                 paymentAccount.addCustomerToAccountHolder(customer);

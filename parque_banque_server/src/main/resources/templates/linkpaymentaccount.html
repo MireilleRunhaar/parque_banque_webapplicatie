@@ -65,7 +65,7 @@
 <form  class="accounttoevoegen-form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post" name="form">
     <div class="form1">
         <span th:if="${invalidCredentials}" class="error">De combinatie tussen rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.</span>
-        <span th:if="${rekeningGekoppeld}" class="erro">U bent al gekoppeld aan deze rekening.</span>
+        <span th:if="${rekeningGekoppeld}" class="errorRek">U bent al gekoppeld aan deze rekening.</span>
         <br/>
         <br/>
         <label for="iban">Rekeningnummer</label><br/>
