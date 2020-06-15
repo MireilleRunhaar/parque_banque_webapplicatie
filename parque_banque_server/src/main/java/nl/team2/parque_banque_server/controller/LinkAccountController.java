@@ -1,5 +1,6 @@
 package nl.team2.parque_banque_server.controller;
 
+import com.sun.xml.bind.v2.TODO;
 import nl.team2.parque_banque_server.model.Authorisation;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.model.PaymentAccount;
@@ -47,6 +48,7 @@ public class LinkAccountController {
         }
 
     }
+//TODO check op reeds gekoppelde rekening werkt nog niet.
 
     //checking for login credentials
     @PostMapping("/rekening-koppelen")
