@@ -25,33 +25,17 @@ import java.util.Set;
 @SessionAttributes("customerId")
 public class NewBusinessAccountController {
 
-    public static final long START_BALANCE = 2500L;
-    @Autowired
-    private CustomerService customerService;
-    @Autowired
-    private BusinessAccountService bas;
-    @Autowired
-    private PaymentAccountService.IbanService ibanService;
-    @Autowired
-    private PaymentAccountService pas;
-    @Autowired
-    private EmployeeService employeeService;
-    @Autowired
-    private CompanyService companyService;
-    @Autowired
-    private SectorService sectorService;
+    @Autowired private CustomerService customerService;
+    @Autowired private BusinessAccountService bas;
+    @Autowired private PaymentAccountService pas;
+    @Autowired private SectorService sectorService;
 
 
     @GetMapping("/zakelijke-rekening")
     public String goToNewBusinessAccount(Model model){
 
-        //get customer from session
         Customer customer =customerService.findCustomerBySAId(model.getAttribute("customerId"));
         if(customer != null){
-
-            //if customer has no businessaccounts, direct to making new company.
-            //else show company's and give option to select
-
             Set<Company> companies = bas.getCompaniesFromCustomer(customer);
             if(companies.isEmpty()){
                 model.addAttribute("newCompany", new CompanyFormBean());
@@ -70,24 +54,15 @@ public class NewBusinessAccountController {
     @PostMapping("open-zakelijke-rekening")
     public String createBusinessAccount(@ModelAttribute("company") CompanyFormBean cfb, Model model){
 
-        //make company
-        Company company = companyService.findOneByKVK(cfb.getKvkNr());
+        BusinessAccount businessAccount = bas.createBusinessAccountFromBean(cfb);
 
-        //make businessaccount
-        BusinessAccount businessAccount =
-                new BusinessAccount(ibanService.createNewIban(), START_BALANCE, employeeService.findOneByRoleName("Accountmanager"),company);
-
-
-        //make current customer accountholder
         businessAccount.addCustomerToAccountHolder(customerService.findCustomerBySAId(model.getAttribute("customerId")));
-
-        //save business account
         bas.saveBusinessAccount(businessAccount);
 
         model.addAttribute("iban", businessAccount.getIban());
         model.addAttribute("balanceCent", pas.balanceInEuros(businessAccount.getBalance()));
         model.addAttribute("businessAccount", true);
-        model.addAttribute("name", company.getName());
+        model.addAttribute("name", businessAccount.getCompany().getName());
 
         return "confirmnewaccount";
     }

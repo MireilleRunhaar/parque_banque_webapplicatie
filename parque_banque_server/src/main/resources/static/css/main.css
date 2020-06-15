@@ -19,8 +19,8 @@ a {
 }
 
 #logo img{
-    width: 196px;
-    height: 50px;
+    width: 130px;
+    height:50px;
     padding: 0;
     margin: 0;
     
@@ -50,9 +50,10 @@ a {
 }
 
 li.nav-link {
+    overflow: hidden;
     float: right;
-    width: 125px;
-    margin-right: 0.625%;
+    width: 150px;
+    margin-right: 0.698%;
     text-align: center;
     line-height: 3;
     background:#37ad49;   
@@ -78,7 +79,6 @@ text-align: center;
 .main-content img{
     width: 100%;
     max-width: 940px;
-    height: auto;
 }
 
 footer {
