@@ -15,9 +15,9 @@
         <th>Gemiddelde Saldo per Sector</th>
     </tr>
     </thead>
-    <tr th:each="key, index : ${averageBalanceSector.keySet()}">
-        <td th:text="${averageBalanceSector.get(key)[0].name} "></td>
-        <td th:text="'€ ' + ${#numbers.formatDecimal(key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
+    <tr th:each="entry, stats : ${averageBalanceSector}" th:with="sector=${entry.value}">
+        <td th:text="${sector.name} "></td>
+        <td th:text="'€ ' + ${#numbers.formatDecimal(entry.key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
 
     </tr>
 </table>
