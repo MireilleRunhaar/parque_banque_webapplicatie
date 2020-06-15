@@ -9,10 +9,6 @@ const MIN_TRANSACTION = 0;
 const formControlError = 'form-control error';
 const formControlSucces = 'form-control succes';
 
-let divAmount = document.getElementById('div-amount');
-let divIban = document.getElementById('div-iban');
-let divDescription = document.getElementById('div-description');
-
 
 amount.addEventListener('focusout', checkTransactionAmount);
 cents.addEventListener('focusout', checkTransactionAmount);
@@ -37,8 +33,10 @@ async function checkInputs(){
     let amountInput = amount.value;
     let centsInput = cents.value;
     let totalAmount = (Number(amountInput) * 100) + Number(centsInput);
+
     let validAmount = await checkBalanceDebitAccount(totalAmount);
     let validIban = await checkIbanExcist(iban.value);
+
     let dataOutput = false;
     if(validIban && validAmount){
          dataOutput = true;
