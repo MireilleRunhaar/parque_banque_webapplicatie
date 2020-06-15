@@ -48,14 +48,12 @@ public class LinkAccountController {
         }
 
     }
-//TODO check op reeds gekoppelde rekening werkt nog niet.
+//TODO check op reeds gekoppelde rekening werkt nog niet
 
-    //checking for login credentials
+
     @PostMapping("/rekening-koppelen")
     public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
-        System.out.println("dit is de postmapping");
-        //input voor linkaccountvalidation is linkaccountformbean en addaccountholderformbean.
         if (bindingResult.hasErrors()) {
             System.out.println("fouten");
             model.addAttribute("invalidCredentials", true);
@@ -83,24 +81,4 @@ public class LinkAccountController {
     }
 
 
-
-
-//    //checking for login credentials
-//    @PostMapping("/rekening-koppelen")
-//    public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
-//        ModelAndView mav = new ModelAndView();
-//        System.out.println("dit is de postmapping");
-//        Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
-//        if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
-//            PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
-//            paymentAccount.addCustomerToAccountHolder(customer);
-//            paymentAccountService.savePaymentAccount(paymentAccount);
-//            mav.setViewName("linkpaymentaccountconfirmation");
-//        } else {
-//            System.out.println("verkeerd wachtwoord");
-//            model.addAttribute("invalidCredentials", true);
-//            mav.setViewName("linkpaymentaccount");
-//        }
-//        return mav;
-//    }
    }

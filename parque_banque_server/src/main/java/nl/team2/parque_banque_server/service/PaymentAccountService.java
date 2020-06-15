@@ -63,8 +63,7 @@ public class PaymentAccountService {
         List<PaymentAccount> paymentAccountList = paymentAccountRepo.findPaymentAccountByAccountHolders(customer);
         if (paymentAccountList.size() != 0) {
             for (PaymentAccount paymentAccount : paymentAccountList) {
-                if (paymentAccount.getIban().equals(linkAccountFormBean.getIban())) ;
-                {
+                if (paymentAccount.getIban().equals(linkAccountFormBean.getIban())){
                     return true;
                 }
             }
