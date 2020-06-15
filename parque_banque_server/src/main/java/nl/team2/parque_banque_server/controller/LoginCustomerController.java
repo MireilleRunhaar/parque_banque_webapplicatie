@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
@@ -54,6 +51,13 @@ public class LoginCustomerController {
             model.addAttribute("customerId", customer.getId());
             return "redirect:/rekening-overzicht";
         }
+    }
+
+    @CrossOrigin
+    @PostMapping("/inloggen-controle")
+    public @ResponseBody boolean loginValidationHandler(@RequestParam("username") String username,
+                                                        @RequestParam("password") String password) {
+        return loginService.loginValidation(username, password);
     }
 
     @GetMapping("/uitloggen")

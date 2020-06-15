@@ -10,8 +10,8 @@
     top: 53%;
     transform: translate(-50%,-50%);
 }
-.error {
-    display: inline-block;
+.error, .error_big{
+    display: none;
     width: 85%;
     font-size: 13px;
     background: #FFFFFF;
@@ -21,26 +21,36 @@
     padding: 5px;
     margin-bottom: 5px;
 }
+.error_small {
+    font-size: 14px;
+    font-weight: bold;
+    color: #C62828;
+    text-align: center;
+    margin-top: 4px;
+    display: none;
+}
 label {
     display: inline-block;
-    width: 225px;
+    padding: 1px 1px;
+    width: 220px;
     text-align: left;
     margin-top: 5px;
+    margin-bottom: 3px;
 }
-input[type=text], input[type=password]{
+input[type=text], input[type=password], select{
     display: inline-block;
-    width: 225px;
-    border: thin solid #FFFFFF;
+    padding: 3px 3px;
+    width: 220px;
+    border: thin #FFFFFF;
     text-align: left;
+    outline: none;
 }
 .loginbutton {
-    display: block;
+    display: inline-block;
     width: 20%;
-    height: 5%;
-    border: none;
+    height: 7%;
     border-radius: 10px;
-    position: absolute;
-    left: 23%;
+    border: none;
     color: #000000;
     cursor: pointer;
 }
@@ -48,5 +58,5 @@ input[type=text], input[type=password]{
     text-decoration: underline;
 }
 .text{
-    margin-top: 15px;
+    font-size: 15px;
 }
