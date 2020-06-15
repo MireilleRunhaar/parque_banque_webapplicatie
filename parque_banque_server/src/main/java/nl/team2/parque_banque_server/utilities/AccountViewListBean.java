@@ -10,6 +10,11 @@ public class AccountViewListBean {
     @NotBlank
     private String balanceEuros;
 
+    @NotBlank
+    private String accountholders;
+
+    private String businessName;
+
     public AccountViewListBean() {
         super();
     }
@@ -28,5 +33,21 @@ public class AccountViewListBean {
 
     public void setBalanceEuros(String balanceEuros) {
         this.balanceEuros = balanceEuros;
+    }
+
+    public String getAccountholders() {
+        return accountholders;
+    }
+
+    public void setAccountholders(String accountholders) {
+        this.accountholders = accountholders;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 }

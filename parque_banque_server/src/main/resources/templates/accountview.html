@@ -73,10 +73,10 @@
 
         <br/>
 
-        <button onclick="document.location = '/wijzigen-rekening'">Wijzigen gegevens</button>
-        <!--<button onclick="document.location = '/rekening-openen'">Rekening openen</button>--->
+        <button onclick="document.location = '/particuliere-rekening-openen'">Particuliere Rekening openen</button>
+        <button onclick="document.location = '/zakelijke-rekening'">Zakelijke Rekening openen</button>
         <button onclick="document.location = '/rekening-koppelen'">Rekening koppelen</button>
-        <!--<button onclick="document.location = '/uitloggen'">Uitloggen</button>--->
+
 
         <br/>
 
@@ -95,7 +95,7 @@
                     <td> Geen rekeningen </td>
                 </tr>
                 <tr th:each="privateaccount : ${privateaccounts}" th:data-href="@{/rekening-overzicht/details{iban} (iban=${privateaccount.iban})}">
-                    <td th:text="${customer.firstName + ' ' + customer.affix + ' ' + customer.surName}"></td>
+                    <td th:text="${privateaccount.accountholders}"></td>
                     <td th:text="${privateaccount.iban}"></td>
                     <td th:text="${privateaccount.balanceEuros}"></td>
                 </tr>
@@ -108,6 +108,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Bedrijfsnaam</th>
                     <th>Rekeninghouder</th>
                     <th>IBAN</th>
                     <th>Saldo</th>
@@ -120,7 +121,8 @@
                 </tr>
                 <tr th:each="businessaccount : ${businessaccounts}" th:data-href="@{/rekening-overzicht/details{iban}
                 (iban=${businessaccount.iban})}">
-                    <td th:text="${customer.firstName + ' ' + customer.affix + ' '+ customer.surName}"></td>
+                    <td th:text="${businessaccount.businessName}"></td>
+                    <td th:text="${businessaccount.accountholders}"></td>
                     <td th:text="${businessaccount.iban}"></td>
                     <td th:text="${businessaccount.balanceEuros}"></td>
                 </tr>
