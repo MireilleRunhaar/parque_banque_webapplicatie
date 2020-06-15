@@ -72,7 +72,7 @@ public class AccountViewController {
     //request for connectaccount
     @GetMapping("/rekening-overzicht/connectaccount")
     public ModelAndView connectaccountHandler(){
-        return new ModelAndView("connectaccount");
+        return new ModelAndView("linkpaymentaccount");
     }
 
 }
