@@ -56,7 +56,7 @@ public class OverviewBusinessAccountsController {
     public ModelAndView averageBalanceSector(){
         ModelAndView mav=new ModelAndView("averagebalancesector");
         Iterable<BusinessAccount> businessAccounts=businessAccountService.findAll();
-        Map<Long,Object[]> averageBalanceSector=statisticsService.averageBalanceSector(businessAccounts);
+        Map<Long,Object> averageBalanceSector=statisticsService.averageBalanceSector(businessAccounts);
         mav.addObject("averageBalanceSector",averageBalanceSector);
         return mav;
     }
