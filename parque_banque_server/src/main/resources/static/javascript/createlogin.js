@@ -95,11 +95,7 @@ function confirmPassword() {
 
     if (password !== confirmpass.value) {
         document.getElementById("passMismatch").style.display = "inline";
-        submit.disabled = true;
-        return false;
     } else {
         document.getElementById("passMismatch").style.display = "none";
-        submit.disabled = false;
-        return true;
     }
 }

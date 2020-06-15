@@ -26,10 +26,8 @@ function validateBsn() {
             // If bsn is invalid, show message and disable button
             if (json) {
                 document.getElementById("validBsn").style.display = "none";
-                submit.disabled = false;
             } else {
                 document.getElementById("validBsn").style.display = "inline";
-                submit.disabled = true;
             }
         })
 }
