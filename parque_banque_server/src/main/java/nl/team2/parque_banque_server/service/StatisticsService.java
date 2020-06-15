@@ -119,7 +119,7 @@ public class StatisticsService {
      * @return a map with the key value pair of the sectorName and the average balance
      * @Author Moraad Anas
      */
-    public Map<Long,Object[]> averageBalanceSector(List<BusinessAccount>businessAccountsList){
+    public Map<Long,Object[]> averageBalanceSector(Iterable<BusinessAccount>businessAccountsList){
         Map<Object, Long> sectorTotal = new HashMap<>(); //total sum of sector balance
         Map<Object,Long>sectorCount=new HashMap<>(); //number of sector counts
 
