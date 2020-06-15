@@ -3,7 +3,7 @@ package nl.team2.parque_banque_server.service;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.model.PrivateAccount;
-import nl.team2.parque_banque_server.model.repositories.CustomerRepository;
+import nl.team2.parque_banque_server.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import nl.team2.parque_banque_server.model.*;
-import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.model.repositories.CustomerRepository;
-import nl.team2.parque_banque_server.model.repositories.SectorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.*;
 
@@ -30,14 +26,17 @@ public class StatisticsService {
     private final PaymentAccountService paymentAccountService;
 
     private final BusinessAccountRepository businessAccountRepository;
+    private final TransactionRepository transactionRepository;
 
     @Autowired
     public StatisticsService(CustomerRepository customerRepository,
                              PaymentAccountService paymentAccountService,
-                             BusinessAccountRepository businessAccountRepository) {
+                             BusinessAccountRepository businessAccountRepository,
+                             TransactionRepository transactionRepository) {
         this.customerRepository = customerRepository;
         this.paymentAccountService = paymentAccountService;
         this.businessAccountRepository = businessAccountRepository;
+        this.transactionRepository = transactionRepository;
     }
 
     private List<Customer> getTenRichestPrivateCustomers() {
@@ -123,16 +122,27 @@ public class StatisticsService {
 
     }
 
-    //    public Map<Long,Object[]> getTenMostActiveCustomers(){
-//        Map<Long, Object[]> map = new TreeMap<>(Collections.reverseOrder());
-//        List<Customer> customers=customerRepository.getTenMostActiveCustomers();
-//        long totalTransactions=0L;
-//        for (Customer customer:customers){
-//            for (PaymentAccount paymentAccount:customer.getPaymentAccounts()){
-//                map.put(paymentAccount.get)
-//            }
-//        }
-//
-//    }
+        public Map<Long,Customer> getTenMostActiveCustomers(){
+        Map<Long, Customer> map = new TreeMap<>(Collections.reverseOrder());
+        List<Customer> customers=customerRepository.getTenMostActiveCustomers();
+        long totalTransactions=0;
+        for (Customer customer:customers){
+            for (PaymentAccount paymentAccount:customer.getPaymentAccounts()){
+                if(paymentAccount instanceof BusinessAccount){
+                    List<Transaction> transactions=transactionRepository.findAll(paymentAccount);
+                    for (Transaction transaction:transactions){
+                        if (transaction.getDebitAccount().equals(paymentAccount)||transaction.getCreditAccount().equals(paymentAccount)){
+                            totalTransactions+=1L;
+                        }
+                    }
+                }
+
+
+            }
+            map.put(totalTransactions,customer);
+            totalTransactions=0;
+        }
+        return map;
+    }
 
 }
