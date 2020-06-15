@@ -34,6 +34,7 @@ public class AddAccountHolderController {
         return mav;
     }
 
+    // TODO uncomment extra checks
     @PostMapping(value = "/rekeninghouder-toevoegen", params = "action=finish")
     public ModelAndView inputFormHandler(@Valid AddAccountHolderFormBean addAccountHolderFormBean,
                                          BindingResult bindingResult, Model model) {
@@ -55,6 +56,7 @@ public class AddAccountHolderController {
         return mav;
     }
 
+    // TODO delete
     @PostMapping("rekeninghouder-toevoegen")
     public ModelAndView inputFormHandler(@RequestParam("username") String username,
                                          @RequestParam("securityCode") String code, Model model) {
