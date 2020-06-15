@@ -24,11 +24,27 @@ description.addEventListener('focusout', checkDescription);
 form.addEventListener('submit', (e) => {
 
     e.preventDefault();
-    if(divAmount.className === formControlSucces && divIban.className === formControlSucces && divDescription.className !== formControlError){
-        confirmWindow();
-    }
+    checkInputs()
+        .then(dataOutput => {
+            if (dataOutput){
+                confirmWindow();
+            }
+        })
 
 });
+
+async function checkInputs(){
+    let amountInput = amount.value;
+    let centsInput = cents.value;
+    let totalAmount = (Number(amountInput) * 100) + Number(centsInput);
+    let validAmount = await checkBalanceDebitAccount(totalAmount);
+    let validIban = await checkIbanExcist(iban.value);
+    let dataOutput = false;
+    if(validIban && validAmount){
+         dataOutput = true;
+    }
+    return dataOutput;
+}
 
 function confirmWindow(){
     let amountInput = amount.value;
@@ -54,7 +70,14 @@ function checkTransactionAmount(){
         setErrorFor(amount, "Vul een bedrag in tot 100.000 euro");
     } else{
         let totalAmount = (Number(amountInput) * 100) + Number(centsInput);
-        checkBalanceDebitAccount(totalAmount);
+        checkBalanceDebitAccount(totalAmount)
+            .then(dataOutput =>{
+                if(dataOutput){
+                    setSuccesFor(amount);
+                } else{
+                    setErrorFor(amount, "Saldo is ontoereikend");
+                }
+            });
     }
 }
 
@@ -64,7 +87,15 @@ function checkIbanCreditaccount(){
    if(!validIban(ibanInput)){
         setErrorFor(iban, 'Vul een geldig rekeningnummer in (IBAN)');
     } else {
-        checkIbanExcist(ibanInput);
+        checkIbanExcist(ibanInput)
+            .then(dataOutput => {
+                if (dataOutput){
+                    setSuccesFor(iban);
+                } else{
+                    setErrorFor(iban, "Rekeningnummer is niet bij ons bekend");
+                }
+            });
+
     }
 }
 
@@ -79,26 +110,21 @@ function checkDescription(){
 }
 
 
-function checkBalanceDebitAccount(input){
+async function checkBalanceDebitAccount(input){
 
     const url = "http://localhost/saldo-check";
     let data = `transactionAmount=${input}`;
 
-    fetch(url,{
+   let response = await fetch(url,{
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: data
-    })
-        .then(response => response.json())
-        .then(json => {
-           if(json){
-               setSuccesFor(amount);
-           } else{
-               setErrorFor(amount, "Saldo is ontoereikend");
-           }
-        })
+    });
+
+   let dataOutput = await response.json();
+   return dataOutput;
 }
 
 
@@ -121,26 +147,21 @@ function validIban (iban){
     return /NL\d{2}PARQ0\d{9}/.test(iban);
 }
 
-function checkIbanExcist(input){
+async function checkIbanExcist(input){
 
     const url = "http://localhost/iban-check";
     let data = `ibanCredit=${input}`;
 
-    fetch(url,{
+    let response = await fetch(url,{
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: data
-    })
-        .then(response => response.json())
-        .then(json => {
-            if(json){
-                setSuccesFor(iban);
-            } else{
-                setErrorFor(iban, "Rekeningnummer is niet bij ons bekend");
-            }
-        })
+    });
+        let dataOutput = await response.json();
+        return dataOutput;
+
 }
 
 function setErrorFor(inputField, message){
