@@ -65,7 +65,7 @@ public class LinkAccountController {
                 model.addAttribute("rekeningGekoppeld", true);
                 mav.setViewName("linkpaymentaccount");
             }
-            if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
+            else if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
                 PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
                 paymentAccount.addCustomerToAccountHolder(customer);
                 paymentAccountService.savePaymentAccount(paymentAccount);
