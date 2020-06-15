@@ -64,6 +64,7 @@ li.nav-link a:hover {
 
 
 main {
+    font-family: sans-serif;
     display: block;
     min-height: 500px;
     margin-top: 125px;
@@ -90,6 +91,7 @@ footer {
     width: 100%;
     background-color: #2e2a2a;
     color: #fff;
+    font-family: sans-serif;
 }
 
 .content-container{

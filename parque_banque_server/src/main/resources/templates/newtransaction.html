@@ -33,7 +33,7 @@
                         <label id="label-amount" for="amount">Bedrag</label>
                         <input th:field="*{amount}" id="amount" class="t-amount" type="text" placeholder="0" size="8" dir="rtl">
                         <label for="cents">,</label>
-                        <input th:field="*{cents}" id="cents" class="t-cents" type="text" size="2" placeholder="00">
+                        <input th:field="*{cents}" id="cents" class="t-cents" type="text" size="2" placeholder="00" minlength="2" maxlength="2">
                         <small></small>
                         <small class="th" th:if="${insufficientFunds}">Saldo is ontoereikend</small>
                     </div>
