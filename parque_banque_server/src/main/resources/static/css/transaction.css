@@ -1,5 +1,6 @@
 main {
-    
+
+    font-family: 'Noto', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,6 +30,7 @@ main {
 .formheader h2 {
     margin: 0;
     padding-left: 10%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .debitIban {
