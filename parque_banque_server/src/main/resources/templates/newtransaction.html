@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="author" content="Lisa Kemeling">
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link th:href="@{/css/transaction.css}" href="../static/css/transaction.css" rel="stylesheet">
+    <link th:href="@{/css/confirmwindow.css}" href="../static/css/confirmwindow.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="javascript/newtransaction.js" defer ></script>
+    <script type="text/javascript" src="javascript/confirmwindow.js" defer ></script>
     <title>Overboeken</title>
 </head>
 <body>
@@ -19,31 +23,31 @@
 </nav>
 <!-- main-content-->
     <main>
-        <form action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >
-            <fieldset>
-                <legend>Overboeking van rekening <span th:field="${ibanDebitAccount}"></span></legend>
-                <div>
-                    <label for="amount">Bedrag</label>
-                    <input th:field="*{amount}" id="amount" type="text" pattern="\d{0,6}" placeholder="0" size="8" dir="rtl">
-                    <label for="cents">,</label>
-                    <input th:field="*{cents}" id="cents" type="text" size="2" pattern="\d{2}" placeholder="00">
-                    <span th:if="${insufficientFunds}">U heeft onvoldoende saldo op deze rekening</span>
-                    <span th:if="${lessThenOne}">Minimale bedrag is 1 cent</span>
-                </div>
-                <div>
-                    <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
-                    <input th:field="*{ibanCreditAccount}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18">
-                    <span th:if="${invalidCreditAccount}">Rekeningnummer is niet bij ons bekend</span>
-                </div>
-                <div>
-                    <!-- hier js voor terugtellen tekens -->
-                    <!-- nog het invoervak groter maken -->
+        <div class="container">
+            <div class=formheader>
+                <h2>Overboeken van rekening <span class="debitIban" th:text="${iban.toString()}"></span></h2>
+            </div>
+             <form class="form" id="form" action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >  
+                 
+                    <div id="div-amount" class="form-control">
+                        <label id="label-amount" for="amount">Bedrag</label>
+                        <input th:field="*{amount}" id="amount" class="t-amount" type="text" placeholder="0" size="8" dir="rtl">
+                        <label for="cents">,</label>
+                        <input th:field="*{cents}" id="cents" class="t-cents" type="text" size="2" placeholder="00">
+                        <small></small>
+                    </div>
+                    <div id="div-iban" class="form-control">
+                        <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
+                        <input th:field="*{ibanCreditAccount}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18">
+                        <small></small>
+                    </div>
+                <div id="div-description" class="form-control">
                     <label for="description">Omschrijving</label>
                     <input th:field="*{description}" id="description" type="text" max="140" size="18">
                 </div>
-            </fieldset>
-            <button type="submit">Volgende</button>
-        </form>
+                 <button type="submit">Verzenden</button>
+            </form>
+        </div>
     </main>
 
 
