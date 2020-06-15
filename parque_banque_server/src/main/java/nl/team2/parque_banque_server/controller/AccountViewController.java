@@ -51,17 +51,7 @@ public class AccountViewController {
         }
     }
 
-    //request for opening account from accountview.html
-    @GetMapping("/rekening-overzicht/rekening-openen")
-    public ModelAndView newPaymentAccountHandler(){
-        return new ModelAndView("newpaymentaccount");
-    }
 
-    //request for changing account
-    @GetMapping("/rekening-overzicht/wijzig-gegevens")
-    public ModelAndView changeDataHandler(){
-        return new ModelAndView("changedata");
-    }
 
     //request for signout
     @GetMapping("/rekening-overzicht/uitloggen")
