@@ -1,6 +1,7 @@
 package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.Company;
+import nl.team2.parque_banque_server.model.Sector;
 import nl.team2.parque_banque_server.service.CompanyService;
 import nl.team2.parque_banque_server.service.SectorService;
 import nl.team2.parque_banque_server.utilities.CompanyFormBean;
@@ -31,13 +32,13 @@ public class NewCompanyController {
     }
 
     //JS controle of kvk bekend is bij PB en eventueel teruggeven bedrijfsgegevens
+    @CrossOrigin
     @PostMapping("/kvk-check")
     public @ResponseBody
     Company kvkInUseHandler(@RequestParam ("kvkNr") String kvkNr){
         Company knownCompany;
         knownCompany = companyService.findOneByKVK(kvkNr);
         return knownCompany;
-        // Todo: hoe krijg ik het btw-nr, de bedrijfsnaam en de sector in de juiste velden van newcompany geladen?
     }
 
     //Tonen van het ingevulde formulier op de confirmcompany pagina
@@ -52,8 +53,10 @@ public class NewCompanyController {
         } else {
             mav.setViewName("confirmcompany");
         }
+        Sector sector = sectorService.sectorOpId(Integer.parseInt(companyFormBean.getId()));
         mav.addObject("companyFormBean", companyFormBean);
         mav.addObject("name", companyFormBean.getName());
+        mav.addObject("sector", sector);
         mav.addObject("businessAccount", true);
         return mav;
     }

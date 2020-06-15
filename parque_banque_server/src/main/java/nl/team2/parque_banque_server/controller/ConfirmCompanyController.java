@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Company;
+import nl.team2.parque_banque_server.model.Sector;
 import nl.team2.parque_banque_server.service.*;
 import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,10 @@ public class ConfirmCompanyController {
 
     //Klant bevestigt bedrijfsgegevens: opslaan bedrijf in DB, rekening openen, bevestigingspagina tonen
     @PostMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=rekeningOpenen")
-    public ModelAndView confirmNewCompanyHandler(@ModelAttribute CompanyFormBean companyFormBean, Model model) {
+    public ModelAndView confirmNewCompanyHandler(@ModelAttribute CompanyFormBean companyFormBean,
+                                                 Model model, @ModelAttribute Sector sector) {
         ModelAndView mav = new ModelAndView("confirmnewaccount");
-        Company company = companyService.createCompanyOutOfBean(companyFormBean);
+        Company company = companyService.createCompanyOutOfBean(companyFormBean, sector);
         companyService.saveCompany(company);
         //make businessaccount
         BusinessAccount businessAccount =

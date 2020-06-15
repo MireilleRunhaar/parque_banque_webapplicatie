@@ -1,6 +1,7 @@
 package nl.team2.parque_banque_server.service;
 
 import nl.team2.parque_banque_server.model.Company;
+import nl.team2.parque_banque_server.model.Sector;
 import nl.team2.parque_banque_server.model.repositories.CompanyRepository;
 import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,12 @@ public class CompanyService {
     }
 
     //Methode om een formBean om te zetten in een Company
-    public Company createCompanyOutOfBean(CompanyFormBean companyFormBean){
+    public Company createCompanyOutOfBean(CompanyFormBean companyFormBean, Sector sector){
         Company newCompany = new Company();
         newCompany.setKvkNr(companyFormBean.getKvkNr());
         newCompany.setBtwNr(companyFormBean.getBtwNr());
         newCompany.setName(companyFormBean.getName());
-        newCompany.setSector(sectorService.sectorOpNaam(companyFormBean.getSectorName()));
+        newCompany.setSector(sector);
         return newCompany;
     }
 

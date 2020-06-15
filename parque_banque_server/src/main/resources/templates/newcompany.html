@@ -74,8 +74,8 @@
         <br><br>
 
     <label>Sector *</label>
-    <select th:field="*{sectorName}">
-        <option th:each="sector : ${sectoren}" th:value="${sector.getName()}" th:text="${sector.getName()}"
+    <select id="sectorField" th:field="*{id}">
+        <option th:each="sector : ${sectoren}" th:value="${sector.getId()}" th:text="${sector.getName()}"
                 oninput="setCustomValidity('')"></option>
     </select>
         <br><br>
