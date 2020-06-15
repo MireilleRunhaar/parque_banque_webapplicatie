@@ -1,3 +1,13 @@
+/* GENERAL */
+html{
+    font-family: 'Noto', sans-serif;
+}
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/* FORM */
 .login-form {
     width: 350px;
     height: 400px;
@@ -10,6 +20,9 @@
     top: 53%;
     transform: translate(-50%,-50%);
 }
+
+
+/* ERRORS */
 .error, .error_big{
     display: none;
     width: 85%;
@@ -19,6 +32,7 @@
     text-align: center;
     color: #000000;
     padding: 5px;
+    margin-top: 0;
     margin-bottom: 5px;
 }
 .error_small {
@@ -29,6 +43,9 @@
     margin-top: 4px;
     display: none;
 }
+
+
+/* INPUT */
 label {
     display: inline-block;
     padding: 1px 1px;
@@ -39,12 +56,17 @@ label {
 }
 input[type=text], input[type=password], select{
     display: inline-block;
-    padding: 3px 3px;
+    padding: 5px 5px;
     width: 220px;
+    height: 20px;
     border: thin #FFFFFF;
     text-align: left;
     outline: none;
+    font-size: 14px;
 }
+
+
+/* BUTTON */
 .loginbutton {
     display: inline-block;
     width: 20%;
@@ -57,6 +79,9 @@ input[type=text], input[type=password], select{
 .loginbutton:hover{
     text-decoration: underline;
 }
+
+
+/* BOTTOM TEXT */
 .text{
     font-size: 15px;
 }
