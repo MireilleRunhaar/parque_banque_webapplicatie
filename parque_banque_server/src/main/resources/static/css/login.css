@@ -58,7 +58,6 @@ input[type=text], input[type=password], select{
     display: inline-block;
     padding: 5px 5px;
     width: 220px;
-    height: 20px;
     border: thin #FFFFFF;
     text-align: left;
     outline: none;
