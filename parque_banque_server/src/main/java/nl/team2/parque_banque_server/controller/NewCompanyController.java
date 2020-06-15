@@ -34,12 +34,9 @@ public class NewCompanyController {
     @PostMapping("/kvknrinuse")
     public @ResponseBody
     Company kvkInUseHandler(@RequestParam ("kvkNr") String kvkNr){
-        Company knownCompany = new Company();
-        knownCompany.setBtwNr(companyService.findOneByKVK(kvkNr).getBtwNr());
-        knownCompany.setName(companyService.findOneByKVK(kvkNr).getName());
-        knownCompany.setSector(companyService.findOneByKVK(kvkNr).getSector());
+        Company knownCompany;
+        knownCompany = companyService.findOneByKVK(kvkNr);
         return knownCompany;
-
         // Todo: hoe krijg ik het btw-nr, de bedrijfsnaam en de sector in de juiste velden van newcompany geladen?
     }
 
