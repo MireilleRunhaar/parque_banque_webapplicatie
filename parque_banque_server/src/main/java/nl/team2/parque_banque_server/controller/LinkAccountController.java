@@ -48,9 +48,14 @@ public class LinkAccountController {
         }
 
     }
-//TODO check op reeds gekoppelde rekening werkt nog niet
 
-
+    /**
+     * Links customer to an other account. If the customer is already linked then the app gives a messages.
+     * @param linkAccountFormBean
+     * @param bindingResult
+     * @param model
+     * @return
+     */
     @PostMapping("/rekening-koppelen")
     public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
