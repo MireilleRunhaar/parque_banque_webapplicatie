@@ -8,6 +8,7 @@ import nl.team2.parque_banque_server.model.repositories.PrivateAccountRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -32,6 +33,10 @@ public class PaymentAccountService {
         return numberFormat.format(balanceCents / CENTS_IN_EURO);
     }
 
+    public void savePaymentAccount(PaymentAccount paymentAccount){
+        paymentAccountRepo.save(paymentAccount);
+
+    }
     public boolean validateFunds(String iban, long transactionAmount){
         PaymentAccount paymentAccount = findOneByIban(iban);
         return paymentAccount.validateSufficientFunds(transactionAmount);
@@ -41,7 +46,10 @@ public class PaymentAccountService {
        Optional<PaymentAccount> optional= paymentAccountRepo.findById(iban);
        return optional.orElse(null);
     }
+    public List<PaymentAccount> findAllByAccountHoldersAndIban(String iban, String customerId){
+        return paymentAccountRepo.findAllByAccountHoldersAndIban(iban, customerId);
 
+    }
 
     @Service
     public static class IbanService {
@@ -62,6 +70,24 @@ public class PaymentAccountService {
         }
 
 
+
+//        // get last the last added iban and add 1.
+//        public String createNewIban(){
+//           String lastAddedPaymentAccount=privateAccountRepository.findTopByOrderByIbanDesc().getIban();
+//           if (lastAddedPaymentAccount==null){
+//               String lastAddedIban=IBAN_00;
+//               String newIban=lastAddedIban.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
+//                       +(Integer.parseInt(lastAddedIban.substring(UPPER_LIMIT))+INCREMENT);
+//               return newIban;
+//           } else {
+//
+//               // laatste 9 cijferige nummerreeks splitsen en hierbij 1 optellen ; hier hangt (nog) geen limiet aan
+//               String newIban=lastAddedPaymentAccount.substring(LOWER_LIMIT,UPPER_LIMIT) //"NL01PARQ0"
+//                       +(Integer.parseInt(lastAddedPaymentAccount.substring(UPPER_LIMIT))+INCREMENT);
+//               return newIban;
+//           }
+//
+//        }
 
         public String createNewIban(){
             String lastAddedPrivateIban=privateAccountRepository.findTopByOrderByIbanDesc().getIban();
