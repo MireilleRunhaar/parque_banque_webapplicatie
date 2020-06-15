@@ -49,7 +49,7 @@ public class SelectedAccountService {
 
 
     //Creates a list with the names of the accountholders of a payment account
-    private String getListAccountHolders(PaymentAccount account) {
+    public String getListAccountHolders(PaymentAccount account) {
         List<Customer> accountholderList = account.getAccountHolders();
         List<String> accountholderNamesList = new ArrayList<>();
         for (Customer value : accountholderList) {
