@@ -31,11 +31,14 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
             "limit 10", nativeQuery = true)
     List<Customer> getTenRichestBusinessCustomers();
 
-    @Query(value = "select  u.first_name, u.affix, u.sur_name, sum(t.amount_cent) as aantal_transacties\n" +
-            "from user u\n" +
-            "join transaction t on u.id=t.id\n" +
-            "group by u.id\n" +
-            "order by aantal_transacties DESC\n" +
-            "limit 10", nativeQuery = true)
+    @Query(value = "SELECT *, count(t.id) aantal_transacties \n" +
+            "FROM USER u JOIN payment_account_account_holders pah \n" +
+            "ON u.id = pah.account_holders_id JOIN payment_account pa \n" +
+            "ON pah.payment_accounts_iban = pa.iban JOIN transaction t \n" +
+            "ON pa.iban = t.credit_account_iban \n" +
+            "OR pa.iban = t.debit_account_iban \n" +
+            "WHERE pa.dtype = 'BusinessAccount' \n" +
+            "GROUP BY u.id \n" +
+            "ORDER BY aantal_transacties DESC LIMIT 10", nativeQuery = true)
     List<Customer> getTenMostActiveCustomers();
 }
