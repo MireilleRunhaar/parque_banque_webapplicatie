@@ -8,7 +8,7 @@ password.addEventListener('focusout', validatePassword);
 username.addEventListener('textInput', usernameVerifyInput);
 password.addEventListener('textInput', passwordVerifyInput);
 
-//Validation login data (if you hover above submit button)
+//Validation login data
 submit.addEventListener('click', validateLoginData);
 
 function validateUsername() {
