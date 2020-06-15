@@ -23,37 +23,6 @@ import java.util.*;
 @Service
 public class StatisticsService {
 
-    private final CustomerRepository customerRepository;
-    private final PaymentAccountService paymentAccountService;
-
-    @Autowired
-    public StatisticsService(CustomerRepository customerRepository, PaymentAccountService paymentAccountService) {
-        this.customerRepository = customerRepository;
-        this.paymentAccountService = paymentAccountService;
-    }
-
-    private List<Customer> getTenRichestPrivateCustomers() {
-        return customerRepository.getTenRichestPrivateCustomers();
-    }
-
-    public Map<Long, Object[]> getTenRichestPrivateCustomersStatistics() {
-        List<Customer> customers = getTenRichestPrivateCustomers();
-        Map<Long, Object[]> results = new TreeMap<>(Collections.reverseOrder());
-        long totalBalance = 0L;
-        int numberOfAccounts = 0;
-        for (Customer c : customers) {
-            for (PaymentAccount paymentAccount : c.getPaymentAccounts()) {
-                if (paymentAccount instanceof PrivateAccount) {
-                    totalBalance += paymentAccount.getBalance();
-                    numberOfAccounts += 1;
-                }
-            }
-            results.put(totalBalance, new Object[]{c, numberOfAccounts});
-            totalBalance = 0;
-            numberOfAccounts = 0;
-        }
-        return results;
-    }
 
     //private final static long LIST_SIZE=10L;
 
@@ -71,56 +40,7 @@ public class StatisticsService {
         this.businessAccountRepository = businessAccountRepository;
     }
 
-
-
-
-//
-//    /**
-//     * Iterate trough the customers and business accounts and compute sum of all the balance accounts from a customer
-//     * @param customerList takes all the customers
-//     * @param businessAccountsList takes all the business accounts
-//     * @return a map with a key value pair of the whole name and balance
-//     * @author Moraad Anas
-//     */
-//    public Map<String,Long> sumBalanceBusinessAccounts(List<Customer> customerList,
-//                                                       List<BusinessAccount>businessAccountsList) {
-//
-//        Map<String, Long> map = new HashMap<>();
-//
-//        for (Customer customer : customerList) {
-//
-//            long sumBalanceCent = 0L;
-//            for (BusinessAccount businessAccount : businessAccountsList) {
-//
-//                List<Customer> customers = businessAccount.getAccountHolders();
-//
-//                if (customers.contains(customer)) {
-//                    long balance = businessAccount.getBalanceCent();
-//                    sumBalanceCent = sumBalanceCent + balance;
-//                    String wholeName = customer.getFirstName() + " " + customer.getAffix() + " " + customer.getSurName();
-//                    map.put(wholeName, sumBalanceCent);
-//                }
-//
-//            }
-//        }
-//        return map;
-//    }
-//
-//
-//    /**
-//     * sort the map, show highest value first and limit the list size to 10
-//     * @param unsortedMap
-//     * @return sortedMap
-//     * @author Moraad Anas
-//     */
-//    public Map<String,Long> getTop10RichestBusinessCustomersMap(Map<String,Long> unsortedMap){
-//        return unsortedMap.entrySet().stream()
-//                .sorted(Map.Entry.<String, Long>comparingByValue().reversed()).limit(LIST_SIZE)
-//                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2)->e1, LinkedHashMap::new));
-//    }
-//
-
-
+    
 
 
 
@@ -196,6 +116,29 @@ public class StatisticsService {
 
         return sectorAverage;
 
+    }
+
+    private List<Customer> getTenRichestPrivateCustomers() {
+        return customerRepository.getTenRichestPrivateCustomers();
+    }
+
+    public Map<Long, Object[]> getTenRichestPrivateCustomersStatistics() {
+        List<Customer> customers = getTenRichestPrivateCustomers();
+        Map<Long, Object[]> results = new TreeMap<>(Collections.reverseOrder());
+        long totalBalance = 0L;
+        int numberOfAccounts = 0;
+        for (Customer c : customers) {
+            for (PaymentAccount paymentAccount : c.getPaymentAccounts()) {
+                if (paymentAccount instanceof PrivateAccount) {
+                    totalBalance += paymentAccount.getBalance();
+                    numberOfAccounts += 1;
+                }
+            }
+            results.put(totalBalance, new Object[]{c, numberOfAccounts});
+            totalBalance = 0;
+            numberOfAccounts = 0;
+        }
+        return results;
     }
 
 //    public Map<Long,Object[]> getTenMostActiveCustomers(){
