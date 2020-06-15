@@ -3,7 +3,6 @@ package nl.team2.parque_banque_server.service;
 import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Company;
 import nl.team2.parque_banque_server.model.Customer;
-import nl.team2.parque_banque_server.model.PrivateAccount;
 import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +23,6 @@ public class BusinessAccountService {
     private PaymentAccountService.IbanService ibanService;
     @Autowired
     private EmployeeService employeeService;
-
-
-
 
     /**
      * find al the companies in the database from the user

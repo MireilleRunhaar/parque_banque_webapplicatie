@@ -20,4 +20,5 @@ public class AuthorisationService {
     public List<Authorisation> findAllByUserName(String username) {
         return authorisationRepository.findAllByUserName(username);
     }
+
 }

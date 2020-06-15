@@ -8,7 +8,7 @@
     <h1>Rekeninghouder toevoegen</h1>
     <p>Vul hieronder de gebruikersnaam in van de klant die u wilt toevoegen aan uw rekening.</p>
     <p>De persoon die u wilt toevoegen moet dus al klant bij Parque Banque zijn.</p>
-    <form action="#" th:action="@{/rekeninghouder-toevoegen}" th:object="${addAccountHolderFormBean}" method="post">
+    <form th:action="@{/rekeninghouder-toevoegen}" th:object="${addAccountHolderFormBean}" method="post">
         <div>
             <label for="username">Gebruikersnaam</label>
             <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
