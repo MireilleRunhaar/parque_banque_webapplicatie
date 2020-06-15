@@ -41,16 +41,16 @@ public class AddAccountHolderController {
         if (bindingResult.hasErrors()) {
             mav.setViewName("addaccountholder/addaccountholder");
         } else {
-            if (addAccountHolderService.isInsecureCode(addAccountHolderFormBean.getSecurityCode()) ||
-                    !addAccountHolderService.usernameExists(addAccountHolderFormBean.getUsername())) {
-                mav = addAccountHolderService.setErrors(addAccountHolderFormBean);
-            } else {
+//            if (addAccountHolderService.isInsecureCode(addAccountHolderFormBean.getSecurityCode()) ||
+//                    !addAccountHolderService.usernameExists(addAccountHolderFormBean.getUsername())) {
+//                mav = addAccountHolderService.setErrors(addAccountHolderFormBean);
+//            } else {
                 Authorisation authorisation = addAccountHolderService.createAuthorisation(addAccountHolderFormBean,
                         (String) model.getAttribute("iban"));
                 authorisationService.saveAuthorisation(authorisation);
                 mav.addObject(authorisation);
                 mav.setViewName("addaccountholder/addaccountholderconfirmation");
-            }
+//            }
         }
         return mav;
     }

@@ -56,11 +56,9 @@ public class AddAccountHolderService {
     public ModelAndView setErrors(AddAccountHolderFormBean addAccountHolderFormBean) {
         ModelAndView mav = new ModelAndView("addaccountholder/addaccountholder");
         if (!usernameExists(addAccountHolderFormBean.getUsername())) {
-            System.out.println("*** username does not exist");
             mav.addObject("unknownUsername", true);
         }
         if (isInsecureCode(addAccountHolderFormBean.getSecurityCode())) {
-            System.out.println("*** insecure code");
             mav.addObject("insecureCode", true);
 
         }

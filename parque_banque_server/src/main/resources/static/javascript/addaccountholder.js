@@ -7,64 +7,35 @@ const codeError = document.getElementById("insecureCode");
 usernameField.addEventListener("focusout", checkUserNameExists);
 codeField.addEventListener("focusout", validateSecurityCode);
 
-// form.addEventListener("submit", function(event) {
-//
-//     if (!validateForm()) {
-//         event.preventDefault();
-//     }
-// })
+form.addEventListener("submit", function(event) {
 
+    validateForm().then(data => {
+        if (data) {
+            console.log("CHECK = " + data);
 
-    // console.log("CHECKING BOTH FIELDS")
-    //
-    // let errors = [];
-    //
-    // console.log("USERNAME EXISTS? -> " + checkUserNameExists(returnValue(value)));
-    // console.log("INSECURE CODE? -> " + validateSecurityCode());
-    //
-    // if (checkUserNameExists(callback(value))) {
-    //     console.log("UNKNOWN USERNAME");
-    //     errors.push(usernameError);
-    // }
-    //
-    // if (!validateSecurityCode()) {
-    //     console.log("INSECURE CODE");
-    //     errors.push(codeError);
-    // }
-    //
-    // if (errors.length > 0) {
-    //     console.log("ERRORS EXIST");
-    //     event.preventDefault();
-    //     for (const value of errors) {
-    //         value.style.display = "inline";
-    //     }
-    // }
+        } else {
+            event.preventDefault();
+        }
+    })
+})
+
 
 
 
 async function validateForm() {
-    let usernameExists = await  checkUsernameExistsAsync();
-    let insecureCode = await validateSecurityCodeAsync();
+    let usernameExists = await checkUsernameExistsAsync(usernameField.value);
+    let secureCode = await validateSecurityCodeAsync(codeField.value);
 
     let validInput = false;
+    if (usernameExists && secureCode) {
+        validInput = true;
+    }
 
-    usernameExists.then(data => {
-        if (data) {
-            validInput = true;
-        }
-    });
-    if (!validInput) return false;
-    insecureCode.then(data => {
-        if (data) {
-            validInput = true;
-        }
-    })
     return validInput;
+
 }
 
-async function checkUsernameExistsAsync() {
-    let input = usernameField.value;
-
+async function checkUsernameExistsAsync(input) {
     const url = "http://localhost/username-controle";
 
     let data = `username=${input}`;
@@ -75,14 +46,13 @@ async function checkUsernameExistsAsync() {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: data
-    })
+    });
 
-    return await response.json();
+    let output = await response.json();
+    return output;
 }
 
-async function validateSecurityCodeAsync() {
-    let codeInput = codeField.value;
-
+async function validateSecurityCodeAsync(codeInput) {
     const url = "http://localhost/veilige-code";
 
     let data = `securityCode=${codeInput}`;
@@ -95,7 +65,8 @@ async function validateSecurityCodeAsync() {
         body: data
     });
 
-    return await response.json();
+    let output = await response.json();
+    return output;
 }
 
 
