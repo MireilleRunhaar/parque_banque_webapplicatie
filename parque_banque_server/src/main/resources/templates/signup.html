@@ -29,7 +29,7 @@
         <h1>Welkom!</h1>
         <p>Wat fijn dat u klant bij ons wilt worden!</p>
         <p>Om een rekening te openen bij Parque Banque hebben wij enkele gegevens nodig.</p>
-        <form action="#" th:action="@{/klant-worden}" th:object="${signupform}" method="post">
+        <form id="form" action="#" th:action="@{/klant-worden}" th:object="${signupform}" method="post">
             <div>
 
                 <p>PERSOONSGEGEVENS</p>
@@ -56,6 +56,7 @@
                 <div>
                     <label for="bsn">Burger Service Nummer</label>
                     <span id="validBsn" class="error" style="float: right; display: none; margin-right: 0;">Vul een geldig BSN in</span>
+                    <span th:if="${invalidBsn}" class="error" style="float: right; margin-right: 0;">Vul een geldig BSN in</span>
                     <input id="bsn" type="text" required pattern="[0-9]{9}" th:field="*{bsn}"
                            title="Vul uw BSN in"
                            oninvalid="setCustomValidity('Vul een geldig BSN in')"

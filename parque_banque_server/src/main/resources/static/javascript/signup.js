@@ -1,5 +1,4 @@
 const bsnInput = document.getElementById("bsn");
-const submitButton = document.getElementById("submit");
 const zipcode = document.getElementById("zipcode");
 const houseNumber = document.getElementById("number");
 

@@ -33,6 +33,7 @@
             <div>
                 <label for="username">Gebruikersnaam</label>
                 <span id="usernameTaken" class="error" style="float:right; display: none">Deze gebruikersnaam bestaat al</span>
+                <span th:if="${usernameTaken}" class="error" style="float:right; display: none">Deze gebruikersnaam bestaat al</span>
                 <span id="usernameTooShort" class="error" style="float:right; display: none">Gebruikersnaam moet minstens 5 tekens lang zijn</span>
                 <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
                        title="Gebruikersnaam moet minimaal 5 tekens lang zijn (alleen letters en cijfers)"
