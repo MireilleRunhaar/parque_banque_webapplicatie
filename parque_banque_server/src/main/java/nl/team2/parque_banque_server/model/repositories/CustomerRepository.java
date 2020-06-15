@@ -13,6 +13,13 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     Customer findByUserName(String userName);
 
+    @Query(nativeQuery = true, value = "SELECT *, SUM(p.balance_cent) as totale_saldo, COUNT(p.iban) AS aantal_rekeningen FROM user u\n" +
+            "JOIN payment_account_account_holders pa ON u.id = pa.account_holders_id \n" +
+            "JOIN payment_account p ON p.iban = pa.payment_accounts_iban \n" +
+            "WHERE p.dtype = 'PrivateAccount' GROUP BY id ORDER BY totale_saldo DESC LIMIT 10;")
+    List<Customer> getTenRichestPrivateCustomers();
+
+
 
     @Query(value="select  *, sum(p.balance_cent) as totale_saldo, count(p.iban) as aantal_rekeningen\n" +
             "from user u \n" +
