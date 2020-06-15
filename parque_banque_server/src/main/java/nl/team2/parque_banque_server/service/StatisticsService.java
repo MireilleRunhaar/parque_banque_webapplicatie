@@ -155,6 +155,18 @@ public class StatisticsService {
 
     }
 
+//    public Map<Long,Object[]> getTenMostActiveCustomers(){
+//        Map<Long, Object[]> map = new TreeMap<>(Collections.reverseOrder());
+//        List<Customer> customers=customerRepository.getTenMostActiveCustomers();
+//        long totalTransactions=0L;
+//        for (Customer customer:customers){
+//            for (PaymentAccount paymentAccount:customer.getPaymentAccounts()){
+//                map.put(paymentAccount.get)
+//            }
+//        }
+//
+//    }
+
 
 
 

@@ -23,4 +23,12 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
             "order by totale_saldo DESC\n" +
             "limit 10", nativeQuery = true)
     List<Customer> getTenRichestBusinessCustomers();
+
+    @Query(value = "select  u.first_name, u.affix, u.sur_name, sum(t.amount_cent) as aantal_transacties\n" +
+            "from user u\n" +
+            "join transaction t on u.id=t.id\n" +
+            "group by u.id\n" +
+            "order by aantal_transacties DESC\n" +
+            "limit 10", nativeQuery = true)
+    List<Customer> getTenMostActiveCustomers();
 }
