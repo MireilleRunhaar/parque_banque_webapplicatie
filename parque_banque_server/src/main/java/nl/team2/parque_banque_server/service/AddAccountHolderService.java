@@ -1,7 +1,10 @@
 package nl.team2.parque_banque_server.service;
 
 import nl.team2.parque_banque_server.model.Authorisation;
+import nl.team2.parque_banque_server.model.Customer;
+import nl.team2.parque_banque_server.model.PaymentAccount;
 import nl.team2.parque_banque_server.model.repositories.CustomerRepository;
+import nl.team2.parque_banque_server.model.repositories.PaymentAccountRepository;
 import nl.team2.parque_banque_server.utilities.AddAccountHolderFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,9 @@ public class AddAccountHolderService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private PaymentAccountService paymentAccountService;
 
     public Authorisation createAuthorisation(AddAccountHolderFormBean formBean, String iban) {
         return new Authorisation(formBean.getUsername(), formBean.getSecurityCode(), iban);
@@ -63,5 +69,14 @@ public class AddAccountHolderService {
 
         }
         return mav;
+    }
+
+    public boolean customerAlreadyAccountHolder(String username, String iban) {
+        Customer customer = customerRepository.findByUserName(username);
+        System.out.println("***** CUSTOMER IS " + customer);
+        PaymentAccount paymentAccount = paymentAccountService.findOneByIban(iban);
+        System.out.println("***** ACCOUNTHOLDERS ARE " + paymentAccount.getAccountHolders());
+
+        return paymentAccount.getAccountHolders().contains(customer);
     }
 }

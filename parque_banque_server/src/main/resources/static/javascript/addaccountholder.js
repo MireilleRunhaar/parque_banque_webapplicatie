@@ -1,33 +1,32 @@
 const usernameField = document.getElementById("username");
 const codeField = document.getElementById("securityCode");
 const form = document.getElementById("form")
-const usernameError = document.getElementById("unknownUsername");
-const codeError = document.getElementById("insecureCode");
+
 
 usernameField.addEventListener("focusout", checkUserNameExists);
+usernameField.addEventListener("focusout", checkUsernameIsNew);
 codeField.addEventListener("focusout", validateSecurityCode);
 
 form.addEventListener("submit", function(event) {
-
-    validateForm().then(data => {
-        if (data) {
-            console.log("CHECK = " + data);
-
+    event.preventDefault();
+    validateForm().then(validInput => {
+        if (validInput) {
+            console.log("CHECK = TRUE? " + validInput);
+            form.submit();
         } else {
-            event.preventDefault();
+            console.log("CHECK = FALSE? " + validInput);
         }
     })
 })
 
 
-
-
 async function validateForm() {
     let usernameExists = await checkUsernameExistsAsync(usernameField.value);
     let secureCode = await validateSecurityCodeAsync(codeField.value);
+    let userIsNew = await checkUsernameIsNew(usernameField.value);
 
     let validInput = false;
-    if (usernameExists && secureCode) {
+    if (usernameExists && secureCode && userIsNew) {
         validInput = true;
     }
 
@@ -48,14 +47,14 @@ async function checkUsernameExistsAsync(input) {
         body: data
     });
 
-    let output = await response.json();
-    return output;
+    let validInput = await response.json();
+    return validInput;
 }
 
-async function validateSecurityCodeAsync(codeInput) {
+async function validateSecurityCodeAsync(input) {
     const url = "http://localhost/veilige-code";
 
-    let data = `securityCode=${codeInput}`;
+    let data = `securityCode=${input}`;
 
     let response = await fetch(url, {
         method: 'POST',
@@ -65,8 +64,24 @@ async function validateSecurityCodeAsync(codeInput) {
         body: data
     });
 
-    let output = await response.json();
-    return output;
+    let validInput = await response.json();
+    return validInput;
+}
+
+async function checkUsernameIsNewAsync(input) {
+    const url = "http://localhost/nieuwe-rekeninghouder";
+
+    let data = `username=${input}`;
+
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    })
+    let validInput = await response.json();
+
 }
 
 
@@ -89,11 +104,34 @@ function checkUserNameExists() {
         .then(json => {
             if (json) {
                 document.getElementById("unknownUsername").style.display = "none";
-                console.log("JSON IS : " + json);
-                return true;
             } else {
                 document.getElementById("unknownUsername").style.display = "inline";
-                return false;
+            }
+        })
+}
+
+function checkUsernameIsNew() {
+    let input = usernameField.value;
+
+    const url = "http://localhost/nieuwe-rekeninghouder";
+
+    let data = `username=${input}`;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    })
+        .then(response => response.json())
+        .then(json => {
+            if (json) {
+                console.log("user is new")
+                document.getElementById("userAlreadyAdded").style.display = "none";
+            } else {
+                console.log("user already added")
+                document.getElementById("userAlreadyAdded").style.display = "inline";
             }
         })
 }
@@ -117,10 +155,8 @@ function validateSecurityCode() {
         .then(json => {
             if (json) {
                 document.getElementById("insecureCode").style.display = "none";
-                return true;
             } else {
                 document.getElementById("insecureCode").style.display = "inline";
-                return false;
             }
         })
 }

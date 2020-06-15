@@ -14,6 +14,7 @@
             <label for="username">Gebruikersnaam</label>
             <span id="unknownUsername" class="error" style="float: right; display: none">Deze gebruikersnaam bestaat niet</span>
             <span th:if="${unknownUsername}" class="error" style="float: right">Deze gebruikersnaam bestaat niet</span>
+            <span id="userAlreadyAdded" class="error" style="float: right; display: none">Deze klant is al mederekeninghouder</span>
             <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
                    title="Vul de gebruikersnaam in"
                    oninvalid="setCustomValidity('Een gebruikersnaam bestaat uit minimaal 5 tekens (alleen letters en cijfers)')"
