@@ -12,7 +12,8 @@
     <form id="form" th:action="@{/rekeninghouder-toevoegen}" th:object="${addAccountHolderFormBean}" method="post">
         <div>
             <label for="username">Gebruikersnaam</label>
-            <span id="unknownUsername" class="error" style="float: right; display: none">Deze gebruikersnaam bestaat niet.</span>
+            <span id="unknownUsername" class="error" style="float: right; display: none">Deze gebruikersnaam bestaat niet</span>
+            <span th:if="${unknownUsername}" class="error" style="float: right">Deze gebruikersnaam bestaat niet</span>
             <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
                    title="Vul de gebruikersnaam in"
                    oninvalid="setCustomValidity('Een gebruikersnaam bestaat uit minimaal 5 tekens (alleen letters en cijfers)')"
@@ -20,7 +21,7 @@
         </div>
         <div>
             <label for="securityCode">Beveiligingscode</label>
-<!--            <span th:if="${insecureCode}" class="error" style="float: right">Dit is geen veilige code</span>-->
+            <span th:if="${insecureCode}" class="error" style="float: right">Dit is geen veilige code</span>
             <span id="insecureCode" class="error" style="float: right; display: none">Dit is geen veilige code</span>
             <input id="securityCode" type="text" required pattern="[0-9]{5}" th:field="*{securityCode}"
                    title="Verzin een een beveiligingscode van 5 cijfers"

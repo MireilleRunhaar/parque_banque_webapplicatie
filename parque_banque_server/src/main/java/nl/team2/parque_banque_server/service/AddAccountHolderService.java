@@ -1,18 +1,27 @@
 package nl.team2.parque_banque_server.service;
 
 import nl.team2.parque_banque_server.model.Authorisation;
+import nl.team2.parque_banque_server.model.repositories.CustomerRepository;
 import nl.team2.parque_banque_server.utilities.AddAccountHolderFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 @Service
 public class AddAccountHolderService {
 
     @Autowired
-    AuthorisationService authorisationService;
+    private AuthorisationService authorisationService;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public Authorisation createAuthorisation(AddAccountHolderFormBean formBean, String iban) {
         return new Authorisation(formBean.getUsername(), formBean.getSecurityCode(), iban);
+    }
+
+    public boolean usernameExists(String username) {
+        return customerRepository.findByUserName(username) != null;
     }
 
     public boolean isInsecureCode(String code) {
@@ -42,5 +51,19 @@ public class AddAccountHolderService {
             numCheck = nextnum;
         }
         return true;
+    }
+
+    public ModelAndView setErrors(AddAccountHolderFormBean addAccountHolderFormBean) {
+        ModelAndView mav = new ModelAndView("addaccountholder/addaccountholder");
+        if (!usernameExists(addAccountHolderFormBean.getUsername())) {
+            System.out.println("*** username does not exist");
+            mav.addObject("unknownUsername", true);
+        }
+        if (isInsecureCode(addAccountHolderFormBean.getSecurityCode())) {
+            System.out.println("*** insecure code");
+            mav.addObject("insecureCode", true);
+
+        }
+        return mav;
     }
 }

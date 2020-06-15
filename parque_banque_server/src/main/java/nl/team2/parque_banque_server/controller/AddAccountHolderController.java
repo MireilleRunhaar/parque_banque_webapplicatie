@@ -40,15 +40,17 @@ public class AddAccountHolderController {
         ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
             mav.setViewName("addaccountholder/addaccountholder");
-        } else if (addAccountHolderService.isInsecureCode(addAccountHolderFormBean.getSecurityCode())) {
-            mav.setViewName("addaccountholder/addaccountholder");
-            mav.addObject("insecureCode", true);
         } else {
-            Authorisation authorisation = addAccountHolderService.createAuthorisation(addAccountHolderFormBean,
-                    (String) model.getAttribute("iban"));
-            authorisationService.saveAuthorisation(authorisation);
-            mav.addObject(authorisation);
-            mav.setViewName("addaccountholder/addaccountholderconfirmation");
+            if (addAccountHolderService.isInsecureCode(addAccountHolderFormBean.getSecurityCode()) ||
+                    !addAccountHolderService.usernameExists(addAccountHolderFormBean.getUsername())) {
+                mav = addAccountHolderService.setErrors(addAccountHolderFormBean);
+            } else {
+                Authorisation authorisation = addAccountHolderService.createAuthorisation(addAccountHolderFormBean,
+                        (String) model.getAttribute("iban"));
+                authorisationService.saveAuthorisation(authorisation);
+                mav.addObject(authorisation);
+                mav.setViewName("addaccountholder/addaccountholderconfirmation");
+            }
         }
         return mav;
     }
@@ -57,7 +59,6 @@ public class AddAccountHolderController {
     @PostMapping("/veilige-code")
     public @ResponseBody
     boolean securityCodeCheckHandler(@RequestParam("securityCode") String securityCode) {
-        System.out.println("*** CODE IS SECURE? *** -> " + !addAccountHolderService.isInsecureCode(securityCode));
         return !addAccountHolderService.isInsecureCode(securityCode);
     }
 }
