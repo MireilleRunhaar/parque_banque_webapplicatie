@@ -35,7 +35,6 @@ function checkUsernameExists() {
         .then(response => response.json())
 
         .then(json => {
-            // If username is taken, show message and disable button.
             if (json) {
                 document.getElementById("usernameTaken").style.display = "inline";
             } else {

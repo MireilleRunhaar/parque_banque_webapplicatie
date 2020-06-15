@@ -23,7 +23,6 @@ function validateBsn() {
         .then(response => response.json())
 
         .then(json => {
-            // If bsn is invalid, show message and disable button
             if (json) {
                 document.getElementById("validBsn").style.display = "none";
             } else {
