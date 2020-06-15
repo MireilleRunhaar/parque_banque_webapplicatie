@@ -122,14 +122,14 @@ public class StatisticsService {
 
     }
 
-        public Map<Long,Customer> getTenMostActiveCustomers(){
-        Map<Long, Customer> map = new TreeMap<>(Collections.reverseOrder());
+        public Map<Long,Object> getTenMostActiveBusinessCustomers(){
+        Map<Long, Object> map = new TreeMap<>(Collections.reverseOrder());
         List<Customer> customers=customerRepository.getTenMostActiveCustomers();
         long totalTransactions=0;
         for (Customer customer:customers){
             for (PaymentAccount paymentAccount:customer.getPaymentAccounts()){
                 if(paymentAccount instanceof BusinessAccount){
-                    List<Transaction> transactions=transactionRepository.findAll(paymentAccount);
+                    List<Transaction> transactions=transactionRepository.findAll();
                     for (Transaction transaction:transactions){
                         if (transaction.getDebitAccount().equals(paymentAccount)||transaction.getCreditAccount().equals(paymentAccount)){
                             totalTransactions+=1L;

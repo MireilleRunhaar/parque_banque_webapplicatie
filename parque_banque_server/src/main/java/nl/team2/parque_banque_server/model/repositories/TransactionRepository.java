@@ -13,6 +13,6 @@ public interface TransactionRepository extends CrudRepository <Transaction, Long
 
     List<Transaction> findTop10ByCreditAccount_IbanOrDebitAccount_IbanOrderByDateDesc(String creditAccount_iban,
                                                                                       String debitAccount_iban);
-    List<Transaction> findAll(PaymentAccount paymentAccount);
+    List<Transaction> findAll();
 
 }

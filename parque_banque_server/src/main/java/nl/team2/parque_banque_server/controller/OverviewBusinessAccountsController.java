@@ -2,7 +2,6 @@ package nl.team2.parque_banque_server.controller;
 
 import nl.team2.parque_banque_server.model.BusinessAccount;
 import nl.team2.parque_banque_server.model.Employee;
-import nl.team2.parque_banque_server.model.repositories.BusinessAccountRepository;
 import nl.team2.parque_banque_server.service.BusinessAccountService;
 import nl.team2.parque_banque_server.service.EmployeeService;
 import nl.team2.parque_banque_server.service.StatisticsService;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -43,6 +41,7 @@ public class OverviewBusinessAccountsController {
         }
     }
 
+    //Saldo
     @RequestMapping(value = "/overzicht-bedrijven", params = "Saldo", method = RequestMethod.POST)
     public ModelAndView top10BalanceBusinessAccounts(){
         ModelAndView mav=new ModelAndView("tenrichestbusinessaccounts");
@@ -58,6 +57,14 @@ public class OverviewBusinessAccountsController {
         Iterable<BusinessAccount> businessAccounts=businessAccountService.findAll();
         Map<Long,Object> averageBalanceSector=statisticsService.averageBalanceSector(businessAccounts);
         mav.addObject("averageBalanceSector",averageBalanceSector);
+        return mav;
+    }
+
+    @RequestMapping(value = "/overzicht-bedrijven",params = "Transacties",method = RequestMethod.POST)
+    public ModelAndView top10MostTransactionAccounts(){
+        ModelAndView mav=new ModelAndView("mostactivebusinessaccounts");
+        Map<Long,Object> mostActiveBusinessAccounts=statisticsService.getTenMostActiveBusinessCustomers();
+        mav.addObject("mostActiveBusinessAccounts",mostActiveBusinessAccounts);
         return mav;
     }
 
