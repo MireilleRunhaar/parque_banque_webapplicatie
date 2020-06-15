@@ -1,20 +1,12 @@
-const submit = document.getElementById("done");
-
 const passfield = document.getElementById("password");
 const confirmpass = document.getElementById("confirmpassword");
 const strengthBar = document.getElementById("strength");
 const usernameField = document.getElementById("username");
-const form = document.getElementById("form");
 
 usernameField.addEventListener("focusout", validateUsername);
 passfield.addEventListener("keyup", showStrength);
 confirmpass.addEventListener("keyup", confirmPassword);
 
-form.addEventListener("submit", function(event) {
-    if (!(validateUsername() && confirmPassword())) {
-        event.preventDefault();
-    }
-})
 
 function validateUsername() {
     if (usernameField.value.length > 4) {
@@ -46,12 +38,8 @@ function checkUsernameExists() {
             // If username is taken, show message and disable button.
             if (json) {
                 document.getElementById("usernameTaken").style.display = "inline";
-                submit.disabled = true;
-                return true
             } else {
                 document.getElementById("usernameTaken").style.display = "none";
-                submit.disabled = false;
-                return false;
             }
         })
 }
