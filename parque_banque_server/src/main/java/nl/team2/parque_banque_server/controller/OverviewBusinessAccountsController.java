@@ -25,7 +25,7 @@ public class OverviewBusinessAccountsController {
         } else if (employee.getRole().getId() != 2)   {
             return "redirect:/personeel-home";
         } else {
-            return "overviewbusinessaccounts";
+            return "overviewbusinessaccount";
         }
     }
 }
