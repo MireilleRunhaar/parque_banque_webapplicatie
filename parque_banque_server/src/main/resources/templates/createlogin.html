@@ -27,8 +27,8 @@
 
     <main>
         <h1>Maak een account</h1>
-        <p>Bedenk voor uw account een gebruikersnaam en wachtwoord. Onthoud deze goed.</p>
-        <p>Als u op Klaar klikt, dan kunt u meteen inloggen en bankieren bij Parque Banque!</p>
+        <p>Bedenk voor uw account een gebruikersnaam en wachtwoord. Onthoud deze goed.<br>
+        Als u op Klaar klikt, dan kunt u meteen inloggen en bankieren bij Parque Banque!</p>
         <form id="form" action="#" th:action="@{/klant-worden}" th:object="${createLoginFormBean}" method="post">
             <div>
                 <label for="username">Gebruikersnaam</label>
@@ -42,6 +42,7 @@
             </div>
             <div>
                 <label for="password">Wachtwoord</label>
+                <progress max="100" value="0" id="strength"></progress>
                 <input id="password" type="password" required
                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,255}$" th:field="*{password}"
                        title="Wachtwoord moet minstens 8 tekens lang zijn, en in elk geval een hoofdletter, een kleine letter, een cijfer een een speciaal teken (@$!%?&) bevatten"
@@ -49,8 +50,6 @@
                                  'geval een hoofdletter, een kleine letter, een cijfer een een speciaal teken (@$!%?&) ' +
                                   'bevatten')"
                        oninput="setCustomValidity('')" />
-                <progress max="100" value="0" id="strength" style="float: right"></progress>
-                <label for="strength" style="float: right">Sterkte: </label>
             </div>
             <div>
                 <label for="confirmpassword">Bevestig wachtwoord</label>
@@ -64,9 +63,5 @@
 
         </form>
     </main>
-    <script>
-        document.getElementById("done").disabled = true;
-
-    </script>
 </body>
 </html>

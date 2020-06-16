@@ -27,12 +27,11 @@
 
     <main>
         <h1>Welkom!</h1>
-        <p>Wat fijn dat u klant bij ons wilt worden!</p>
-        <p>Om een rekening te openen bij Parque Banque hebben wij enkele gegevens nodig.</p>
+        <p>Wat fijn dat u klant bij ons wilt worden! <br>
+        Om een rekening te openen bij Parque Banque hebben wij enkele gegevens nodig.</p>
         <form id="form" action="#" th:action="@{/klant-worden}" th:object="${signupform}" method="post">
             <div>
-
-                <p>PERSOONSGEGEVENS</p>
+                <p class="formPart">Persoonsgegevens</p>
                 <div style="width: 480px">
                     <label for="firstName">Voornaam</label> <br>
                     <input id="firstName" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}$"
@@ -65,7 +64,7 @@
             </div>
 
             <div>
-                <p>ADRESGEGEVENS</p>
+                <p class="formPart">Adresgegevens</p>
                 <div style="width: 150px">
                     <label for="zipcode">Postcode</label>
                     <input id="zipcode" type="text" required pattern="[1-9][0-9]{3}[A-Za-z]{2}|[1-9][0-9]{3}[\s][A-Za-z]{2}"
@@ -105,7 +104,7 @@
                 </div>
             </div>
             <div>
-                <p>CONTACTGEGEVENS</p>
+                <p class="formPart">Contactgegevens</p>
                 <div>
                     <label for="phone">Telefoon nummer</label>
                     <input id="phone" type="tel" required pattern="[0][0-9]{9}" th:field="*{phone}"
@@ -128,6 +127,25 @@
 
         </form>
     </main>
+
+    <footer class="footer">
+        <div class="content-container">
+            <ul class= "footer-list">
+                <li><a class= list-link href="/inloggen">Inloggen</a></li>
+                <li><a class= list-link href="/klant-worden">Klant worden</a></li>
+                <li><a class= list-link href="/personeel">inloggen personeel</a></li>
+            </ul>
+            <div id="footer-address">
+                <address>
+                    Parque Banque<br>
+                    Parklaan 1056<br>
+                    1919 CO Bankert <br>
+                </address>
+            </div>
+
+            <div id="footer-license">© 2020 Parque Banque door team 2 | kvk 20016354 </div>
+        </div>
+    </footer>
 
 </body>
 </html>
