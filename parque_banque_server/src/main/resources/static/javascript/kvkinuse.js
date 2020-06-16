@@ -18,7 +18,6 @@ function validateKvk() {
                 console.log(json.sector);
                 document.getElementById("btwNr").value = json.btwNr;
                 document.getElementById("name").value = json.name;
-                //document.getElementById("sector").options[json.sector.id].selected = true;
                 document.getElementById("sectorField").selectedIndex = json.sector.id -1;
             }
         })
