@@ -3,17 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Rekeninghouder toevoegen | Parque Banque</title>
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link th:href="@{/css/confirmwindow.css}" rel="stylesheet"/>
     <script type="text/javascript" src="/javascript/addaccountholder.js" defer></script>
+    <script type="text/javascript" src="/javascript/confirmaddaccountholder.js" defer></script>
+
+    <style>
+        main {
+            margin-top: 80px;
+            margin-bottom: 100px;
+        }
+    </style>
 </head>
 <body>
+<nav class="navigation">
+    <ul>
+        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+        <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
+        <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+    </ul>
+</nav>
+
+<main>
+
     <h1>Rekeninghouder toevoegen</h1>
-    <p>Vul hieronder de gebruikersnaam in van de klant die u wilt toevoegen aan uw rekening.</p>
+    <p>Vul hieronder de gebruikersnaam in van de klant die u wilt toevoegen aan rekening <span th:text="${iban}"></span>.</p>
     <p>De persoon die u wilt toevoegen moet dus al klant bij Parque Banque zijn.</p>
-    <form id="form" th:action="@{/rekeninghouder-toevoegen}" th:object="${addAccountHolderFormBean}" method="post">
+    <form id="form" action="#" th:action="@{/rekeninghouder-toevoegen}" th:object="${addAccountHolderFormBean}" method="post">
+        <div>
+            <span id="unkownError" class="error" style="display: none">Er ging iets mis. Controleer de gegevens goed.
+                De klant die u wilt toevoegen moet al een klant zijn van Parque Banque, en nog geen mederekeninghouder zijn.
+                De beveiligingscode mag niet uit dezelfde getallen bestaan of een oplopende of aflopende rij zijn.</span>
+        </div>
         <div>
             <label for="username">Gebruikersnaam</label>
             <span id="unknownUsername" class="error" style="float: right; display: none">Deze gebruikersnaam bestaat niet</span>
-            <span th:if="${unknownUsername}" class="error" style="float: right">Deze gebruikersnaam bestaat niet</span>
             <span id="userAlreadyAdded" class="error" style="float: right; display: none">Deze klant is al mederekeninghouder</span>
             <input id="username" type="text" required pattern="[A-Za-z0-9]{5,255}" th:field="*{username}"
                    title="Vul de gebruikersnaam in"
@@ -22,7 +46,6 @@
         </div>
         <div>
             <label for="securityCode">Beveiligingscode</label>
-            <span th:if="${insecureCode}" class="error" style="float: right">Dit is geen veilige code</span>
             <span id="insecureCode" class="error" style="float: right; display: none">Dit is geen veilige code</span>
             <input id="securityCode" type="text" required pattern="[0-9]{5}" th:field="*{securityCode}"
                    title="Verzin een een beveiligingscode van 5 cijfers"
@@ -30,9 +53,14 @@
                    oninput="setCustomValidity('')" />
         </div>
         <div>
-            <button id="submitbutton" type="submit" name="action" value="finish">OK</button>
-            <button type="submit" name="action" value="cancel">Terug</button>
+            <button id="submitbutton" type="submit">OK</button>
         </div>
     </form>
+    <a id="backbutton" th:href="'/rekening-overzicht/details' + ${iban}"><button>Terug</button></a>
+</main>
+
+    <script>
+        let iban = "[[${iban}]]";
+    </script>
 </body>
 </html>

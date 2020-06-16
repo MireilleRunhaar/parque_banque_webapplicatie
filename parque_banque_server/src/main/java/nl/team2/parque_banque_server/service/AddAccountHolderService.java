@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Service
 public class AddAccountHolderService {
 
@@ -17,17 +19,13 @@ public class AddAccountHolderService {
     private AuthorisationService authorisationService;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
 
     @Autowired
     private PaymentAccountService paymentAccountService;
 
-    public Authorisation createAuthorisation(AddAccountHolderFormBean formBean, String iban) {
-        return new Authorisation(formBean.getUsername(), formBean.getSecurityCode(), iban);
-    }
-
-    public boolean usernameExists(String username) {
-        return customerRepository.findByUserName(username) != null;
+    public Authorisation createAuthorisation(String username, String code, String iban) {
+        return new Authorisation(username, code, iban);
     }
 
     public boolean isInsecureCode(String code) {
@@ -59,24 +57,21 @@ public class AddAccountHolderService {
         return true;
     }
 
-    public ModelAndView setErrors(AddAccountHolderFormBean addAccountHolderFormBean) {
-        ModelAndView mav = new ModelAndView("addaccountholder/addaccountholder");
-        if (!usernameExists(addAccountHolderFormBean.getUsername())) {
-            mav.addObject("unknownUsername", true);
-        }
-        if (isInsecureCode(addAccountHolderFormBean.getSecurityCode())) {
-            mav.addObject("insecureCode", true);
-
-        }
-        return mav;
-    }
 
     public boolean customerAlreadyAccountHolder(String username, String iban) {
-        Customer customer = customerRepository.findByUserName(username);
-        System.out.println("***** CUSTOMER IS " + customer);
+        Customer customer = customerService.findByUserName(username);
         PaymentAccount paymentAccount = paymentAccountService.findOneByIban(iban);
-        System.out.println("***** ACCOUNTHOLDERS ARE " + paymentAccount.getAccountHolders());
 
         return paymentAccount.getAccountHolders().contains(customer);
+    }
+
+    public Authorisation authorisationInDatabase(String username, String code, String iban) {
+        List<Authorisation> authorisationList = authorisationService.findAllByUserName(username);
+        for (Authorisation a : authorisationList) {
+            if (a.getIban().equalsIgnoreCase(iban) && a.getSecurityCode().equalsIgnoreCase(code)) {
+                return a;
+            }
+        }
+        return null;
     }
 }

@@ -11,10 +11,11 @@ form.addEventListener("submit", function(event) {
     event.preventDefault();
     validateForm().then(validInput => {
         if (validInput) {
-            console.log("CHECK = TRUE? " + validInput);
-            form.submit();
+            saveAuthorisationIfNew().then(authorisation => {
+                confirmWindow(authorisation);
+            })
         } else {
-            console.log("CHECK = FALSE? " + validInput);
+            document.getElementById("unkownError").style.display = "inline";
         }
     })
 })
@@ -23,15 +24,52 @@ form.addEventListener("submit", function(event) {
 async function validateForm() {
     let usernameExists = await checkUsernameExistsAsync(usernameField.value);
     let secureCode = await validateSecurityCodeAsync(codeField.value);
-    let userIsNew = await checkUsernameIsNew(usernameField.value);
+    let userIsNew = await checkUsernameIsNewAsync(usernameField.value);
 
     let validInput = false;
     if (usernameExists && secureCode && userIsNew) {
         validInput = true;
     }
 
+
     return validInput;
 
+}
+
+async function confirmWindow(authorisation) {
+    let username = authorisation.userName.bold();
+    let code = authorisation.securityCode.bold();
+    let iban = authorisation.iban.bold();
+
+    let message = 'De klant met de gebruikersnaam ' + username + ' kan aan rekening ' + iban + ' worden toegevoegd. ' +
+        'Geef de code ' + code + ' aan deze klant. Hij/zij heeft deze code nodig om gekoppeld te worden aan deze rekening.';
+    Confirm.open({
+        message: message,
+        onok: () => {
+            document.getElementById("backbutton").click();
+        }
+    })
+}
+
+async function saveAuthorisationIfNew() {
+    let username = usernameField.value;
+    let code = codeField.value;
+
+    const url = "http://localhost/authorisatie-opslaan";
+
+    let data = `username=${username}&code=${code}&iban=${iban}`;
+
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    })
+
+    let authorisation = await response.json();
+
+    return authorisation;
 }
 
 async function checkUsernameExistsAsync(input) {
@@ -81,7 +119,7 @@ async function checkUsernameIsNewAsync(input) {
         body: data
     })
     let validInput = await response.json();
-
+    return validInput;
 }
 
 
@@ -127,10 +165,8 @@ function checkUsernameIsNew() {
         .then(response => response.json())
         .then(json => {
             if (json) {
-                console.log("user is new")
                 document.getElementById("userAlreadyAdded").style.display = "none";
             } else {
-                console.log("user already added")
                 document.getElementById("userAlreadyAdded").style.display = "inline";
             }
         })

@@ -34,43 +34,7 @@ public class AddAccountHolderController {
         return mav;
     }
 
-    // TODO uncomment extra checks
-    @PostMapping(value = "/rekeninghouder-toevoegen", params = "action=finish")
-    public ModelAndView inputFormHandler(@Valid AddAccountHolderFormBean addAccountHolderFormBean,
-                                         BindingResult bindingResult, Model model) {
-        ModelAndView mav = new ModelAndView();
-        if (bindingResult.hasErrors()) {
-            mav.setViewName("addaccountholder/addaccountholder");
-        } else {
-//            if (addAccountHolderService.isInsecureCode(addAccountHolderFormBean.getSecurityCode()) ||
-//                    !addAccountHolderService.usernameExists(addAccountHolderFormBean.getUsername())) {
-//                mav = addAccountHolderService.setErrors(addAccountHolderFormBean);
-//            } else {
-                Authorisation authorisation = addAccountHolderService.createAuthorisation(addAccountHolderFormBean,
-                        (String) model.getAttribute("iban"));
-                authorisationService.saveAuthorisation(authorisation);
-                mav.addObject(authorisation);
-                mav.setViewName("addaccountholder/addaccountholderconfirmation");
-//            }
-        }
-        return mav;
-    }
 
-    // TODO delete
-    @PostMapping("rekeninghouder-toevoegen")
-    public ModelAndView inputFormHandler(@RequestParam("username") String username,
-                                         @RequestParam("securityCode") String code, Model model) {
-        ModelAndView mav = new ModelAndView("addaccountholder/addaccountholderconfirmation");
-        System.out.println("HOI");
-        AddAccountHolderFormBean addAccountHolderFormBean = new AddAccountHolderFormBean();
-        addAccountHolderFormBean.setSecurityCode(code);
-        addAccountHolderFormBean.setUsername(username);
-        Authorisation authorisation = addAccountHolderService.createAuthorisation(addAccountHolderFormBean,
-                (String) model.getAttribute("iban"));
-        authorisationService.saveAuthorisation(authorisation);
-        mav.addObject(authorisation);
-        return mav;
-    }
 
     @CrossOrigin
     @PostMapping("veilige-code")
@@ -84,5 +48,18 @@ public class AddAccountHolderController {
     public @ResponseBody
     boolean checkCustomerIsNewHandler(@RequestParam("username") String username, Model model) {
         return !addAccountHolderService.customerAlreadyAccountHolder(username, (String) model.getAttribute("iban"));
+    }
+
+    @CrossOrigin
+    @PostMapping("authorisatie-opslaan")
+    public @ResponseBody
+    Authorisation saveAuthorisationHandler(@RequestParam("username") String username, @RequestParam("code") String securityCode,
+                                           @RequestParam("iban") String iban) {
+        Authorisation authorisation = addAccountHolderService.authorisationInDatabase(username, securityCode, iban);
+        if (authorisation == null) {
+            authorisation = addAccountHolderService.createAuthorisation(username, securityCode, iban);
+            authorisationService.saveAuthorisation(authorisation);
+        }
+        return authorisation;
     }
 }
