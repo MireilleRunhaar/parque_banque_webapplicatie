@@ -21,7 +21,7 @@ public class CompanyFormBean {
     private String name;
 
     @NotBlank
-    private String sectorName;
+    private String id;
 
 
     public CompanyFormBean() {
@@ -52,12 +52,13 @@ public class CompanyFormBean {
         this.name = name;
     }
 
-    public String getSectorName() {
-        return sectorName;
+
+    public String getId() {
+        return id;
     }
 
-    public void setSectorName(String sectorName) {
-        this.sectorName = sectorName;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
@@ -66,7 +67,7 @@ public class CompanyFormBean {
                 "kvkNr='" + kvkNr + '\'' +
                 ", btwNr='" + btwNr + '\'' +
                 ", name='" + name + '\'' +
-                ", sectorName='" + sectorName + '\'' +
+                ", id='" + id + '\'' +
                 '}';
     }
 

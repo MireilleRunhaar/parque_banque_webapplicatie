@@ -16,12 +16,5 @@ public class IndexController {
         return "contact";
     }
 
-    @GetMapping("/rekening-openen")
-    public String goToNewPaymentAccount(Model model) {
-        if (model.containsAttribute("customerId")) {
-            return "newpaymentaccount";
-        } else {
-            return "logincustomer";
-        }
-    }
+
 }
