@@ -3,7 +3,8 @@ const formControlSucces = 'form-control succes';
 const iban = document.getElementById("iban");
 iban.addEventListener("focusout", checkIban);
 
-function checkIban(input) {
+function checkIban() {
+let input = iban.value;
 
     const url = "http://localhost/check-Iban";
     let data = `iban=${input}`;
@@ -17,24 +18,11 @@ function checkIban(input) {
     })
         .then(response => response.json())
         .then(json => {
-            if (json) {
-                setSuccesFor(iban)
-            } else {
-                setErrorFor(iban, "Iban is niet bij ons bekend")
+            if (json===false) {
+             document.getElementById('IBAN_unknown').innerHTML = 'Rekeningnummer is niet bekend bij ons'
             }
         })
 }
 
-    function setSuccesFor(inputField) {
-        let formControl = inputField.parentElement;
-        formControl.className = formControlSucces;
-    }
-
-    function setErrorFor(inputField, message) {
-        let formControl = inputField.parentElement;
-        let small = formControl.querySelector('small');
-        small.innerText = message;
-        formControl.className = formControlError;
 
 
-    }

@@ -4,55 +4,11 @@
     <meta charset="UTF-8">
     <title>Voeg rekening toe</title>
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link th:href="@{/css/linkaccount.css}" href="../static/css/linkaccount.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="javascript/linkaccount.js" defer></script>
+    <script type="text/javascript" src="javascript/linkaccount.js" defer ></script>
 
 </head>
-<style>
-    h1 {
-        font-size: 20px;
-        margin-left: 2em;
-    }
-
-    form {
-        margin: 2em;
-    }
-
-    input {
-        margin-block: auto;
-    }
-
-    label {
-
-    }
-    .form1 {
-        margin-left: 30px;
-    }
-    .form2 {
-        margin-left: 30px;
-    }
-    button {
-        margin-left: 30px;
-        margin-top: 20px;
-    }
-   #sec_error{
-       color: #FF0000;
-       margin-top: 5px;
-       font-size: small;
-       margin-left: 30px;
-    }
-
-    #IBAN_error{
-        color: #FF0000;
-        margin-top: 5px;
-        font-size: small;
-        margin-left: 30px;
-    }
-
-
-</style>
-<a href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink"
-                 width="80px" height="45px"></a>
 <body>
 <nav class="navigation">
     <ul>
@@ -62,25 +18,27 @@
     </ul>
 </nav>
 <h1>Vul hier het rekeningnummer en de code in die u heeft gekregen van de rekeninghouder.</h1>
-<form  class="accounttoevoegen-form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post" name="form">
-    <div class="form1">
+<form  class="form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post" name="form">
+    <div id="form1">
         <span th:if="${invalidCredentials}" class="error">De combinatie tussen rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.</span>
         <span th:if="${rekeningGekoppeld}" class="errorRek">U bent al gekoppeld aan deze rekening.</span>
         <br/>
         <br/>
         <label for="iban">Rekeningnummer</label><br/>
-        <input type="text" id="iban" th:field="*{iban}" name="iban" autofocus="autofocus">
+        <input type="text" id="iban" th:field="*{iban}" name="iban">
         <br/>
 
     </div>
-    <p id="IBAN_error"></p>
 
-    <div class="form2">
+    <p id="IBAN_unknown" class="error_field"></p>
+    <p id="IBAN_error" class="error_field"></p>
+
+    <div id="form2">
         <label for="securityCode">Beveiligingcode</label><br/>
-        <input type="text" id="securityCode" th:field="*{securityCode}" name="securityCode" autofocus="autofocus">
+        <input type="text" id="securityCode" th:field="*{securityCode}" name="securityCode">
         <br/>
     </div>
-    <p id='sec_error'></p>
+    <p id='sec_error' class="error_field"></p>
     <button type="button" onclick="validate()">OK</button>
     <button type="button" onclick="document.location ='/rekening-overzicht'">Rekeningoverzicht</button>
 
@@ -98,12 +56,12 @@
         if (ibanResult === true && secResult === true){//ajax code en iban matchen
             document.form.submit();
         } else if (ibanResult === false && secResult === true) {
-            document.getElementById('IBAN_error').innerHTML = 'het ibannummer bestaat uit 2 letter, 2 cijfers, 4 letters en 10 cijfers'
+            document.getElementById('IBAN_error').innerHTML = 'het format van uw iban is niet correct'
         } else if (ibanResult === true && secResult === false) {
-            document.getElementById('sec_error').innerHTML = 'de beveiligingscode bestaat uit 5 cijfers'
+            document.getElementById('sec_error').innerHTML = 'vul 5 cijfers in'
         } else {
-            document.getElementById('IBAN_error').innerHTML = 'het ibannummer bestaat uit 2 letter, 2 cijfers, 4 letters en 10 cijfers'
-            document.getElementById('sec_error').innerHTML =  'de beveiligingscode bestaat uit 5 cijfers'
+            document.getElementById('IBAN_error').innerHTML = 'het format van uw iban is niet correct'
+            document.getElementById('sec_error').innerHTML =  'vul 5 cijfers in'
         }
     }
 </script>

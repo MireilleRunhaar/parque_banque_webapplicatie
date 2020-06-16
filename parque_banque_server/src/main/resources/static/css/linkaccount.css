@@ -1,6 +1,7 @@
 h1 {
     font-size: 20px;
     margin-left: 2em;
+    font-family: "sans-serif"
 }
 
 form {
@@ -23,17 +24,18 @@ label {
 button {
     margin-left: 30px;
     margin-top: 20px;
-}
-#sec_error{
+    border-radius:4px;
+    background-color: #37ad49;
+    color:white;
+    border:none;
+    height: 25px;}
+
+
+.error_field{
     color: #FF0000;
     margin-top: 5px;
     font-size: small;
-    margin-left: 30px;
+
 }
 
-#IBAN_error{
-    color: #FF0000;
-    margin-top: 5px;
-    font-size: small;
-    margin-left: 30px;
-}
+
