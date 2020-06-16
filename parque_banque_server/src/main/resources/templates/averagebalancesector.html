@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Gemiddelde saldo sectoren</title>
+    <link th:href="@{/css/mkbtable.css}" href="../static/css/mkbtable.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+<a href="/uitloggen"><button>Uitloggen</button></a>
+<a href="/personeel-home"><button>Terug</button></a>
+<main>
+<h2>Sectoren</h2>
+<table table class="content-table">
+    <thead>
+    <tr>
+        <th>Sector Naam</th>
+        <th>Gemiddelde Saldo per Sector</th>
+    </tr>
+    </thead>
+    <tr th:each="entry, stats : ${averageBalanceSector}" th:with="sector=${entry.value}">
+        <td th:text="${sector.name} "></td>
+        <td th:text="'€ ' + ${#numbers.formatDecimal(entry.key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
+
+    </tr>
+</table>
+
+</main>
+</body>
+
+</html>

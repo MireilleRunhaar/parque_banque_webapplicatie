@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Overzicht bedrijven</title>
@@ -8,5 +8,19 @@
 <a href="/uitloggen">Uitloggen</a>
 <br>
     <h1>Overzicht bedrijfsrekeningen</h1>
+<form action="/overzicht-bedrijven" method="post" th:object="${richestBusinessCustomers}" >
+
+
+    <input type="submit" name="Saldo" value="Saldo" >
+</form>
+<form action="/overzicht-bedrijven" method="post" th:object="${averageBalanceSector}" >
+    <input type="submit" name="Sectoren" value="Sectoren" >
+
+</form>
+<form action="/overzicht-bedrijven" method="post" th:object="${mostActiveBusinessAccounts}" >
+    <input type="submit" name="Transacties" value="Transacties" >
+
+</form>
+
 </body>
 </html>
