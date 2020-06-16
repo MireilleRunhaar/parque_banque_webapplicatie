@@ -16,11 +16,60 @@
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
     <title>Home</title>
+    
+    <style>
+        header {
+            background-color: #37ad49;
+            background-image: url("images/park-bench.jpg");
+            background-size: 100%; 
+            background-position: center;
+            height: 400px;
+        }
+        
+        
+        .main-content img {
+            width: 100%;
+            max-width: 940px;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif
+        }
+        
+        .information {
+            background-color: white;
+            color: black;
+            font-family: 'Montserrat', sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .information figure {
+            margin: auto;
+            text-align: center;
+            width: 300px;
+        }
+        
+        .information figure img {
+            border: 1px solid white;
+            border-radius: 5px;
+            box-shadow: grey 0 0 3px;
+            width: 300px;
+        }
+        
+        .information figure figcaption {
+            margin-top: 10px;
+        }
+        
+    </style>
+    
 </head>
 <body>
     <div class="page-content">
 
 <!-- navigatie-->
+<header>
     <nav class="navigation">
         <ul>
             <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
@@ -30,13 +79,27 @@
         </ul>
        
     </nav>
-
+</header>
 <!-- body -->
 <main class="main">
     <div class="main-content">
+        <h1>Welkom bij Parque Banque!</h1>
         <img src="../static/parque-banque-logo.jpg" th:src="@{parque-banque-logo.jpg}" alt="parque banque" width="1000" height="165">
-
-<h1>Welkom bij Parque Banque!</h1>
+    </div>
+    <div class="information">
+        <figure>
+            <img th:src="@{images/rsz_canva_-_man_in_white_dress_shirt_and_black_pants_sitting_on_bench.jpg}" src="../static/images/rsz_canva_-_man_in_white_dress_shirt_and_black_pants_sitting_on_bench.jpg" alt="Man in white shirt with tablet">
+            <figcaption>Iedereen is bij ons van harte welkom. Klant worden regel je gemakkelijk online! Open nu een rekening en ontvang €25,00 cadeau. </figcaption>
+        </figure>
+        <figure>
+            <img th:src="@{images/rsz_canva_-_woman_using_cellphone_while_sitting_on_wooden_bench.jpg}" src="../static/images/rsz_canva_-_woman_using_cellphone_while_sitting_on_wooden_bench.jpg" alt="Woman using phone sitting on wooden bench">
+            <figcaption>Open een rekening bij Parque Banque voor jouw bedrijf of privézaken. Binnen enkele klikken is jouw eerste overboeking een feit!</figcaption>
+        </figure>
+        <figure>
+            <img th:src="@{images/rsz_1canva_-_couple_on_a_bench_in_the_park.jpg}" src="../static/images/rsz_1canva_-_couple_on_a_bench_in_the_park.jpg" alt="couple sitting on bench">
+            <figcaption>Een rekening delen met familie, vrienden of buurman? Koppel online een nieuwe rekeninghouder met behulp van ons veilige code systeem.</figcaption>
+        </figure>
+    
     </div>
 </main>
 
