@@ -1,5 +1,7 @@
 package nl.team2.parque_banque_server.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -8,11 +10,10 @@ public class Company {
 
     @Id
     private String kvkNr;
-
     private String btwNr;
     private String name;
 
-    @ManyToOne
+    @ManyToOne (cascade = {CascadeType.PERSIST})
     private Sector sector;
 
 

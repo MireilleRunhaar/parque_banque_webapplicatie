@@ -8,15 +8,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <title>Contact</title>
     <style>
-        #contact-content{
-            margin-left: 25px;
+        
+        header {
+            background-color: #37ad49;
+            background-image: url("images/man-in-grey-suit-laptop.jpg");
+            background-size: 100%; 
+            background-position:center;
+            background-repeat: no-repeat;
+            height: 400px;
         }
+        
+        main {
+            padding-top: 10px;
+           text-align: center;
+        }
+        
+        .love {
+           padding-bottom: 10px;
+        }
+        
+        .contact-content {
+            margin:auto;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            width: 500px;
+        }
+        
+        .blocks {
+            margin: 10px;
+            display: inline-block;
+        }
+        
+    
         
     </style>
 </head>
 <body>
 
 <!-- navigatie-->
+<header>
     <nav class="navigation">
         <ul>
             <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
@@ -25,18 +56,23 @@
             <li class="nav-link"><a  href="/contact">Contact</a></li>   
         </ul>
     </nav>
+</header>
 
 <!-- body -->
 <main>
-    <div id="contact-content">
-        <h1>Parque Banque <img src="../static/green-heart.png" th:src="@{green-heart.png}" width="74px" height="74px"> van klanten</h1>
+    <div class= "love">
+        <h1 style="font-family: 'Montserrat', sans-serif">Parque Banque <img src="../static/green-heart.png" th:src="@{green-heart.png}" width="74px" height="74px"> van klanten</h1>
         <p>Daarom is zaken doen met ons 'like a walk in the park'</p>
-
+    </div>
+    <div class="contact-content">
+    <div class="blocks">
         <h2>Online</h2>
         <p>
             Een nieuwe betaalrekening opent u bij ons gemakkelijk online<br>
             Overboeken? 24/7 beschikbaar met enkele klikken heeft u het geregeld!<br>
         </p>
+    </div>
+    <div class="blocks">
         <h2>Bezoekadres</h2>
         <p>
             Bij ons is iedereen altijd welkom!<br>
@@ -48,6 +84,7 @@
         1919 CO Bankert <br>
         </address>
     </div>
+    </div>
 </main>
 
 
@@ -57,7 +94,7 @@
         <ul class= "footer-list">
             <li><a class= list-link href="/inloggen">Inloggen</a></li>
             <li><a class= list-link href="/klant-worden">Klant worden</a></li>
-            <li><a class= list-link href="/rekening-openen">Rekening openen</a></li>
+            
             <li><a class= list-link href="/personeel">inloggen personeel</a></li>
         </ul>
     <div id="footer-address">

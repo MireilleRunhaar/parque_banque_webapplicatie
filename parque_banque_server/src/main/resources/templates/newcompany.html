@@ -5,6 +5,7 @@
     <title>Nieuw bedrijf aanmaken bij Parque Banque</title>
     <link th:href="@{/css/signup.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/javascript/kvkinuse.js" defer></script>
     <style type="text/css">
         img{
             text-align: left;
@@ -44,8 +45,12 @@
 <p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p>
 <p>Velden met een * zijn verplicht.</p><br>
 <!--Formulier met nieuwe bedrijfsgegevens-->
+<div>
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${newCompany}">
     <label>Kvk-nummer *</label>
+    <span id="kvkBekend", class="error" style="float:right; display: none">
+        Er lijkt al een bedrijf met dit Kvk-nummer bij ons bekend te zijn.
+        Kloppen deze gegevens? Neem bij twijfel contact op, dan helpen we u persoonlijk.</span>
     <input type="text" th:field="*{kvkNr}"
            required pattern="^[0-9]{8}$"
            title="Het KvK-nummer bestaat uit 8 cijfers."
@@ -65,18 +70,17 @@
     <input type="text" th:field="*{name}"
            required pattern="^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[a-zA-Z0-9 '~@#&?!*+-]{2,254}$"
            oninvalid="setCustomValidity('Controleer of de bedrijfsnaam klopt.')"
-           oninput="setCustomValidity('')">
+           oninput="setCustomValidity('')"/>
         <br><br>
 
     <label>Sector *</label>
-    <select th:field="*{sectorName}">
-        <option th:each="sector : ${sectoren}" th:value="${sector.getName()}" th:text="${sector.getName()}"
-                oninput="setCustomValidity('')"/>
+    <select id="sectorField" th:field="*{id}">
+        <option th:each="sector : ${sectoren}" th:value="${sector.getId()}" th:text="${sector.getName()}"
+                oninput="setCustomValidity('')"></option>
     </select>
         <br><br>
     <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
 </form>
 </div>
-
 </body>
 </html>
