@@ -14,13 +14,16 @@
     <table table class="content-table">
         <thead>
         <tr>
+            <th>Nummer</th>
             <th>Naam</th>
             <th>Aantal Transacties</th>
         </tr>
         </thead>
-        <tr th:each="entry, stats : ${mostActiveBusinessAccounts}" th:with="customer=${entry.value}">
-            <td th:text="${customer.firstName} +' '+ ${customer.affix}+' '+ ${customer.surName} "></td>
-            <td th:text="${entry.key} "></td>
+        <tr th:each="key, index : ${mostActiveBusinessAccounts.keySet()}" >
+            <td th:text="${key}"></td>
+            <td th:text="${mostActiveBusinessAccounts.get(key)[0].firstName} + ' ' + ${mostActiveBusinessAccounts.get(key)[0].affix}
+         + ' ' + ${mostActiveBusinessAccounts.get(key)[0].surName}"></td>
+            <td th:text="${mostActiveBusinessAccounts.get(key)[1]}"></td>
 
         </tr>
     </table>

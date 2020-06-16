@@ -63,7 +63,7 @@ public class OverviewBusinessAccountsController {
     @RequestMapping(value = "/overzicht-bedrijven",params = "Transacties",method = RequestMethod.POST)
     public ModelAndView top10MostTransactionAccounts(){
         ModelAndView mav=new ModelAndView("mostactivebusinessaccounts");
-        Map<Long,Object> mostActiveBusinessAccounts=statisticsService.getTenMostActiveBusinessCustomers();
+        Map<Integer,Object[]> mostActiveBusinessAccounts=statisticsService.getTenMostActiveBusinessCustomers();
         mav.addObject("mostActiveBusinessAccounts",mostActiveBusinessAccounts);
         return mav;
     }
