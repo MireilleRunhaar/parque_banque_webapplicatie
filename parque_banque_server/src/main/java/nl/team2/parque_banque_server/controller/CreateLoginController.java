@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -36,8 +35,8 @@ public class CreateLoginController {
         if (bindingResult.hasErrors()) {
             mav.setViewName("createlogin");
         } else if (signUpService.isUserNameTaken(createLoginFormBean.getUsername())) {
-            mav.addObject("usernameTaken", true);
             mav.setViewName("createlogin");
+            mav.addObject("usernameTaken", true);
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("signupform");
             if ( signUpFormBean != null ) {
@@ -49,6 +48,13 @@ public class CreateLoginController {
         }
 
         return mav;
+    }
+
+    @CrossOrigin
+    @PostMapping("/username-controle")
+    public @ResponseBody
+    boolean usernameCheckHandler(@RequestParam("username") String username) {
+        return signUpService.isUserNameTaken(username);
     }
 
 }

@@ -6,6 +6,7 @@
     <link th:href="@{/css/main.css}" rel="stylesheet">
     <link th:href="@{/css/signup.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/javascript/signup.js" defer></script>
     <style>
 
         div > div {
@@ -28,7 +29,7 @@
         <h1>Welkom!</h1>
         <p>Wat fijn dat u klant bij ons wilt worden!</p>
         <p>Om een rekening te openen bij Parque Banque hebben wij enkele gegevens nodig.</p>
-        <form action="#" th:action="@{/klant-worden}" th:object="${signupform}" method="post">
+        <form id="form" action="#" th:action="@{/klant-worden}" th:object="${signupform}" method="post">
             <div>
 
                 <p>PERSOONSGEGEVENS</p>
@@ -54,7 +55,8 @@
                 </div>
                 <div>
                     <label for="bsn">Burger Service Nummer</label>
-                    <span th:if="${invalidBsn}" class="error" style="float: right">Vul een geldig BSN in</span>
+                    <span id="validBsn" class="error" style="float: right; display: none; margin-right: 0;">Vul een geldig BSN in</span>
+                    <span th:if="${invalidBsn}" class="error" style="float: right; margin-right: 0;">Vul een geldig BSN in</span>
                     <input id="bsn" type="text" required pattern="[0-9]{9}" th:field="*{bsn}"
                            title="Vul uw BSN in"
                            oninvalid="setCustomValidity('Vul een geldig BSN in')"
@@ -64,28 +66,7 @@
 
             <div>
                 <p>ADRESGEGEVENS</p>
-                <div style="width: 520px">
-                    <label for="street">Straat</label> <br>
-                    <input id="street" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ0-9]{2,255}$" th:field="*{street}"
-                           title="Vul uw straatnaam in"
-                           oninvalid="setCustomValidity('Straatnaam is verplicht')"
-                           oninput="setCustomValidity('')" />
-                </div>
-                <div style="width: 100px">
-                    <label for="number">Huisnummer</label> <br>
-                    <input id="number" type="text" required pattern="[1-9][0-9]{0,4}" th:field="*{number}"
-                           title="Vul uw huisnummer in"
-                           oninvalid="setCustomValidity('Huisnummer is verplicht')"
-                           oninput="setCustomValidity('')" />
-                </div>
-                <div style="width: 100px">
-                    <label for="addition">Toevoeging</label> <br>
-                    <input id="addition" type="text" pattern="$|[0-9a-zA-Z -]{1,255}" th:field="*{addition}"
-                           title="Vul uw toevoeging in"
-                           oninvalid="setCustomValidity('Toevoeging kan enkel letters, cijfers, en een streepje ('-') bevatten')"
-                           oninput="setCustomValidity('')" />
-                </div>
-                <div style="width: 80px">
+                <div style="width: 150px">
                     <label for="zipcode">Postcode</label>
                     <input id="zipcode" type="text" required pattern="[1-9][0-9]{3}[A-Za-z]{2}|[1-9][0-9]{3}[\s][A-Za-z]{2}"
                            th:field="*{zipcode}"
@@ -93,7 +74,29 @@
                            oninvalid="setCustomValidity('U moet een Nederlandse postcode invullen (bijvoorbeeld 1111AA of 1111 AA)')"
                            oninput="setCustomValidity('')"/>
                 </div>
-                <div style="width: 415px">
+
+                <div style="width: 100px">
+                    <label for="number">Huisnummer</label> <br>
+                    <input id="number" type="text" required pattern="[1-9][0-9]{0,4}" th:field="*{number}"
+                           title="Vul uw huisnummer in"
+                           oninvalid="setCustomValidity('Huisnummer is verplicht')"
+                           oninput="setCustomValidity('')" />
+                </div>
+                <div style="width: 345px">
+                    <label for="addition">Toevoeging</label> <br>
+                    <input id="addition" type="text" pattern="$|[0-9a-zA-Z -]{1,255}" th:field="*{addition}"
+                           title="Vul uw toevoeging in"
+                           oninvalid="setCustomValidity('Toevoeging kan enkel letters, cijfers, en een streepje ('-') bevatten')"
+                           oninput="setCustomValidity('')" />
+                </div>
+                <div>
+                    <label for="street">Straat</label> <br>
+                    <input id="street" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ0-9]{2,255}$" th:field="*{street}"
+                           title="Vul uw straatnaam in"
+                           oninvalid="setCustomValidity('Straatnaam is verplicht')"
+                           oninput="setCustomValidity('')" />
+                </div>
+                <div>
                     <label for="city">Woonplaats</label>
                     <input id="city" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}$" th:field="*{city}"
                            title="Vul uw woonplaats in"
@@ -119,7 +122,7 @@
                 </div>
             </div>
             <div>
-                <button type="submit" style="float: right">Volgende</button>
+                <button id="submit" type="submit" style="float: right">Volgende</button>
                 <button type="submit" name="action" value="cancel" formnovalidate>Annuleren</button>
             </div>
 
