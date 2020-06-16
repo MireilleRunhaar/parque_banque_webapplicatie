@@ -43,22 +43,27 @@ public class NewTransactionController {
 
     @PostMapping("/overboeken")
     public String transactionHandler(@Valid @ModelAttribute("transactionFormBean") TransactionFormBean transactionFormBean,
-                                     BindingResult bindingResult, Model model){
+                                     BindingResult bindingResult, Model model) {
 
         String ibanDebitAccount = (String) model.getAttribute("iban");
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "newtransaction";
-        } else if(transactionFormBean == null){
-            return "error";
+        } else if (!paymentAccountService.validateFunds(ibanDebitAccount, transactionFormBean.getTotalAmountInCents())) {
+            model.addAttribute("insufficientFunds", true);
+            return "newtransaction";
+        } else if(paymentAccountService.findOneByIban(transactionFormBean.getIbanCreditAccount()) == null){
+            model.addAttribute("ibanUnknown", true);
+            return "newtransaction";
+        } else{
+            Transaction transaction = transactionService.createTransactionFromBean(transactionFormBean, ibanDebitAccount);
+            try {
+                transactionService.executeAndSave(transaction);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                return "error";
+            }
+            return "redirect:/rekening-overzicht/details" + ibanDebitAccount;
         }
-        Transaction transaction = transactionService.createTransactionFromBean(transactionFormBean,ibanDebitAccount);
-        try {
-            transactionService.executeAndSave(transaction);
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return "error";
-        }
-        return "redirect:/rekening-overzicht/details" + ibanDebitAccount;
     }
 
 
