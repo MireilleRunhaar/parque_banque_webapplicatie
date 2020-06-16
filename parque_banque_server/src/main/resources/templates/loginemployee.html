@@ -20,7 +20,8 @@
             margin-bottom: 10px;
         }
         input[type=text], input[type=password] {
-            border: thin solid #000000;
+            border-radius: 10px;
+            border: thin solid #545454;
         }
     </style>
 
@@ -30,9 +31,9 @@
     <nav class="navigation">
         <ul>
             <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
-            <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
-            <li class="nav-link"><a  href="/klant-worden">Klant worden</a></li>
             <li class="nav-link"><a  href="/contact">Contact</a></li>
+            <li class="nav-link"><a  href="/klant-worden">Klant worden</a></li>
+            <li class="nav-link"><a  href="/inloggen">Inloggen</a></li>
         </ul>
 
     </nav>
@@ -40,14 +41,14 @@
     <!-- body -->
     <form class="login-form" th:action="@{/personeel}" th:object="${loginemployee}" method="post">
         <h1>Login Werknemer</h1>
-        <p th:if="${invalidCredentials}" class="error">De combinatie tussen personeelsnummer en wachtwoord is onjuist. Probeer het opnieuw. </p>
+        <p th:if="${invalidCredentials}" class="error" style="display: inline-block">De combinatie tussen personeelsnummer en wachtwoord is onjuist. Probeer het opnieuw. </p>
 
-        <label>Personeelsnummer</label> <br/>
+        <label for="employeeNumber">Personeelsnummer</label> <br/>
         <input type="text" id="employeeNumber" name="employeeNumber" required
                pattern="[0-9]{1,}" title="Het personeelsnummer bestaat uit cijfers."/>
         <br/>
 
-        <label>Wachtwoord</label> <br/>
+        <label for="password">Wachtwoord</label> <br/>
         <input type="password" id="password" name="password" required/>
         <br/> <br/>
 
