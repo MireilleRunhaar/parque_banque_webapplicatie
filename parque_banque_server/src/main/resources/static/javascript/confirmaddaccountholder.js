@@ -4,7 +4,6 @@ const Confirm = {
             title: 'Toevoegen rekeninghouder',
             message: '',
             okText: 'OK',
-            cancelText: 'Cancel',
             onok: function () {}
         }, options);
 

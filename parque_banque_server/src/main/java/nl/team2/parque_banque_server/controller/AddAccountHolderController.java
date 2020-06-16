@@ -7,11 +7,8 @@ import nl.team2.parque_banque_server.utilities.AddAccountHolderFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
 
 @Controller
 @SessionAttributes({"customerId", "iban"})
@@ -26,7 +23,7 @@ public class AddAccountHolderController {
     public ModelAndView addAccountHolderHandler(Model model) {
         ModelAndView mav = new ModelAndView();
         if (model.containsAttribute("customerId")) {
-            mav.setViewName("addaccountholder/addaccountholder");
+            mav.setViewName("addaccountholder");
             mav.addObject(new AddAccountHolderFormBean());
         } else {
             mav.setViewName("redirect:/inloggen");

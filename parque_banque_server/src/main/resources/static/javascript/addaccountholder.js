@@ -15,7 +15,8 @@ form.addEventListener("submit", function(event) {
                 confirmWindow(authorisation);
             })
         } else {
-            document.getElementById("unkownError").style.display = "inline";
+            errorWindow()
+            // document.getElementById("unkownError").style.display = "inline";
         }
     })
 })
@@ -48,6 +49,15 @@ async function confirmWindow(authorisation) {
         onok: () => {
             document.getElementById("backbutton").click();
         }
+    })
+}
+
+function errorWindow() {
+    let errorMessage = "De invoer is ongeldig. Controleer de gegevens goed. " +
+        "<br>De klant die u wilt toevoegen moet al een klant zijn van Parque Banque, en nog geen mederekeninghouder zijn. " +
+        "De beveiligingscode mag niet uit dezelfde getallen bestaan of een oplopende of aflopende rij zijn."
+    Confirm.open( {
+        message: errorMessage
     })
 }
 
@@ -125,6 +135,7 @@ async function checkUsernameIsNewAsync(input) {
 
 function checkUserNameExists() {
     let input = usernameField.value;
+    if (input.length < 5) return;
 
     const url = "http://localhost/username-controle";
 
@@ -150,6 +161,7 @@ function checkUserNameExists() {
 
 function checkUsernameIsNew() {
     let input = usernameField.value;
+    if (input.length < 5) return;
 
     const url = "http://localhost/nieuwe-rekeninghouder";
 
@@ -174,6 +186,7 @@ function checkUsernameIsNew() {
 
 function validateSecurityCode() {
     let codeInput = codeField.value;
+    if (codeInput.length < 5) return;
 
     const url = "http://localhost/veilige-code";
 

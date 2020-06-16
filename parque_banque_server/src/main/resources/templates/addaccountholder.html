@@ -5,8 +5,8 @@
     <title>Rekeninghouder toevoegen | Parque Banque</title>
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link th:href="@{/css/confirmwindow.css}" rel="stylesheet"/>
-    <script type="text/javascript" src="/javascript/addaccountholder.js" defer></script>
-    <script type="text/javascript" src="/javascript/confirmaddaccountholder.js" defer></script>
+    <script type="text/javascript" src="javascript/addaccountholder.js" defer></script>
+    <script type="text/javascript" src="javascript/confirmaddaccountholder.js" defer></script>
 
     <style>
         main {
@@ -28,7 +28,8 @@
 
     <h1>Rekeninghouder toevoegen</h1>
     <p>Vul hieronder de gebruikersnaam in van de klant die u wilt toevoegen aan rekening <span th:text="${iban}"></span>.</p>
-    <p>De persoon die u wilt toevoegen moet dus al klant bij Parque Banque zijn.</p>
+    <p>De persoon die u wilt toevoegen moet dus al klant bij Parque Banque zijn.
+    Bedenk ook een code van 5 cijfers zodat de andere klant veilig gekoppeld kan worden.</p>
     <form id="form" action="#" th:action="@{/rekeninghouder-toevoegen}" th:object="${addAccountHolderFormBean}" method="post">
         <div>
             <span id="unkownError" class="error" style="display: none">Er ging iets mis. Controleer de gegevens goed.
