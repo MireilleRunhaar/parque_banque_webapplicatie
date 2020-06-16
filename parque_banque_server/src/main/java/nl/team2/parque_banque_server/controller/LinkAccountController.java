@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -60,13 +57,11 @@ public class LinkAccountController {
     public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            System.out.println("fouten");
-            model.addAttribute("invalidCredentials", true);
+           model.addAttribute("invalidCredentials", true);
             mav.setViewName("linkpaymentaccount");
         } else {
             Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
             if(paymentAccountService.checkAccount(linkAccountFormBean, customer)){
-                System.out.println("rekening is al gekoppeld");
                 model.addAttribute("rekeningGekoppeld", true);
                 mav.setViewName("linkpaymentaccount");
             }
@@ -77,12 +72,17 @@ public class LinkAccountController {
                 mav.setViewName("linkpaymentaccountconfirmation");
             }
             else {
-                System.out.println("verkeerd wachtwoord");
                 model.addAttribute("invalidCredentials", true);
                 mav.setViewName("linkpaymentaccount");
             }
         }
         return mav;
+    }
+
+    @CrossOrigin
+    @PostMapping("/check-Iban")
+    public @ResponseBody boolean checkIban (@RequestParam("iban") String iban){
+               return paymentAccountService.findOneByIban(iban) != null;
     }
 
 
