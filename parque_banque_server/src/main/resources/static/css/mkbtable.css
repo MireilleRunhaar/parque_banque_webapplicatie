@@ -36,7 +36,4 @@
     border-bottom: 3px solid black;
 }
 
-.content-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-}
+
