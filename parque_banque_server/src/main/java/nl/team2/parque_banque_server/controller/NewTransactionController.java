@@ -36,6 +36,8 @@ public class NewTransactionController {
             return "logincustomer";
         }else {
             model.addAttribute("transactionFormBean", new TransactionFormBean());
+            String iban = model.getAttribute("iban").toString();
+            model.addAttribute("ibanString", iban );
             return "newtransaction";
         }
     }
