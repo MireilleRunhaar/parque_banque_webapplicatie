@@ -74,4 +74,9 @@ public class AddAccountHolderService {
         }
         return null;
     }
+
+    public boolean validateInput(String username, String code, String iban) {
+        return customerService.findByUserName(username) != null && !isInsecureCode(code) &&
+                paymentAccountService.findOneByIban(iban) != null;
+    }
 }

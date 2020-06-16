@@ -52,6 +52,9 @@ public class AddAccountHolderController {
     public @ResponseBody
     Authorisation saveAuthorisationHandler(@RequestParam("username") String username, @RequestParam("code") String securityCode,
                                            @RequestParam("iban") String iban) {
+        if (addAccountHolderService.validateInput(username, securityCode, iban)) return null;
+
+        // Check whether this exact authorisation is in the database; if so, return it; if not, save and return new authorisation
         Authorisation authorisation = addAccountHolderService.authorisationInDatabase(username, securityCode, iban);
         if (authorisation == null) {
             authorisation = addAccountHolderService.createAuthorisation(username, securityCode, iban);

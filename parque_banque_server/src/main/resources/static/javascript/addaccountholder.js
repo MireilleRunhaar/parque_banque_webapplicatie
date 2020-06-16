@@ -7,16 +7,18 @@ usernameField.addEventListener("focusout", checkUserNameExists);
 usernameField.addEventListener("focusout", checkUsernameIsNew);
 codeField.addEventListener("focusout", validateSecurityCode);
 
+// When submitted, validate input and save authorisation in database. If save is successful, show confirm window.
 form.addEventListener("submit", function(event) {
     event.preventDefault();
     validateForm().then(validInput => {
         if (validInput) {
             saveAuthorisationIfNew().then(authorisation => {
-                confirmWindow(authorisation);
+                if (typeof authorisation !== "undefined") {
+                    confirmWindow(authorisation);
+                }
             })
         } else {
             errorWindow()
-            // document.getElementById("unkownError").style.display = "inline";
         }
     })
 })
@@ -32,17 +34,15 @@ async function validateForm() {
         validInput = true;
     }
 
-
     return validInput;
-
 }
 
-async function confirmWindow(authorisation) {
+function confirmWindow(authorisation) {
     let username = authorisation.userName.bold();
     let code = authorisation.securityCode.bold();
-    let iban = authorisation.iban.bold();
+    let ibanInput = authorisation.iban.bold();
 
-    let message = 'De klant met de gebruikersnaam ' + username + ' kan aan rekening ' + iban + ' worden toegevoegd. ' +
+    let message = 'De klant met de gebruikersnaam ' + username + ' kan aan rekening ' + ibanInput + ' worden toegevoegd. ' +
         'Geef de code ' + code + ' aan deze klant. Hij/zij heeft deze code nodig om gekoppeld te worden aan deze rekening.';
     Confirm.open({
         message: message,
@@ -77,9 +77,14 @@ async function saveAuthorisationIfNew() {
         body: data
     })
 
-    let authorisation = await response.json();
+    // If authorisation is a json object, return it. Else show error window
+    try {
+        let authorisation = await response.json();
 
-    return authorisation;
+        return authorisation;
+    } catch {
+        errorWindow();
+    }
 }
 
 async function checkUsernameExistsAsync(input) {
