@@ -9,14 +9,15 @@
     <script type="text/javascript" src="javascript/linkaccount.js" defer ></script>
 
 </head>
-<body>
 <nav class="navigation">
     <ul>
-        <li class="logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}"
-                                                         alt="parque banque"></a>
-        <li class="nav-link"><a href="/contact">Contact</a></li>
+        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+        <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
+        <li class="nav-link"><a  href="/rekening-openen">Rekening openen</a></li>
+        <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
     </ul>
 </nav>
+<body>
 <h1>Vul hier het rekeningnummer en de code in die u heeft gekregen van de rekeninghouder.</h1>
 <form  class="form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post" name="form">
     <div id="form1">
@@ -56,12 +57,12 @@
         if (ibanResult === true && secResult === true){//ajax code en iban matchen
             document.form.submit();
         } else if (ibanResult === false && secResult === true) {
-            document.getElementById('IBAN_error').innerHTML = 'het format van uw iban is niet correct'
+            document.getElementById('IBAN_error').innerHTML = 'Het format van uw iban is niet correct.'
         } else if (ibanResult === true && secResult === false) {
-            document.getElementById('sec_error').innerHTML = 'vul 5 cijfers in'
+            document.getElementById('sec_error').innerHTML = 'Vul 5 cijfers in'
         } else {
-            document.getElementById('IBAN_error').innerHTML = 'het format van uw iban is niet correct'
-            document.getElementById('sec_error').innerHTML =  'vul 5 cijfers in'
+            document.getElementById('IBAN_error').innerHTML = 'Het format van uw iban is niet correct.'
+            document.getElementById('sec_error').innerHTML =  'Vul 5 cijfers in'
         }
     }
 </script>

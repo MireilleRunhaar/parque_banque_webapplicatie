@@ -1,5 +1,3 @@
-const formControlError = 'form-control error';
-const formControlSucces = 'form-control succes';
 const iban = document.getElementById("iban");
 iban.addEventListener("focusout", checkIban);
 
