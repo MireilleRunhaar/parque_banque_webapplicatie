@@ -13,7 +13,7 @@ public class Company {
     private String btwNr;
     private String name;
 
-    @ManyToOne (cascade = {CascadeType.PERSIST})
+    @ManyToOne (cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private Sector sector;
 
 
