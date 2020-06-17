@@ -59,11 +59,21 @@ public class BusinessAccountService {
         return new BusinessAccount(ibanService.createNewIban(), START_BALANCE, employeeService.findOneByRoleName(EMPLOYEE_TYPE),company);
     }
 
-    public void saveBusinessAccount(BusinessAccount businessAccount){
-        businessAccountRepo.save(businessAccount);
-    }
+
 
     public BusinessAccount findByIban(String iban) {
         return businessAccountRepo.findByIban(iban);
     }
+
+    public void saveBusinessAccount(BusinessAccount businessAccount){
+        businessAccountRepo.save(businessAccount);
+    }
+
+    public Iterable<BusinessAccount> findAll(){
+        return businessAccountRepo.findAll();
+    }
+
+
+
+
 }

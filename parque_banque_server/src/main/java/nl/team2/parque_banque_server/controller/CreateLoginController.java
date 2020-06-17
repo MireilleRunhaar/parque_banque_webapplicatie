@@ -35,8 +35,8 @@ public class CreateLoginController {
         if (bindingResult.hasErrors()) {
             mav.setViewName("createlogin");
         } else if (signUpService.isUserNameTaken(createLoginFormBean.getUsername())) {
-            mav.addObject("usernameTaken", true);
             mav.setViewName("createlogin");
+            mav.addObject("usernameTaken", true);
         } else {
             SignUpFormBean signUpFormBean = (SignUpFormBean) model.getAttribute("signupform");
             if ( signUpFormBean != null ) {

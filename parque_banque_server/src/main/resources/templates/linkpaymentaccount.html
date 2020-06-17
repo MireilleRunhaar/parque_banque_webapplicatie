@@ -4,52 +4,74 @@
     <meta charset="UTF-8">
     <title>Voeg rekening toe</title>
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link th:href="@{/css/linkaccount.css}" href="../static/css/linkaccount.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="javascript/linkaccount.js" defer></script>
 
 </head>
-<style>
-    h1 {
-        font-size: 20px;
-        margin-left: 2em;
-    }
-
-    form {
-        margin: 2em;
-    }
-
-    input {
-        margin-block: auto;
-    }
-
-    label {
-
-    }
-
-
-</style>
-<a href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink"
-                 width="80px" height="45px"></a>
 <body>
-    <nav class="navigation">
-        <ul>
-            <li class="logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a><li/>
-            <li class="nav-link"><a href="/contact">Contact</a></li>
-        </ul>
-    </nav>
-<h1>Vul hier het rekeningnummer en de code in die u heeft gekregen van de rekeninghouder.</h1>
-    <form class="accounttoevoegen-form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post">
-        <div class="form1">
-          <span th:if="${invalidCredentials}" class="error">De combinatie tussen rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.<br/></span>
-            <br/>
+<nav class="navigation">
+    <ul>
+        <li class="logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}"
+                                                         alt="parque banque"></a></li>
+        <li class="nav-link"><a href="/rekening-overzicht">Rekeningoverzicht</a></li>
+        <li class="nav-link"><a href="/rekening-openen">Rekening openen</a></li>
+        <li class="nav-link"><a href="/uitloggen">Uitloggen</a></li>
+    </ul>
+</nav>
+
+
+<main>
+    <div class="container">
+        <div class="formheader">
+        <h1>Meld u aan als rekeninghouder</h1>
+    </div>
+        <h3>Vul het rekeningnummer en de beveiligingscode die u heeft gekregen hier in.</h3>
+
+    <form class="form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post" name="form">
+        <div id="error_invalidauthorisation">
+            <span th:if="${invalidCredentials}" class="error">De combinatie van rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.</span>
+            <span th:if="${rekeningGekoppeld}" class="error">U bent al gekoppeld aan deze rekening.</span>
+        </div>
+        <div class="formfield">
             <label for="iban">Rekeningnummer</label><br/>
-            <input type="text" id="iban" th:field="*{iban}"  name="iban" autofocus="autofocus"/><br/></div>
+            <input type="text" id="iban" th:field="*{iban}" name="iban">
+            <p id="IBAN_unknown" class="error_field"></p>
+            <p id="IBAN_error" class="error_field"></p>
+            <label for="securityCode">Beveiligingcode</label></br>
+            <input type="text" id="securityCode" th:field="*{securityCode}" name="securityCode">
+            <p id='sec_error' class="error_field"></p>
+        </div>
+        <button type="button" onclick="validate()">OK</button>
+    </form>
+    </div>
+</main>
 
-        <div class="form1">
-            <label for="securityCode">Beveiligingcode</label><br/>
-            <input type="text" id="securityCode" th:field="*{securityCode}" name="securityCode" autofocus="autofocus"/><br/></div>
-            <br/>
+<script>
+    function validate() {
+        document.getElementById('IBAN_error').innerHTML = ''
+        document.getElementById('sec_error').innerHTML = ''
+        var ibannr = document.getElementById("iban").value;
+        var secCode = document.getElementById('securityCode').value;
+        var ibanRegex = /^NL\d{2}[A-Z]{4}0\d{9}$/;
+        var secRegex = /^\d{5}$/;
+        var ibanResult = ibanRegex.test(ibannr);
+        var secResult = secRegex.test(secCode);
+        console.log(secCode, secResult)
+        if (ibanResult === true && secResult === true) {//ajax code en iban matchen
+            document.form.submit();
+        } else if (ibanResult === false && secResult === true) {
+            document.getElementById('IBAN_error').innerHTML = 'Het format van uw iban is niet correct.'
+        } else if (ibanResult === true && secResult === false) {
+            document.getElementById('sec_error').innerHTML = 'Vul 5 cijfers in'
+        } else {
+            document.getElementById('IBAN_error').innerHTML = 'Het format van uw iban is niet correct.'
+            document.getElementById('sec_error').innerHTML = 'Vul 5 cijfers in'
+        }
+    }
 
-    <button id=bevestig type="submit" value="OK">OK</button>
-</form>
+
+</script>
 </body>
+
 </html>
