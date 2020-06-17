@@ -1,0 +1,126 @@
+html{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#logo img{
+    width: 130px;
+    height:50px;
+    padding: 0;
+    margin: 0;
+}
+
+.logo-link {
+    display: inline-block;
+    position: relative;
+}
+
+.navigation{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.navigation ul{
+    height: 50px;
+    overflow: hidden;
+    background-color: #37ad49;
+}
+
+
+#form{
+    text-align: center;
+    width: 95%;
+    padding-top: 5%;
+    margin-top: 5%;
+}
+
+#formheader{
+
+}
+
+#form-content ul{
+    list-style-type: none;
+}
+
+#form-content li{
+    display: block;
+    margin: 15px;
+    padding: 5px;
+}
+
+#form-content label{
+    display: block;
+    margin-bottom: 5px;
+    padding-right: 5px;
+}
+
+#form-content input{
+    border: 1px solid black;
+    border-radius: 4px;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 40%;
+}
+
+#kvkconfirm {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 5px;
+    width: 40%;
+}
+
+#btwconfirm {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 5px;
+    width: 40%;
+}
+
+#nameconfirm{
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 5px;
+    width: 40%;
+}
+
+#sectorconfirm{
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 5px;
+    width: 60%;
+}
+
+#form-content select{
+    border: 1px solid black;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 5px;
+    width: 60%;
+    border-radius:4px;
+}
+
+button {
+    border-radius: 4px;
+    background-color: #37AD49;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    margin: 30px;
+}
