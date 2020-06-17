@@ -38,7 +38,7 @@ public class CompanyService {
         Company newCompany = new Company();
         newCompany.setKvkNr(companyFormBean.getKvkNr());
         newCompany.setBtwNr(companyFormBean.getBtwNr());
-        newCompany.setName(companyFormBean.getName());
+        newCompany.setName(companyFormBean.getCompanyName());
         newCompany.setSector(sector);
         return newCompany;
     }

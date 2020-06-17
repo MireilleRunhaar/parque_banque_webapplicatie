@@ -9,7 +9,7 @@ public class Employee extends User {
     private int employeeNumber;
     private String password;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private Role role;
 
     public Employee() {

@@ -1,0 +1,98 @@
+main {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /*deze misschien weg als niet mooi gecentreerd*/
+    margin: 0;
+
+}
+
+.container {
+    background-color: #37ad49;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 500px;   /*breedte van het formulier*/
+    max-width: 100%;
+    text-align: center;
+
+
+}
+
+.formheader {
+    background-color: white;
+    border-bottom: 1px solid white;
+    padding: 20px 40px;
+
+}
+
+.form{
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+.form button {
+    background-color: #2e2a2a;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 2px solid #a9a9a9;
+    border-radius: 4px;
+    color: white;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    margin-left: 110px;
+    margin-right: 110px;
+    width: 50%
+}
+
+h2 {
+    font-size: 20px;
+    margin: 50px;
+    font-family: sans-serif;
+}
+
+button  {
+    margin: 50px;
+}
+h3 {
+    font-size: 18px;
+    width: 450px;
+    padding-right: 20px;
+    padding-left: 20px;
+    text-align: center;
+
+}
+form {
+    margin: 2em;
+    font-size: 12px;
+}
+
+input {
+    margin-block: auto;
+
+}
+
+.formfield {
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 40px;
+    alignment: left;
+}
+
+
+
+
+.error_field{
+    color: white;
+    font-size: small;
+
+}
+.error {
+    color: white;
+    font-size: 14px;
+    alignment: inherit;
+
+}
+
+
