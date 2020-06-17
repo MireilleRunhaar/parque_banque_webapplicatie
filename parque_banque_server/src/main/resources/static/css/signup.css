@@ -34,13 +34,18 @@ form {
     background: #fafafa;
 }
 
+.formRow {
+    width: 645px;
+}
+
 main {
     margin-top: 80px;
     margin-bottom: 100px;
 }
 
-main > p {
+.headInfo {
     margin-bottom: 10px;
+    font-size: 1.1em;
 }
 
 h1 {
@@ -53,7 +58,7 @@ h1, p {
     text-align: center;
 }
 
-.formPart {
+.formPartHeader {
     margin-left: -10px;
     border-bottom-style: groove;
     border-bottom-width: thin;
@@ -89,6 +94,9 @@ progress {
 
 }
 
-.footer {
-    bottom: 10px;
+footer {
+    position: relative;
+    bottom: 0;
+    margin: 0;
+    top: 10px;
 }

@@ -7,13 +7,6 @@
     <link th:href="@{/css/signup.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script type="text/javascript" src="/javascript/signup.js" defer></script>
-    <style>
-
-        div > div {
-            width: 645px;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -27,12 +20,12 @@
 
     <main>
         <h1>Welkom!</h1>
-        <p>Wat fijn dat u klant bij ons wilt worden! <br>
+        <p class="headInfo">Wat fijn dat u klant bij ons wilt worden! <br>
         Om een rekening te openen bij Parque Banque hebben wij enkele gegevens nodig.</p>
         <form id="form" action="#" th:action="@{/klant-worden}" th:object="${signupform}" method="post">
             <div>
-                <p class="formPart">Persoonsgegevens</p>
-                <div style="width: 480px">
+                <p class="formPartHeader">Persoonsgegevens</p>
+                <div class="formRow" style="width: 480px">
                     <label for="firstName">Voornaam</label> <br>
                     <input id="firstName" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}$"
                            th:field="*{firstName}"
@@ -40,19 +33,19 @@
                            oninvalid="setCustomValidity('Voornaam is verplicht')"
                            oninput="setCustomValidity('')"/>
                 </div>
-                <div style="width: 140px">
+                <div class="formRow" style="width: 140px">
                     <label for="infix">Tussenvoegsel</label> <br>
                     <input id="infix" type="text" pattern="$|^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{1,255}" th:field="*{infix}"
                            title="Vul uw tussenvoegsel in" />
                 </div>
-                <div>
+                <div class="formRow">
                     <label for="lastName">Achternaam</label> <br>
                     <input id="lastName" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}$" th:field="*{lastName}"
                            title="Vul uw achternaam in"
                            oninvalid="setCustomValidity('Achternaam is verplicht')"
                            oninput="setCustomValidity('')"/>
                 </div>
-                <div>
+                <div class="formRow">
                     <label for="bsn">Burger Service Nummer</label>
                     <span id="validBsn" class="error" style="float: right; display: none; margin-right: 0;">Vul een geldig BSN in</span>
                     <span th:if="${invalidBsn}" class="error" style="float: right; margin-right: 0;">Vul een geldig BSN in</span>
@@ -64,8 +57,8 @@
             </div>
 
             <div>
-                <p class="formPart">Adresgegevens</p>
-                <div style="width: 150px">
+                <p class="formPartHeader">Adresgegevens</p>
+                <div class="formRow" style="width: 150px">
                     <label for="zipcode">Postcode</label>
                     <input id="zipcode" type="text" required pattern="[1-9][0-9]{3}[A-Za-z]{2}|[1-9][0-9]{3}[\s][A-Za-z]{2}"
                            th:field="*{zipcode}"
@@ -74,28 +67,28 @@
                            oninput="setCustomValidity('')"/>
                 </div>
 
-                <div style="width: 100px">
+                <div class="formRow" style="width: 100px">
                     <label for="number">Huisnummer</label> <br>
                     <input id="number" type="text" required pattern="[1-9][0-9]{0,4}" th:field="*{number}"
                            title="Vul uw huisnummer in"
                            oninvalid="setCustomValidity('Huisnummer is verplicht')"
                            oninput="setCustomValidity('')" />
                 </div>
-                <div style="width: 345px">
+                <div class="formRow" style="width: 345px">
                     <label for="addition">Toevoeging</label> <br>
                     <input id="addition" type="text" pattern="$|[0-9a-zA-Z -]{1,255}" th:field="*{addition}"
                            title="Vul uw toevoeging in"
                            oninvalid="setCustomValidity('Toevoeging kan enkel letters, cijfers, en een streepje ('-') bevatten')"
                            oninput="setCustomValidity('')" />
                 </div>
-                <div>
+                <div class="formRow">
                     <label for="street">Straat</label> <br>
                     <input id="street" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ0-9]{2,255}$" th:field="*{street}"
                            title="Vul uw straatnaam in"
                            oninvalid="setCustomValidity('Straatnaam is verplicht')"
                            oninput="setCustomValidity('')" />
                 </div>
-                <div>
+                <div class="formRow">
                     <label for="city">Woonplaats</label>
                     <input id="city" type="text" required pattern="^[- 'A-Za-zÀ-ÖØ-öø-ÿ]{2,255}$" th:field="*{city}"
                            title="Vul uw woonplaats in"
@@ -104,15 +97,15 @@
                 </div>
             </div>
             <div>
-                <p class="formPart">Contactgegevens</p>
-                <div>
-                    <label for="phone">Telefoon nummer</label>
+                <p class="formPartHeader">Contactgegevens</p>
+                <div class="formRow">
+                    <label for="phone">Telefoonnummer</label>
                     <input id="phone" type="tel" required pattern="[0][0-9]{9}" th:field="*{phone}"
                            title="Vul uw telefoonnummer in (zonder streepje)"
                            oninvalid="setCustomValidity('Geef een Nederlands telefoonnummer op (zonder streepje)')"
                            oninput="setCustomValidity('')" />
                 </div>
-                <div>
+                <div class="formRow">
                     <label for="email">Email</label>
                     <input id="email" type="email" required th:field="*{emailAddress}" maxlength="255"
                            title="Vul uw email-adres in"
@@ -128,7 +121,7 @@
         </form>
     </main>
 
-    <footer class="footer">
+    <footer>
         <div class="content-container">
             <ul class= "footer-list">
                 <li><a class= list-link href="/inloggen">Inloggen</a></li>
@@ -146,6 +139,5 @@
             <div id="footer-license">© 2020 Parque Banque door team 2 | kvk 20016354 </div>
         </div>
     </footer>
-
 </body>
 </html>

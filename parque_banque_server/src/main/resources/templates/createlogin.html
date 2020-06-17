@@ -27,7 +27,7 @@
 
     <main>
         <h1>Maak een account</h1>
-        <p>Bedenk voor uw account een gebruikersnaam en wachtwoord. Onthoud deze goed.<br>
+        <p class="headInfo">Bedenk voor uw account een gebruikersnaam en wachtwoord. Onthoud deze goed.<br>
         Als u op Klaar klikt, dan kunt u meteen inloggen en bankieren bij Parque Banque!</p>
         <form id="form" action="#" th:action="@{/klant-worden}" th:object="${createLoginFormBean}" method="post">
             <div>
@@ -63,5 +63,23 @@
 
         </form>
     </main>
+    <footer>
+        <div class="content-container">
+            <ul class= "footer-list">
+                <li><a class= list-link href="/inloggen">Inloggen</a></li>
+                <li><a class= list-link href="/klant-worden">Klant worden</a></li>
+                <li><a class= list-link href="/personeel">inloggen personeel</a></li>
+            </ul>
+            <div id="footer-address">
+                <address>
+                    Parque Banque<br>
+                    Parklaan 1056<br>
+                    1919 CO Bankert <br>
+                </address>
+            </div>
+
+            <div id="footer-license">© 2020 Parque Banque door team 2 | kvk 20016354 </div>
+        </div>
+    </footer>
 </body>
 </html>
