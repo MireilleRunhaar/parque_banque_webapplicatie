@@ -46,7 +46,7 @@
 <p>Velden met een * zijn verplicht.</p><br>
 <!--Formulier met nieuwe bedrijfsgegevens-->
 <div>
-<form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${newCompany}">
+<form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
     <label>Kvk-nummer *</label>
     <span id="kvkBekend", class="error" style="float:right; display: none">
         Er lijkt al een bedrijf met dit Kvk-nummer bij ons bekend te zijn.
@@ -67,7 +67,7 @@
         <br><br>
 
     <label>Bedrijfsnaam *</label>
-    <input type="text" th:field="*{name}"
+    <input type="text" th:field="*{companyName}"
            required pattern="^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[a-zA-Z0-9 '~@#&?!*+-]{2,254}$"
            oninvalid="setCustomValidity('Controleer of de bedrijfsnaam klopt.')"
            oninput="setCustomValidity('')"/>
@@ -76,6 +76,7 @@
     <label>Sector *</label>
     <select id="sectorField" th:field="*{id}">
         <option th:each="sector : ${sectoren}" th:value="${sector.getId()}" th:text="${sector.getName()}"
+                th:selected="${companyFormBean.id == sector.getId()}"
                 oninput="setCustomValidity('')"></option>
     </select>
         <br><br>
