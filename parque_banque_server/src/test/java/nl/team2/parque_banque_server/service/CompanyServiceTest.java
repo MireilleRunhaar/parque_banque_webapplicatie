@@ -35,10 +35,10 @@ public class CompanyServiceTest {
     public void companyTest(){
         CompanyFormBean companyFormBean = new CompanyFormBean();
         companyFormBean.setKvkNr("33029817");
-        companyFormBean.setName("Lafayette Radio");
+        companyFormBean.setCompanyName("Lafayette Radio");
 
         boolean actual = companyService.findOneByKVK("33029817").
-                getName().equals(companyFormBean.getName());
+                getName().equals(companyFormBean.getCompanyName());
                 assertTrue(actual);
 
         boolean actualA = companyService.findOneByKVK("33029817").
