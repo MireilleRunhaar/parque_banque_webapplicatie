@@ -1,0 +1,95 @@
+main {
+
+    font-family: 'Noto', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
+    margin: 0;
+    
+}
+
+.container {
+    background-color: #37ad49;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 600px;   /*breedte van het formulier*/
+    max-width: 100%;
+    
+}
+
+.formheader {
+    background-color: white;
+    border-bottom: 1px solid white;
+    padding: 20px 40px;
+    text-align: center;
+    
+}
+
+
+.formheader h1 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+form {
+    padding: 30px 40px;
+}
+
+.error {
+    display: inline-block;
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: darkred;
+}
+
+ input{
+    border: 2px solid #2e2a2a;  /*kleur van de inputranden*/
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+     margin: 10px;
+    width: 50%;    /*breedte van inputvelden*/
+    
+}
+
+.username {
+    padding-bottom: 10px
+}
+
+.security-code {
+    padding-bottom: 20px;
+}
+
+button {
+    background-color: #2e2a2a;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 2px solid #a9a9a9;
+    border-radius: 4px;
+    color: white;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+   margin-left: 10px;
+    width: 25%;
+}
+
+
+  .back{
+    display: block;
+    padding-bottom: 25px;
+    padding-left: 40px;
+    padding-top: -20px;
+   
+      margin-top: -71px
+          
+}
+
+.back button {
+    width: 23%;
+    margin-left: 150px;
+}
