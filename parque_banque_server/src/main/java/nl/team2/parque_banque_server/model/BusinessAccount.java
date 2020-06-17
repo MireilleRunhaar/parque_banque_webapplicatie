@@ -2,6 +2,7 @@ package nl.team2.parque_banque_server.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ public class BusinessAccount extends PaymentAccount{
     @ManyToOne
     private Employee accountmanager;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private Company company;
 
     public BusinessAccount() {

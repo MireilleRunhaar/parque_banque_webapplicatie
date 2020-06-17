@@ -1,5 +1,6 @@
 package nl.team2.parque_banque_server.controller;
 
+import com.sun.xml.bind.v2.TODO;
 import nl.team2.parque_banque_server.model.Authorisation;
 import nl.team2.parque_banque_server.model.Customer;
 import nl.team2.parque_banque_server.model.PaymentAccount;
@@ -13,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -48,22 +46,44 @@ public class LinkAccountController {
 
     }
 
-    //checking for login credentials
+    /**
+     * Links customer to an other account. If the customer is already linked then the app gives a messages.
+     * @param linkAccountFormBean
+     * @param bindingResult
+     * @param model
+     * @return
+     */
     @PostMapping("/rekening-koppelen")
     public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
-        System.out.println("dit is de postmapping");
-        Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
-        if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
-            PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
-            paymentAccount.addCustomerToAccountHolder(customer);
-            paymentAccountService.savePaymentAccount(paymentAccount);
-            mav.setViewName("linkpaymentaccountconfirmation");
-        } else {
-            System.out.println("verkeerd wachtwoord");
-            model.addAttribute("invalidCredentials", true);
+        if (bindingResult.hasErrors()) {
+           model.addAttribute("invalidCredentials", true);
             mav.setViewName("linkpaymentaccount");
+        } else {
+            Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
+            if(paymentAccountService.checkAccount(linkAccountFormBean, customer)){
+                model.addAttribute("rekeningGekoppeld", true);
+                mav.setViewName("linkpaymentaccount");
+            }
+            else if (linkAccountService.linkAccountValidation(linkAccountFormBean, customer.getUserName())) {
+                PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
+                paymentAccount.addCustomerToAccountHolder(customer);
+                paymentAccountService.savePaymentAccount(paymentAccount);
+                mav.setViewName("linkpaymentaccountconfirmation");
+            }
+            else {
+                model.addAttribute("invalidCredentials", true);
+                mav.setViewName("linkpaymentaccount");
+            }
         }
         return mav;
     }
+
+    @CrossOrigin
+    @PostMapping("/check-Iban")
+    public @ResponseBody boolean checkIban (@RequestParam("iban") String iban){
+               return paymentAccountService.findOneByIban(iban) != null;
+    }
+
+
    }
