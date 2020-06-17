@@ -49,7 +49,7 @@
                     <label for="bsn">Burger Service Nummer</label>
                     <span id="validBsn" class="error" style="float: right; display: none; margin-right: 0;">Vul een geldig BSN in</span>
                     <span th:if="${invalidBsn}" class="error" style="float: right; margin-right: 0;">Vul een geldig BSN in</span>
-                    <input id="bsn" type="text" required pattern="[0-9]{9}" th:field="*{bsn}"
+                    <input id="bsn" type="text" required placeholder="123456789" pattern="[0-9]{9}" th:field="*{bsn}"
                            title="Vul uw BSN in"
                            oninvalid="setCustomValidity('Vul een geldig BSN in')"
                            oninput="setCustomValidity('')"/>
@@ -58,9 +58,10 @@
 
             <div>
                 <p class="formPartHeader">Adresgegevens</p>
-                <div class="formRow" style="width: 150px">
+                <div class="formRow" style="width: 180px">
                     <label for="zipcode">Postcode</label>
-                    <input id="zipcode" type="text" required pattern="[1-9][0-9]{3}[A-Za-z]{2}|[1-9][0-9]{3}[\s][A-Za-z]{2}"
+                    <input id="zipcode" type="text" required placeholder="1234AA of 1234 AA"
+                           pattern="[1-9][0-9]{3}[\s]?[A-Za-z]{2}"
                            th:field="*{zipcode}"
                            title="Vul uw postcode in"
                            oninvalid="setCustomValidity('U moet een Nederlandse postcode invullen (bijvoorbeeld 1111AA of 1111 AA)')"
@@ -74,7 +75,7 @@
                            oninvalid="setCustomValidity('Huisnummer is verplicht')"
                            oninput="setCustomValidity('')" />
                 </div>
-                <div class="formRow" style="width: 345px">
+                <div class="formRow" style="width: 315px">
                     <label for="addition">Toevoeging</label> <br>
                     <input id="addition" type="text" pattern="$|[0-9a-zA-Z -]{1,255}" th:field="*{addition}"
                            title="Vul uw toevoeging in"
@@ -100,15 +101,16 @@
                 <p class="formPartHeader">Contactgegevens</p>
                 <div class="formRow">
                     <label for="phone">Telefoonnummer</label>
-                    <input id="phone" type="tel" required pattern="[0][0-9]{9}" th:field="*{phone}"
+                    <input id="phone" type="tel" required placeholder="0612345678 of 0101234567"
+                           pattern="[0][0-9]{9}" th:field="*{phone}"
                            title="Vul uw telefoonnummer in (zonder streepje)"
                            oninvalid="setCustomValidity('Geef een Nederlands telefoonnummer op (zonder streepje)')"
                            oninput="setCustomValidity('')" />
                 </div>
                 <div class="formRow">
                     <label for="email">Email</label>
-                    <input id="email" type="email" required th:field="*{emailAddress}" maxlength="255"
-                           title="Vul uw email-adres in"
+                    <input id="email" type="email" required placeholder="email@adres.nl" th:field="*{emailAddress}"
+                           maxlength="255" title="Vul uw email-adres in"
                            oninvalid="setCustomValidity('Geef een geldig email-adres op')"
                            oninput="setCustomValidity('')" />
                 </div>
