@@ -50,7 +50,7 @@ public class SignUpService {
     }
 
     // Capitalize all Strings delimited by a space, except for specified Strings
-    private static String capitalizeStrings(String string) {
+    private String capitalizeStrings(String string) {
         string = capitalizeDashedName(string);
         List<String> stringParts = new ArrayList<>(Arrays.asList(string.trim().split("\\s")));
         String streetCaps = StringUtils.capitalize(stringParts.remove(0));
@@ -65,7 +65,7 @@ public class SignUpService {
     }
 
     // Capitalize all strings delimited by '-'
-    private static String capitalizeDashedName(String name) {
+    private String capitalizeDashedName(String name) {
         List<String> nameParts = new ArrayList<>(Arrays.asList(name.trim().split("-")));
         String nameCaps = StringUtils.capitalize(nameParts.remove(0));
         nameParts.add(0, nameCaps);

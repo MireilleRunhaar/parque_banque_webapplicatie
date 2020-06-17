@@ -7,13 +7,8 @@ import nl.team2.parque_banque_server.utilities.AddAccountHolderFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
 
 @Controller
 @SessionAttributes({"customerId", "iban"})
@@ -28,7 +23,7 @@ public class AddAccountHolderController {
     public ModelAndView addAccountHolderHandler(Model model) {
         ModelAndView mav = new ModelAndView();
         if (model.containsAttribute("customerId")) {
-            mav.setViewName("addaccountholder/addaccountholder");
+            mav.setViewName("addaccountholder");
             mav.addObject(new AddAccountHolderFormBean());
         } else {
             mav.setViewName("redirect:/inloggen");
@@ -36,22 +31,35 @@ public class AddAccountHolderController {
         return mav;
     }
 
-    @PostMapping(value = "/rekeninghouder-toevoegen", params = "action=finish")
-    public ModelAndView inputFormHandler(@Valid AddAccountHolderFormBean addAccountHolderFormBean,
-                                         BindingResult bindingResult, Model model) {
-        ModelAndView mav = new ModelAndView();
-        if (bindingResult.hasErrors()) {
-            mav.setViewName("addaccountholder/addaccountholder");
-        } else if (addAccountHolderService.isInsecureCode(addAccountHolderFormBean.getSecurityCode())) {
-            mav.setViewName("addaccountholder/addaccountholder");
-            mav.addObject("insecureCode", true);
-        } else {
-            Authorisation authorisation = addAccountHolderService.createAuthorisation(addAccountHolderFormBean,
-                    (String) model.getAttribute("iban"));
+
+
+    @CrossOrigin
+    @PostMapping("veilige-code")
+    public @ResponseBody
+    boolean securityCodeCheckHandler(@RequestParam("securityCode") String securityCode) {
+        return !addAccountHolderService.isInsecureCode(securityCode);
+    }
+
+    @CrossOrigin
+    @PostMapping("nieuwe-rekeninghouder")
+    public @ResponseBody
+    boolean checkCustomerIsNewHandler(@RequestParam("username") String username, Model model) {
+        return !addAccountHolderService.customerAlreadyAccountHolder(username, (String) model.getAttribute("iban"));
+    }
+
+    @CrossOrigin
+    @PostMapping("authorisatie-opslaan")
+    public @ResponseBody
+    Authorisation saveAuthorisationHandler(@RequestParam("username") String username, @RequestParam("code") String securityCode,
+                                           @RequestParam("iban") String iban) {
+        if (addAccountHolderService.validateInput(username, securityCode, iban)) return null;
+
+        // Check whether this exact authorisation is in the database; if so, return it; if not, save and return new authorisation
+        Authorisation authorisation = addAccountHolderService.authorisationInDatabase(username, securityCode, iban);
+        if (authorisation == null) {
+            authorisation = addAccountHolderService.createAuthorisation(username, securityCode, iban);
             authorisationService.saveAuthorisation(authorisation);
-            mav.addObject(authorisation);
-            mav.setViewName("addaccountholder/addaccountholderconfirmation");
         }
-        return mav;
+        return authorisation;
     }
 }

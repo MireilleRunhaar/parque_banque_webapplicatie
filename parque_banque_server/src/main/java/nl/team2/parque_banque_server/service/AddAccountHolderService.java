@@ -1,18 +1,31 @@
 package nl.team2.parque_banque_server.service;
 
 import nl.team2.parque_banque_server.model.Authorisation;
+import nl.team2.parque_banque_server.model.Customer;
+import nl.team2.parque_banque_server.model.PaymentAccount;
+import nl.team2.parque_banque_server.model.repositories.CustomerRepository;
+import nl.team2.parque_banque_server.model.repositories.PaymentAccountRepository;
 import nl.team2.parque_banque_server.utilities.AddAccountHolderFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Service
 public class AddAccountHolderService {
 
     @Autowired
-    AuthorisationService authorisationService;
+    private AuthorisationService authorisationService;
 
-    public Authorisation createAuthorisation(AddAccountHolderFormBean formBean, String iban) {
-        return new Authorisation(formBean.getUsername(), formBean.getSecurityCode(), iban);
+    @Autowired
+    private CustomerService customerService;
+
+    @Autowired
+    private PaymentAccountService paymentAccountService;
+
+    public Authorisation createAuthorisation(String username, String code, String iban) {
+        return new Authorisation(username, code, iban);
     }
 
     public boolean isInsecureCode(String code) {
@@ -42,5 +55,28 @@ public class AddAccountHolderService {
             numCheck = nextnum;
         }
         return true;
+    }
+
+
+    public boolean customerAlreadyAccountHolder(String username, String iban) {
+        Customer customer = customerService.findByUserName(username);
+        PaymentAccount paymentAccount = paymentAccountService.findOneByIban(iban);
+
+        return paymentAccount.getAccountHolders().contains(customer);
+    }
+
+    public Authorisation authorisationInDatabase(String username, String code, String iban) {
+        List<Authorisation> authorisationList = authorisationService.findAllByUserName(username);
+        for (Authorisation a : authorisationList) {
+            if (a.getIban().equalsIgnoreCase(iban) && a.getSecurityCode().equalsIgnoreCase(code)) {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public boolean validateInput(String username, String code, String iban) {
+        return customerService.findByUserName(username) != null && !isInsecureCode(code) &&
+                paymentAccountService.findOneByIban(iban) != null;
     }
 }

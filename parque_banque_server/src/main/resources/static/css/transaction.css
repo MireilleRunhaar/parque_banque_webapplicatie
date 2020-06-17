@@ -1,5 +1,6 @@
 main {
-    
+
+    font-family: 'Noto', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,6 +30,7 @@ main {
 .formheader h2 {
     margin: 0;
     padding-left: 10%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .debitIban {
@@ -85,15 +87,6 @@ input.t-cents{
     width: 15%;
 }
 
-/*Als er nog een vinkje of een aftellen komt in een balk dan dit:
-
-maak een li
-
-.form-control li {
-position: absolute;
-top: 40px;
-right: 10px;
-} */
 
 .form-control small{
     visibility: hidden;
@@ -105,6 +98,10 @@ right: 10px;
 .form-control.error small {
     color:#a80a0a;
     visibility: visible;
+}
+
+.th small {
+    color:#a80a0a;
 }
 
 .form button {

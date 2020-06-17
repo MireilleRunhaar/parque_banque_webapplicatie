@@ -5,10 +5,7 @@ import nl.team2.parque_banque_server.utilities.SignUpFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -59,5 +56,12 @@ public class SignUpController {
     @PostMapping(value = "/klant-worden", params = "action=cancel")
     public String cancelLoginCredentialsHandler() {
         return "redirect:/";
+    }
+
+    @CrossOrigin
+    @PostMapping("/bsn-controle")
+    public @ResponseBody
+    boolean bsnValidationHandler(@RequestParam("bsn") String bsn) {
+        return signUpService.passesElfproef(bsn);
     }
 }
