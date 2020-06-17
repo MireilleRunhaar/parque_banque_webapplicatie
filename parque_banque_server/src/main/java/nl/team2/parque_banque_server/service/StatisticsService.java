@@ -63,11 +63,12 @@ public class StatisticsService {
     }
 
 
-    public Map<Long,Object[]> getTenRichestBusinessCustomers(){
-        Map<Long, Object[]> map = new TreeMap<>(Collections.reverseOrder());
+    public Map<Integer,Object[]> getTenRichestBusinessCustomers(){
+        Map<Integer, Object[]> map = new TreeMap<>();
         List<Customer> customers=customerRepository.getTenRichestBusinessCustomers();
         long totalBalance=0L;
         int numberOfAccounts=0;
+        int count=0;
         for (Customer customer:customers){
            for (PaymentAccount paymentAccount: customer.getPaymentAccounts()){
                if (paymentAccount instanceof BusinessAccount){
@@ -75,7 +76,8 @@ public class StatisticsService {
                    numberOfAccounts+=1;
                }
            }
-           map.put(totalBalance,new Object[]{customer,numberOfAccounts});
+           count+=1;
+           map.put(count,new Object[]{customer,totalBalance,numberOfAccounts});
            totalBalance=0;
            numberOfAccounts=0;
 

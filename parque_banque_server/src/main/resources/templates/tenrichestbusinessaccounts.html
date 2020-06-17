@@ -33,8 +33,8 @@
         <td th:text="${index.count}"></td>
         <td th:text="${richestBusinessCustomers.get(key)[0].firstName} + ' ' + ${richestBusinessCustomers.get(key)[0].affix}
          + ' ' + ${richestBusinessCustomers.get(key)[0].surName}"></td>
-        <td th:text="'€ ' + ${#numbers.formatDecimal(key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
-        <td th:text="${richestBusinessCustomers.get(key)[1]}" ></td>
+        <td th:text="'€ ' + ${#numbers.formatDecimal(richestBusinessCustomers.get(key)[1]/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
+        <td th:text="${richestBusinessCustomers.get(key)[2]}" ></td>
     </tr>
 </table>
 
