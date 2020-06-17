@@ -25,7 +25,7 @@
     <main>
         <div class="container">
             <div class=formheader>
-                <h2>Overboeken van rekening <span class="debitIban" th:text="${iban.toString()}"></span></h2>
+                <h2>Overboeken van rekening <span class="debitIban" th:text="${ibanString}"></span></h2>
             </div>
              <form class="form" id="form" action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >
                     <div id="div-amount" class="form-control">
