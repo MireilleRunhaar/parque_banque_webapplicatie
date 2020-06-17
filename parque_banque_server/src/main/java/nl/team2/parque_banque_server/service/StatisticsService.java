@@ -43,19 +43,20 @@ public class StatisticsService {
         return customerRepository.getTenRichestPrivateCustomers();
     }
 
-    public Map<Long, Object[]> getTenRichestPrivateCustomersStatistics() {
+    public Map<Integer, Object[]> getTenRichestPrivateCustomersStatistics() {
         List<Customer> customers = getTenRichestPrivateCustomers();
-        Map<Long, Object[]> results = new TreeMap<>(Collections.reverseOrder());
+        Map<Integer, Object[]> results = new TreeMap<>();
         long totalBalance = 0L;
         int numberOfAccounts = 0;
-        for (Customer c : customers) {
-            for (PaymentAccount paymentAccount : c.getPaymentAccounts()) {
+        for (int index = 0; index < customers.size(); index++) {
+            for (PaymentAccount paymentAccount : customers.get(index).getPaymentAccounts()) {
                 if (paymentAccount instanceof PrivateAccount) {
                     totalBalance += paymentAccount.getBalance();
                     numberOfAccounts += 1;
                 }
             }
-            results.put(totalBalance, new Object[]{c, numberOfAccounts});
+//            results.put(totalBalance, new Object[]{c, numberOfAccounts});
+            results.put(index, new Object[]{customers.get(index), totalBalance, numberOfAccounts});
             totalBalance = 0;
             numberOfAccounts = 0;
         }

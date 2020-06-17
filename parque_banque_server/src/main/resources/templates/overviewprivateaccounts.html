@@ -24,11 +24,11 @@
                 <th>Aantal Rekeningen</th>
             </tr>
             </thead>
-            <tr th:each="key, index : ${richestCustomers.keySet()}">
-                <td th:text="${index.count}"></td>
+            <tr th:each="key : ${richestCustomers.keySet()}">
+                <td th:text="${key} + 1"></td>
                 <td th:text="${richestCustomers.get(key)[0].firstName} + ' ' + ${richestCustomers.get(key)[0].affix} + ' ' + ${richestCustomers.get(key)[0].surName}"></td>
-                <td th:text="'€ ' + ${#numbers.formatDecimal(key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
-                <td th:text="${richestCustomers.get(key)[1]}" class="accountsColumn"></td>
+                <td th:text="'€ ' + ${#numbers.formatDecimal(richestCustomers.get(key)[1]/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
+                <td th:text="${richestCustomers.get(key)[2]}" class="accountsColumn"></td>
             </tr>
 
         </table>
