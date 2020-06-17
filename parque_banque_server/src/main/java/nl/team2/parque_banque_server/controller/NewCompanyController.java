@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("form")
+@SessionAttributes("companyFormBean")
 public class NewCompanyController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class NewCompanyController {
     @GetMapping("/bedrijf-aanmaken")
     public String showNewCompanyPage(Model model) {
         Company company = new Company();
-        model.addAttribute("newCompany", new CompanyFormBean());
+        model.addAttribute("companyFormBean", new CompanyFormBean());
         model.addAttribute("sectoren", sectorService.sectorIterable());
         return "newcompany";
     }
@@ -43,7 +43,6 @@ public class NewCompanyController {
 
     //Tonen van het ingevulde formulier op de confirmcompany pagina
     @PostMapping("/nieuw-bedrijf-aanmaken")
-
     public ModelAndView submitNewCompanyForm(@Valid @ModelAttribute CompanyFormBean companyFormBean,
                                               BindingResult bindingResult) {
         ModelAndView mav = new ModelAndView();
@@ -55,7 +54,7 @@ public class NewCompanyController {
         }
         Sector sector = sectorService.sectorOpId(Integer.parseInt(companyFormBean.getId()));
         mav.addObject("companyFormBean", companyFormBean);
-        mav.addObject("name", companyFormBean.getName());
+        mav.addObject("name", companyFormBean.getCompanyName());
         mav.addObject("sector", sector);
         mav.addObject("businessAccount", true);
         return mav;

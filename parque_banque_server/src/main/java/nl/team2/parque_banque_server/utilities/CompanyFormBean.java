@@ -18,7 +18,7 @@ public class CompanyFormBean {
 
     @NotBlank
     @Size(min = 2, max = 254)
-    private String name;
+    private String companyName;
 
     @NotBlank
     private String id;
@@ -44,12 +44,12 @@ public class CompanyFormBean {
         this.btwNr = btwNr;
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
 
@@ -66,7 +66,7 @@ public class CompanyFormBean {
         return "CompanyFormBean{" +
                 "kvkNr='" + kvkNr + '\'' +
                 ", btwNr='" + btwNr + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + companyName + '\'' +
                 ", id='" + id + '\'' +
                 '}';
     }
