@@ -1,7 +1,18 @@
 * {
     font-family: sans-serif;
+
 }
 
+.header-left{
+    position: relative;
+    left: 10%;
+    font-family:Montserrat;
+}
+
+table tr:hover td {
+    background-color: #37AD49;
+
+}
 
 
 .content-table {
@@ -12,6 +23,10 @@
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    left: 10%;
+
+
 }
 
 .content-table thead tr {
@@ -19,6 +34,8 @@
     color: #ffffff;
     text-align: left;
     font-weight: bold;
+
+
 }
 
 .content-table th,
@@ -55,6 +72,8 @@
     font-size: 1.0em;
     float: left;
     margin-top:   1%;
+    position: relative;
+    left: 10%;
 
 
 
