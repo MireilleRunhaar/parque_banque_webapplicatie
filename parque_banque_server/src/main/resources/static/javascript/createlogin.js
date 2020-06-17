@@ -67,8 +67,6 @@ function validateStrength() {
         strength += 20;
     }
 
-    submit.disabled = strength < 100;
-
     return strength;
 }
 

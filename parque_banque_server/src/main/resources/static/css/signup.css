@@ -1,5 +1,5 @@
-body {
-    font-family: 'Montserrat', sans-serif;
+main {
+    font-family: sans-serif;
 }
 
 button {
@@ -31,11 +31,25 @@ form {
     border-style: outset;
     border-radius: 10px;
     border-color: #37AD49;
+    background: #fafafa;
+}
+
+.formRow {
+    width: 645px;
 }
 
 main {
     margin-top: 80px;
     margin-bottom: 100px;
+}
+
+.headInfo {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1, p {
@@ -44,33 +58,45 @@ h1, p {
     text-align: center;
 }
 
-form > div > p {
+.formPartHeader {
     margin-left: -10px;
     border-bottom-style: groove;
     border-bottom-width: thin;
-}
-
-body > p {
     margin-bottom: 5px;
+    font-size: 1.3em;
 }
 
 label {
     margin: 5px;
+    font-size: 1.2em;
 }
 
 input {
     border-radius: 4px;
     margin: 5px;
     width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1.1em;
 }
 
 progress {
     border-radius: 4px;
-    margin-top: 5px;
-    margin-right: 10px;
 }
 
 .error {
     color: red;
     margin-right: 10px;
+}
+
+.content-container {
+    display: inline;
+
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    margin: 0;
+    top: 10px;
 }

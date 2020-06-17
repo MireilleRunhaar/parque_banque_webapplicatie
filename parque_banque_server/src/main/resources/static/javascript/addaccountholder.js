@@ -1,6 +1,6 @@
 const usernameField = document.getElementById("username");
 const codeField = document.getElementById("securityCode");
-const form = document.getElementById("form")
+const form = document.getElementById("form");
 
 
 usernameField.addEventListener("focusout", checkUserNameExists);
@@ -18,7 +18,7 @@ form.addEventListener("submit", function(event) {
                 }
             })
         } else {
-            errorWindow()
+            errorWindow();
         }
     })
 })

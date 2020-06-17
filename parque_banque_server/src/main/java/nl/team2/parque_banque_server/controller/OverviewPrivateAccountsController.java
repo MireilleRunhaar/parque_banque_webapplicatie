@@ -32,7 +32,7 @@ public class OverviewPrivateAccountsController {
         } else if (employee.getRole().getId() != 1)   {
             return "redirect:/personeel-home";
         } else {
-            Map<Long, Object[]> richestCustomers = statisticsService.getTenRichestPrivateCustomersStatistics();
+            Map<Integer, Object[]> richestCustomers = statisticsService.getTenRichestPrivateCustomersStatistics();
             model.addAttribute("richestCustomers", richestCustomers);
             return "overviewprivateaccounts";
         }
