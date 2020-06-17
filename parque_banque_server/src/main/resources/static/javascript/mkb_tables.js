@@ -2,7 +2,7 @@
 var listItems=document.getElementById("mkb-list").getElementsByTagName("tr")
 
 for (i = 0; i <listItems.length ; i++) {
-    listItems[i].addEventListener("click",activateItem);
+    listItems[i].addEventListener("mouseover",activateItem);
 }
 
 function activateItem() {
