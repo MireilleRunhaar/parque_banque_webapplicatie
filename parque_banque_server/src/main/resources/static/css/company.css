@@ -5,6 +5,7 @@ html{
 body {
     padding: 0;
     margin: 0;
+    background-color: lightgray;
 }
 
 #logo img{
@@ -32,83 +33,33 @@ body {
     background-color: #37ad49;
 }
 
-
 #form{
+    display: block;
+    margin: auto;
     text-align: center;
-    width: 95%;
+    width: 55%;
     padding-top: 5%;
-    margin-top: 5%;
+    margin-top: 10%;
+    border: #37AD49;
+    border-radius: 10px;
+    border-style: double;
+    background-color: white;
 }
 
-#formheader{
-
-}
-
-#form-content ul{
+ul {
     list-style-type: none;
 }
 
-#form-content li{
-    display: block;
-    margin: 15px;
-    padding: 5px;
-}
 
-#form-content label{
-    display: block;
-    margin-bottom: 5px;
-    padding-right: 5px;
-}
-
-#form-content input{
+li .field{
     border: 1px solid black;
     border-radius: 4px;
     display: inline-block;
     font-family: inherit;
     font-size: 14px;
     padding: 10px;
-    width: 40%;
-}
-
-#kvkconfirm {
-    display: inline-block;
-    font-family: inherit;
-    font-size: 14px;
-    padding: 5px;
-    width: 40%;
-}
-
-#btwconfirm {
-    display: inline-block;
-    font-family: inherit;
-    font-size: 14px;
-    padding: 5px;
-    width: 40%;
-}
-
-#nameconfirm{
-    display: inline-block;
-    font-family: inherit;
-    font-size: 14px;
-    padding: 5px;
-    width: 40%;
-}
-
-#sectorconfirm{
-    display: inline-block;
-    font-family: inherit;
-    font-size: 14px;
-    padding: 5px;
-    width: 60%;
-}
-
-#form-content select{
-    border: 1px solid black;
-    font-family: inherit;
-    font-size: 14px;
-    padding: 5px;
-    width: 60%;
-    border-radius:4px;
+    margin: 5px;
+    width: 50%;
 }
 
 button {
@@ -121,6 +72,6 @@ button {
     border-bottom-width: 2px;
     color: white;
     font-size: 14px;
-    padding: 10px;
+    padding: 15px;
     margin: 30px;
 }
