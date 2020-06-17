@@ -38,7 +38,7 @@ public class NewBusinessAccountController {
         if(customer != null){
             Set<Company> companies = bas.getCompaniesFromCustomer(customer);
             if(companies.isEmpty()){
-                model.addAttribute("newCompany", new CompanyFormBean());
+                model.addAttribute("companyFormBean", new CompanyFormBean());
                 model.addAttribute("sectoren", sectorService.sectorIterable());
                 return "newcompany";
             } else {

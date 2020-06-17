@@ -48,7 +48,7 @@
 <div>
 <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
     <label>Kvk-nummer *</label>
-    <span id="kvkBekend", class="error" style="float:right; display: none">
+    <span id="kvkBekend" class="error" style="float:right; display: none">
         Er lijkt al een bedrijf met dit Kvk-nummer bij ons bekend te zijn.
         Kloppen deze gegevens? Neem bij twijfel contact op, dan helpen we u persoonlijk.</span>
     <input type="text" th:field="*{kvkNr}"
