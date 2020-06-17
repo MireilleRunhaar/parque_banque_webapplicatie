@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-
 public class LinkAccountService {
 
     @Autowired
@@ -30,5 +29,9 @@ public class LinkAccountService {
         return false;
     }
 
+
+    public AuthorisationService getAuthorisationService() {
+        return authorisationService;
+    }
 
 }
