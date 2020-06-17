@@ -5,136 +5,84 @@
         <title>rekeningoverzicht</title>
 
         <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+        <link th:href="@{/css/accountview.css}" href="../static/css/accountview.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/javascript/accountview.js" defer></script>
 
-        <style>
-            body {
-                position: absolute;
-            }
-            table {
-                alignment: center;
-                width: 100%;
-                border: 1px solid black
-            }
-            td {
-                font-family: "Arial",sans-serif;
-                width: 100px;
-                font-size: small;
-            }
-            th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                font-family: "Arial",sans-serif;
-                font-size: small;
-                padding: 8px;
-                width: 300px;
-            }
-            thead {
-                font-size: 8px
-            }
-            h1 {
-                font-family: "Arial",sans-serif;
-                font-size: x-large;
-            }
-            h2 {
-                font-family: "Arial", sans-serif;
-                font-size: small;
-            }
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-            button {
-                alignment: left;
-            }
-            tr[data-href]:hover {
-                cursor: pointer;
-            }
-        </style>
     </head>
 
     <body>
         <!-- navigatie -->
         <nav class="navigation">
             <ul>
-                <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
-                <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
-                <li class="nav-link"><a  href="/rekening-openen">Rekening openen</a></li>
+                <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{/logo-small.png}" alt="parque banque"></a></li>
                 <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+                <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
+
             </ul>
         </nav>
 
         <!-- body -->
-        <br/><br/><br/>
-        <h1>Welkom <span th:text="${customer.firstName}"></span> <span th:text="${customer.affix}"></span> <span th:text="${customer.surName}"></span> bij Parque Banque!
-            <br/>
-            <h2>Hier vindt u het overzicht van uw rekening(en)</h2>
-        </h1>
+        <main class="container">
+            <h2>Welkom terug <span th:text="${customer.firstName}"></span> <span th:text="${customer.affix}"></span><span th:text="${customer.surName}"></span>!</h2>
+            <h3>Selecteer een rekening voor meer informatie.</h3>
 
-        <br/>
+            <div class="buttons">
+                <button onclick="document.location = '/particuliere-rekening-openen'">Particuliere Rekening openen</button>
+                <button onclick="document.location = '/zakelijke-rekening'">Zakelijke Rekening openen</button>
+                <button onclick="document.location = '/rekening-koppelen'">Rekening koppelen</button>
+            </div>
 
-        <button onclick="document.location = '/particuliere-rekening-openen'">Particuliere Rekening openen</button>
-        <button onclick="document.location = '/zakelijke-rekening'">Zakelijke Rekening openen</button>
-        <button onclick="document.location = '/rekening-koppelen'">Rekening koppelen</button>
+            <br>
 
+            <h1>Prive Rekening</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rekeninghouder</th>
+                        <th>IBAN</th>
+                        <th>Saldo</th>
+                    </tr>
+                </thead>
 
-        <br/>
+                <tbody>
+                    <tr th:if="${privateaccounts.empty}">
+                        <td>Geen rekeningen</td>
+                    </tr>
+                    <tr th:each="privateaccount : ${privateaccounts}" th:data-href="@{/rekening-overzicht/details{iban} (iban=${privateaccount.iban})}">
+                        <td th:text="${privateaccount.accountholders}"></td>
+                        <td th:text="${privateaccount.iban}"></td>
+                        <td th:text="${privateaccount.balanceEuros}"></td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <h1>Prive Rekening</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Rekeninghouder</th>
-                    <th>IBAN</th>
-                    <th>Saldo</th>
-                </tr>
-            </thead>
+            <h1>Zakelijke rekening</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bedrijfsnaam</th>
+                        <th>Rekeninghouder</th>
+                        <th>IBAN</th>
+                        <th>Saldo</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr th:if="${privateaccounts.empty}">
-                    <td> Geen rekeningen </td>
-                </tr>
-                <tr th:each="privateaccount : ${privateaccounts}" th:data-href="@{/rekening-overzicht/details{iban} (iban=${privateaccount.iban})}">
-                    <td th:text="${privateaccount.accountholders}"></td>
-                    <td th:text="${privateaccount.iban}"></td>
-                    <td th:text="${privateaccount.balanceEuros}"></td>
-                </tr>
-            </tbody>
-        </table>
-        <br/>
-        <br/>
+                <tbody>
+                    <tr th:if="${businessaccounts.empty}">
+                        <td> Geen rekeningen </td>
+                    </tr>
+                    <tr th:each="businessaccount : ${businessaccounts}" th:data-href="@{/rekening-overzicht/details{iban}
+                    (iban=${businessaccount.iban})}">
+                        <td th:text="${businessaccount.businessName}"></td>
+                        <td th:text="${businessaccount.accountholders}"></td>
+                        <td th:text="${businessaccount.iban}"></td>
+                        <td th:text="${businessaccount.balanceEuros}"></td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <h1>Zakelijke rekening</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Bedrijfsnaam</th>
-                    <th>Rekeninghouder</th>
-                    <th>IBAN</th>
-                    <th>Saldo</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr th:if="${businessaccounts.empty}">
-                    <td> Geen rekeningen </td>
-                </tr>
-                <tr th:each="businessaccount : ${businessaccounts}" th:data-href="@{/rekening-overzicht/details{iban}
-                (iban=${businessaccount.iban})}">
-                    <td th:text="${businessaccount.businessName}"></td>
-                    <td th:text="${businessaccount.accountholders}"></td>
-                    <td th:text="${businessaccount.iban}"></td>
-                    <td th:text="${businessaccount.balanceEuros}"></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <script>
-            $(document).ready(function () {
-                $(document.body).on("click", "tr[data-href]", function () {
-                    window.location.href = this.dataset.href;
-                })
-            })
-        </script>
+        </main>
     </body>
 </html>

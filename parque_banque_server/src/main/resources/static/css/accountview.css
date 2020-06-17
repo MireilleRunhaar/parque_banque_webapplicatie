@@ -1,0 +1,89 @@
+/* GENERAL */
+html {
+    font-family: 'Noto', sans-serif;
+}
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+h3 {
+    font-size: 16px;
+}
+
+
+/* PAGE CONTAINER */
+.container {
+    margin: 70px 30px 15px;
+}
+.container h1 {
+    margin-bottom: 10px;
+}
+.container h2 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.container h3 {
+    margin-top: 0;
+    margin-bottom: 3px;
+    font-weight: lighter;
+}
+
+
+/* BUTTONS */
+.buttons {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+button {
+    width: 190px;
+    height: 30px;
+    border: none;
+    color: #FFFFFF;
+    background: #000000;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+button:hover{
+    text-decoration: underline;
+}
+
+
+/* TABLES */
+table {
+    width: 100%;
+    border: 1px solid #CCCBCA;
+    margin-bottom: 40px;
+}
+thead {
+    background: #37AD49;
+    color: #FFFFFF;
+}
+th, td {
+    text-align: left;
+    font-size: 14px;
+    padding: 8px;
+    width: 100px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+tr[data-href]:hover {
+    cursor: pointer;
+}
+
+
+/* SELECTED ACCOUNT */
+.datetime {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    margin-right: 30px;
+}
+.accountinfo {
+    font-size: 14px;
+}
+.accountinfo .balance {
+    font-size: 40px;
+    margin-top: 10px;
+}
