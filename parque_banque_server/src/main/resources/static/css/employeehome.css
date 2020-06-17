@@ -1,0 +1,87 @@
+/* GENERAL */
+html {
+    font-family: 'Noto', sans-serif;
+}
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+main {
+    margin: 90px 30px 15px;
+}
+
+
+/* LEFT SIDE */
+.mainleft {
+    float: left;
+    width: 73%;
+    height: 100%;
+    margin-bottom: 15px;
+}
+.mainleft .title {
+    margin-bottom: 15px;
+}
+.bericht {
+    margin-bottom: 20px;
+}
+.bericht h2 {
+    font-weight: lighter;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.bericht p {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+
+/* RIGHT SIDE NAVIGATION */
+.maintopright, .mainright {
+    float: right;
+    width: 23%;
+    border: thick solid #37ad49;
+    border-radius: 5px;
+    height: 100%;
+    margin-bottom: 20px;
+}
+.employeenav {
+    padding: 10px;
+    margin-top: 0;
+}
+.employeenav h3,
+.agenda h3 {
+    font-size: 18px;
+    font-weight: lighter;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.employeenav h4,
+.agenda h4 {
+    font-size: 15px;
+    font-weight: lighter;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.employeenav a {
+    display: block;
+    color: #37AD49;
+    margin-bottom: 2px;
+}
+.employeenav p {
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+.agenda p {
+    font-size: 14px;
+    font-weight: lighter;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+
+.mainright .agenda {
+    padding: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+}

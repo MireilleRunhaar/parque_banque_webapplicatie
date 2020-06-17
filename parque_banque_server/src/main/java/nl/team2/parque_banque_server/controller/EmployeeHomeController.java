@@ -17,7 +17,7 @@ public class EmployeeHomeController {
 
     @GetMapping("/personeel-home")
     public String handleEmployeeHomepage(Model model) {
-        if(!model.containsAttribute("employeeId")) {
+        if(model.getAttribute("employeeId") == null) {
             return "loginemployee";
         } else {
             //Create an employee from the session attribute
