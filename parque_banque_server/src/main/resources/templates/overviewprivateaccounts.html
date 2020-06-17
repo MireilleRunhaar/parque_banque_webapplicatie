@@ -22,21 +22,21 @@
 <br><br><br><br>
 <h1>Particuliere Rekeninghouders</h1>
 
-<table id="ranking-table" table class="content-table">
-    <thead>
-    <tr>
-        <th>Nummer</th>
-        <th>Klant</th>
-        <th>Saldo</th>
-        <th>Aantal Rekeningen</th>
-    </tr>
-    </thead>
-    <tr th:each="key, index : ${richestCustomers.keySet()}">
-        <td th:text="${index.count}"></td>
-        <td th:text="${richestCustomers.get(key)[0].firstName} + ' ' + ${richestCustomers.get(key)[0].affix} + ' ' + ${richestCustomers.get(key)[0].surName}"></td>
-        <td th:text="'€ ' + ${#numbers.formatDecimal(key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
-        <td th:text="${richestCustomers.get(key)[1]}" class="accountsColumn"></td>
-    </tr>
+        <table id="ranking-table" table class="content-table">
+            <thead>
+            <tr>
+                <th>Nummer</th>
+                <th>Klant</th>
+                <th>Saldo</th>
+                <th>Aantal Rekeningen</th>
+            </tr>
+            </thead>
+            <tr th:each="key : ${richestCustomers.keySet()}">
+                <td th:text="${key} + 1"></td>
+                <td th:text="${richestCustomers.get(key)[0].firstName} + ' ' + ${richestCustomers.get(key)[0].affix} + ' ' + ${richestCustomers.get(key)[0].surName}"></td>
+                <td th:text="'€ ' + ${#numbers.formatDecimal(richestCustomers.get(key)[1]/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
+                <td th:text="${richestCustomers.get(key)[2]}" class="accountsColumn"></td>
+            </tr>
 
 </table>
 

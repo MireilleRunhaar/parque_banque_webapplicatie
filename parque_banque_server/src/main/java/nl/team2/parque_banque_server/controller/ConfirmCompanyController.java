@@ -8,14 +8,13 @@ import nl.team2.parque_banque_server.utilities.CompanyFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes("customerId")
+@SessionAttributes({"customerId", "companyFormBean"})
 public class ConfirmCompanyController {
 
     @Autowired
@@ -30,6 +29,8 @@ public class ConfirmCompanyController {
     private EmployeeService employeeService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private SectorService sectorService;
 
     public static final long START_BALANCE = 2500L;
 
@@ -54,17 +55,20 @@ public class ConfirmCompanyController {
         bas.saveBusinessAccount(businessAccount);
         model.addAttribute("iban", businessAccount.getIban());
         model.addAttribute("balanceCent", pas.balanceInEuros(businessAccount.getBalance()));
-        model.addAttribute("name", companyFormBean.getName());
+        model.addAttribute("name", companyFormBean.getCompanyName());
         model.addAttribute("businessAccount", true);
         return mav;
     }
 
     //Klant ziet fout en kan bedrijfsgegevens aanpassen
-    @GetMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=wijzigBedrijfsinformatie")
-    public ModelAndView editNewCompanyHandler(@ModelAttribute CompanyFormBean companyFormBean) {
+    @PostMapping(value = "/nieuw-bedrijf-aanmaken", params = "action=wijzigBedrijfsinformatie")
+    public ModelAndView editNewCompanyHandler(@ModelAttribute CompanyFormBean companyFormBean,
+                                              @ModelAttribute Sector sector) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("newcompany");
-        mav.addObject("CompanyFormBean", companyFormBean);
+
+        mav.addObject("sectoren", sectorService.sectorIterable());
+        mav.addObject("companyFormBean", companyFormBean);
         return mav;
     }
 
