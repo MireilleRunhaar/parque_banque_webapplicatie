@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 
@@ -50,5 +51,11 @@ public class LoginEmployeeController {
             model.addAttribute("employeeId", employee.getId());
             return "redirect:/personeel-home";
         }
+    }
+
+    @GetMapping("/uitloggen-personeel")
+    public String employeeLogOuthandler(SessionStatus sessionStatus){
+        sessionStatus.setComplete();
+        return "redirect:/";
     }
 }
