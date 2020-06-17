@@ -78,12 +78,19 @@
     border-radius: 15px;
     background-color: #2e2a2a;
     border: 2px solid #2e2a2a;
-    border-color: #2e2a2a;
     box-shadow: grey 0 0 3px;
     font-family: sans-serif;
     font-size: 1.0em;
     cursor: pointer;
     margin-left: 10px;
 
-
 }
+
+#bevestigen:hover {
+    box-shadow: 0 12px 12px 0 rgba(0,0,0,0.22), 0 15px 40px 0 rgba(0,0,0,0.15);
+}
+
+#terug:hover {
+    box-shadow: 0 12px 12px 0 rgba(0,0,0,0.22), 0 15px 40px 0 rgba(0,0,0,0.15);
+}
+
