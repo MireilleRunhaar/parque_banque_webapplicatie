@@ -55,7 +55,6 @@ public class StatisticsService {
                     numberOfAccounts += 1;
                 }
             }
-//            results.put(totalBalance, new Object[]{c, numberOfAccounts});
             results.put(index, new Object[]{customers.get(index), totalBalance, numberOfAccounts});
             totalBalance = 0;
             numberOfAccounts = 0;
