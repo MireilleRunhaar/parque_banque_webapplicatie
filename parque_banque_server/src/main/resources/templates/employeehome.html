@@ -44,35 +44,14 @@
                 </div>
             </div>
 
-            <div class="maintopright">
+            <div class="mainright">
                 <div class="employeenav">
-                    <h3>Navigatie voor <span th:text="${employee.role.name}"></span>:</h3>
+                    <h3>Pagina's <span th:text="${employee.role.name}"></span>:</h3>
                     <a th:if="${employee.role.id} eq '1'" class="private" href="/overzicht-particulier">- Overzicht particulieren</a>
                     <a th:if="${employee.role.id} eq '2'" class="business" href="/overzicht-bedrijven">- Overzicht MKB</a>
                     <p th:if="${employee.role.id} eq '3'" class="account">- Geen</p>
                 </div>
             </div>
-
-            <div class="mainright">
-                <div class="agenda">
-                    <h3>Agenda</h3>
-                    <h4>Juni</h4>
-                    <p>23</p>
-
-                    <h4>Juli</h4>
-                    <p>8</p>
-                    <p>15</p>
-                    <p>22</p>
-                    <p>23</p>
-
-                    <h4>Augustus</h4>
-                    <p>8</p>
-                    <p>15</p>
-                    <p>22</p>
-                    <p>23</p>
-                </div>
-            </div>
-
         </main>
     </body>
 </html>
