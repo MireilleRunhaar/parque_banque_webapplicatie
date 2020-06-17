@@ -32,7 +32,13 @@ form.addEventListener('submit', (e) => {
 async function checkInputs(){
     let amountInput = amount.value;
     let centsInput = cents.value;
-    let totalAmount = (Number(amountInput) * 100) + Number(centsInput);
+    let totalAmount = validateTotalAmount(amountInput, centsInput);
+    if(totalAmount){
+        totalAmount = (Number(amountInput) * 100) + Number(centsInput);
+    } else {
+        setErrorFor(amount, "Vul een bedrag in tot 100.000 euro")
+        return false;
+    }
 
     let validAmount = await checkBalanceDebitAccount(totalAmount);
     let validIban = await checkIbanExcist(iban.value);
