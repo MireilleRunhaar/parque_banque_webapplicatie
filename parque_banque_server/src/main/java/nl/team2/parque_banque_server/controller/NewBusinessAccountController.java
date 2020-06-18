@@ -22,7 +22,7 @@ import java.util.Set;
  */
 
 @Controller
-@SessionAttributes("customerId")
+@SessionAttributes({"customerId", "companyFormBean"})
 public class NewBusinessAccountController {
 
     @Autowired private CustomerService customerService;
@@ -38,12 +38,12 @@ public class NewBusinessAccountController {
         if(customer != null){
             Set<Company> companies = bas.getCompaniesFromCustomer(customer);
             if(companies.isEmpty()){
-                model.addAttribute("newCompany", new CompanyFormBean());
+                model.addAttribute("companyFormBean", new CompanyFormBean());
                 model.addAttribute("sectoren", sectorService.sectorIterable());
                 return "newcompany";
             } else {
             model.addAttribute("companies", companies);
-            model.addAttribute("company", new CompanyFormBean());
+            model.addAttribute("companyFormBean", new CompanyFormBean());
             return "newbusinessaccount";
             }
         }else{

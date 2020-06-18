@@ -1,0 +1,94 @@
+html{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: lightgray;
+}
+h1{
+    padding-bottom: 40px;
+}
+
+#logo img{
+    width: 130px;
+    height:50px;
+    padding: 0;
+    margin: 0;
+}
+
+.logo-link {
+    display: inline-block;
+    position: relative;
+}
+
+.navigation{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.navigation ul{
+    height: 50px;
+    overflow: hidden;
+    background-color: #37ad49;
+}
+
+#form{
+    display: block;
+    margin: auto;
+    text-align: center;
+    width: 55%;
+    padding-top: 5%;
+    margin-top: 10%;
+    border: #37AD49;
+    border-radius: 10px;
+    border-style: double;
+    background-color: white;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+li .field{
+    border: 1px solid black;
+    border-radius: 4px;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    margin: 5px;
+    width: 50%;
+}
+
+#sectorField{
+margin-left: 60px;
+    width: 53%;
+    overflow: auto;
+}
+
+#sector{
+    margin-left: 62px;
+    width: 52%;
+    overflow: auto;
+    padding: 2px;
+}
+
+
+button {
+    border-radius: 4px;
+    background-color: #37AD49;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+    color: white;
+    font-size: 14px;
+    padding: 15px;
+    margin: 30px;
+}

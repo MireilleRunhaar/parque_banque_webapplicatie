@@ -1,88 +1,72 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="UTF-8">
-    <title>Nieuw bedrijf - Parque Banque</title>
-    <link th:href="@{/css/signup.css}" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" th:href="@{/images/park-bench-small.png}">
+    <title>Nieuw bedrijf aanmaken bij Parque Banque</title>
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link th:href="@{/css/company.css}" href="../static/css/company.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script type="text/javascript" src="/javascript/kvkinuse.js" defer></script>
-    <style type="text/css">
-        img{
-            text-align: left;
-            display: inline-block;
-            height: 50px;
-        }
-        body {
-            text-align: center;
-        }
-        label {
-            display: inline-block;
-            width: 100px;
-            margin: 5px;
-            text-align: left;
-        }
-        input {
-            width: 20%;
-        }
-        button {
-            padding: 5px;
-            margin: 10px;
-            border-left: none;
-            border-right: none;
-            border-top: none;
-            border-bottom-color: #242121;
-            background-color: #37AD49;
-            color: white;
-        }
 
-    </style>
 </head>
 <body>
-<a href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque" class="logolink"></a>
-<a href="/uitloggen">Uitloggen</a>
-<br>
-<h1>Bedrijf aanmelden bij Parque Banque</h1>
-<p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p>
-<p>Velden met een * zijn verplicht.</p><br>
-<!--Formulier met nieuwe bedrijfsgegevens-->
-<div>
-<form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
-    <label>Kvk-nummer *</label>
-    <span id="kvkBekend", class="error" style="float:right; display: none">
-        Er lijkt al een bedrijf met dit Kvk-nummer bij ons bekend te zijn.
-        Kloppen deze gegevens? Neem bij twijfel contact op, dan helpen we u persoonlijk.</span>
-    <input type="text" th:field="*{kvkNr}"
-           required pattern="^[0-9]{8}$"
-           title="Het KvK-nummer bestaat uit 8 cijfers."
-           oninvalid="setCustomValidity('Controleer of het KvK-nummer klopt')"
-           oninput="setCustomValidity('')">
-    <br/><br/>
+<nav class="navigation">
+    <ul>
+        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{/logo-small.png}" alt="parque banque"></a></li>
+        <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+        <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
 
-    <label>Btw-nummer *</label>
-    <input type="text" th:field="*{btwNr}"
-           required pattern="^[A-Za-z]{2}[0-9]{9}[Bb][0-9]{2}$"
-           title="Het btw-nummer bestaat uit 14 tekens en begint met een landcode, bijvoorbeeld NL."
-           oninvalid="setCustomValidity('Controleer of het btw-nummer klopt')"
-           oninput="setCustomValidity('')">
-        <br><br>
+    </ul>
+</nav>
 
-    <label>Bedrijfsnaam *</label>
-    <input type="text" th:field="*{companyName}"
-           required pattern="^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[a-zA-Z0-9 '~@#&?!*+-]{2,254}$"
-           oninvalid="setCustomValidity('Controleer of de bedrijfsnaam klopt.')"
-           oninput="setCustomValidity('')"/>
-        <br><br>
+    <div id="form">
+        <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
 
-    <label>Sector *</label>
-    <select id="sectorField" th:field="*{id}">
-        <option th:each="sector : ${sectoren}" th:value="${sector.getId()}" th:text="${sector.getName()}"
-                th:selected="${companyFormBean.id == sector.getId()}"
-                oninput="setCustomValidity('')"></option>
-    </select>
-        <br><br>
-    <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
-</form>
-</div>
+            <h1>Bedrijf aanmelden bij Parque Banque</h1>
+            <p>Vul hieronder de gegevens in van het bedrijf waarvoor u een rekening wilt openen:</p>
+
+            <ul>
+                <li>
+                    <label for="kvkNr">Kvk-nummer * </label>
+                    <input id="kvkNr" class="field" type="text" placeholder=" 12345678" th:field="*{kvkNr}"
+                    required pattern="^[0-9]{8}$"
+                    title="Het KvK-nummer bestaat uit 8 cijfers."
+                    oninvalid="setCustomValidity('Controleer of het KvK-nummer klopt')"
+                    oninput="setCustomValidity('')">
+                </li>
+
+                <li>
+                    <label for="btwNr">Btw-nummer * </label>
+                    <input id="btwNr" class="field" type="text" placeholder=" NL123456789B00" th:field="*{btwNr}"
+                    required pattern="^[A-Za-z]{2}[0-9]{9}[Bb][0-9]{2}$"
+                    title="Het btw-nummer bestaat uit 14 tekens en begint met een landcode, bijvoorbeeld NL."
+                    oninvalid="setCustomValidity('Controleer of het btw-nummer klopt')"
+                    oninput="setCustomValidity('')">
+                </li>
+
+                <li>
+                    <label for="name">Bedrijfsnaam * </label>
+                        <input id="name" class="field" type="text" placeholder=" Bedrijfsnaam" th:field="*{companyName}"
+                        required pattern="^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[a-zA-Z0-9 '~@#&?!*+-]{2,254}$"
+                        oninvalid="setCustomValidity('Controleer of de bedrijfsnaam klopt.')"
+                        oninput="setCustomValidity('')"/>
+                </li>
+
+                <li>
+                    <label for="sectorField">Sector * </label>
+                        <select class="field" id="sectorField" th:field="*{id}">
+                            <option th:each="sector : ${sectoren}" th:value="${sector.getId()}" th:text="${sector.getName()}"
+                        th:selected="${companyFormBean.id == sector.getId()}"
+                                    oninput="setCustomValidity('')"></option>
+                        </select>
+                </li>
+
+                <li>
+            <div id="button">
+            <button type="submit" name="action" value="send">Bedrijf aanmelden</button>
+            </div>
+                </li>
+            </ul>
+</form></div>
 </body>
 </html>
