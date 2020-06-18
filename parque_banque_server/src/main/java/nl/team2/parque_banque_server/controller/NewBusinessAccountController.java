@@ -22,7 +22,7 @@ import java.util.Set;
  */
 
 @Controller
-@SessionAttributes("customerId")
+@SessionAttributes({"customerId", "companyFormBean"})
 public class NewBusinessAccountController {
 
     @Autowired private CustomerService customerService;
@@ -43,7 +43,7 @@ public class NewBusinessAccountController {
                 return "newcompany";
             } else {
             model.addAttribute("companies", companies);
-            model.addAttribute("company", new CompanyFormBean());
+            model.addAttribute("companyFormBean", new CompanyFormBean());
             return "newbusinessaccount";
             }
         }else{
