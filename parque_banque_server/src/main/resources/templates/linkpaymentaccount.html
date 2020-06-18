@@ -20,54 +20,44 @@
     </ul>
 </nav>
 
-
 <main>
     <div class="container">
         <div class="formheader">
-        <h1>Meld u aan als rekeninghouder</h1>
-    </div>
+            <h1>Meld u aan als rekeninghouder</h1>
+        </div>
         <h3>Vul het rekeningnummer en de beveiligingscode die u heeft gekregen hier in.</h3>
 
-    <form class="form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post" name="form">
-        <div id="error_invalidauthorisation">
-            <span th:if="${invalidCredentials}" class="error">De combinatie van rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.</span>
-            <span th:if="${rekeningGekoppeld}" class="error">U bent al gekoppeld aan deze rekening.</span>
-        </div>
-        <div class="formfield">
-            <label for="iban">Rekeningnummer</label><br/>
-            <input type="text" id="iban" th:field="*{iban}" name="iban">
-            <p id="IBAN_unknown" class="error_field"></p>
-            <p id="IBAN_error" class="error_field"></p>
-            <label for="securityCode">Beveiligingcode</label></br>
-            <input type="text" id="securityCode" th:field="*{securityCode}" name="securityCode">
-            <p id='sec_error' class="error_field"></p>
-        </div>
-        <button type="button" onclick="validate()">OK</button>
-    </form>
+        <form class="form" th:action="@{/rekening-koppelen}" th:object="${linkAccountFormBean}" method="post" name="form">
+            <div id="error_invalidauthorisation">
+                <span th:if="${invalidCredentials}" class="error">De combinatie van rekeningnummer en beveiligingscode is onjuist. Probeer het opnieuw.</span>
+                <span th:if="${rekeningGekoppeld}" class="error">U bent al gekoppeld aan deze rekening.</span>
+            </div>
+            <div class="formfield">
+                <label for="iban">Rekeningnummer</label><br/>
+                <input type="text" id="iban" th:field="*{iban}" name="iban">
+                <p id="IBAN_unknown" class="error_field"></p>
+                <label for="securityCode">Beveiligingcode</label></br>
+                <input type="text" id="securityCode" th:field="*{securityCode}" name="securityCode">
+                <p id='sec_error' class="error_field"></p>
+                <button type="button" onclick="validate()">OK</button>
+            </div>
+
+        </form>
     </div>
 </main>
 
 <script>
     function validate() {
-        document.getElementById('IBAN_error').innerHTML = ''
         document.getElementById('sec_error').innerHTML = ''
-        var ibannr = document.getElementById("iban").value;
         var secCode = document.getElementById('securityCode').value;
-        var ibanRegex = /^NL\d{2}[A-Z]{4}0\d{9}$/;
         var secRegex = /^\d{5}$/;
-        var ibanResult = ibanRegex.test(ibannr);
         var secResult = secRegex.test(secCode);
         console.log(secCode, secResult)
-        if (ibanResult === true && secResult === true) {//ajax code en iban matchen
+        if (secResult === true) {//ajax code en iban matchen
             document.form.submit();
-        } else if (ibanResult === false && secResult === true) {
-            document.getElementById('IBAN_error').innerHTML = 'Het format van uw iban is niet correct.'
-        } else if (ibanResult === true && secResult === false) {
-            document.getElementById('sec_error').innerHTML = 'Vul 5 cijfers in'
-        } else {
-            document.getElementById('IBAN_error').innerHTML = 'Het format van uw iban is niet correct.'
-            document.getElementById('sec_error').innerHTML = 'Vul 5 cijfers in'
-        }
+        } else
+            document.getElementById('sec_error').innerHTML = 'Vul 5 cijfers in';
+
     }
 
 

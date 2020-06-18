@@ -14,14 +14,20 @@
     <ul>
         <li class="logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}"
                                                          alt="parque banque"></a></li>
-        <li class="nav-link"><a href="/rekening-overzicht">Rekeningoverzicht</a></li>
         <li class="nav-link"><a href="/uitloggen">Uitloggen</a></li>
     </ul>
 </nav>
-<br/>
-<br/>
-<br/>
-<h2>U bent als mederekeninghouder toegevoegd aan de rekening. Op het rekeningoverzicht kunt u de details van uw rekening vinden.</h2>
-<button onclick="document.location ='/rekening-overzicht'">Rekeningoverzicht</button>
+<main>
+    <div class="form">
+        <div class="container_confirm">
+            <h2>Gefeliciteerd! Wij hebben u toegevoegd als rekeninghouder aan rekening <span th:text="${iban}"/>!
+                Wilt u meer informatie over uw rekening? Kijk dan op het rekeningoverzicht. U vindt hier alle
+                informatie.</h2>
+            <!--        <h2>IBAN: <span th:text="${iban}"/></h2>-->
+            <button type="button2" onclick="document.location = '/rekening-overzicht'">Rekeningoverzicht</button>
+        </div>
+    </div>
+
+</main>
 </body>
 </html>
