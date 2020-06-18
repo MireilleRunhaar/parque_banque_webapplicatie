@@ -57,7 +57,7 @@ public class LinkAccountController {
     public ModelAndView linkAccount(@Valid LinkAccountFormBean linkAccountFormBean, BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
-           model.addAttribute("invalidCredentials", true);
+            model.addAttribute("invalidCredentials", true);
             mav.setViewName("linkpaymentaccount");
         } else {
             Customer customer = customerService.findCustomerBySAId(model.getAttribute("customerId"));
@@ -69,6 +69,7 @@ public class LinkAccountController {
                 PaymentAccount paymentAccount = paymentAccountService.findOneByIban(linkAccountFormBean.getIban());
                 paymentAccount.addCustomerToAccountHolder(customer);
                 paymentAccountService.savePaymentAccount(paymentAccount);
+                model.addAttribute("iban", linkAccountFormBean.getIban());
                 mav.setViewName("linkpaymentaccountconfirmation");
             }
             else {

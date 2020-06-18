@@ -1,3 +1,5 @@
+link.css
+
 main {
 
     display: flex;
@@ -13,17 +15,30 @@ main {
     overflow: hidden;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    width: 500px;   /*breedte van het formulier*/
+    width: 500px;
     max-width: 100%;
     text-align: center;
+    height: 500px;
+    alignment: center;
 
 
+}
+.container_confirm{
+    background-color: #37ad49;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 500px;
+    max-width: 100%;
+    text-align: center;
+    height: 300px;
+    align-self: center;
 }
 
 .formheader {
     background-color: white;
     border-bottom: 1px solid white;
-    padding: 20px 40px;
+    padding: 20px 20px;
 
 }
 
@@ -33,6 +48,25 @@ main {
     position: relative;
 }
 .form button {
+    background-color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 2px solid #a9a9a9;
+    border-radius: 4px;
+    color: white;
+    display: block;
+    height: 30px;
+    font-family: inherit;
+    font-size: 12px;
+    margin-left: 110px;
+    margin-right: 110px;
+    width: 50%;
+    text-align: center;
+}
+.placeholder {
+    color: darkgrey;
+}
+
+.form button2 {
     background-color: #2e2a2a;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     border: 2px solid #a9a9a9;
@@ -40,24 +74,30 @@ main {
     color: white;
     display: block;
     font-family: inherit;
-    font-size: 16px;
-    margin-left: 110px;
-    margin-right: 110px;
-    width: 50%
+    font-size: 12px;
+    padding: inherit;
+    margin-left: 10px;
+    width: 10%;
+    float: right;
+    height: 30px;
 }
 
+
 h2 {
-    font-size: 20px;
+    font-size: 16px;
     margin: 50px;
     font-family: sans-serif;
+    text-align-all: left;
 }
 
 button  {
-    margin: 50px;
+    margin: 30px;
 }
 h3 {
-    font-size: 18px;
+    display: inline-block;
+    font-size: 14px;
     width: 450px;
+    padding-top: 10px;
     padding-right: 20px;
     padding-left: 20px;
     text-align: center;
@@ -76,23 +116,25 @@ input {
 .formfield {
     font-size: 16px;
     margin-bottom: 10px;
-    padding: 40px;
+    /*padding: 10px;*/
     alignment: left;
+    height: 100%;
 }
-
-
 
 
 .error_field{
     color: white;
-    font-size: small;
+    font-size: 12px;
 
 }
 .error {
     color: white;
-    font-size: 14px;
-    alignment: inherit;
+    font-size: 12px;
+    alignment: center;
+    margin-bottom: 20px;
+
 
 }
-
-
+#error_invalidauthorisation{
+    padding-bottom: 20px;
+}
