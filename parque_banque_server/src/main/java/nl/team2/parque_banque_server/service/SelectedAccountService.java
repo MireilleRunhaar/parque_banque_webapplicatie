@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import javax.swing.text.DateFormatter;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -38,7 +40,7 @@ public class SelectedAccountService {
         String output = getListAccountHolders(account);
         businessAccountCheck(iban, model);
 
-        model.addAttribute("DatumEnTijd", getCurrentTimeWithTimeZone());
+        model.addAttribute("datum", getCurrentDate());
         model.addAttribute("saldo", paymentAccountService.balanceInEuros(account.getBalance()));
         model.addAttribute("names", output);
 
@@ -101,10 +103,9 @@ public class SelectedAccountService {
         return amount;
     }
 
-    public static String getCurrentTimeWithTimeZone(){
-        ZoneId zoneId = ZoneId.of("Europe/Paris");
-        LocalDateTime localDateTime = LocalDateTime.now(zoneId);
+    public static String getCurrentDate(){
+        LocalDate localDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return localDateTime.format(formatter);
+        return localDate.format(formatter);
     }
 }
