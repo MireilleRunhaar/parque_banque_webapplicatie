@@ -2,25 +2,42 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+
     <title>Overzicht bedrijven</title>
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+    <link th:href="@{/css/mkbtable.css}" href="../static/css/mkbtable.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
-<a href="/uitloggen">Uitloggen</a>
-<br>
-    <h1>Overzicht bedrijfsrekeningen</h1>
-<form action="/overzicht-bedrijven" method="post" th:object="${richestBusinessCustomers}" >
+<nav class="navigation">
+    <ul>
+        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+        <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+        <li class="nav-link"><a href="/personeel-home">Terug</a></li>
+    </ul>
+
+</nav>
 
 
-    <input type="submit" name="Saldo" value="Saldo" >
-</form>
-<form action="/overzicht-bedrijven" method="post" th:object="${averageBalanceSector}" >
-    <input type="submit" name="Sectoren" value="Sectoren" >
+<br><br><br><br>
 
-</form>
-<form action="/overzicht-bedrijven" method="post" th:object="${mostActiveBusinessAccounts}" >
-    <input type="submit" name="Transacties" value="Transacties" >
+<h1 class="header-left">Overzicht Bedrijfsrekeningen</h1>
+<div class="button-group">
+    <form action="/overzicht-bedrijven" method="post" th:object="${richestBusinessCustomers}" >
 
-</form>
+        <input type="submit" name="Saldo" value="Saldo" >
+
+    </form>
+
+
+    <form action="/overzicht-bedrijven" method="post" th:object="${averageBalanceSector}" >
+        <input type="submit" name="Sectoren" value="Sectoren" >
+    </form>
+
+    <form action="/overzicht-bedrijven" method="post" th:object="${mostActiveBusinessAccounts}" >
+        <input type="submit" name="Transacties" value="Transacties" >
+    </form>
+</div>
 
 </body>
 </html>

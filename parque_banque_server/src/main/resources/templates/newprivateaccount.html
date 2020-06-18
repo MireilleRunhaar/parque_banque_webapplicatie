@@ -2,8 +2,11 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <script type="text/javascript" src="javascript/confirmwindow.js" defer ></script>
+    <link th:href="@{/css/confirmwindow.css}" href="../static/css/confirmwindow.css" rel="stylesheet">
     <title>Nieuwe Particuliere Rekening Openen</title>
     <link th:href="@{/css/newprivateaccount.css}" href="../static/css/newprivateaccount.css" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
 </head>
@@ -31,7 +34,7 @@
 </div>
 
 <div class="knop-div">
-    <form action="/particuliere-rekening-openen" method="post" th:object="${privateAccount}" >
+    <form class="form" id="form" action="/particuliere-rekening-openen" method="post" th:object="${privateAccount}" >
 
 
         <input type="submit" name="submitbutton" value="Bevestigen" id="bevestigen">
@@ -41,6 +44,26 @@
     </form>
 </div>
         </div>
+
+
+<script>
+    const form = document.getElementById('form');
+    form.addEventListener('submit', (e) =>{
+        e.preventDefault();
+        confirmWindow();
+    });
+
+    function confirmWindow(){
+        Confirm.open({
+            title: 'Bevestig openen particuliere rekening',
+            message: 'Wij openen een particuliere rekening voor u. Deze is direct zichtbaar in uw rekeningoverzicht.',
+            onok: () => {
+                document.getElementById('form').submit();
+            }
+        });
+    }
+
+</script>
 
 </body>
 </html>

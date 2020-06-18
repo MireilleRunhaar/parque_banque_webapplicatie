@@ -6,11 +6,12 @@
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link th:href="@{/css/transaction.css}" href="../static/css/transaction.css" rel="stylesheet">
     <link th:href="@{/css/confirmwindow.css}" href="../static/css/confirmwindow.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/park-bench-small.png}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" rel="stylesheet">
     <script type="text/javascript" src="javascript/newtransaction.js" defer ></script>
     <script type="text/javascript" src="javascript/confirmwindow.js" defer ></script>
-    <title>Overboeken</title>
+    <title>Geld overboeken - Parque Banque</title>
 </head>
 <body>
 <!-- navigatie-->
@@ -30,15 +31,15 @@
              <form class="form" id="form" action="#" th:action="@{/overboeken}" th:object="${transactionFormBean}" method="post" >
                     <div id="div-amount" class="form-control">
                         <label id="label-amount" for="amount">Bedrag</label>
-                        <input th:field="*{amount}" id="amount" class="t-amount" type="text" placeholder="0" size="8" dir="rtl">
+                        <input th:field="*{amount}" id="amount" class="t-amount" type="text" size="8" dir="rtl" placeholder="0">
                         <label for="cents">,</label>
-                        <input th:field="*{cents}" id="cents" class="t-cents" type="text" size="2" placeholder="00" minlength="2" maxlength="2">
+                        <input th:field="*{cents}" id="cents" class="t-cents" type="text" size="2" minlength="2" maxlength="2" required placeholder="00">
                         <small></small>
                         <small class="th" th:if="${insufficientFunds}">Saldo is ontoereikend</small>
                     </div>
                     <div id="div-iban" class="form-control">
                         <label  for="iban">Rekeningnummer (IBAN) ontvanger</label>
-                        <input th:field="*{ibanCreditAccount}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18">
+                        <input th:field="*{ibanCreditAccount}" id="iban" type="text" placeholder="NLxxPARQ0..." size="18" min="18" max="18" required>
                         <small></small>
                         <small class="th" th:if="${ibanUnknown}">Rekeningnummer is niet bij ons bekend</small>
                     </div>

@@ -2,17 +2,25 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Zakelijke klanten met het hoogste saldo</title>
+    <title>Zakelijke klanten met hoogste saldo - Parque Banque</title>
     <link th:href="@{/css/mkbtable.css}" href="../static/css/mkbtable.css" rel="stylesheet">
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="javascript/mkb_tables.js" defer ></script>
 </head>
 
 <body>
-<a href="/uitloggen"><button>Uitloggen</button></a>
-<a href="/personeel-home"><button>Terug</button></a>
+<nav class="navigation">
+    <ul>
+        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+        <li class= "nav-link"><a href="/uitloggen">Uitloggen</a></li>
+        <li class= "nav-link"><a href="/overzicht-bedrijven">Terug</a></li>
+    </ul>
+</nav>
 <main>
-<h2>Zakelijke Klanten</h2>
-<table  table class="content-table">
+    <br><br><br><br>
+<h2 class="header-left">Zakelijke Rekeninghouders</h2>
+<table id="mkb-list"  table class="content-table">
     <thead>
     <tr>
         <th>Nummer</th>
@@ -25,8 +33,8 @@
         <td th:text="${index.count}"></td>
         <td th:text="${richestBusinessCustomers.get(key)[0].firstName} + ' ' + ${richestBusinessCustomers.get(key)[0].affix}
          + ' ' + ${richestBusinessCustomers.get(key)[0].surName}"></td>
-        <td th:text="'€ ' + ${#numbers.formatDecimal(key/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
-        <td th:text="${richestBusinessCustomers.get(key)[1]}" ></td>
+        <td th:text="'€ ' + ${#numbers.formatDecimal(richestBusinessCustomers.get(key)[1]/100.0, 0, 'POINT', 2, 'COMMA')}"></td>
+        <td th:text="${richestBusinessCustomers.get(key)[2]}" ></td>
     </tr>
 </table>
 
