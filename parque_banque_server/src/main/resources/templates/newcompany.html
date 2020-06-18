@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Nieuw bedrijf aanmaken bij Parque Banque</title>
+    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link th:href="@{/css/company.css}" href="../static/css/company.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script type="text/javascript" src="/javascript/kvkinuse.js" defer></script>
@@ -11,8 +12,10 @@
 <body>
 <nav class="navigation">
     <ul>
-        <li class= "logo-link"><a id="logo" href="/">
-            <img src="../static/logo-small.png" th:src="@{logo-small.png}" alt="parque banque"></a></li>
+        <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{/logo-small.png}" alt="parque banque"></a></li>
+        <li class="nav-link"><a  href="/uitloggen">Uitloggen</a></li>
+        <li class="nav-link"><a  href="/rekening-overzicht">Rekeningoverzicht</a></li>
+
     </ul>
 </nav>
 
@@ -24,18 +27,17 @@
 
             <ul>
                 <li>
-                    <label>Kvk-nummer * </label>
-                    <input class="field" type="text" placeholder=" 12345678" th:field="*{kvkNr}"
+                    <label for="kvkNr">Kvk-nummer * </label>
+                    <input id="kvkNr" class="field" type="text" placeholder=" 12345678" th:field="*{kvkNr}"
                     required pattern="^[0-9]{8}$"
                     title="Het KvK-nummer bestaat uit 8 cijfers."
                     oninvalid="setCustomValidity('Controleer of het KvK-nummer klopt')"
                     oninput="setCustomValidity('')">
-
                 </li>
 
                 <li>
-                    <label> Btw-nummer * </label>
-                    <input class="field" type="text" placeholder=" NL123456789B00" th:field="*{btwNr}"
+                    <label for="btwNr">Btw-nummer * </label>
+                    <input id="btwNr" class="field" type="text" placeholder=" NL123456789B00" th:field="*{btwNr}"
                     required pattern="^[A-Za-z]{2}[0-9]{9}[Bb][0-9]{2}$"
                     title="Het btw-nummer bestaat uit 14 tekens en begint met een landcode, bijvoorbeeld NL."
                     oninvalid="setCustomValidity('Controleer of het btw-nummer klopt')"
@@ -43,23 +45,20 @@
                 </li>
 
                 <li>
-                    <label> Bedrijfsnaam * </label>
-                    <label>
-                        <input class="field" type="text" placeholder=" Bedrijfsnaam" th:field="*{companyName}"
+                    <label for="name">Bedrijfsnaam * </label>
+                        <input id="name" class="field" type="text" placeholder=" Bedrijfsnaam" th:field="*{companyName}"
                         required pattern="^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[a-zA-Z0-9 '~@#&?!*+-]{2,254}$"
                         oninvalid="setCustomValidity('Controleer of de bedrijfsnaam klopt.')"
                         oninput="setCustomValidity('')"/>
-                    </label>
                 </li>
 
                 <li>
-                    <label> Sector * </label>
-                    <label>
-                        <select option class="field"  th:field="*{id}"> th:each="sector : ${sectoren}" th:value="${sector.getId()}" th:text="${sector.getName()}"
+                    <label for="sectorField">Sector * </label>
+                        <select class="field" id="sectorField" th:field="*{id}">
+                            <option th:each="sector : ${sectoren}" th:value="${sector.getId()}" th:text="${sector.getName()}"
                         th:selected="${companyFormBean.id == sector.getId()}"
-                        oninput="setCustomValidity('')"></select>
-                    </label>
-
+                                    oninput="setCustomValidity('')"></option>
+                        </select>
                 </li>
 
                 <li>
