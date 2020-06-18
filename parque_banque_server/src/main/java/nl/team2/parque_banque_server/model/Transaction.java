@@ -1,8 +1,10 @@
 package nl.team2.parque_banque_server.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Objects;
+
 
 @Entity
 public class Transaction {
@@ -13,7 +15,7 @@ public class Transaction {
 
     private long amountCent;
     private String description;
-    private LocalDate date;
+    private LocalDateTime date;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private PaymentAccount creditAccount;
@@ -24,10 +26,10 @@ public class Transaction {
     public Transaction(){
             }
 
-    public Transaction(long amountCent, String description, LocalDate date, PaymentAccount creditAccount, PaymentAccount debitAccount) {
+    public Transaction(long amountCent, String description, PaymentAccount creditAccount, PaymentAccount debitAccount) {
         this.amountCent=amountCent;
         this.description=description;
-        this.date=date;
+        this.date= LocalDateTime.now(ZoneId.systemDefault());
         this.creditAccount=creditAccount;
         this.debitAccount=debitAccount;
     }
@@ -53,11 +55,11 @@ public class Transaction {
         this.amountCent = amountCent;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
