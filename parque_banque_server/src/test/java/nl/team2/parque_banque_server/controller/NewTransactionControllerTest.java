@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.time.LocalDate;
+
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,7 +44,7 @@ class NewTransactionControllerTest {
         Mockito.when(paymentAccountService.validateFunds("NL80PARQ0100000842", 1000))
                 .thenReturn(true);
         Mockito.when(transactionService.createTransactionFromBean(new TransactionFormBean(), "NL80PARQ0100000842"))
-                .thenReturn(new Transaction(1000, "String description", LocalDate.now(), credit, debit));
+                .thenReturn(new Transaction(1000, "String description", credit, debit));
 
 
         try{
