@@ -1,9 +1,10 @@
 main {
-    
+
+    font-family: 'Noto', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /*deze misschien weg als niet mooi gecentreerd*/
+    min-height: 100vh; 
     margin: 0;
     
 }
@@ -13,7 +14,7 @@ main {
     overflow: hidden;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    width: 500px;   /*breedte van het formulier*/
+    width: 600px;   /*breedte van het formulier*/
     max-width: 100%;
     
 }
@@ -22,85 +23,48 @@ main {
     background-color: white;
     border-bottom: 1px solid white;
     padding: 20px 40px;
+    text-align: center;
     
 }
 
 
-.formheader h2 {
+.formheader h1 {
     margin: 0;
-    padding-left: 10%;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.form p{
-   display: block;
-    margin: 0;
-    padding-bottom: 20px;
-    font-size: 18px;
-}
-
-
-.form {
+form {
     padding: 30px 40px;
 }
 
-.form-control{
-    margin-bottom:10px;
-    padding-bottom: 20px;
-    position: relative;
-
-}
-
-.form-control label{
+.error {
     display: inline-block;
-    margin-bottom: 5px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: darkred;
 }
 
-
-.form-control.succes input {
-    border-color: #1cfc1c;
-}
-
-.form-control.error input{
-    border-color: #a80a0a;
-}
-
-.form-control select{
+ input{
     border: 2px solid #2e2a2a;  /*kleur van de inputranden*/
     border-radius: 4px;
     display: block;
     font-family: inherit;
     font-size: 14px;
     padding: 10px;
-    width: 100%;    /*breedte van inputvelden*/
+     margin: 10px;
+    width: 50%;    /*breedte van inputvelden*/
     
 }
 
-
-.form-control small{
-    visibility: hidden;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+.username {
+    padding-bottom: 10px
 }
 
-.form-control.error small {
-    color:#a80a0a;
-    visibility: visible;
+.security-code {
+    padding-bottom: 20px;
 }
 
-.business-link {
-    
-    display: inline-block;
-    margin: 0;
-    margin-bottom: 20px;
-   
-}
-
-.business-link:hover {
-    border-bottom: 2px solid black;
-}
-
-.form button {
+button {
     background-color: #2e2a2a;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     border: 2px solid #a9a9a9;
@@ -110,7 +74,24 @@ main {
     font-family: inherit;
     font-size: 16px;
     padding: 10px;
-    width: 100%
+   margin-left: 10px;
+    width: 25%;
+}
+
+
+  .back{
+    display: block;
+    padding-bottom: 25px;
+    padding-left: 40px;
+    padding-top: -20px;
+   
+      margin-top: -71px
+          
+}
+
+.back button {
+    width: 23%;
+    margin-left: 150px;
 }
 
 button:hover {

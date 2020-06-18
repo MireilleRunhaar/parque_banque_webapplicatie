@@ -1,19 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Homepagina medewerkers</title>
-</head>
-<body>
-<a href="/uitloggen">Uitloggen</a>
-<br>
-    <h1>Welkom terug <span th:text="${employee.firstName}"></span></h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>Homepagina medewerkers</title>
 
-    Pagina's voor <span th:text="${employee.role.name}"></span>:
-    </br>
+        <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
+        <link th:href="@{/css/employeehome.css}" href="../static/css/employeehome.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
-    <a th:if="${employee.role.id} eq '1'" class="private" href="/overzicht-particulier">Overzicht particulieren</a>
+    </head>
 
-    <a th:if="${employee.role.id} eq '2'" class="business"  href="/overzicht-bedrijven">Overzicht MKB</a>
-</body>
+    <body>
+        <!-- navigatie -->
+        <nav class="navigation">
+            <ul>
+                <li class= "logo-link"><a id="logo" href="/"><img src="../static/logo-small.png" th:src="@{/logo-small.png}" alt="parque banque"></a></li>
+                <li class="nav-link"><a  href="/uitloggen-personeel">Uitloggen</a></li>
+            </ul>
+        </nav>
+
+        <!-- body -->
+        <main>
+            <div class="mainleft">
+                <h1 class="title">Welkom terug <span th:text="${employee.firstName}"></span>!</h1>
+
+                <h1>Nieuws</h1>
+                <div class="bericht">
+                    <h2>Release nieuwe webapplicatie dichtbij</h2>
+                    <p>Nullam quis justo sem. Vivamus interdum ex nunc, quis malesuada nisi condimentum sit amet. In at laoreet arcu, id congue lacus. In sollicitudin pharetra magna, nec pretium libero sollicitudin id. Quisque tincidunt a urna ac gravida. Cras nisi diam, euismod sagittis purus vitae, rhoncus sagittis leo. Pellentesque laoreet quis lacus vitae sagittis. Donec ex massa, pretium vel interdum sit amet, semper non odio. Suspendisse potenti. Donec ornare quam ut elit lacinia, ac congue massa ullamcorper. Sed id cursus nisl, nec tincidunt lacus. Integer scelerisque lobortis odio ac lobortis.</p>
+                    <p>Nullam luctus venenatis justo, tincidunt feugiat metus accumsan vitae. Donec et pulvinar sapien. Phasellus lorem lectus, malesuada ac nulla vitae, lacinia efficitur velit. Nullam non leo id tortor varius lobortis sed ut tortor. Suspendisse varius facilisis imperdiet. Cras faucibus fermentum nisl, nec semper erat euismod id. Aenean pharetra lectus arcu. Donec tincidunt dui dui, quis lobortis tellus congue ut.</p>
+                </div>
+
+                <div class="bericht">
+                    <h2>Nieuwe huisstijl Parque Banque</h2>
+                    <p>Sed vestibulum, eros sed accumsan vehicula, lacus risus fringilla ipsum, sit amet imperdiet quam sem laoreet leo. Pellentesque mollis sapien mattis, placerat tellus vitae, tincidunt sem. Donec nunc tellus, efficitur at convallis ac, aliquet sed sapien. Phasellus vel tincidunt lacus. Vestibulum interdum ante a metus posuere, ut egestas augue varius. Aenean non sollicitudin urna. Suspendisse suscipit, augue egestas pretium semper, eros dolor suscipit sem, eu laoreet purus turpis a orci. Sed consectetur non felis sollicitudin lacinia. </p>
+                    <p>Mauris quis aliquet erat. Pellentesque molestie suscipit vestibulum. Morbi et lectus varius, iaculis turpis sed, viverra augue. Morbi vitae augue quis leo facilisis blandit vitae non nisl. Sed vitae velit mi. Donec ullamcorper orci et erat auctor, ac iaculis lacus efficitur. Duis egestas scelerisque erat, a aliquam sem lacinia ut. </p>
+                </div>
+
+                <div class="bericht">
+                    <h2>Update teambuilding eerste helft 2020</h2>
+                    <p>Morbi nec suscipit arcu. Nam sed ligula orci. Morbi volutpat erat eget volutpat pellentesque. Nam dignissim in turpis in malesuada. Quisque eu venenatis diam, pellentesque porttitor dui. Ut nec pulvinar ipsum. Pellentesque lobortis fermentum efficitur. Nulla congue, sem in pellentesque euismod, erat felis finibus ligula, vel accumsan sem libero ullamcorper nunc. In ac risus quis mi egestas sollicitudin at eget nunc. Sed in mi egestas, placerat mauris ac, eleifend tortor. </p>
+                    <p>Nulla eu convallis ipsum. Suspendisse dapibus, mauris non efficitur facilisis, ex elit bibendum nisl, at porttitor velit risus id massa. Curabitur eget bibendum dui. Ut consequat interdum ex, in convallis libero malesuada in. Duis commodo eget neque sed egestas. Aliquam porta diam diam, quis varius urna ornare ac. Praesent consequat ultrices rutrum. Nulla facilisi. Suspendisse eget massa id erat auctor interdum. In eget tellus et nisi convallis consectetur. Vestibulum molestie cursus semper. </p>
+                </div>
+            </div>
+
+            <div class="mainright">
+                <div class="employeenav">
+                    <h3>Pagina's <span th:text="${employee.role.name}"></span>:</h3>
+                    <a th:if="${employee.role.id} eq '1'" class="private" href="/overzicht-particulier">- Overzicht particulieren</a>
+                    <a th:if="${employee.role.id} eq '2'" class="business" href="/overzicht-bedrijven">- Overzicht MKB</a>
+                    <p th:if="${employee.role.id} eq '3'" class="account">- Geen</p>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>

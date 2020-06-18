@@ -25,7 +25,7 @@
 
         <!-- body -->
         <main class="container">
-            <h2>Welkom terug <span th:text="${customer.firstName}"></span> <span th:text="${customer.affix}"></span><span th:text="${customer.surName}"></span>!</h2>
+            <h2>Welkom terug <span th:text="${customer.firstName}"></span> <span th:text="${customer.affix}"></span> <span th:text="${customer.surName}"></span>!</h2>
             <h3>Selecteer een rekening voor meer informatie.</h3>
 
             <div class="buttons">
@@ -36,11 +36,11 @@
 
             <br>
 
-            <h1>Prive Rekening</h1>
+            <h1>Privé rekeningen</h1>
             <table>
                 <thead>
                     <tr>
-                        <th>Rekeninghouder</th>
+                        <th>Rekeninghouder(s)</th>
                         <th>IBAN</th>
                         <th>Saldo</th>
                     </tr>
@@ -58,12 +58,12 @@
                 </tbody>
             </table>
 
-            <h1>Zakelijke rekening</h1>
+            <h1>Zakelijke rekeningen</h1>
             <table>
                 <thead>
                     <tr>
                         <th>Bedrijfsnaam</th>
-                        <th>Rekeninghouder</th>
+                        <th>Rekeninghouder(s)</th>
                         <th>IBAN</th>
                         <th>Saldo</th>
                     </tr>
