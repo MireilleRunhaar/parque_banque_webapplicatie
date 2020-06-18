@@ -19,8 +19,6 @@
     </ul>
 </nav>
 
-
-
     <div id="form">
         <form th:action="@{/nieuw-bedrijf-aanmaken}" method="post" th:object="${companyFormBean}">
             <h1>Klopt het allemaal? </h1>
@@ -28,19 +26,19 @@
             <ul>
                 <li>
                     <label for="kvkNr">KvK-nummer</label>
-                    <input id="kvkNr" type="text" th:field="${companyFormBean.kvkNr}"/>
+                    <input id="kvkNr" type="text" class="field" th:field="${companyFormBean.kvkNr}"/>
                 </li>
                 <li>
                     <label for="btwNr">Btw-nummer</label>
-                    <input id="btwNr" type="text" readonly th:field="${companyFormBean.btwNr}"/>
+                    <input id="btwNr" type="text" class="field" readonly th:field="${companyFormBean.btwNr}"/>
                 </li>
                 <li>
                     <label for="bedrijfsNaam">Bedrijfsnaam</label>
-                    <input id="bedrijfsNaam" type="text" readonly th:field="${companyFormBean.companyName}"/>
+                    <input id="bedrijfsNaam" type="text" class="field" readonly th:field="${companyFormBean.companyName}"/>
                 </li>
                 <li>
                     <label for="sector">Sector</label>
-                    <input id="sector" type="text" readonly th:field="${sector.name}"/>
+                    <input id="sector" type="text" class="field" readonly th:field="${sector.name}"/>
                 </li>
             </ul>
 
