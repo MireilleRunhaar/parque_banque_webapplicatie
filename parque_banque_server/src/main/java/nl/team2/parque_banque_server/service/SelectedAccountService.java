@@ -104,7 +104,7 @@ public class SelectedAccountService {
     public static String getCurrentTimeWithTimeZone(){
         ZoneId zoneId = ZoneId.of("Europe/Paris");
         LocalDateTime localDateTime = LocalDateTime.now(zoneId);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return localDateTime.format(formatter);
     }
 }
