@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Rekeninghouder toevoegen | Parque Banque</title>
+    <title>Rekeninghouder toevoegen - Parque Banque</title>
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <link th:href="@{/css/confirmwindow.css}" rel="stylesheet"/>
     <link th:href="@{/css/addaccountholder.css}" href="../static/css/addaccountholder.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/park-bench-small.png}">
     <script type="text/javascript" src="javascript/addaccountholder.js" defer></script>
     <script type="text/javascript" src="javascript/confirmaddaccountholder.js" defer></script>
 
@@ -32,12 +33,6 @@
         <p>Vul hieronder de gebruikersnaam in van de klant die u wilt toevoegen aan rekening <span th:text="${iban}"></span>.</p>
     </div>
     <form id="form" action="#" th:action="@{/rekeninghouder-toevoegen}" th:object="${addAccountHolderFormBean}" method="post">
-        <div>
-            <span id="unkownError" class="error" style="display: none">Er ging iets mis. Controleer de gegevens goed.
-                De klant die u wilt toevoegen moet al een klant zijn van Parque Banque, en nog geen mederekeninghouder zijn.
-                De beveiligingscode mag niet uit dezelfde getallen bestaan of een oplopende of aflopende rij zijn.</span>
-        </div>
-    
         <p>De persoon moet klant zijn bij Parque Banque.
         Bedenk ook een code van 5 cijfers zodat de nieuwe rekeninghouder veilig gekoppeld kan worden.</p>
         <div class="username">
@@ -51,7 +46,7 @@
         </div>
         <div class="security-code">
             <label for="securityCode">Beveiligingscode</label>
-            <input id="securityCode" type="text" required pattern="[0-9]{5}" th:field="*{securityCode}"
+            <input id="securityCode" type="text" required placeholder="5 cijfers" pattern="[0-9]{5}" th:field="*{securityCode}"
                    title="Verzin een een beveiligingscode van 5 cijfers"
                    oninvalid="setCustomValidity('Beveiligingscode moet bestaan uit 5 cijfers')"
                    oninput="setCustomValidity('')" />
