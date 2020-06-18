@@ -40,7 +40,7 @@ public class TransactionService {
             long amountCent = transactionFormBean.getTotalAmountInCents();
             PaymentAccount creditAccount = paymentAccountService.findOneByIban(transactionFormBean.getIbanCreditAccount());
             PaymentAccount debitAccount = paymentAccountService.findOneByIban(ibanDebit);
-            return new Transaction(amountCent, transactionFormBean.getDescription(), LocalDate.now(), creditAccount , debitAccount);
+            return new Transaction(amountCent, transactionFormBean.getDescription(), creditAccount , debitAccount);
     }
 
     public List<Transaction> getTransactionListByIbanCreditOrDebitAccount(String creditAccount_iban, String debitAccount_iban){

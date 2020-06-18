@@ -40,14 +40,14 @@ class TransactionServiceTest {
 
     @Test
     void createTransactionFromBean() {
-        assertEquals(new Transaction(100, "test1", LocalDate.now(), creditAccount, debitAccount),
+        assertEquals(new Transaction(100, "test1", creditAccount, debitAccount),
                 transactionService.createTransactionFromBean(new TransactionFormBean(1, 0, "test1", ibanCredit),ibanDebit));
 
     }
 
     @Test
     void createTransactionFromBean2(){
-        assertEquals(new Transaction(23456, "test1456", LocalDate.now(), creditAccount, debitAccount),
+        assertEquals(new Transaction(23456, "test1456", creditAccount, debitAccount),
                 transactionService.createTransactionFromBean(new TransactionFormBean(234, 56, "test1456", ibanCredit),ibanDebit));
     }
 
